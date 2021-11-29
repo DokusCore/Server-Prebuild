@@ -7,8 +7,8 @@ CreateThread(function()
   DokusMenu.CreateMenu('BoxItems', 'DropBox', '')
   DokusMenu.SetSubTitle('BoxItems', 'Loot Box')
 end)
-
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Inventory:OpenBoxMenu')
 AddEventHandler('DokusCore:Inventory:OpenBoxMenu', function(BoxID)
   DokusMenu.OpenMenu('BoxMenu')
@@ -26,21 +26,6 @@ AddEventHandler('DokusCore:Inventory:OpenBoxMenu', function(BoxID)
     end
     DokusMenu.Display()
   end
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Inventory:RemoveBoxItem')
-AddEventHandler('DokusCore:Inventory:RemoveBoxItem', function(BoxID, Item, Amount)
-  IsBoxOpen = false
-  IsPickingUpItem = true
-  local PedID = PlayerPedId()
-  TriggerEvent('DokusCore:Inventory:Animation', PedID)
-  TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { Steam, CharID, Item, Amount } })
-  local Data = TSC('DokusCore:Core:DBSet:Storages', { 'DropBox', 'RemoveItem', { BoxID, Item, Amount } })
-  if (Data.RemoveBox) then for k,v in pairs(BoxArray) do DeleteEntity(v.BoxID) end end
-  if (Data.RemoveBox) then for k,v in pairs(BoxTXTs) do if (v.BoxID == BoxID) then table.remove(BoxTXTs, k) end end end
-  Wait(2000)
-  IsPickingUpItem = false
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

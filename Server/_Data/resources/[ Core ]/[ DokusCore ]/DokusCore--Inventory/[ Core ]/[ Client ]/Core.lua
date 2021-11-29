@@ -14,25 +14,31 @@ BoxTXTs = {}
 --------------------------------------------------------------------------------
 -- Register when the user wants to open the inventory
 --------------------------------------------------------------------------------
-CreateThread(function()
-  while true do Wait(1000)
-    while CanInvBeOpened do Wait(0)
-      local Control = IsControlJustReleased(0, ActKeyInv)
-      if (not (IsInvOpen) and (Control) and not (IsPickingUpItem)) then
-        IsInvOpen = true
-        local Core = TSC('DokusCore:Core:GetCoreUserData')
-        Steam, CharID = Core.Steam, Core.CharID
-        TriggerEvent('DokusCore:Inventory:UpdateBankValues')
-        local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
-        if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end
-        OpenInv()
-      elseif (IsInvOpen) and (Control) then
-        IsInvOpen = false
-        CloseInv()
-      end
+-- CreateThread(function()
+--   while true do Wait(1000)
+--
+--   end
+-- end)
+
+RegisterNetEvent('DokusCore:Inventory:OpenInventory')
+AddEventHandler('DokusCore:Inventory:OpenInventory', function()
+  -- while CanInvBeOpened do Wait(0)
+    -- local Control = IsControlJustReleased(0, ActKeyInv)
+    if (not (IsInvOpen) and not (IsPickingUpItem)) then
+      IsInvOpen = true
+      local Core = TSC('DokusCore:Core:GetCoreUserData')
+      Steam, CharID = Core.Steam, Core.CharID
+      TriggerEvent('DokusCore:Inventory:UpdateBankValues')
+      local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
+      if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end
+      OpenInv()
+    elseif (IsInvOpen) and (Control) then
+      IsInvOpen = false
+      CloseInv()
     end
-  end
+  -- end
 end)
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Update users banking information in the inventory while open
@@ -114,8 +120,23 @@ CreateThread(function() Wait(1000)
     end
   end
 end)
-
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:Inventory:RemoveBoxItem')
+AddEventHandler('DokusCore:Inventory:RemoveBoxItem', function(BoxID, Item, Amount)
+  IsBoxOpen = false
+  IsPickingUpItem = true
+  local PedID = PlayerPedId()
+  TriggerEvent('DokusCore:Inventory:Animation', PedID)
+  TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { Steam, CharID, Item, Amount } })
+  local Data = TSC('DokusCore:Core:DBSet:Storages', { 'DropBox', 'RemoveItem', { BoxID, Item, Amount } })
+  if (Data.RemoveBox) then for k,v in pairs(BoxArray) do if (v.BoxID == BoxID) then DeleteEntity(v.BoxID) end end end
+  if (Data.RemoveBox) then for k,v in pairs(BoxTXTs) do if (v.BoxID == BoxID) then table.remove(BoxTXTs, k) end end end
+  Wait(2000)
+  IsPickingUpItem = false
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

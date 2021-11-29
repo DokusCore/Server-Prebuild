@@ -49,7 +49,13 @@ RSC('DokusCore:MultiChar:CreateNewCharacter', function(source, Data)
 
   return { Error = false, ErrReason = nil }
 end)
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Register client callback to fetch the current CharID when the Core restarts
+--------------------------------------------------------------------------------
+RSC('DokusCore:MultiChar:SyncCharID', function(source, args) return TCC(-1, 'DokusCore:MultiChar:SyncCharID', args) end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

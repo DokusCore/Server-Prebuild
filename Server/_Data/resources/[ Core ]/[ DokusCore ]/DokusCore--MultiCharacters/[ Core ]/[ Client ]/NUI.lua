@@ -7,7 +7,6 @@ RegisterNUICallback('closeUI', function() DoScreenFadeIn(1500) ToggleMenu(false)
 -- Wait for user to connect to the servers
 --------------------------------------------------------------------------------
 RegisterNUICallback('selectCharacter', function(Data)
-  print("selectCharacter")
   DoScreenFadeOut(1500) Wait(1500)
   ToggleMenu(false)
   local PedID = PlayerPedId()
@@ -33,7 +32,6 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('setupCharacters', function()
-  print("setupCharacters")
   local Array = {}
   local Steam = TSC('DokusCore:Core:GetUserIDs', { 'User' })[1]
   local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'All', { Steam } })
@@ -47,7 +45,6 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('createNewCharacter', function(Data)
-  print("createNewCharacter")
   local source = source
   local PedID = PlayerPedId()
   local Steam, CharID = Data.Steam, Data.CharID

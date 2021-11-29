@@ -115,43 +115,43 @@ function BuyConsumablePage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
     end
   end
@@ -167,43 +167,43 @@ function BuyMineralsPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
     end
   end
@@ -219,43 +219,43 @@ function BuyValutasPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
     end
   end
@@ -271,43 +271,43 @@ function BuyToolsPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
     end
   end
@@ -323,43 +323,43 @@ function BuyItemsPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:BuyItem', v) end
       end
     end
   end
@@ -378,43 +378,43 @@ function SellConsumablePage()
       -- Items for sale in valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then SellItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
     end
   end
@@ -430,43 +430,43 @@ function SellMineralsPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
     end
   end
@@ -482,43 +482,43 @@ function SellValutasPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
     end
   end
@@ -534,43 +534,43 @@ function SellToolsPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
     end
   end
@@ -586,43 +586,43 @@ function SellItemsPage()
       -- Items for sale in Valentine
       if ((Low(Loc) == 'valentine') and (Low(v.Valentine) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Saint Denise
       if ((Low(Loc) == 'saintdenis') and (Low(v.SaintDenis) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in BlackWater
       if ((Low(Loc) == 'blackwater') and (Low(v.Blackwater) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Tumbleweed
       if ((Low(Loc) == 'tumbleweed') and (Low(v.Tumbleweed) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Rhodes
       if ((Low(Loc) == 'rhodes') and (Low(v.Rhodes) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Armadillo
       if ((Low(Loc) == 'armadillo') and (Low(v.Armadillo) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
 
       -- Items for sale in Strawberry
       if ((Low(Loc) == 'strawberry') and (Low(v.Strawberry) == 'true')) then
         local Button = DokusMenu.Button(v.Name)
-        if (Button) then BuyItem(v) end
+        if (Button) then TriggerEvent('DokusCore:Stores:SellItem', v) end
       end
     end
   end

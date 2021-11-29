@@ -19,7 +19,7 @@ RegisterNUICallback("drop", function(Data)
   local cEncode = json.encode(Coords)
   local Item, Amount = Data.item, Data.count
   local ClosestBox = ClosestBox(Coords)
-  if (ClosestBox.Closest == nil) then
+  if ((ClosestBox.Closest == nil) or (ClosestBox.Closest > 10)) then
     TriggerEvent('DokusCore:Inventory:Animation', PedID)
     TSC('DokusCore:Core:DBIns:Storages', { 'DropBox', { Steam, CharID, CreateNewBox(Coords), Item, Amount, Coords } })
     TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', { Steam, CharID, Item, Amount } })

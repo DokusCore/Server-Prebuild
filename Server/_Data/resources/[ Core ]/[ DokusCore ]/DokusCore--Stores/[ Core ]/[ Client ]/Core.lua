@@ -2,7 +2,7 @@
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
 Loc, InArea, InRange = nil, false, false
-local Steam, CharID = nil, nil
+Steam, CharID = nil, nil
 local PluginReady = false
 PromptStore, AliveNPCs = nil, {}
 OpenStoreGroup = GetRandomIntInRange(0, 0xffffff)
@@ -85,6 +85,8 @@ AddEventHandler('DokusCore:Stores:CheckByNPC', function()
         -- When the player gets in the range of the NPC
         if ((Dist <= v.ActRadius) and not InRange) then
           InRange = true
+          local Data = TSC('DokusCore:Core:GetCoreUserData')
+          Steam, CharID = Data.Steam, Data.CharID
           TriggerEvent('DokusCore:Stores:StartStore')
         end
         -- when the player leave the range of the NPC
@@ -167,9 +169,41 @@ AddEventHandler('DokusCore:Stores:BackSpace', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:Stores:BuyItem')
+AddEventHandler('DokusCore:Stores:BuyItem', function(Data)
+  print("Buying an item")
 
 
+  -- First check if the player has enough money to buy the item
+  -- Then check the stock of the store (when player gets in range)
+  -- Then sell the item to the player and reduce the players money and store stock
 
+
+  local Item, Amount = Data.Item, 1
+
+  for k,v in pairs(Data) do
+    -- body...
+    print(k,v)
+  end
+
+
+  TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { Steam, CharID, Item, Amount } })
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:Stores:SellItem')
+AddEventHandler('DokusCore:Stores:SellItem', function(Data)
+  print("Selling an item")
+  -- local Item, Amount = Data.Item, 1
+  --
+  -- for k,v in pairs(Data) do
+  --   -- body...
+  --   print(k,v)
+  -- end
+  --
+  --
+  -- TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { Steam, CharID, Item, Amount } })
+end)
 
 
 

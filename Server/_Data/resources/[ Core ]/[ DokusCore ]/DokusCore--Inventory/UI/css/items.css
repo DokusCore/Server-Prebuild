@@ -1,17 +1,18 @@
 
 /* Consumables */
-#water         { background: url('../img/items/water.png') no-repeat; background-size: 90%;  }
+#waterclean    { background: url('../img/items/waterclean.png') no-repeat; background-size: 90%;  }
+#waterdirty    { background: url('../img/items/waterdirty.png') no-repeat; background-size: 90%;  }
 #coffee        { background: url('../img/items/coffee.png') no-repeat; background-size: 90%; }
 #carrot        { background: url('../img/items/carrots.png') no-repeat; background-size: 100%; }
-#eggs          { background: url('../img/items/eggs.png') no-repeat; background-size: 100%; }
-#eggs          { background: url('../img/items/EggBox.png') no-repeat; background-size: 100%; }
+#egg           { background: url('../img/items/egg.png') no-repeat; background-size: 100%; }
+#eggbox        { background: url('../img/items/eggbox.png') no-repeat; background-size: 100%; }
 #meat          { background: url('../img/items/meat.png') no-repeat; background-size: 100%; }
 #cigarette     { background: url('../img/items/cigarette.png') no-repeat; background-size: 100%; }
 #cigar         { background: url('../img/items/cigar.png') no-repeat; background-size: 100%; }
 
 /* Tools */
 #horsebrush    { background: url('../img/items/horsebrush.png') no-repeat; background-size: 100%; }
-#lockpick      { background: url('../img/items/Lockpick.png') no-repeat; background-size: 100%; }
+#lockpick      { background: url('../img/items/lockpick.png') no-repeat; background-size: 100%; }
 
 /* Valutas */
 #goldbar       { background: url('../img/items/goldbar.png') no-repeat; background-size: 100%; }
