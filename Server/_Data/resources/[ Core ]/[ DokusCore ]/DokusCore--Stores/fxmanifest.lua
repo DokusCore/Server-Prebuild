@@ -5,11 +5,11 @@ description 'DokusCore Stores'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.0'
+version '1.2.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts { '[ Core ]/[ Client ]/*.lua', '@DokusCore/[ Core ]/[ System ]/[ Menu ]/DokusMenu.lua' }
-server_scripts { '@mysql-async/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
+server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
 shared_script {
   '@DokusCore/[ Core ]/[ System ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',

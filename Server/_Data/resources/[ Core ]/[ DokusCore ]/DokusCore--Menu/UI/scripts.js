@@ -13,19 +13,19 @@ window.addEventListener('message', function(event) {
         $(document).on('click', "#option" + i, function() {
           if (MenuOptions[i].Type == 'Menu') {
             if (MenuOptions[i].Title == 'Settings') {
-              $.post('https://DokusCore--Menu/OpenSettingsMenu');
+              $.post('https://DokusCore--Menu/OpenSettingsMenu', JSON.stringify({}));
             };
             if (MenuOptions[i].Title == 'Functions') {
-              $.post('https://DokusCore--Menu/OpenFunctionsMenu');
+              $.post('https://DokusCore--Menu/OpenFunctionsMenu', JSON.stringify({}));;
             };
             if (MenuOptions[i].Title == 'Music') {
-              $.post('https://DokusCore--Menu/OpenMusicMenu');
+              $.post('https://DokusCore--Menu/OpenMusicMenu', JSON.stringify({}));;
             };
           } else if (MenuOptions[i].Type == 'Option') {
             if (MenuOptions[i].Title == 'Open Inventory') {
-              $.post('https://DokusCore--Menu/Close');
+              $.post('https://DokusCore--Menu/Close', JSON.stringify({}));
               $('body').fadeOut();
-              $.post('https://DokusCore--Menu/OpenInventory');
+              $.post('https://DokusCore--Menu/OpenInventory', JSON.stringify({}));
             };
           };
         });
@@ -51,7 +51,7 @@ window.addEventListener('message', function(event) {
           } else if (MenuOptions[i].Type == 'Option') {
 
             if (MenuOptions[i].Title == 'Toggle Music') {
-              $.post('https://DokusCore--Menu/ToggleMusic');
+              $.post('https://DokusCore--Menu/ToggleMusic', JSON.stringify({}));
             };
 
           };
@@ -70,13 +70,8 @@ window.addEventListener('message', function(event) {
   $('body').fadeIn();
 });
 
-
-
-
-
-
 // Close the menu
 $(document).on('click', ".btn-closeinterface", function() {
-  $.post('https://DokusCore--Menu/Close');
   $('body').fadeOut();
+  $.post('https://DokusCore--Menu/Close', JSON.stringify({}));
 });

@@ -9,7 +9,7 @@ version '0.0.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts { '[ Core ]/[ Client ]/*.lua', '[ Core ]/[ Client ]/[ Menus ]/*.lua' }
-server_scripts { '@mysql-async/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
+server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 shared_script {
   'Config.lua',

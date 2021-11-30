@@ -1,22 +1,24 @@
 
 /* Consumables */
-#waterclean    { background: url('../img/items/waterclean.png') no-repeat; background-size: 90%;  }
-#waterdirty    { background: url('../img/items/waterdirty.png') no-repeat; background-size: 90%;  }
-#coffee        { background: url('../img/items/coffee.png') no-repeat; background-size: 90%; }
-#carrot        { background: url('../img/items/carrots.png') no-repeat; background-size: 100%; }
-#egg           { background: url('../img/items/egg.png') no-repeat; background-size: 100%; }
-#eggbox        { background: url('../img/items/eggbox.png') no-repeat; background-size: 100%; }
-#meat          { background: url('../img/items/meat.png') no-repeat; background-size: 100%; }
-#cigarette     { background: url('../img/items/cigarette.png') no-repeat; background-size: 100%; }
-#cigar         { background: url('../img/items/cigar.png') no-repeat; background-size: 100%; }
+#water_clean    { background: url('../img/items/water_clean.png') no-repeat; background-size: 90%;  }
+#water_dirty    { background: url('../img/items/water_dirty.png') no-repeat; background-size: 90%;  }
+#coffee         { background: url('../img/items/coffee.png') no-repeat; background-size: 90%; }
+#carrot         { background: url('../img/items/carrots.png') no-repeat; background-size: 100%; }
+#egg            { background: url('../img/items/egg.png') no-repeat; background-size: 100%; }
+#egg_box        { background: url('../img/items/egg_box.png') no-repeat; background-size: 100%; }
+#meat_uncooked  { background: url('../img/items/meat_uncooked.png') no-repeat; background-size: 100%; }
+#cigarette      { background: url('../img/items/cigarette.png') no-repeat; background-size: 100%; }
+#cigarette_box  { background: url('../img/items/cigarette_box.png') no-repeat; background-size: 100%; }
+#cigar          { background: url('../img/items/cigar.png') no-repeat; background-size: 100%; }
 
 /* Tools */
-#horsebrush    { background: url('../img/items/horsebrush.png') no-repeat; background-size: 100%; }
-#lockpick      { background: url('../img/items/lockpick.png') no-repeat; background-size: 100%; }
+#horsebrush     { background: url('../img/items/horsebrush.png') no-repeat; background-size: 100%; }
+#lockpick       { background: url('../img/items/lockpick.png') no-repeat; background-size: 100%; }
+#gold_pan       { background: url('../img/items/gold_pan.png') no-repeat; background-size: 100%; }
 
 /* Valutas */
-#goldbar       { background: url('../img/items/goldbar.png') no-repeat; background-size: 100%; }
+#gold_bar       { background: url('../img/items/gold_bar.png') no-repeat; background-size: 100%; }
 /* #money         { background: url('../img/items/money.png') no-repeat; background-size: 100%; } *//* Do not enable money yet */
 
 /* Minerals */
-#goldnugget    { background: url('../img/items/goldnugget.png') no-repeat; background-size: 100%; }
+#gold_nugget    { background: url('../img/items/gold_nugget.png') no-repeat; background-size: 100%; }

@@ -5,12 +5,12 @@ description 'DokusCore Banking System - http://DokusCore.com'
 author 'DevDokus'
 fx_version "adamant"
 games {"rdr3"}
-version '2.2.1'
+version '2.2.2'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts { '[ Core ]/[ Client ]/*.lua', '@DokusCore/[ Core ]/[ System ]/[ Menu ]/DokusMenu.lua' }
 server_scripts {
-  '@mysql-async/lib/MySQL.lua',
+  '@oxmysql/lib/MySQL.lua',
   '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 shared_script {
