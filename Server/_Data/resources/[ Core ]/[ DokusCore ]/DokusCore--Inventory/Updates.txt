@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Update v1.5.4 --
+--------------------------------------------------------------------------------
+# Bug Fixed: Added in a item amount check when dropping items on the ground.
+  You are not able anymore to drop more items on the ground then you
+  have in your inventory. Thanks to Red Harlow for reporting this bug
+
+# Bug fixed: When ever you select an item, and give it a larger drop amount then
+  you have in your inventory. The item will go to a minus value. This would conclude
+  that your inventory would not open anymore until the plugin is restarted. This
+  bug is now fixed.
+
+# Added extra notification for when the amount parameter box is empty
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

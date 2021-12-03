@@ -13,18 +13,19 @@ end)
 RegisterNUICallback("drop", function(Data)
   IsBoxOpen = false
   IsPickingUpItem = true
-  CloseInv()
   local PedID = PlayerPedId()
   local Coords = GetEntityCoords(PedID)
   local cEncode = json.encode(Coords)
-  local Item, Amount = Data.item, Data.count
   local ClosestBox = ClosestBox(Coords)
+  local Item, Amount = Data.item, Data.count
   if ((ClosestBox.Closest == nil) or (ClosestBox.Closest > 10)) then
+    CloseInv()
     TriggerEvent('DokusCore:Inventory:Animation', PedID)
     TSC('DokusCore:Core:DBIns:Storages', { 'DropBox', { Steam, CharID, CreateNewBox(Coords), Item, Amount, Coords } })
     TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', { Steam, CharID, Item, Amount } })
   else
-    for k,v in pairs(ClosestBox.Data) do
+    CloseInv()
+    for k, v in pairs(ClosestBox.Data) do
       local cDecode = json.decode(v.Coords)
       local Vector = vector3(cDecode.x, cDecode.y, cDecode.z)
       local Dist = Vdist(Coords, Vector)
@@ -43,9 +44,21 @@ RegisterNUICallback("drop", function(Data)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
+RegisterNUICallback("NoItemSelected", function()
+  Notify('You have no item selected to drop on the ground! First select an item!')
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback("NotEnoughAmount", function(Data)
+  Notify('You do not have enough'..Data.item..' in your inventory! Unable to drop this item on the ground!')
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback("NoAmountSet", function(Data)
+  Notify('You have no amount set in the amount parameter. Unable to drop your item!')
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

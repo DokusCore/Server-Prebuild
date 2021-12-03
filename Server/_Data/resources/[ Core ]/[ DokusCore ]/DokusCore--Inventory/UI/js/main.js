@@ -114,7 +114,12 @@ $('document').ready(function() {
 
   document.getElementById("button-drop").addEventListener("click", function(event) {
     var itemSelected = document.getElementsByClassName('selected')[0];
-    if (document.getElementsByClassName('selected')[0].id == 'money') {
+    if (itemSelected == undefined) {
+      $.post('http://DokusCore--Inventory/NoAmountSet', JSON.stringify({}));
+      return
+    }
+    
+    if (itemSelected.id == 'money') {
       let amount = Number(document.getElementById('drop-count').value)
       $.post('http://DokusCore--Inventory/dropcash', JSON.stringify({
         count: amount
@@ -129,10 +134,10 @@ $('document').ready(function() {
     }
 
     if (Number(document.getElementById('drop-count').value) > document.getElementsByClassName('selected')[0].innerText) {
-      console.log(`You don't have that many ${document.getElementsByClassName('selected')[0].id}('s)`);
-    }
-
-    if (Number(document.getElementById('drop-count').value) > 0) {
+      $.post('http://DokusCore--Inventory/NotEnoughAmount', JSON.stringify({
+        item: document.getElementsByClassName('selected')[0].id
+      }));
+    } else {
       $.post('http://DokusCore--Inventory/drop', JSON.stringify({
         item: document.getElementsByClassName('selected')[0].id,
         count: Number(document.getElementById('drop-count').value)
@@ -142,7 +147,7 @@ $('document').ready(function() {
       if (document.getElementsByClassName('selected')[0].innerHTML == 0) {
         itemSelected.style.display = 'none'
       }
-    }
+    };
   });
 
   function clearDocument() {

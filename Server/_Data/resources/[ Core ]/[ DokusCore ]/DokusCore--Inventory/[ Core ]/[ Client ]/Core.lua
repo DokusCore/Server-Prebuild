@@ -16,7 +16,21 @@ BoxTXTs = {}
 --------------------------------------------------------------------------------
 -- CreateThread(function()
 --   while true do Wait(1000)
---
+--     while CanInvBeOpened do Wait(0)
+--       local Control = IsControlJustReleased(0, ActKeyInv)
+--       if (not (IsInvOpen) and (Control) and not (IsPickingUpItem)) then
+--         IsInvOpen = true
+--         local Core = TSC('DokusCore:Core:GetCoreUserData')
+--         Steam, CharID = Core.Steam, Core.CharID
+--         TriggerEvent('DokusCore:Inventory:UpdateBankValues')
+--         local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
+--         if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end
+--         OpenInv()
+--       elseif (IsInvOpen) and (Control) then
+--         IsInvOpen = false
+--         CloseInv()
+--       end
+--     end
 --   end
 -- end)
 
