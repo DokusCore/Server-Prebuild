@@ -6317,7 +6317,6 @@ class Execute extends Command {
     this._rows = [];
     this._fields = [];
     this._result = [];
-    this._startTime = 0;
     this._fieldCount = 0;
     this._rowParser = null;
     this._executeOptions = options;
@@ -6657,7 +6656,6 @@ class Query extends Command {
     this._rowParser = null;
     this._fields = [];
     this._rows = [];
-    this._startTime = 0;
     this._receivedFieldsCount = 0;
     this._resultIndex = 0;
     this._localStream = null;
@@ -6680,7 +6678,6 @@ class Query extends Command {
       // eslint-disable-next-line
       console.log('        Sending query command: %s', this.sql);
     }
-    this._startTime = Date.now();
     this._connection = connection;
     this.options = Object.assign({}, connection.config, this._queryOptions);
     this._setTimeout();
@@ -6713,14 +6710,13 @@ class Query extends Command {
         rows = this._rows;
         fields = this._fields;
       }
-      const executionTime = Date.now() - this._startTime;
       if (fields) {
         process.nextTick(() => {
-          this.onResult(null, executionTime, rows, fields);
+          this.onResult(null, rows, fields);
         });
       } else {
         process.nextTick(() => {
-          this.onResult(null, executionTime, rows);
+          this.onResult(null, rows);
         });
       }
     }
@@ -6860,7 +6856,7 @@ class Query extends Command {
   }
 
   /* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
-  row(packet, _connection) {
+  row(packet, _connection) { 
     if (packet.isEOF()) {
       const status = packet.eofStatusFlags();
       const moreResults = status & ServerStatus.SERVER_MORE_RESULTS_EXISTS;
@@ -6935,7 +6931,7 @@ class Query extends Command {
       Timers.clearTimeout(this.queryTimeout);
       this.queryTimeout = null;
     }
-
+    
     const err = new Error('Query inactivity timeout');
     err.errorno = 'PROTOCOL_SEQUENCE_TIMEOUT';
     err.code = 'PROTOCOL_SEQUENCE_TIMEOUT';
@@ -8482,18 +8478,14 @@ class ConnectionConfig {
       'TRANSACTIONS',
       'SESSION_TRACK'
     ];
-    if (options && options.multipleStatements) {
-      defaultFlags.push('MULTI_STATEMENTS');
-    }
-    if (options && options.database) {
-      defaultFlags.push('CONNECT_WITH_DB');
+    if (options) {
+      if (options.multipleStatements) defaultFlags.push('MULTI_STATEMENTS');
+      if (options.database) defaultFlags.push('CONNECT_WITH_DB');
+      if (options.connectAttributes) defaultFlags.push('CONNECT_ATTRS')
     }
     defaultFlags.push('PLUGIN_AUTH');
     defaultFlags.push('PLUGIN_AUTH_LENENC_CLIENT_DATA');
 
-    if (options && options.connectAttributes) {
-      defaultFlags.push('CONNECT_ATTRS');
-    }
     return defaultFlags;
   }
 
@@ -16618,7 +16610,7 @@ const core = __webpack_require__(420);
 const EventEmitter = (__webpack_require__(2361).EventEmitter);
 
 function makeDoneCb(resolve, reject, localErr) {
-  return function (err, rows, fields, executionTime) {
+  return function (err, rows, fields) {
     if (err) {
       localErr.message = err.message;
       localErr.code = err.code;
@@ -16628,7 +16620,7 @@ function makeDoneCb(resolve, reject, localErr) {
       localErr.sqlMessage = err.sqlMessage;
       reject(localErr);
     } else {
-      resolve([rows, fields, executionTime]);
+      resolve([rows, fields]);
     }
   };
 }
@@ -19564,8 +19556,9 @@ var named_placeholders = __webpack_require__(8721);
 
 const convertNamedPlaceholders = named_placeholders();
 
+// DATE compatibility with mysql-async
+// https://github.com/brouznouf/fivem-mysql-async/blob/master/mysql-async.js#L15499-L15536
 const parseTypes = (field, next) => {
-  //https://github.com/GHMatti/ghmattimysql/blob/37f1d2ae5c53f91782d168fe81fba80512d3c46d/packages/ghmattimysql/src/server/utility/typeCast.ts#L3
   switch (field.type) {
     case 'DATETIME':
     case 'DATETIME2':
@@ -19577,8 +19570,7 @@ const parseTypes = (field, next) => {
         ? new Date(field.string() + ' 00:00:00').getTime()
         : new Date(field.string()).getTime();
     case 'TINY':
-      if (field.length == 1) return field.string() === '1';
-      else return next();
+      return field.length === 1 ? field.string() === '1' : next();
     case 'BIT':
       return field.buffer()[0] === 1;
     default:
@@ -19587,24 +19579,28 @@ const parseTypes = (field, next) => {
 };
 
 const parseParameters = (query, parameters) => {
-  if (typeof query !== 'string') 
-    throw new Error(`Non-string query passed. Make sure you use "oxmysql:execute" instead of "oxmysql.execute" when calling exports.`);
+  if (typeof query !== 'string')
+    throw new Error(
+      `Non-string query passed. Make sure you use "oxmysql:execute" instead of "oxmysql.execute" when calling exports.`
+    );
 
   if (!parameters || typeof parameters === 'function') return [query, []];
 
   if (query.includes('@') || query.includes(':')) {
-    const obj = parameters.length !== 0 ? parameters : (() => {
-      let obj = {};
-      const [_, paramNames] = convertNamedPlaceholders.parse(query);
-      if (paramNames) {
-        for (let i = 0; i < paramNames.length; i++)
-          obj[paramNames[i]] = null;
-      }
-      return obj;
-    })();
+    const obj =
+      parameters.length !== 0
+        ? parameters
+        : (() => {
+            let obj = {};
+            const [_, paramNames] = convertNamedPlaceholders.parse(query);
+            if (paramNames) {
+              for (let i = 0; i < paramNames.length; i++) obj[paramNames[i]] = null;
+            }
+            return obj;
+          })();
 
-    return [query, obj]
-  };
+    return [query, obj];
+  }
 
   const queryParams = query.match(/\?(?!\?)/g);
 
@@ -19664,31 +19660,27 @@ if (connectionString === '') {
 }
 
 const dbOptions = (() => {
-  if (connectionString.includes('mysql://')) return { uri: connectionString };
-  const options = connectionString
-    .replace(/(?:host(?:name)|ip|server|data\s?source|addr(?:ess)?)=/gi, 'host=')
-    .replace(/(?:user\s?(?:id|name)?|uid)=/gi, 'user=')
-    .replace(/(?:pwd|pass)=/gi, 'password=')
-    .replace(/(?:db)=/gi, 'database=')
-    .split(';')
-    .reduce((connectionInfo, parameter) => {
-      const [key, value] = parameter.split('=');
-      connectionInfo[key] = value;
-      return connectionInfo;
-    }, {});
+  const options = connectionString.includes('mysql://')
+    ? { uri: connectionString }
+    : connectionString
+        .replace(/(?:host(?:name)|ip|server|data\s?source|addr(?:ess)?)=/gi, 'host=')
+        .replace(/(?:user\s?(?:id|name)?|uid)=/gi, 'user=')
+        .replace(/(?:pwd|pass)=/gi, 'password=')
+        .replace(/(?:db)=/gi, 'database=')
+        .split(';')
+        .reduce((connectionInfo, parameter) => {
+          const [key, value] = parameter.split('=');
+          connectionInfo[key] = value;
+          return connectionInfo;
+        }, {});
+
+  options.namedPlaceholders = true;
+  options.typeCast = parseTypes;
 
   return options;
 })();
 
-const createConnection = () => {
-  return (0,promise/* createPool */.Kz)({
-    ...dbOptions,
-    namedPlaceholders: true,
-    typeCast: parseTypes,
-  });
-};
-
-const pool = createConnection();
+const pool = (0,promise/* createPool */.Kz)(dbOptions);
 
 ;// CONCATENATED MODULE: ./src/config.js
 const slowQueryWarning = GetConvarInt('mysql_slow_query_warning', 150);
@@ -19709,7 +19701,7 @@ const isolationLevel = (() => {
   }
 })();
 
-const resourceName = GetCurrentResourceName() || 'oxmysql';
+const resourceName = GetCurrentResourceName();
 
 
 
@@ -19722,8 +19714,12 @@ const resourceName = GetCurrentResourceName() || 'oxmysql';
 const execute = async (query, parameters, resource) => {
   try {
     [query, parameters] = parseParameters(query, parameters);
+    const connection = await pool.getConnection();
     ScheduleResourceTick(resourceName);
-    const [executionTime, rows] = await pool.query(query, parameters);
+
+    const startTime = process.hrtime();
+    const [rows] = await connection.query(query, parameters);
+    const executionTime = process.hrtime(startTime)[1] / 1000000; // nanosecond to millisecond
 
     if (executionTime >= slowQueryWarning || debug)
       console.log(
@@ -19731,6 +19727,7 @@ const execute = async (query, parameters, resource) => {
         ${query} ${JSON.stringify(parameters)}^0`
       );
 
+    connection.release();
     return rows;
   } catch (error) {
     console.log(
@@ -19767,25 +19764,28 @@ const preparedStatement = async (query, parameters, resource) => {
     const type = queryType(query);
     if (!type) throw new FormatError(`Prepared statements only accept SELECT, INSERT, UPDATE, and DELETE methods!`);
 
+    const connection = await pool.getConnection();
     ScheduleResourceTick(resourceName);
+
     const results = [];
-    let totalTime = 0;
     let queryCount = parameters.length;
+    const startTime = process.hrtime();
 
     for (let i = 0; i < queryCount; i++) {
-      const [executionTime, rows] = await pool.execute(query, parameters[i]);
-      totalTime + executionTime;
+      const [rows] = await connection.execute(query, parameters[i]);
       results[i] = rows && (type === 3 ? rows.affectedRows : type === 2 ? rows.insertId : rows);
     }
 
-    totalTime = totalTime / queryCount;
-    if (totalTime >= slowQueryWarning || debug)
+    const executionTime = process.hrtime(startTime)[1] / 1000000; // nanosecond to millisecond
+    if (executionTime >= slowQueryWarning || debug)
       console.log(
-        `^3[${debug ? 'DEBUG' : 'WARNING'}] ${resource} took ${totalTime}ms to execute ${
+        `^3[${debug ? 'DEBUG' : 'WARNING'}] ${resource} took ${executionTime}ms to execute ${
           queryCount > 1 ? queryCount + ' queries' : 'a query'
         }!
         ${query} ${JSON.stringify(parameters)}^0`
       );
+
+    connection.release();
 
     if (results.length === 1) {
       if (type === 1) {
@@ -19825,7 +19825,7 @@ const transaction = async (queries, parameters, resource) => {
   ScheduleResourceTick(resourceName);
   const connection = await pool.getConnection();
   try {
-    const time = debug ? process.hrtime.bigint() : Date.now();
+    const startTime = process.hrtime();
 
     const fullQuery = parseTransaction(queries, parameters);
     const transactionAmount = fullQuery.length;
@@ -19838,7 +19838,7 @@ const transaction = async (queries, parameters, resource) => {
 
     await connection.commit();
 
-    const executionTime = debug ? Number(process.hrtime.bigint() - time) / 1e6 : Date.now() - time;
+    const executionTime = process.hrtime(startTime)[1] / 1000000;
 
     if (executionTime >= slowQueryWarning * transactionAmount || debug)
       console.log(
@@ -19878,41 +19878,34 @@ setImmediate(async () => {
   }
 });
 
-const safeCallback = (callback, result, resource, query) => {
-  if (typeof callback === 'function')
-    return callback(result);
-  else if (debug)
-    return console.log(`^3[WARNING] ${resource} executed a query, but no callback function was defined!\n        ^3 ${query}^0`);
+const safeCallback = (callback, result) => {
+  if (typeof callback === 'function') callback(result);
 };
 
 global.exports('execute', (query, parameters, cb, resource = GetInvokingResource()) => {
-  execute(query, parameters, resource).then((result) =>
-    safeCallback(cb || parameters, result, resource, query));
+  execute(query, parameters, resource).then((result) => safeCallback(cb || parameters, result));
 });
 
 global.exports('insert', (query, parameters, cb, resource = GetInvokingResource()) => {
-  execute(query, parameters, resource).then((result) =>
-    safeCallback(cb || parameters, result && result.insertId, resource, query));
+  execute(query, parameters, resource).then((result) => safeCallback(cb || parameters, result && result.insertId));
 });
 
 global.exports('update', (query, parameters, cb, resource = GetInvokingResource()) => {
-  execute(query, parameters, resource).then((result) => 
-    safeCallback(cb || parameters, result && result.affectedRows, resource, query));
+  execute(query, parameters, resource).then((result) => safeCallback(cb || parameters, result && result.affectedRows));
 });
 
 global.exports('fetch', (query, parameters, cb, resource = GetInvokingResource()) => {
-  execute(query, parameters, resource).then((result) =>
-    safeCallback(cb || parameters, result, resource, query));
+  execute(query, parameters, resource).then((result) => safeCallback(cb || parameters, result));
 });
 
 global.exports('single', (query, parameters, cb, resource = GetInvokingResource()) => {
-  execute(query, parameters, resource).then((result) =>
-    safeCallback(cb || parameters, result && result[0], resource, query));
+  execute(query, parameters, resource).then((result) => safeCallback(cb || parameters, result && result[0]));
 });
 
 global.exports('scalar', (query, parameters, cb, resource = GetInvokingResource()) => {
   execute(query, parameters, resource).then((result) =>
-    safeCallback(cb || parameters, result && result[0] && Object.values(result[0])[0], resource, query));
+    safeCallback(cb || parameters, result && result[0] && Object.values(result[0])[0])
+  );
 });
 
 global.exports('transaction', (queries, parameters, cb, resource = GetInvokingResource()) => {
@@ -19922,50 +19915,56 @@ global.exports('transaction', (queries, parameters, cb, resource = GetInvokingRe
 });
 
 global.exports('prepare', (query, parameters, cb, resource = GetInvokingResource()) => {
-  preparedStatement(query, parameters, resource).then((result) =>
-    safeCallback(cb || parameters, result, resource, query))
+  preparedStatement(query, parameters, resource).then((result) => safeCallback(cb || parameters, result));
 });
 
-if (!GetResourceMetadata(GetCurrentResourceName(), 'server_script', 1)) {
-  global.exports('prepareSync', async (query, parameters) => {
-    const result = await preparedStatement(query, parameters, GetInvokingResource());
-    return result;
-  });
+try {
+  // Check for the existance of a native from FXServer 4837 to enable JS exports
+  if (MumbleSetPlayerMuted || !GetResourceMetadata(GetCurrentResourceName(), 'server_script', 1)) {
+    global.exports('prepareSync', async (query, parameters) => {
+      const result = await preparedStatement(query, parameters, GetInvokingResource());
+      return result;
+    });
 
-  global.exports('executeSync', async (query, parameters) => {
-    const result = await execute(query, parameters, GetInvokingResource());
-    return result;
-  });
+    global.exports('executeSync', async (query, parameters) => {
+      const result = await execute(query, parameters, GetInvokingResource());
+      return result;
+    });
 
-  global.exports('insertSync', async (query, parameters) => {
-    const result = await execute(query, parameters, GetInvokingResource());
-    return result && result.insertId;
-  });
+    global.exports('insertSync', async (query, parameters) => {
+      const result = await execute(query, parameters, GetInvokingResource());
+      return result && result.insertId;
+    });
 
-  global.exports('updateSync', async (query, parameters) => {
-    const result = await execute(query, parameters, GetInvokingResource());
-    return result && result.affectedRows;
-  });
+    global.exports('updateSync', async (query, parameters) => {
+      const result = await execute(query, parameters, GetInvokingResource());
+      return result && result.affectedRows;
+    });
 
-  global.exports('fetchSync', async (query, parameters) => {
-    const result = await execute(query, parameters, GetInvokingResource());
-    return result;
-  });
+    global.exports('fetchSync', async (query, parameters) => {
+      const result = await execute(query, parameters, GetInvokingResource());
+      return result;
+    });
 
-  global.exports('singleSync', async (query, parameters) => {
-    const result = await execute(query, parameters, GetInvokingResource());
-    return result && result[0];
-  });
+    global.exports('singleSync', async (query, parameters) => {
+      const result = await execute(query, parameters, GetInvokingResource());
+      return result && result[0];
+    });
 
-  global.exports('scalarSync', async (query, parameters) => {
-    const result = await execute(query, parameters, GetInvokingResource());
-    return result && result[0] && Object.values(result[0])[0];
-  });
+    global.exports('scalarSync', async (query, parameters) => {
+      const result = await execute(query, parameters, GetInvokingResource());
+      return result && result[0] && Object.values(result[0])[0];
+    });
 
-  global.exports('transactionSync', async (queries, parameters) => {
-    const result = await transaction(queries, parameters, GetInvokingResource());
-    return result;
-  });
+    global.exports('transactionSync', async (queries, parameters) => {
+      const result = await transaction(queries, parameters, GetInvokingResource());
+      return result;
+    });
+  }
+} catch(e) {
+  setTimeout(() => {
+    console.log(`^3Unable to load enhanced sync exports (download FXServer 4837+)^0`);
+  }, 1000)
 }
 })();
 
