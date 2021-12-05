@@ -8,6 +8,6 @@ Just use the prebuild and your on your way within 10 minutes!<br>
 ----
 # Important !
 Downloading the PreBuild from Github will break the CFX Server artifacts! <br>
-You can [Download your Artifacts Here](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/) or visit our Discord to grab the full version
+You can [Download your Artifacts Here](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/) or visit our [Discord](https://discord.io/DokusCore) to grab the full version
 
 ----
