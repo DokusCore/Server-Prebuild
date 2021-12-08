@@ -35,8 +35,8 @@ body {
 	border-radius: 50px;
 	vertical-align: middle;
 	font-weight: 600;
-	border: 5px solid rgba(27, 93, 243, 1);
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	border: 5px solid rgba(212, 66, 61, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 	font-size: 20px;
 }
 
@@ -52,14 +52,35 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.btn-closeinterface {
+.btn-nextinterface {
 	position: absolute;
-	left: 60%;
+	left: 70%;
 	top: 92%;
 	transform: translate(-50%, -50%);
-	border: 5px solid rgba(175, 175, 175, 1);
+	border: 5px solid rgba(0, 0, 0, 1);
 	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
-	background-color: rgba(50, 50, 50, 0.4);
+	background-color: rgba(255, 204, 153, 0.4);
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.btn-nextinterface:hover {
+	background: rgba(175, 175, 175, 1);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(175, 175, 175, 1);
+}
+
+.btn-closeinterface {
+	position: absolute;
+	left: 50%;
+	top: 92%;
+	transform: translate(-50%, -50%);
+	border: 5px solid rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
+	background-color: rgba(255, 204, 153, 0.4);
 	padding: 10px 35px;
 	height: 80px;
 	width: 275px;
@@ -75,12 +96,12 @@ body {
 
 .btn-backinterface {
 	position: absolute;
-	left: 40%;
+	left: 30%;
 	top: 92%;
 	transform: translate(-50%, -50%);
-	border: 5px solid rgba(175, 175, 175, 1);
+	border: 5px solid rgba(0, 0, 0, 1);
 	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
-	background-color: rgba(50, 50, 50, 0.4);
+	background-color: rgba(255, 204, 153, 0.4);
 	padding: 10px 35px;
 	height: 80px;
 	width: 275px;
@@ -125,10 +146,10 @@ body {
 	position: absolute;
 	left: -7px;
 	top: 27.2px;
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 	width: 40px;
 	height: 40px;
-	background: rgba(27, 93, 243, 1);
+	background: rgba(0, 0, 0, 0.5);
 	transform: rotate(45deg);
 }
 
@@ -153,12 +174,12 @@ body {
 	position: absolute;
 	inset: 0;
 	transform: skew(-18deg);
-	background-color: rgba(50, 50, 50, 0.4);
-	border: 5px solid rgba(27, 93, 243, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 1);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .btn-diagonal1 {
@@ -171,9 +192,9 @@ body {
 }
 
 .btn-diagonal1:hover::before {
-	background: rgba(27, 93, 243, 1);
+	background: rgba(0, 0, 0, 0.5);
 	color: #fff;
-	box-shadow: 0px 0px 10px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
 }
 
 /* END BUTTON 1 */
@@ -185,12 +206,12 @@ body {
 	position: absolute;
 	inset: 0;
 	transform: skew(18deg);
-	background-color: rgba(50, 50, 50, 0.4);
-	border: 5px solid rgba(27, 93, 243, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 1);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .btn-diagonal2 {
@@ -203,9 +224,9 @@ body {
 }
 
 .btn-diagonal2:hover::before {
-	background: rgba(27, 93, 243, 1);
+	background: rgba(0, 0, 0, 0.5);
 	color: #fff;
-	box-shadow: 0px 0px 10px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
 }
 
 /* END BUTTON 2 */
@@ -216,16 +237,16 @@ body {
 	padding: 10px 35px;
 	height: 80px;
 	width: 275px;
-	background-color: rgba(50, 50, 50, 0.4);
-	border: 5px solid rgba(27, 93, 243, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 1);
 	color: #fff;
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .btn-diagonalnormal:hover {
-	background: rgba(27, 93, 243, 1);
+	background: rgba(0, 0, 0, 0.5);
 	color: #fff;
-	box-shadow: 0px 0px 10px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
 }
 
 /* END NORMAL BUTTON */
@@ -237,12 +258,12 @@ body {
 	position: absolute;
 	inset: 0;
 	transform: skew(18deg);
-	background-color: rgba(50, 50, 50, 0.4);
-	border: 5px solid rgba(27, 93, 243, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 1);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .btn-diagonal5 {
@@ -255,9 +276,9 @@ body {
 }
 
 .btn-diagonal5:hover::before {
-	background: rgba(27, 93, 243, 1);
+	background: rgba(0, 0, 0, 0.5);
 	color: #fff;
-	box-shadow: 0px 0px 10px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
 }
 
 /* END BUTTON 5 */
@@ -269,12 +290,12 @@ body {
 	position: absolute;
 	inset: 0;
 	transform: skew(-18deg);
-	background-color: rgba(50, 50, 50, 0.4);
-	border: 5px solid rgba(27, 93, 243, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 1);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
-	box-shadow: 0px 0px 5px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .btn-diagonal6 {
@@ -287,9 +308,9 @@ body {
 }
 
 .btn-diagonal6:hover::before {
-	background: rgba(27, 93, 243, 1);
+	background: rgba(0, 0, 0, 0.5);
 	color: #fff;
-	box-shadow: 0px 0px 10px 0px rgba(27, 93, 243, 1);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
 }
 
 /* END BUTTON 6 */

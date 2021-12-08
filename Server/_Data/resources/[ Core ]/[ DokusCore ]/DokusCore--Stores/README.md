@@ -48,7 +48,7 @@ its employees, where of the percentages can be set in the config.
 
 ---
 # Discord
-On our [Discord](https://discord.io/StageCoach) you can find all Information about this<br>
+On our [Discord](https://discord.io/dokuscore) you can find all Information about this<br>
 project, feel free to join. Here you can also interact with other playing and testing<br>
 the Core, as well as giving your suggestions and opinions.
 

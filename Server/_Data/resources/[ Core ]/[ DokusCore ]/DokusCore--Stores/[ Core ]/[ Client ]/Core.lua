@@ -41,7 +41,7 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   -- First check if the core is ready to pass data
-  if (_Modules.Banking) then
+  if (_Modules.Stores) then
     local Ready = TSC('DokusCore:Core:System:IsCoreReady')
     TriggerEvent('DokusCore:Stores:RegisterMenu')
     while not Ready do Wait(1000) end

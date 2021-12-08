@@ -14,30 +14,9 @@ BoxTXTs = {}
 --------------------------------------------------------------------------------
 -- Register when the user wants to open the inventory
 --------------------------------------------------------------------------------
--- CreateThread(function()
---   while true do Wait(1000)
---     while CanInvBeOpened do Wait(0)
---       local Control = IsControlJustReleased(0, ActKeyInv)
---       if (not (IsInvOpen) and (Control) and not (IsPickingUpItem)) then
---         IsInvOpen = true
---         local Core = TSC('DokusCore:Core:GetCoreUserData')
---         Steam, CharID = Core.Steam, Core.CharID
---         TriggerEvent('DokusCore:Inventory:UpdateBankValues')
---         local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
---         if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end
---         OpenInv()
---       elseif (IsInvOpen) and (Control) then
---         IsInvOpen = false
---         CloseInv()
---       end
---     end
---   end
--- end)
-
 RegisterNetEvent('DokusCore:Inventory:OpenInventory')
 AddEventHandler('DokusCore:Inventory:OpenInventory', function()
-  -- while CanInvBeOpened do Wait(0)
-    -- local Control = IsControlJustReleased(0, ActKeyInv)
+  if (_Modules.Inventory) then
     if (not (IsInvOpen) and not (IsPickingUpItem)) then
       IsInvOpen = true
       local Core = TSC('DokusCore:Core:GetCoreUserData')
@@ -50,7 +29,9 @@ AddEventHandler('DokusCore:Inventory:OpenInventory', function()
       IsInvOpen = false
       CloseInv()
     end
-  -- end
+  else
+    Notify('The Inventory plugin has been turned off in the config. As your server host to turn it on!', 'TopRight', 10000)
+  end
 end)
 
 --------------------------------------------------------------------------------
@@ -84,12 +65,14 @@ end)
 -- Then place all boxes back on the map.
 --------------------------------------------------------------------------------
 CreateThread(function()
-  local Data = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'All' })
-  if (Data.Exist) then
-    for k,v in pairs(Data.Result) do
-      local Coords = json.decode(v.Coords)
-      local Vector = vector3(Coords.x, Coords.y, Coords.z)
-      TSC('DokusCore:Core:DBSet:Storages', { 'DropBox', 'ReplaceID', { v.BoxID, CreateNewBox(Vector) } })
+  if (_Modules.Inventory) then
+    local Data = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'All' })
+    if (Data.Exist) then
+      for k,v in pairs(Data.Result) do
+        local Coords = json.decode(v.Coords)
+        local Vector = vector3(Coords.x, Coords.y, Coords.z)
+        TSC('DokusCore:Core:DBSet:Storages', { 'DropBox', 'ReplaceID', { v.BoxID, CreateNewBox(Vector) } })
+      end
     end
   end
 end)
@@ -99,35 +82,39 @@ end)
 --------------------------------------------------------------------------------
 local PlayerCoords = nil
 CreateThread(function()
-  while true do Wait(1)
-    local PedID = PlayerPedId()
-    local Coords = GetEntityCoords(PedID)
-    PlayerCoords = Coords
-    Wait(500)
+  if (_Modules.Inventory) then
+    while true do Wait(1)
+      local PedID = PlayerPedId()
+      local Coords = GetEntityCoords(PedID)
+      PlayerCoords = Coords
+      Wait(500)
+    end
   end
 end)
 --------------------------------------------------------------------------------
 -- Create the text above the boxes, and Register when the box is opened
 --------------------------------------------------------------------------------
 CreateThread(function() Wait(1000)
-  local Core = TSC('DokusCore:Core:GetCoreUserData')
-  Steam, CharID = Core.Steam, Core.CharID
-  while true do Wait(1000)
-    while (BoxTXTs[1] ~= nil) do Wait(0)
-      for k,v in pairs(BoxTXTs) do
-        local BoxID, Coords = BoxTXTs[k].BoxID, BoxTXTs[k].Coords
-        local x,y,z = Coords.x, Coords.y, (Coords.z - 0.65)
-        local Dist = Vdist(Coords, PlayerCoords)
-        local Close, Medium = (Dist <= 0.6), ((Dist > 0.6) and (Dist <= 2.0))
-        local Key = _Inventory.Interaction.UseKey
-        if ((Close) and (Key)) then DrawText3D(x,y,z, 300, 'Press ~color_green~E~q~ to open') end
-        if (Medium) then DrawText3D(x,y,z, 200, '{ Expire: Work in Progress }') end
-        if ((Medium) or (Far)) then IsBoxOpen = false end
-        if (Close) then
-          local Control = IsControlJustReleased(0, ActKeyBox)
-          if ((Control) and not (IsBoxOpen)) then
-            IsBoxOpen = true
-            TriggerEvent('DokusCore:Inventory:OpenBoxMenu', BoxID)
+  if (_Modules.Inventory) then
+    local Core = TSC('DokusCore:Core:GetCoreUserData')
+    Steam, CharID = Core.Steam, Core.CharID
+    while true do Wait(1000)
+      while (BoxTXTs[1] ~= nil) do Wait(0)
+        for k,v in pairs(BoxTXTs) do
+          local BoxID, Coords = BoxTXTs[k].BoxID, BoxTXTs[k].Coords
+          local x,y,z = Coords.x, Coords.y, (Coords.z - 0.65)
+          local Dist = Vdist(Coords, PlayerCoords)
+          local Close, Medium = (Dist <= 0.6), ((Dist > 0.6) and (Dist <= 2.0))
+          local Key = _Inventory.Interaction.UseKey
+          if ((Close) and (Key)) then DrawText3D(x,y,z, 300, 'Press ~color_green~E~q~ to open') end
+          if (Medium) then DrawText3D(x,y,z, 200, '{ Expire: Work in Progress }') end
+          if ((Medium) or (Far)) then IsBoxOpen = false end
+          if (Close) then
+            local Control = IsControlJustReleased(0, ActKeyBox)
+            if ((Control) and not (IsBoxOpen)) then
+              IsBoxOpen = true
+              TriggerEvent('DokusCore:Inventory:OpenBoxMenu', BoxID)
+            end
           end
         end
       end

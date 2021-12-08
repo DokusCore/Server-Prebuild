@@ -19674,8 +19674,14 @@ const dbOptions = (() => {
           return connectionInfo;
         }, {});
 
-  options.namedPlaceholders = true;
   options.typeCast = parseTypes;
+  options.namedPlaceholders = true;
+
+  // increase the default timeout for slow servers
+  options.connectTimeout = options.connectTimeout || 60000;
+
+  // disabled to prevent SQL injection
+  options.multipleStatements = options.multipleStatements || false;
 
   return options;
 })();
@@ -19712,10 +19718,10 @@ const resourceName = GetCurrentResourceName();
 
 
 const execute = async (query, parameters, resource) => {
+  ScheduleResourceTick(resourceName);
+  const connection = await pool.getConnection();
   try {
     [query, parameters] = parseParameters(query, parameters);
-    const connection = await pool.getConnection();
-    ScheduleResourceTick(resourceName);
 
     const startTime = process.hrtime();
     const [rows] = await connection.query(query, parameters);
@@ -19736,6 +19742,8 @@ const execute = async (query, parameters, resource) => {
         ${error.sql || `${query} ${JSON.stringify(parameters)}`}^0`
     );
     debug && console.trace(error);
+  } finally {
+    connection.release();
   }
 };
 
@@ -19755,6 +19763,8 @@ const queryType = (query) => {
 };
 
 const preparedStatement = async (query, parameters, resource) => {
+  ScheduleResourceTick(resourceName);
+  const connection = await pool.getConnection();
   try {
     if (!Array.isArray(parameters))
       throw new FormatError(`Placeholders were defined, but query received no parameters!`, query);
@@ -19763,9 +19773,6 @@ const preparedStatement = async (query, parameters, resource) => {
 
     const type = queryType(query);
     if (!type) throw new FormatError(`Prepared statements only accept SELECT, INSERT, UPDATE, and DELETE methods!`);
-
-    const connection = await pool.getConnection();
-    ScheduleResourceTick(resourceName);
 
     const results = [];
     let queryCount = parameters.length;
@@ -19785,8 +19792,6 @@ const preparedStatement = async (query, parameters, resource) => {
         ${query} ${JSON.stringify(parameters)}^0`
       );
 
-    connection.release();
-
     if (results.length === 1) {
       if (type === 1) {
         if (results[0][0] && Object.keys(results[0][0]).length === 1) {
@@ -19804,6 +19809,8 @@ const preparedStatement = async (query, parameters, resource) => {
         ${error.sql || `${query} ${JSON.stringify(parameters)}`}^0`
     );
     debug && console.trace(error);
+  } finally {
+    connection.release();
   }
 };
 
@@ -19961,11 +19968,12 @@ try {
       return result;
     });
   }
-} catch(e) {
+} catch (e) {
   setTimeout(() => {
     console.log(`^3Unable to load enhanced sync exports (download FXServer 4837+)^0`);
-  }, 1000)
+  }, 1000);
 }
+
 })();
 
 /******/ })()

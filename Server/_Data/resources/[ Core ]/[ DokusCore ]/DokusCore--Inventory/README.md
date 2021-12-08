@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Inventory (v1.5.4) [BETA]</b> - A Inventory system for DokusCore!.
+ <b>DokusCore Inventory (v1.5.5) [BETA]</b> - A Inventory system for DokusCore!.
 </p>
 
 ---
@@ -43,7 +43,7 @@ items or loot and come back later or tomorrow to retrieve them! <br>
 
 ---
 # Discord
-On our [Discord](https://discord.io/StageCoach) you can find all Information about this<br>
+On our [Discord](https://discord.io/dokuscore) you can find all Information about this<br>
 project, feel free to join. Here you can also interact with other playing and testing<br>
 the Core, as well as giving your suggestions and opinions.
 

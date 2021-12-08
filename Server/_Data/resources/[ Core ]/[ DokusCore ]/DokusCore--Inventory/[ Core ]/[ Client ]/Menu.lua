@@ -2,10 +2,12 @@
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
-  DokusMenu.CreateMenu('BoxMenu', 'DropBox', '')
-  DokusMenu.SetSubTitle('BoxMenu', 'Loot Box')
-  DokusMenu.CreateMenu('BoxItems', 'DropBox', '')
-  DokusMenu.SetSubTitle('BoxItems', 'Loot Box')
+  if (_Modules.Inventory) then
+    DokusMenu.CreateMenu('BoxMenu', 'DropBox', '')
+    DokusMenu.SetSubTitle('BoxMenu', 'Loot Box')
+    DokusMenu.CreateMenu('BoxItems', 'DropBox', '')
+    DokusMenu.SetSubTitle('BoxItems', 'Loot Box')
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
