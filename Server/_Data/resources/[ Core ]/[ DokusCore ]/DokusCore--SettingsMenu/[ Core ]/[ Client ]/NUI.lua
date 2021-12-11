@@ -29,6 +29,9 @@ RegisterNUICallback('OpenMenu', function(Data)
   elseif (Data.Menu == 'FunctionsMenu') then
     SendNUIMessage({ Action = 'SetMenu',  Menu = 'FunctionsMenu' })
     SendNUIMessage({ Action = 'OpenMenu', Menu = _DokusMenus.FunctionsMenu[1] })
+  elseif (Data.Menu == 'SkinMenu') then
+    SendNUIMessage({ Action = 'SetMenu',  Menu = 'SkinMenu' })
+    SendNUIMessage({ Action = 'OpenMenu', Menu = _DokusMenus.SkinMenu[1] })
   elseif (Data.Menu == 'MusicMenu') then
     SendVolumeWarning()
     SendNUIMessage({ Action = 'SetMenu',  Menu = 'MusicMenu' })
@@ -193,6 +196,23 @@ RegisterNUICallback('SaveCoords', function()
   local User = TSC('DokusCore:Core:GetCoreUserData')
   TSC('DokusCore:Core:DBSet:Characters', { 'Coords', { User.Steam, User.CharID, Encoded } })
   Notify("You've saved your coordinates!", 'topCenter', 5000)
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('SkinMenu', function(Data)
+  CloseMenu()
+  if (Data.Opt == 'OpenMenu') then
+    local PedID = PlayerPedId()
+    local Coords = GetEntityCoords(PedID)
+    TriggerEvent('DokusCore:SkinCreator:OpenMenu', PedID, Coords)
+  elseif (Data.Opt == 'LoadSkin') then
+    CloseMenu()
+    local Data = TSC('DokusCore:Core:GetCoreUserData')
+    local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.Steam, Data.CharID } }).Result[1]
+    if (User.Skin == nil) then return Notify("You've no skin to load! Please create a skin first with /skin menu") end
+    local Skin = json.decode(User.Skin)
+    TriggerEvent("DokusCore:SkinCreator:SetSkin", Skin)
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

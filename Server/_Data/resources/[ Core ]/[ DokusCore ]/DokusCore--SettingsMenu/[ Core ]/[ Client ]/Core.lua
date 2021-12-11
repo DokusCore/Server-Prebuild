@@ -12,6 +12,12 @@ VolumeWarning = false
 VolumeCooldown = 60
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+CreateThread(function()
+  Notify('Setting Menu Loading....', 'topCenter', 2500) Wait(3000)
+  Notify('Setting Menu Initialized!', 'topCenter', 3000)
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 CreateThread(function() Wait(3000)
   if (_Modules.SettingsMenu) then
     while true do Wait(0)

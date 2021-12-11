@@ -17260,21 +17260,23 @@ function createCompiler(config) {
       throw new Error('Named query contains placeholders, but parameters object is undefined');
 
     for(const key in params) {
-      if(key.charAt(0) === '@' || key.charAt(0) === ':') {
+      const char = key[0]
+      if(char == '@' || char == ':') {
         params[key.substring(1)] = params[key];
         delete params[key];
       }
     }
-    
+
     const tokens = tree[1];
     for (let i=0; i < tokens.length; ++i) {
-      arr.push(params[tokens[i]] === undefined ? null : params[tokens[i]]);
+      arr.push(params[tokens[i]]);
     }
     return [tree[0], arr];
   }
 
   function noTailingSemicolon(s) {
-    if (s.slice(-1) == ':' || s.slice(-1) == '@') {
+    const char = s.slice(-1)
+    if (char == ':' || char == '@') {
       return s.slice(0, -1);
     }
     return s;
@@ -17287,7 +17289,8 @@ function createCompiler(config) {
 
     let unnamed = noTailingSemicolon(tree[0][0]);
     for (let i=1; i < tree[0].length; ++i) {
-      if (tree[0][i-1].slice(-1) == ':' || tree[0][i-1].slice(-1) == '@') {
+      const char = tree[0][i-1].slice(-1)
+      if (char == ':' || char == '@') {
         unnamed += config.placeholder;
       }
       unnamed += config.placeholder;
@@ -17296,7 +17299,8 @@ function createCompiler(config) {
 
     const last = tree[0][tree[0].length -1];
     if (tree[0].length == tree[1].length) {
-      if (last.slice(-1) == ':' || last.slice(-1) == '@') {
+      const char = last.slice(-1)
+      if (char == ':' || char == '@') {
         unnamed += config.placeholder;
       }
       unnamed += config.placeholder;
@@ -19717,14 +19721,36 @@ const resourceName = GetCurrentResourceName();
 
 
 
+let isReady = false;
+
+const serverReady = async () => {
+  return new Promise((resolve) => {
+    const id = setInterval(() => {
+      if (GetResourceState(resourceName) == 'started') resolve(id);
+    }, 50);
+  }).then((id) => {
+    clearInterval(id);
+    isReady = true;
+  });
+};
+
+setImmediate(async () => {
+  try {
+    await pool.query(isolationLevel);
+    console.log(`^2Database server connection established!^0`);
+  } catch (error) {
+    console.log(`^3Unable to establish a connection to the database! [${error.code}]\n${error.message}^0`);
+  }
+});
+
 const execute = async (query, parameters, resource) => {
-  ScheduleResourceTick(resourceName);
-  const connection = await pool.getConnection();
+  if (!isReady) await serverReady();
   try {
     [query, parameters] = parseParameters(query, parameters);
 
+    ScheduleResourceTick(resourceName);
     const startTime = process.hrtime();
-    const [rows] = await connection.query(query, parameters);
+    const [rows] = await pool.query(query, parameters);
     const executionTime = process.hrtime(startTime)[1] / 1000000; // nanosecond to millisecond
 
     if (executionTime >= slowQueryWarning || debug)
@@ -19733,7 +19759,6 @@ const execute = async (query, parameters, resource) => {
         ${query} ${JSON.stringify(parameters)}^0`
       );
 
-    connection.release();
     return rows;
   } catch (error) {
     console.log(
@@ -19742,8 +19767,6 @@ const execute = async (query, parameters, resource) => {
         ${error.sql || `${query} ${JSON.stringify(parameters)}`}^0`
     );
     debug && console.trace(error);
-  } finally {
-    connection.release();
   }
 };
 
@@ -19763,6 +19786,7 @@ const queryType = (query) => {
 };
 
 const preparedStatement = async (query, parameters, resource) => {
+  if (!isReady) await serverReady();
   ScheduleResourceTick(resourceName);
   const connection = await pool.getConnection();
   try {
@@ -19832,10 +19856,10 @@ const transaction = async (queries, parameters, resource) => {
   ScheduleResourceTick(resourceName);
   const connection = await pool.getConnection();
   try {
-    const startTime = process.hrtime();
 
     const fullQuery = parseTransaction(queries, parameters);
     const transactionAmount = fullQuery.length;
+    const startTime = process.hrtime();
 
     await connection.beginTransaction();
 
@@ -19874,16 +19898,6 @@ const transaction = async (queries, parameters, resource) => {
 
 
 
-
-
-setImmediate(async () => {
-  try {
-    await pool.query(isolationLevel);
-    console.log(`^2Database server connection established!^0`);
-  } catch (error) {
-    console.log(`^3Unable to establish a connection to the database! [${error.code}]\n${error.message}^0`);
-  }
-});
 
 const safeCallback = (callback, result) => {
   if (typeof callback === 'function') callback(result);
@@ -19925,55 +19939,47 @@ global.exports('prepare', (query, parameters, cb, resource = GetInvokingResource
   preparedStatement(query, parameters, resource).then((result) => safeCallback(cb || parameters, result));
 });
 
-try {
-  // Check for the existance of a native from FXServer 4837 to enable JS exports
-  if (MumbleSetPlayerMuted || !GetResourceMetadata(GetCurrentResourceName(), 'server_script', 1)) {
-    global.exports('prepareSync', async (query, parameters) => {
-      const result = await preparedStatement(query, parameters, GetInvokingResource());
-      return result;
-    });
+if (!GetResourceMetadata(GetCurrentResourceName(), 'server_script', 1)) {
+  global.exports('prepareSync', async (query, parameters) => {
+    const result = await preparedStatement(query, parameters, GetInvokingResource());
+    return result;
+  });
 
-    global.exports('executeSync', async (query, parameters) => {
-      const result = await execute(query, parameters, GetInvokingResource());
-      return result;
-    });
+  global.exports('executeSync', async (query, parameters) => {
+    const result = await execute(query, parameters, GetInvokingResource());
+    return result;
+  });
 
-    global.exports('insertSync', async (query, parameters) => {
-      const result = await execute(query, parameters, GetInvokingResource());
-      return result && result.insertId;
-    });
+  global.exports('insertSync', async (query, parameters) => {
+    const result = await execute(query, parameters, GetInvokingResource());
+    return result && result.insertId;
+  });
 
-    global.exports('updateSync', async (query, parameters) => {
-      const result = await execute(query, parameters, GetInvokingResource());
-      return result && result.affectedRows;
-    });
+  global.exports('updateSync', async (query, parameters) => {
+    const result = await execute(query, parameters, GetInvokingResource());
+    return result && result.affectedRows;
+  });
 
-    global.exports('fetchSync', async (query, parameters) => {
-      const result = await execute(query, parameters, GetInvokingResource());
-      return result;
-    });
+  global.exports('fetchSync', async (query, parameters) => {
+    const result = await execute(query, parameters, GetInvokingResource());
+    return result;
+  });
 
-    global.exports('singleSync', async (query, parameters) => {
-      const result = await execute(query, parameters, GetInvokingResource());
-      return result && result[0];
-    });
+  global.exports('singleSync', async (query, parameters) => {
+    const result = await execute(query, parameters, GetInvokingResource());
+    return result && result[0];
+  });
 
-    global.exports('scalarSync', async (query, parameters) => {
-      const result = await execute(query, parameters, GetInvokingResource());
-      return result && result[0] && Object.values(result[0])[0];
-    });
+  global.exports('scalarSync', async (query, parameters) => {
+    const result = await execute(query, parameters, GetInvokingResource());
+    return result && result[0] && Object.values(result[0])[0];
+  });
 
-    global.exports('transactionSync', async (queries, parameters) => {
-      const result = await transaction(queries, parameters, GetInvokingResource());
-      return result;
-    });
-  }
-} catch (e) {
-  setTimeout(() => {
-    console.log(`^3Unable to load enhanced sync exports (download FXServer 4837+)^0`);
-  }, 1000);
+  global.exports('transactionSync', async (queries, parameters) => {
+    const result = await transaction(queries, parameters, GetInvokingResource());
+    return result;
+  });
 }
-
 })();
 
 /******/ })()

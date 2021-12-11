@@ -13,7 +13,7 @@ RegisterNUICallback('selectCharacter', function(Data)
   local CharID = Data['cData']['CharID']
   local Steam = Data['cData']['Steam']
   PlayerID = CharID
-  local Char =  TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } })
+  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } })
   local Data = json.decode(Char.Result[1].Coords)
   local Coords = vector3(Data['x'], Data['y'], Data['z'])
   TSC('DokusCore:Core:SetCoreUserData', { 'CharID', { CharID } })
@@ -25,9 +25,16 @@ RegisterNUICallback('selectCharacter', function(Data)
   -- Update the users hud
   TSC('DokusCore:Core:Hud:Update', { 'User' })
   TSC('DokusCore:Core:Hud:Toggle', true)
+  DoScreenFadeIn(1500) Wait(5000)
 
-  -- Apply users skin -- NEED TO BE BUILD -=--- <<<<<<<<<<<<<<<<<<<<<<<<<
-  Wait(1000) DoScreenFadeIn(1500)
+  -- Apply users skin
+  local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } }).Result[1]
+  if (User.Skin ~= '--') then
+    local Skin = json.decode(User.Skin)
+    TriggerEvent("DokusCore:SkinCreator:SetSkin", Skin)
+  end
+
+
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -36,7 +43,7 @@ RegisterNUICallback('setupCharacters', function()
   local Steam = TSC('DokusCore:Core:GetUserIDs', { 'User' })[1]
   local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'All', { Steam } })
   if not (Char.Exist) then SendNUIMessage({ action = "SetupSteam", value = Steam }) return end
-  for k,v in pairs(Char.Result) do
+  for k, v in pairs(Char.Result) do
     local CharID, cName = v.CharID, v.cName
     table.insert(Array, { Steam = Steam, CharID = CharID, cName = cName })
   end
@@ -56,23 +63,32 @@ RegisterNUICallback('createNewCharacter', function(Data)
   if (cChar.Error) then IsError(cChar.ErrReason) return end
   local Config = _MultiCharacters.StartPositions[1]
   SetCoords(PedID, Config.Coords, Config.Heading)
-  TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'TrainPass', 1.0) Wait(15000)
+  TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'TrainPass', 0.3) Wait(17000)
+  if (_MultiCharacters.IntroSong.Enabled) then TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'RunHome', _MultiCharacters.IntroSong.Volume) end
   SetEntityVisible(PedID, true)
   FreezeEntityPosition(PedID, false)
+  Wait(2000)
+
+  PlayerID = CharID
+  DoScreenFadeIn(15000) Wait(6000)
+  TSC('DokusCore:Core:Hud:Toggle', true)
+  TSC('DokusCore:Core:Hud:Update', { 'User' })
+
+  -- Open the skin menu
+  if (_Modules.SkinCreator) then
+    local pCoords = GetEntityCoords(PedID)
+    TriggerEvent('DokusCore:SkinCreator:OpenMenu', PedID, pCoords)
+  else
+    TriggerEvent('DokusCore:Core:ShowTopNote', 'Welcome', _ServerName)
+  end
 
   -- Give the user his / her starting items
   if (_MultiCharacters.GiveStartItems) then
-    for k,v in pairs(_MultiCharacters.StartItems) do
+    for k, v in pairs(_MultiCharacters.StartItems) do
       local Item, Amount, Type = string.lower(v.Item), v.Amount, v.Type
       TSC('DokusCore:Core:DBIns:Inventory', { 'User', 'InsertItem', { Steam, CharID, Type, Item, Amount } })
     end
   end
-
-  PlayerID = CharID
-  DoScreenFadeIn(15000) Wait(6000)
-  TriggerEvent('DokusCore:Core:ShowTopNote', 'Welcome', _ServerName)
-  TSC('DokusCore:Core:Hud:Toggle', true)
-  TSC('DokusCore:Core:Hud:Update', { 'User' })
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -3,14 +3,17 @@ game 'common'
 
 name 'oxmysql'
 description 'Database wrapper for FiveM utilising node-mysql2 offering improved performance and security.'
-version '1.8.5'
+version '1.8.7'
 url 'https://github.com/overextended/oxmysql'
 author 'overextended'
 use_fxv2_oal 'yes'
 lua54 'yes'
 
-server_scripts {
+--dependencies {
 --	'/server:4837',  Disabled until the heat death of the universe (or recommended artifact updates)
+--}
+
+server_scripts {
 	'oxmysql.js',
 	'wrapper.lua'
 }

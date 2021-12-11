@@ -113,6 +113,10 @@ const InitData = (nr) => {
 
   if ((Menu == 'FunctionsMenu') && (nr == 0)) { $.post('https://DokusCore--SettingsMenu/Logout', JSON.stringify({})); };
   if ((Menu == 'FunctionsMenu') && (nr == 1)) { $.post('https://DokusCore--SettingsMenu/SaveCoords', JSON.stringify({})); };
+  if ((Menu == 'FunctionsMenu') && (nr == 2)) { $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'SkinMenu' })); };
+
+  if ((Menu == 'SkinMenu') && (nr == 0)) { $.post('https://DokusCore--SettingsMenu/SkinMenu', JSON.stringify({ Opt: 'OpenMenu' })); CloseMenu() };
+  if ((Menu == 'SkinMenu') && (nr == 1)) { $.post('https://DokusCore--SettingsMenu/SkinMenu', JSON.stringify({ Opt:  'LoadSkin' })); CloseMenu() };
 
   if ((Menu == 'WesternMusicMenu') && (nr == 0)) { $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'WesternRDR1' })); };
 
@@ -184,6 +188,7 @@ $(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
 $(document).on('click', ".btn-backinterface", function() {
   if (Menu == 'SettingsMenu') { return $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'MainMenu' })); }
   if (Menu == 'FunctionsMenu') { return $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'MainMenu' })); }
+  if (Menu == 'SkinMenu') { return $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'FunctionsMenu' })); }
   if (Menu == 'MusicMenu') { return $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'MainMenu' })); }
   if (Menu == 'Playlist') { return $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }
   if (Menu == 'Volume') { return $.post('https://DokusCore--SettingsMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }

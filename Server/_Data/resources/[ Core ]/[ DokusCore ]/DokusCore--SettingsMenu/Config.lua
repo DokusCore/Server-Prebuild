@@ -17,7 +17,7 @@ _DokusMenus = {
       MenuOptions = {
         { Type = 'Option', Option = 'Inventory', Title = 'Inventory' },
         { Type = 'Menu', Option = 'SettingsMenu', Title = 'Settings' },
-        { Type = 'Menu', Option = 'FunctionsMenu', Title = 'Functions' },
+        { Type = 'Menu', Option = 'FunctionsMenu', Title = 'Character Menu' },
         { Type = 'Menu', Option = 'MusicMenu', Title = 'Music' },
       }
     }
@@ -71,6 +71,18 @@ _DokusMenus = {
       MenuOptions = {
         { Type = 'Option', Option = 'Logout', Title = 'Logout' },
         { Type = 'Option', Option = 'SaveCoords', Title = 'Save Location' },
+        { Type = 'Menu', Option = 'SkinMenu', Title = 'Skin Menu' },
+      }
+    }
+  },
+
+  SkinMenu = {
+    {
+      MenuName = 'SkinMenu',
+      MenuTitle = 'Skin Menu',
+      MenuOptions = {
+        { Type = 'Option', Option = 'Menu', Title = 'Open Menu' },
+        { Type = 'Option', Option = 'Load', Title = 'Load Skin' },
       }
     }
   },
@@ -197,8 +209,6 @@ _DokusMenus = {
       MenuTitle = 'Western Menu',
       MenuOptions = {
         { Type = 'Menu', Option = 'WesternRDR1', Title = 'Western ( Acoustic Themed )' },
-        -- { Type = 'Menu', Option = 'WesternRDR2', Title = 'Western RDR 2' },
-        -- { Type = 'Menu', Option = 'WesternRDR2', Title = 'Western RDR 3' },
       }
     }
   },

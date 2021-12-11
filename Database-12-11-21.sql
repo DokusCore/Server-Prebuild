@@ -27,9 +27,9 @@ CREATE TABLE IF NOT EXISTS `banks` (
   `BankMoney` float NOT NULL,
   `BankGold` float NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscore.banks: ~1 rows (approximately)
+-- Dumping data for table dokuscore.banks: ~12 rows (approximately)
 /*!40000 ALTER TABLE `banks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `banks` ENABLE KEYS */;
 
@@ -70,9 +70,9 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `Skin` varchar(5000) NOT NULL,
   `Clothing` varchar(5000) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscore.characters: ~1 rows (approximately)
+-- Dumping data for table dokuscore.characters: ~2 rows (approximately)
 /*!40000 ALTER TABLE `characters` DISABLE KEYS */;
 /*!40000 ALTER TABLE `characters` ENABLE KEYS */;
 
@@ -86,9 +86,9 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   `Amount` int(11) DEFAULT NULL,
   `Meta` text DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscore.inventory: ~2 rows (approximately)
+-- Dumping data for table dokuscore.inventory: ~34 rows (approximately)
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 
@@ -139,9 +139,9 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `Volume` float DEFAULT 0.3,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Steam` (`Steam`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscore.settings: ~1 rows (approximately)
+-- Dumping data for table dokuscore.settings: ~0 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `MLive` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Steam` (`Steam`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table dokuscore.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
