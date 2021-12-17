@@ -18,6 +18,8 @@ RegisterNUICallback('saveSkin', function(data, cb)
   ShowSkinCreator(false)
   SetPlayerInvincible(PlayerId(), false)
   Wait(5000)
+  TSC('DokusCore:Core:Hud:Toggle', true)
+  TSC('DokusCore:Core:Hud:Update', { 'User' })
   if not (Welcomed) then Welcomed = true TriggerEvent('DokusCore:Core:ShowTopNote', 'Welcome', _ServerName) end
 end)
 --------------------------------------------------------------------------------

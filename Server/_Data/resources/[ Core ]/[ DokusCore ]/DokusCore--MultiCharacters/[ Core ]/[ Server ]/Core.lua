@@ -39,13 +39,9 @@ RSC('DokusCore:MultiChar:CreateNewCharacter', function(source, Data)
   -- When everything is A-Okey continue create the character
   local Coords = _MultiCharacters.StartPositions[1].Coords
   local Encoded = json.encode(Coords)
-  local Index = { Steam, CharID, _Moderation.User, cName, Gender, Nat, Birth, 0, 0, 'unemployed', 0, Encoded, '--', '--' }
-  TCC(-1, 'DokusCore:Core:DBIns:Characters', { 'User', Index } )
-
-  -- Attach an bank account to this character.
   local SW = _StartWealth
-  local Money, BankMoney, Gold, BankGold = SW.Money, SW.BankMoney, SW.Gold, SW.BankGold
-  TCC(-1, 'DokusCore:Core:DBIns:Banks', { 'User', { Steam, CharID, Money, Gold, BankMoney, BankGold } })
+  local Index = { Steam, CharID, _Moderation.User, cName, Gender, Nat, Birth, SW.Money, SW.Gold, 0, 0, 'unemployed', 0, Encoded, '--', '--' }
+  TCC(-1, 'DokusCore:Core:DBIns:Characters', { 'User', Index } )
 
   return { Error = false, ErrReason = nil }
 end)

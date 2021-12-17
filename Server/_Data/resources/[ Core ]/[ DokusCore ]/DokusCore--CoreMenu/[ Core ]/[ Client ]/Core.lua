@@ -24,9 +24,9 @@ CreateThread(function() Wait(3000)
       local Control = IsControlJustReleased(0, _Keys['TAB'])
       if (Control) then
         InMenu = 'MainMenu'
-        local Menu = _DokusMenus.MainMenu[1].MenuName
+        local Menu = MainMenu[1].MenuName
         SendNUIMessage({ Action = 'SetMenu',  Menu = Menu }) OpenMenu()
-        SendNUIMessage({ Action = 'OpenMenu', Menu = _DokusMenus.MainMenu[1] })
+        SendNUIMessage({ Action = 'OpenMenu', Menu = MainMenu[1] })
       end
     end
   end

@@ -5,7 +5,7 @@ description 'DokusCore Inventory'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.5.5 BETA'
+version '1.5.6 BETA'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts { '[ Core ]/[ Client ]/*.lua', '@DokusCore/[ Core ]/[ System ]/[ Menu ]/DokusMenu.lua' }

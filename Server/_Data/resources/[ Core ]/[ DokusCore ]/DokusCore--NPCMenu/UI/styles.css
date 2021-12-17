@@ -28,15 +28,15 @@ body {
 }
 
 .card-body {
-	background-color: rgba(27, 93, 243, 1);
+	background-color: rgba(0, 0, 0, 0.8);
 	color: #fff;
 	font-size: 15px;
 	font-weight: 500;
 	border-radius: 50px;
 	vertical-align: middle;
 	font-weight: 600;
-	border: 5px solid rgba(212, 66, 61, 0.8);
-	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+	border: 5px solid rgba(255, 0, 0, 0.5);
+	box-shadow: 0px 0px 35px 0px rgba(0, 0, 0, 1.0);
 	font-size: 20px;
 }
 
@@ -80,9 +80,9 @@ body {
 	left: 50%;
 	top: 92%;
 	transform: translate(-50%, -50%);
-	border: 5px solid rgba(0, 0, 0, 1);
+	border: 5px solid rgba(175, 175, 175, 1);
 	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
-	background-color: rgba(255, 204, 153, 0.4);
+	background-color: rgba(50, 50, 50, 0.4);
 	padding: 10px 35px;
 	height: 80px;
 	width: 275px;
@@ -91,11 +91,9 @@ body {
 }
 
 .btn-closeinterface:hover {
-	/* background: rgba(175, 175, 175, 1); */
+	background: rgba(175, 175, 175, 1);
 	color: #fff;
 	box-shadow: 0px 0px 10px 0px rgba(175, 175, 175, 1);
-	background: rgba(0, 0, 0, 0.5);
-	border: 5px solid rgba(255, 0, 0, 0.8);
 }
 
 .btn-backinterface {
@@ -180,7 +178,7 @@ body {
 	inset: 0;
 	transform: skew(-18deg);
 	background-color: rgba(255, 204, 153, 0.4);
-	border: 5px solid rgba(212, 66, 61, 0.8);
+	border: 5px solid rgba(255, 0, 0, 0.5);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
@@ -213,7 +211,7 @@ body {
 	inset: 0;
 	transform: skew(18deg);
 	background-color: rgba(255, 204, 153, 0.4);
-	border: 5px solid rgba(212, 66, 61, 0.8);
+	border: 5px solid rgba(255, 0, 0, 0.5);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
@@ -245,7 +243,7 @@ body {
 	height: 80px;
 	width: 275px;
 	background-color: rgba(255, 204, 153, 0.4);
-	border: 5px solid rgba(212, 66, 61, 0.8);
+	border: 5px solid rgba(255, 0, 0, 0.5);
 	color: #fff;
 	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
@@ -267,7 +265,7 @@ body {
 	inset: 0;
 	transform: skew(18deg);
 	background-color: rgba(255, 204, 153, 0.4);
-	border: 5px solid rgba(212, 66, 61, 0.8);
+	border: 5px solid rgba(255, 0, 0, 0.5);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;
@@ -300,7 +298,7 @@ body {
 	inset: 0;
 	transform: skew(-18deg);
 	background-color: rgba(255, 204, 153, 0.4);
-	border: 5px solid rgba(212, 66, 61, 0.8);
+	border: 5px solid rgba(255, 0, 0, 0.5);
 	z-index: -1;
 	transition: 0.25s;
 	border-radius: .25rem;

@@ -40,11 +40,11 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Inventory:UpdateBankValues')
 AddEventHandler('DokusCore:Inventory:UpdateBankValues', function()
-  local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', { Steam, CharID } }).Result[1]
+  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } }).Result[1]
   while IsInvOpen do Wait(0)
     SendNUIMessage({
-      wallet = Bank.Money, gold = Bank.Gold,
-      bank = Bank.BankMoney, label = 'In Progress',
+      wallet = Char.Money, gold = Char.Gold,
+      bank = '???', label = 'In Progress',
     }) Wait(1000)
   end
 end)

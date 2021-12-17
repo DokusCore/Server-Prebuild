@@ -70,15 +70,15 @@ RegisterNUICallback('createNewCharacter', function(Data)
   Wait(2000)
 
   PlayerID = CharID
-  DoScreenFadeIn(15000) Wait(6000)
-  TSC('DokusCore:Core:Hud:Toggle', true)
-  TSC('DokusCore:Core:Hud:Update', { 'User' })
+  DoScreenFadeIn(15000)
 
   -- Open the skin menu
   if (_Modules.SkinCreator) then
     local pCoords = GetEntityCoords(PedID)
     TriggerEvent('DokusCore:SkinCreator:OpenMenu', PedID, pCoords)
   else
+    TSC('DokusCore:Core:Hud:Toggle', true)
+    TSC('DokusCore:Core:Hud:Update', { 'User' })
     TriggerEvent('DokusCore:Core:ShowTopNote', 'Welcome', _ServerName)
   end
 
@@ -95,6 +95,7 @@ end)
 RegisterNUICallback('removeCharacter', function(Data)
   TSC('DokusCore:Core:DBDel:Characters', { 'User', 'Single', { Data.Steam, Data.CharID } })
   TSC('DokusCore:Core:DBDel:Banks', { 'User', 'Single', { Data.Steam, Data.CharID } })
+  TSC('DokusCore:Core:DBDel:Inventory', { 'User', 'All', { Data.Steam, Data.CharID } })
   TriggerEvent('DokusCore:MultiChar:ChooseChar')
 end)
 
