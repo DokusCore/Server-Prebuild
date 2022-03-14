@@ -6,8 +6,8 @@ Steam, UserID = nil, 0
 --------------------------------------------------------------------------------
 CreateThread(function()
   while not FrameReady() do print("Frame not ready") Wait(1000) end
-  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-  Steam = Data.Steam
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  Steam = Data.SteamID
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -53,8 +53,9 @@ RegisterCommand('logout', function(source, args, rawCommand)
   SetVisible(PedID, false)
   SetFreeze(PedID, true)
   TriggerEvent('DokusCore:MultiChar:ChooseChar')
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'CharID', { 0 } })
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { nil } })
   TriggerEvent('DokusCore:CoreMenu:SetData', { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
   UserID = 0
@@ -71,8 +72,9 @@ AddEventHandler('DokusCore:MultiChar:Logout', function()
   SetVisible(PedID, false)
   SetFreeze(PedID, true)
   TriggerEvent('DokusCore:MultiChar:ChooseChar')
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'CharID', { 0 } })
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { nil } })
   TriggerEvent('DokusCore:CoreMenu:SetData', { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
   UserID = 0
@@ -85,11 +87,11 @@ AddEventHandler('onResourceStart', function(R)
     print('^2[ System ]: ^0'.."^3FrameWork Restart Detected^0")
     print('^2[ System ]: ^0'.."^3Going to sync UserID with the Core^0")
     TriggerEvent('DokusCore:Core:SyncCharID', UserID)
-    TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { true } })
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
     -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
     -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
   elseif (R == 'DokusCore--MultiCharacters') then
-    TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { false } })
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
   end
 end)
 --------------------------------------------------------------------------------

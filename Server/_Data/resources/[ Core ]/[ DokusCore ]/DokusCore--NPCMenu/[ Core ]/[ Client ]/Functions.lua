@@ -1,6 +1,18 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
+function FrameReady()
+  local Data = TCTCC('DokuCore:Sync:Get:CoreData')
+  return Data.FrameReady
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function UserInGame()
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  return Data.UserInGame
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function CloseMenu()
   MenuOpen = false
   -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
@@ -22,7 +34,7 @@ function Menu(Name, Menus, Dialog, TitleName)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function GetData() UserData = TCTCC('DokusCore:Core:GetCoreUserData') return UserData end
+function GetData() UserData = TCTCC('DokusCore:Sync:Get:UserData') return UserData end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- function EndCam()

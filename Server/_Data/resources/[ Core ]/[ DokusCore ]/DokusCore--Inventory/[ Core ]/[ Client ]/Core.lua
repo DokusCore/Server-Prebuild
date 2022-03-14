@@ -15,8 +15,8 @@ local Low = string.lower
 CreateThread(function()
   while not FrameReady() do Wait(1000) end
   while not UserInGame() do Wait(1000) end
-  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-  Steam, CharID = Data.Steam, Data.CharID
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  Steam, CharID = Data.SteamID, Data.CharID
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -60,14 +60,14 @@ end)
 --------------------------------------------------------------------------------
 -- Resync on DokusCore restart
 --------------------------------------------------------------------------------
-AddEventHandler('onResourceStart', function(resourceName)
-  if (resourceName == 'DokusCore') then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam, CharID = Data.Steam, Data.CharID
-  end
-end)
+-- AddEventHandler('onResourceStart', function(resourceName)
+--   if (resourceName == 'DokusCore') then
+--     while not FrameReady() do Wait(1000) end
+--     while not UserInGame() do Wait(1000) end
+--     local Data = TCTCC('DokusCore:Sync:Get:UserData')
+--     Steam, CharID = Data.SteamID, Data.CharID
+--   end
+-- end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Then place all boxes back on the map.
@@ -107,8 +107,8 @@ CreateThread(function() Wait(1000)
   if (_Modules.Inventory) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    local Core = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam, CharID = Core.Steam, Core.CharID
+    local Core = TCTCC('DokusCore:Sync:Get:UserData')
+    Steam, CharID = Core.SteamID, Core.CharID
     while true do Wait(1000)
       while (BoxTXTs[1] ~= nil) do Wait(0)
         for k,v in pairs(BoxTXTs) do

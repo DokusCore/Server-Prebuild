@@ -10,9 +10,9 @@ RegisterNUICallback('saveSkin', function(data, cb)
   DisplayRadar(true)
   SetCamActive(cam, false)
   DestroyCam(cam, true)
-  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-  local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.Steam, Data.CharID } }).Result[1]
-  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Skin', { Data.Steam, Data.CharID, encode } })
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.SteamID, Data.CharID } }).Result[1]
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Skin', { Data.SteamID, Data.CharID, encode } })
   DestroyAllCams()
   IsMenuOpen = false
   ShowSkinCreator(false)

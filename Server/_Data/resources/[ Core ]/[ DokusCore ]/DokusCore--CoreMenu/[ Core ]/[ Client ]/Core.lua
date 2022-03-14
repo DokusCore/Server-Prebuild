@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-Steam, CharID, InMenu = nil, 0, ''
+Steam, CharID, InMenu = nil, 1, ''
 SetMusic, SetVolume = 0, 0.3
 SetAutoPlay, AutoPlayWarning = false, false
 Language = ''
@@ -15,8 +15,8 @@ CreateThread(function()
     Notify('Setting Menu Loading....', 'topCenter', 2500)
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam, CharID = Data.Steam, Data.CharID
+    local Data = TCTCC('DokusCore:Sync:Get:UserData')
+    Steam, CharID = Data.SteamID, Data.CharID
     local Data = TSC('DokusCore:Core:DBGet:Settings', { 'User', { Steam } })
     if (Data.Exist) then
       local Result = Data.Result[1]
@@ -52,8 +52,8 @@ AddEventHandler('DokusCore:CoreMenu:SetData', function(Data)
     CharID = 0
     Notify('SettingsMenu: User Data Reset due to being logged out')
     while not UserInGame() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam, CharID = Data.Steam, Data.CharID
+    local Data = TCTCC('DokusCore:Sync:Get:UserData')
+    Steam, CharID = Data.SteamID, Data.CharID
   end
 end)
 --------------------------------------------------------------------------------

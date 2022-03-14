@@ -21,7 +21,6 @@ client_scripts {
   '[ Core ]/[ Client ]/[ Utilities ]/*.*',
   '[ Core ]/[ Client ]/[ Commands ]/*.*',
   '[ Core ]/[ Client ]/[ Commands ]/[ Admin ]/*.*',
-  '[ Core ]/[ Client ]/[ Events ]/*.*',
   '[ Core ]/[ Client ]/[ Callbacks ]/*.*',
 }
 --------------------------------------------------------------------------------

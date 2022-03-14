@@ -43,8 +43,8 @@ features_name = {
 --------------------------------------------------------------------------------
 CreateThread(function()
   while not FrameReady() do Wait(1000) end
-  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-  Steam = Data.Steam
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  Steam = Data.SteamID
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -57,8 +57,8 @@ CreateThread(function()
       local pCoords = GetEntityCoords(PedID)
       if (Low(args[1]) == 'menu') then TriggerEvent("DokusCore:SkinCreator:OpenMenu", PedID, pCoords) end
       if (Low(args[1]) == 'load') then
-        local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-        local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.Steam, Data.CharID } }).Result[1]
+        local Data = TCTCC('DokusCore:Sync:Get:UserData')
+        local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.SteamID, Data.CharID } }).Result[1]
         if (User.Skin == nil) then return Notify("You've no skin to load! Please create a skin first with /skin menu") end
         local Skin = json.decode(User.Skin)
         TriggerEvent("DokusCore:SkinCreator:SetSkin", Skin)

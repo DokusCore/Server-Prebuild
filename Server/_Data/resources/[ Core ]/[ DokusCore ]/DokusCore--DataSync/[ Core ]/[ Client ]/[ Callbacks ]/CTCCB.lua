@@ -1,56 +1,17 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
+-- Client to Client Callbacks
 --------------------------------------------------------------------------------
--- Event to trigger when user logs out.
---------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Metabolism:UserLoggedIn', function()
-  while not FrameReady() do Wait(1000) end
-  while not UserInGame() do Wait(1000) end
-  Online = true
-  local PedID  = PedID()
-  local Data = TCTCC('DokusCore:Sync:Get:UserData')
-  Steam, CharID = Data.SteamID, Data.CharID
-  local Data = TSC('DokusCore:Core:DBGet:Metabolism', { 'User', { Steam, CharID } }).Result[1]
-  Health, Hunger, Thirst = Data.Health, Data.Hunger, Data.Thirst
-end)
+RegisterNetEvent('DokusCore:Sync:Get:UserData', function(cb) return cb(_User) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Event to trigger when user logs out.
---------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Metabolism:UserLoggedOut', function()
-  TriggerServerEvent('DokusCore:Metabolism:UpdateVitals', { Steam, CharID, Health, Hunger, Thirst })
-  Wait(100) TriggerServerEvent('DokusCore:Metabolism:SaveVitals')
-  Online = false
-  Steam, CharID = nil, 0
-  Health, Stamina, Hunger, Thirst = 0, 0, 0, 0
-end)
+RegisterNetEvent('DokuCore:Sync:Get:CoreData', function(cb) return cb(_Core) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+RCC('DokusCore:Sync:Get:UserData', function(args) return _User end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RCC('DokusCore:Sync:Get:CoreData', function(args) return _Core end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

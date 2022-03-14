@@ -14,8 +14,8 @@ local Low = string.lower
 CreateThread(function()
   if (_Modules.Banking) then
     while not FrameReady() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam = Data.Steam
+    local Data = TCTCC('DokusCore:Sync:Get:UserData')
+    Steam = Data.SteamID
   end
 end)
 --------------------------------------------------------------------------------
@@ -47,8 +47,8 @@ AddEventHandler('onResourceStart', function(resourceName)
   if (resourceName == 'DokusCore') then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam, CharID = Data.Steam, Data.CharID
+    local Data = TCTCC('DokusCore:Sync:Get:UserData')
+    Steam, CharID = Data.SteamID, Data.CharID
   end
 end)
 --------------------------------------------------------------------------------
@@ -112,8 +112,8 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Banking:StartBank')
 AddEventHandler('DokusCore:Banking:StartBank', function()
-  local User = TCTCC('DokusCore:Core:GetCoreUserData')
-  Steam, CharID = User.Steam, User.CharID
+  local User = TCTCC('DokusCore:Sync:Get:UserData')
+  Steam, CharID = User.SteamID, User.CharID
   local Data = TSC('DokusCore:Core:DBGet:Settings', { 'user', { Steam } })
   local BankInUse = TSC('DokusCore:Banking:NPCStatus', { 'Get' })
   OpenBank(Data.Result[1].Language)

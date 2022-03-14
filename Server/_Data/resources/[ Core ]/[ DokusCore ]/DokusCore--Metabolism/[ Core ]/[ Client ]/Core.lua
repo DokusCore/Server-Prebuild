@@ -19,8 +19,8 @@ CreateThread(function()
     while not UserInGame() do Wait(1000) end
     Online = true
     local PedID  = PedID()
-    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
-    Steam, CharID = Data.Steam, Data.CharID
+    local Data = TCTCC('DokusCore:Sync:Get:UserData')
+    Steam, CharID = Data.SteamID, Data.CharID
     local Data = TSC('DokusCore:Core:DBGet:Metabolism', { 'User', { Steam, CharID } }).Result[1]
     Health, Hunger, Thirst = Data.Health, Data.Hunger, Data.Thirst
   end

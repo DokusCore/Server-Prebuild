@@ -10,18 +10,22 @@ RegisterNUICallback('selectCharacter', function(Data)
   local PedID = PedID()
   local CharID = Data['cData']['CharID']
   local Steam = Data['cData']['Steam']
+  local cName = Data['cData']['cName']
   UserID = CharID
   local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } })
   local Data = Decoded(Char.Result[1].Coords)
   local Coords = vector3(Data['x'], Data['y'], Data['z'])
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'CharID', { CharID } })
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'Coords', { Coords } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { CharID } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'Coords', { Coords } })
   SetCoords(PedID, Coords)
   SetVisible(PedID, true)
   SetFreeze(PedID, false)
 
+
+
   -- Set user in game
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { true } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { cName } })
 
   -- Start the metabolism
   TriggerEvent('DokusCore:Metabolism:UserLoggedIn')
@@ -53,7 +57,7 @@ RegisterNUICallback('createNewCharacter', function(Data)
   local source = source
   local PedID = PedID()
   local Steam, CharID = Data.Steam, Data.CharID
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'CharID', { CharID } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { CharID } })
   UIFadeOut(1500) Wait(1500)
   UIFocus(false, false)
   ToggleMenu(false)
@@ -72,8 +76,9 @@ RegisterNUICallback('createNewCharacter', function(Data)
   UIFadeIn(15000)
 
   -- Set user in game
-  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { true } })
-
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { cName } })
+  
   -- Open the skin menu
   if (_Modules.SkinCreator) then
     local pCoords = GetEntityCoords(PedID)
