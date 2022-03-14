@@ -1,34 +1,41 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-PlayerID = 0
+Steam, UserID = nil, 0
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Wait for user to connect to the servers
+CreateThread(function()
+  while not FrameReady() do print("Frame not ready") Wait(1000) end
+  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
+  Steam = Data.Steam
+end)
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.MultiCharacters) then
     while true do Wait(0)
       local Network = NetworkIsSessionStarted()
-      SetInvisible(false, true)
-      TSC('DokusCore:Core:Hud:Toggle', false)
+      local PedID = PedID()
+      SetVisible(PedID, Visible)
+      SetFreeze(PedID, Freeze)
+      -- TriggerEvent('DokusCore:Core:Hud:Toggle', false)
       if Network then	TriggerEvent('DokusCore:MultiChar:ChooseChar') return end
     end
   end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Choose your character
---------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:MultiChar:ChooseChar')
 AddEventHandler('DokusCore:MultiChar:ChooseChar', function()
-  local PedID = PlayerPedId()
-  local GetPed = GetPlayerPed(-1)
-  SetNuiFocus(false, false)
-  DoScreenFadeOut(1500) Wait(2000)
-  SetEntityVisible(PedID, false)
-  FreezeEntityPosition(PedID, true)
-  SetEntityCoords(PedID, -355.6, 790.0, 100.2) Wait(1500)
+  UserID = 0
+  TriggerEvent('DokusCore:Core:SyncCharID', UserID)
+  local PedID = PedID()
+  local GetPed = GetPed(-1)
+  UIFocus(false, false)
+  UIFadeOut(1500) Wait(2000)
+  SetVisible(PedID, false)
+  SetFreeze(PedID, true)
+  SetCoords(PedID, -355.6, 790.0, 100.2) Wait(1500)
   ShutdownLoadingScreenNui()
   ShutdownLoadingScreen() Wait(1)
   ShutdownLoadingScreenNui()
@@ -38,43 +45,86 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterCommand('logout', function(source, args, rawCommand)
-  local PedID = PlayerPedId()
-  local Coords = GetEntityCoords(PedID)
-  local Encoded = json.encode(Coords)
-  local User = TSC('DokusCore:Core:GetCoreUserData')
-  TSC('DokusCore:Core:DBSet:Characters', { 'Coords', { User.Steam, PlayerID, Encoded } })
-  TSC('DokusCore:Core:Hud:Toggle', false)
-  SetEntityVisible(PedID, false)
-  FreezeEntityPosition(PedID, true)
+  local PedID = PedID()
+  local Pos = GetCoords(PedID)
+  local Coords = Encoded(Pos)
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { Steam, UserID, Coords } })
+  -- TriggerEvent('DokusCore:Core:Hud:Toggle', false)
+  SetVisible(PedID, false)
+  SetFreeze(PedID, true)
   TriggerEvent('DokusCore:MultiChar:ChooseChar')
-  TSC('DokusCore:Core:SetCoreUserData', { 'CharID', { 0 } })
-  PlayerID = 0
+  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'CharID', { 0 } })
+  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:CoreMenu:SetData', { 'Logout' })
+  TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
+  UserID = 0
 end)
 --------------------------------------------------------------------------------
---------------------------------------------------------------------------------
--- This event can be called by other plugins for letting the character logout
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:MultiChar:Logout')
 AddEventHandler('DokusCore:MultiChar:Logout', function()
-  local PedID = PlayerPedId()
-  local Coords = GetEntityCoords(PedID)
-  local Encoded = json.encode(Coords)
-  local User = TSC('DokusCore:Core:GetCoreUserData')
-  TSC('DokusCore:Core:DBSet:Characters', { 'Coords', { User.Steam, PlayerID, Encoded } })
-  TSC('DokusCore:Core:Hud:Toggle', false)
-  SetEntityVisible(PedID, false)
-  FreezeEntityPosition(PedID, true)
+  local PedID = PedID()
+  local Pos = GetCoords(PedID)
+  local Coords = Encoded(Pos)
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { Steam, UserID, Coords } })
+  -- TriggerEvent('DokusCore:Core:Hud:Toggle', false)
+  SetVisible(PedID, false)
+  SetFreeze(PedID, true)
   TriggerEvent('DokusCore:MultiChar:ChooseChar')
-  TSC('DokusCore:Core:SetCoreUserData', { 'CharID', { 0 } })
-  PlayerID = 0
+  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'CharID', { 0 } })
+  TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:CoreMenu:SetData', { 'Logout' })
+  TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
+  UserID = 0
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Register client callback to fetch the current CharID when the Core restarts
+AddEventHandler('onResourceStart', function(R)
+  if (R == 'DokusCore') then
+    while not FrameReady() do Wait(1000) end
+    print('^2[ System ]: ^0'.."^3FrameWork Restart Detected^0")
+    print('^2[ System ]: ^0'.."^3Going to sync UserID with the Core^0")
+    TriggerEvent('DokusCore:Core:SyncCharID', UserID)
+    TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { true } })
+    -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
+    -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
+  elseif (R == 'DokusCore--MultiCharacters') then
+    TriggerEvent('DokusCore:Core:SetCoreUserData', { 'UserInGame', { false } })
+  end
+end)
 --------------------------------------------------------------------------------
-RCC('DokusCore:MultiChar:SyncCharID', function(args) return PlayerID end)
 --------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

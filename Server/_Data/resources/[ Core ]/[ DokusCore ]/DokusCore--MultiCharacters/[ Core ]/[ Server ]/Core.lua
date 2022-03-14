@@ -41,19 +41,15 @@ RSC('DokusCore:MultiChar:CreateNewCharacter', function(source, Data)
   local Encoded = json.encode(Coords)
   local SW = _StartWealth
   local Index = { Steam, CharID, _Moderation.User, cName, Gender, Nat, Birth, SW.Money, SW.Gold, 0, 0, 'unemployed', 0, Encoded, '--', '--' }
-  TCC(-1, 'DokusCore:Core:DBIns:Characters', { 'User', Index } )
+  TriggerEvent('DokusCore:Core:DBIns:Characters', -1, { 'User', Index } )
+
+  -- Create the metabolism row
+  TriggerEvent('DokusCore:Core:DBIns:Metabolism', { 'User', 'All', { Steam, CharID, 100.0, 100.0, 100.0 } })
 
   return { Error = false, ErrReason = nil }
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Register client callback to fetch the current CharID when the Core restarts
---------------------------------------------------------------------------------
-RSC('DokusCore:MultiChar:SyncCharID', function(source, args) return TCC(-1, 'DokusCore:MultiChar:SyncCharID', args) end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-
 
 
 

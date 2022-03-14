@@ -4,7 +4,6 @@
 UserData = nil
 InMenu = ''
 MenuOpen = false
-Low = string.lower
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:NPCInteract:OpenMenu')

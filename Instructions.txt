@@ -3,6 +3,8 @@
 --------------------------------------------------------------------------------
 Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
+Currently DokusCore is @ v0.5.1 --- Artifacts 5181
+--------------------------------------------------------------------------------
 
 ==========================
 Installation Instructions:
@@ -17,14 +19,14 @@ Installation Instructions:
    restart plugins within the F8 console. All other admin commands are done
    directly via DokusCore and you set this on the character in the database.
 
-3: Insert the database file into your database. 
+3: Insert the database file into your database.
 
 4: Edit the DokusCore.bat file and set the path to your own file path.
    If you do not want to start with out TXAdmin then simply start the serve
    via the FXServer.exe and follow it's instructions. After setup it creates
    the start.bat file in the root folder you created.
 --------------------------------------------------------------------------------
-And that is it!! No need to spend hours upon hours installing plugins and fixing 
+And that is it!! No need to spend hours upon hours installing plugins and fixing
 then as everything is pre-installed and up to date. Plug and play :D
 --------------------------------------------------------------------------------
 
@@ -37,18 +39,18 @@ Extra Information:
 
 * DokusCore is up to date with the latest FXServer (Artifacts) files that are
   required for TXAdmin. You do NOT need to update these files!
-  If you update the artifacts, keep in mind plugins can break. Always test your 
+  If you update the artifacts, keep in mind plugins can break. Always test your
   server locally before pushing the new artifact version to your live server.
-  All testing is already done for the prebuild so you do not need to. 
+  All testing is already done for the prebuild so you do not need to.
 
 * All plugin config files are located in the core itself, these you can find
   in the [ Configs ]/[ Modules ] folder. All options that are build strait into
   DokusCore itself you can find in [ Configs ]/[ Core ] folder.
 
 * Make sure that DokusCore is stopped and restarted in the resources file
-  after all DokusCore plugins have been loaded. This ensures that you do not 
+  after all DokusCore plugins have been loaded. This ensures that you do not
   fall into the errors of failing to load dependencies files when people are
-  loading into yoru server. If the core is not restarted at the end, plugins 
+  loading into yoru server. If the core is not restarted at the end, plugins
   that depend on the core may break.
 
 --------------------------------------------------------------------------------

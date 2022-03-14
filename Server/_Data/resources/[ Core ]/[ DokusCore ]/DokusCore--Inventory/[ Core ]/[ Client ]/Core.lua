@@ -1,15 +1,23 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-CanInvBeOpened, IsInvOpen, IsBoxOpen = true, false, false
-Steam, CharID, IsPickingUpItem = nil, nil, false
-NewDrop, MenuOpen = false, false
-PromptBox = nil
+BoxArray, BoxTXTs = {}, {}
+Steam, CharID = nil, nil
+IsInvOpen, IsPickingUpItem, IsBoxOpen = false, false, false
 ActKeyInv = _Inventory.ActKey.OpenInv
 ActKeyBox = _Inventory.ActKey.OpenBox
-OpenBoxGroup = GetRandomIntInRange(0, 0xffffff)
-BoxArray = {}
-BoxTXTs = {}
+Ani = "amb_work@world_human_box_pickup@1@male_a@stand_exit_withprop"
+local Low = string.lower
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Wait for FrameReady and set the Users Data
+--------------------------------------------------------------------------------
+CreateThread(function()
+  while not FrameReady() do Wait(1000) end
+  while not UserInGame() do Wait(1000) end
+  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
+  Steam, CharID = Data.Steam, Data.CharID
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Register when the user wants to open the inventory
@@ -19,21 +27,13 @@ AddEventHandler('DokusCore:Inventory:OpenInventory', function()
   if (_Modules.Inventory) then
     if (not (IsInvOpen) and not (IsPickingUpItem)) then
       IsInvOpen = true
-      local Core = TSC('DokusCore:Core:GetCoreUserData')
-      Steam, CharID = Core.Steam, Core.CharID
       TriggerEvent('DokusCore:Inventory:UpdateBankValues')
       local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
       if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end
       OpenInv()
-    elseif (IsInvOpen) and (Control) then
-      IsInvOpen = false
-      CloseInv()
     end
-  else
-    Notify('The Inventory plugin has been turned off in the config. As your server host to turn it on!', 'TopRight', 10000)
   end
 end)
-
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Update users banking information in the inventory while open
@@ -50,15 +50,23 @@ AddEventHandler('DokusCore:Inventory:UpdateBankValues', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Inventory:Animation')
-AddEventHandler('DokusCore:Inventory:Animation', function(PedID) Animation(PedID) end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 -- Delete all Boxes when the resource stops
 --------------------------------------------------------------------------------
 AddEventHandler('onResourceStop', function(resourceName)
   if (GetCurrentResourceName() ~= resourceName) then return end
   for k,v in pairs(BoxArray) do DeleteEntity(v.BoxID) end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Resync on DokusCore restart
+--------------------------------------------------------------------------------
+AddEventHandler('onResourceStart', function(resourceName)
+  if (resourceName == 'DokusCore') then
+    while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
+    local Data = TCTCC('DokusCore:Core:GetCoreUserData')
+    Steam, CharID = Data.Steam, Data.CharID
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -71,7 +79,7 @@ CreateThread(function()
       for k,v in pairs(Data.Result) do
         local Coords = json.decode(v.Coords)
         local Vector = vector3(Coords.x, Coords.y, Coords.z)
-        TSC('DokusCore:Core:DBSet:Storages', { 'DropBox', 'ReplaceID', { v.BoxID, CreateNewBox(Vector) } })
+        TriggerServerEvent('DokusCore:Core:DBSet:Storages', { 'DropBox', 'ReplaceID', { v.BoxID, CreateNewBox(Vector) } })
       end
     end
   end
@@ -84,19 +92,22 @@ local PlayerCoords = nil
 CreateThread(function()
   if (_Modules.Inventory) then
     while true do Wait(1)
-      local PedID = PlayerPedId()
-      local Coords = GetEntityCoords(PedID)
+      local PedID = PedID()
+      local Coords = GetCoords(PedID)
       PlayerCoords = Coords
       Wait(500)
     end
   end
 end)
 --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Create the text above the boxes, and Register when the box is opened
 --------------------------------------------------------------------------------
 CreateThread(function() Wait(1000)
   if (_Modules.Inventory) then
-    local Core = TSC('DokusCore:Core:GetCoreUserData')
+    while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
+    local Core = TCTCC('DokusCore:Core:GetCoreUserData')
     Steam, CharID = Core.Steam, Core.CharID
     while true do Wait(1000)
       while (BoxTXTs[1] ~= nil) do Wait(0)
@@ -106,7 +117,7 @@ CreateThread(function() Wait(1000)
           local Dist = Vdist(Coords, PlayerCoords)
           local Close, Medium = (Dist <= 0.6), ((Dist > 0.6) and (Dist <= 2.0))
           local Key = _Inventory.Interaction.UseKey
-          if ((Close) and (Key)) then DrawText3D(x,y,z, 300, 'Press ~color_green~E~q~ to open') end
+          if (Close) then DrawText3D(x,y,z, 300, 'Press ~color_green~E~q~ to open') end
           if (Medium) then DrawText3D(x,y,z, 200, '{ Expire: Work in Progress }') end
           if ((Medium) or (Far)) then IsBoxOpen = false end
           if (Close) then
@@ -123,24 +134,39 @@ CreateThread(function() Wait(1000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Inventory:RemoveBoxItem')
-AddEventHandler('DokusCore:Inventory:RemoveBoxItem', function(BoxID, Item, Amount)
+RegisterNetEvent('DokusCore:Inventory:PickUpBoxItem')
+AddEventHandler('DokusCore:Inventory:PickUpBoxItem', function(args)
   IsBoxOpen = false
   IsPickingUpItem = true
-  local PedID = PlayerPedId()
-  TriggerEvent('DokusCore:Inventory:Animation', PedID)
-  TSC('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { Steam, CharID, Item, Amount } })
-  local Data = TSC('DokusCore:Core:DBSet:Storages', { 'DropBox', 'RemoveItem', { BoxID, Item, Amount } })
-  if (Data.RemoveBox) then for k,v in pairs(BoxArray) do if (v.BoxID == BoxID) then DeleteEntity(v.BoxID) end end end
-  if (Data.RemoveBox) then for k,v in pairs(BoxTXTs) do if (v.BoxID == BoxID) then table.remove(BoxTXTs, k) end end end
-  Wait(2000)
+  local BoxID, Item, Amount = args[1], args[2], tonumber(args[3])
+  local PedID = PedID()
+  Animation(PedID, Ani, 3000)
+  local InvItem = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', { Steam, CharID, Item } })
+  if (InvItem.Exist) then
+    TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { Steam, CharID, Item, Amount, InvItem.Result[1].Amount } })
+    local Data = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'BoxID', { BoxID } })
+    TriggerServerEvent('DokusCore:Core:DBSet:Storages',  { 'DropBox', 'RemoveItem', { BoxID, Data.Result[1].Meta, Item, Amount } })
+  else
+    TriggerServerEvent('DokusCore:Core:DBIns:Inventory', { 'User', 'InsertItem', { Steam, CharID, 'IN DEVELOPMENT', Item, Amount } })
+    local Data = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'BoxID', { BoxID } })
+    TriggerServerEvent('DokusCore:Core:DBSet:Storages',  { 'DropBox', 'RemoveItem', { BoxID, Data.Result[1].Meta, Item, Amount } })
+  end
+
   IsPickingUpItem = false
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
+RegisterNetEvent('DokusCore:Inventory:BoxHandling')
+AddEventHandler('DokusCore:Inventory:BoxHandling', function(Data)
+  if (Low(Data[1]) == 'removebox') then
+    local BoxID = Data[2][1]
+    for k,v in pairs(BoxArray) do if (v.BoxID == BoxID) then DeleteEntity(v.BoxID) end end
+    for k,v in pairs(BoxTXTs) do if (v.BoxID == BoxID) then table.remove(BoxTXTs, k) end end
+    Wait(2000) IsPickingUpItem = false
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

@@ -11,13 +11,13 @@ window.addEventListener('message', function(event) {
       break;
     case 'OpenMenu':
       Keys = []
-      IndexKeys(event.data.Menu)
+      IndexKeys(event.data.Menu);
       setTimeout(function() {
-        OpenMenu(Keys)
+        OpenMenu(Keys);
       }, 100);
       break;
     case 'CloseMenu':
-      CloseMenu()
+      CloseMenu();
     break;
     default:
   };
@@ -47,184 +47,194 @@ const OpenMenu = (Data) => {
     };
   };
 
-  $('body').fadeIn()
+  $('body').fadeIn();
 };
 
 const InitData = (nr) => {
-  if ((Menu == 'MainMenu') && (nr == 0)) { OpenInventory() };
-  if ((Menu == 'MainMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'SettingsMenu' })); };
-  if ((Menu == 'MainMenu') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'FunctionsMenu' })); };
-  if ((Menu == 'MainMenu') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); };
-  if ((Menu == 'MainMenu') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'AdminMenu' })); };
-  if ((Menu == 'MainMenu') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'InfoMenu' })); };
+  if ((Menu == 'MainMenu') && (nr == 0))         { OpenInventory();                                    };
+  if ((Menu == 'MainMenu') && (nr == 1))         { OpenThisMenu('SettingsMenu');                       };
+  if ((Menu == 'MainMenu') && (nr == 2))         { OpenThisMenu('FunctionsMenu');                      };
+  if ((Menu == 'MainMenu') && (nr == 3))         { OpenThisMenu('MusicMenu');                          };
+  if ((Menu == 'MainMenu') && (nr == 4))         { OpenThisMenu('AdminMenu');                          };
+  if ((Menu == 'MainMenu') && (nr == 5))         { OpenThisMenu('InfoMenu');                           };
 
-  if ((Menu == 'AdminMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'TeleportMenu' })); };
+  if ((Menu == 'SettingsMenu') && (nr == 0))     { OpenThisMenu('LangList1');                          };
+  if ((Menu == 'SettingsMenu') && (nr == 1))     { ToggleOption('ToggleMusic');                        };
 
-  if ((Menu == 'InfoMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/ShowDiscord', JSON.stringify({})); };
+  if ((Menu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                           };
+  if ((Menu == 'InfoMenu') && (nr == 0))         { ToggleOption('ShowDiscord');                        };
+  if ((Menu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
 
-  if ((Menu == 'TeleportMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/Teleport', JSON.stringify({ Type: 'TPM' })); CloseMenu() };
+  if ((Menu == 'LangList1') && (nr == 0))        { ToggleOption('ChangeLanguage', 'en');               };
+  if ((Menu == 'LangList1') && (nr == 1))        { ToggleOption('ChangeLanguage', 'de');               };
+  if ((Menu == 'LangList1') && (nr == 2))        { ToggleOption('ChangeLanguage', 'it');               };
+  if ((Menu == 'LangList1') && (nr == 3))        { ToggleOption('ChangeLanguage', 'ru');               };
+  if ((Menu == 'LangList1') && (nr == 4))        { ToggleOption('ChangeLanguage', 'fr');               };
+  if ((Menu == 'LangList1') && (nr == 5))        { ToggleOption('ChangeLanguage', 'es');               };
+  if ((Menu == 'LangList2') && (nr == 0))        { ToggleOption('ChangeLanguage', 'bg');               };
+  if ((Menu == 'LangList2') && (nr == 1))        { ToggleOption('ChangeLanguage', 'dk');               };
+  if ((Menu == 'LangList2') && (nr == 2))        { ToggleOption('ChangeLanguage', 'gr');               };
+  if ((Menu == 'LangList2') && (nr == 3))        { ToggleOption('ChangeLanguage', 'nl');               };
+  if ((Menu == 'LangList2') && (nr == 4))        { ToggleOption('ChangeLanguage', 'pl');               };
+  if ((Menu == 'LangList2') && (nr == 5))        { ToggleOption('ChangeLanguage', 'pt');               };
 
-  if ((Menu == 'MusicMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/StopMusic', JSON.stringify({})); };
-  if ((Menu == 'MusicMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'AutoPlay' })); };
-  if ((Menu == 'MusicMenu') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume' })); };
-  if ((Menu == 'MusicMenu') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Playlist' })); };
+  if ((Menu == 'MusicMenu') && (nr == 0))        { ToggleOption('StopMusic');                          };
+  if ((Menu == 'MusicMenu') && (nr == 1))        { OpenThisMenu('AutoPlay');                           };
+  if ((Menu == 'MusicMenu') && (nr == 2))        { OpenThisMenu('Volume');                             };
+  if ((Menu == 'MusicMenu') && (nr == 3))        { OpenThisMenu('Playlist');                           };
 
-  if ((Menu == 'AutoPlay') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/AutoPlayMusic', JSON.stringify({ Type: 'All' })); };
-  if ((Menu == 'AutoPlay') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'AutoPlaylistMenu' })); };
+  if ((Menu == 'AutoPlay') && (nr == 0))         { ToggleOption('AutoPlayMusic', 'All');               };
+  if ((Menu == 'AutoPlay') && (nr == 1))         { OpenThisMenu('AutoPlaylistMenu');                   };
 
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/AutoPlayMusic', JSON.stringify({ Type: 'TheScore' })); };
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/AutoPlayMusic', JSON.stringify({ Type: 'WesternRDR' })); };
-  // if ((Menu == 'AutoPlaylistMenu') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/AutoPlayMusic', JSON.stringify({ Type: 'BobMarley' })); };
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/AutoPlayMusic', JSON.stringify({ Type: 'Others' })); };
+  if ((Menu == 'AutoPlaylistMenu') && (nr == 0)) { ToggleOption('AutoPlayMusic', 'TheScore');          };
+  if ((Menu == 'AutoPlaylistMenu') && (nr == 1)) { ToggleOption('AutoPlayMusic', 'WesternRDR');        };
+  if ((Menu == 'AutoPlaylistMenu') && (nr == 2)) { ToggleOption('AutoPlayMusic', 'BobMarley');         };
+  if ((Menu == 'AutoPlaylistMenu') && (nr == 3)) { ToggleOption('AutoPlayMusic', 'Others');            };
 
-  if ((Menu == 'Playlist') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'ModernMusicMenu' })); };
-  if ((Menu == 'Playlist') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternMusicMenu' })); };
+  if ((Menu == 'Playlist') && (nr == 0))         { OpenThisMenu('ModernMusicMenu');                    };
+  if ((Menu == 'Playlist') && (nr == 1))         { OpenThisMenu('WesternMusicMenu');                   };
 
-  if ((Menu == 'Volume') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.05 })); };
-  if ((Menu == 'Volume') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.10 })); };
-  if ((Menu == 'Volume') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.15 })); };
-  if ((Menu == 'Volume') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.20 })); };
-  if ((Menu == 'Volume') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.25 })); };
-  if ((Menu == 'Volume') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.30 })); };
-  if ((Menu == 'Volume2') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.35 })); };
-  if ((Menu == 'Volume2') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.40 })); };
-  if ((Menu == 'Volume2') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.45 })); };
-  if ((Menu == 'Volume2') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.50 })); };
-  if ((Menu == 'Volume2') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.55 })); };
-  if ((Menu == 'Volume2') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.60 })); };
-  if ((Menu == 'Volume3') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.65 })); };
-  if ((Menu == 'Volume3') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.70 })); };
-  if ((Menu == 'Volume3') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.75 })); };
-  if ((Menu == 'Volume3') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.80 })); };
-  if ((Menu == 'Volume3') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.85 })); };
-  if ((Menu == 'Volume3') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.90 })); };
-  if ((Menu == 'Volume4') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 0.95 })); };
-  if ((Menu == 'Volume4') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/SetVolume', JSON.stringify({ Vol: 1.00 })); };
-
-  if ((Menu == 'SettingsMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'LangList1' })); };
-  if ((Menu == 'SettingsMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/ToggleMusic', JSON.stringify({})); };
-
-  if ((Menu == 'LangList1') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'en' })); };
-  if ((Menu == 'LangList1') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'de' })); };
-  if ((Menu == 'LangList1') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'it' })); };
-  if ((Menu == 'LangList1') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'ru' })); };
-  if ((Menu == 'LangList1') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'fr' })); };
-  if ((Menu == 'LangList1') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'es' })); };
-
-  if ((Menu == 'LangList2') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'bg' })); };
-  if ((Menu == 'LangList2') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'dk' })); };
-  if ((Menu == 'LangList2') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'gr' })); };
-  if ((Menu == 'LangList2') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'nl' })); };
-  if ((Menu == 'LangList2') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'pl' })); };
-  if ((Menu == 'LangList2') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/ChangeLanguage', JSON.stringify({ Lang: 'pt' })); };
+  if ((Menu == 'Volume') && (nr == 0))           { ToggleOption('SetVolume', 0.05);                    };
+  if ((Menu == 'Volume') && (nr == 1))           { ToggleOption('SetVolume', 0.10);                    };
+  if ((Menu == 'Volume') && (nr == 2))           { ToggleOption('SetVolume', 0.15);                    };
+  if ((Menu == 'Volume') && (nr == 3))           { ToggleOption('SetVolume', 0.20);                    };
+  if ((Menu == 'Volume') && (nr == 4))           { ToggleOption('SetVolume', 0.25);                    };
+  if ((Menu == 'Volume') && (nr == 5))           { ToggleOption('SetVolume', 0.30);                    };
+  if ((Menu == 'Volume2') && (nr == 0))          { ToggleOption('SetVolume', 0.35);                    };
+  if ((Menu == 'Volume2') && (nr == 1))          { ToggleOption('SetVolume', 0.40);                    };
+  if ((Menu == 'Volume2') && (nr == 2))          { ToggleOption('SetVolume', 0.45);                    };
+  if ((Menu == 'Volume2') && (nr == 3))          { ToggleOption('SetVolume', 0.50);                    };
+  if ((Menu == 'Volume2') && (nr == 4))          { ToggleOption('SetVolume', 0.55);                    };
+  if ((Menu == 'Volume2') && (nr == 5))          { ToggleOption('SetVolume', 0.60);                    };
+  if ((Menu == 'Volume3') && (nr == 0))          { ToggleOption('SetVolume', 0.65);                    };
+  if ((Menu == 'Volume3') && (nr == 1))          { ToggleOption('SetVolume', 0.70);                    };
+  if ((Menu == 'Volume3') && (nr == 2))          { ToggleOption('SetVolume', 0.75);                    };
+  if ((Menu == 'Volume3') && (nr == 3))          { ToggleOption('SetVolume', 0.80);                    };
+  if ((Menu == 'Volume3') && (nr == 4))          { ToggleOption('SetVolume', 0.85);                    };
+  if ((Menu == 'Volume3') && (nr == 5))          { ToggleOption('SetVolume', 0.90);                    };
+  if ((Menu == 'Volume4') && (nr == 0))          { ToggleOption('SetVolume', 0.95);                    };
+  if ((Menu == 'Volume4') && (nr == 1))          { ToggleOption('SetVolume', 1.00);                    };
 
 
-  if ((Menu == 'FunctionsMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/Logout', JSON.stringify({})); };
-  if ((Menu == 'FunctionsMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/SaveCoords', JSON.stringify({})); };
-  if ((Menu == 'FunctionsMenu') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'SkinMenu' })); };
+  if ((Menu == 'FunctionsMenu') && (nr == 0))    { ToggleOption('Logout');                             };
+  if ((Menu == 'FunctionsMenu') && (nr == 1))    { ToggleOption('SaveCoords');                         };
+  if ((Menu == 'FunctionsMenu') && (nr == 2))    { OpenThisMenu('SkinMenu');                           };
 
-  if ((Menu == 'SkinMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/SkinMenu', JSON.stringify({ Opt: 'OpenMenu' })); CloseMenu() };
-  if ((Menu == 'SkinMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/SkinMenu', JSON.stringify({ Opt:  'LoadSkin' })); CloseMenu() };
+  if ((Menu == 'SkinMenu') && (nr == 0))         { ToggleOption('SkinMenu', 'OpenMenu'); CloseMenu();  };
+  if ((Menu == 'SkinMenu') && (nr == 1))         { ToggleOption('SkinMenu', 'LoadSkin'); CloseMenu();  };
 
-  if ((Menu == 'WesternMusicMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternRDR1' })); };
+  if ((Menu == 'WesternMusicMenu') && (nr == 0)) { OpenThisMenu('WesternRDR1');                        };
 
-  if ((Menu == 'ModernMusicMenu') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'BobMarley' })); };
-  if ((Menu == 'ModernMusicMenu') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'TheScore1' })); };
-  if ((Menu == 'ModernMusicMenu') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'ModernOtherMusic' })); };
+  if ((Menu == 'ModernMusicMenu') && (nr == 0))  { OpenThisMenu('BobMarley');                          };
+  if ((Menu == 'ModernMusicMenu') && (nr == 1))  { OpenThisMenu('TheScore1');                          };
+  if ((Menu == 'ModernMusicMenu') && (nr == 2))  { OpenThisMenu('ModernOtherMusic');                   };
 
-  if ((Menu == 'TheScore1') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheScore-Revolution_' })); };
-  if ((Menu == 'TheScore1') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheScore-Stronger' })); };
-  if ((Menu == 'TheScore1') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheScore-TheFear' })); };
-  if ((Menu == 'TheScore1') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheScore-TheHeat' })); };
-  if ((Menu == 'TheScore1') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheScore-Unstoppable' })); };
-  if ((Menu == 'TheScore1') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheScore-WhoIAm' })); };
+  if ((Menu == 'TheScore1') && (nr == 0))        { ToggleOption('PlayMusic', 'TheScore-Revolution_');  };
+  if ((Menu == 'TheScore1') && (nr == 1))        { ToggleOption('PlayMusic', 'TheScore-Stronger');     };
+  if ((Menu == 'TheScore1') && (nr == 2))        { ToggleOption('PlayMusic', 'TheScore-TheFear');      };
+  if ((Menu == 'TheScore1') && (nr == 3))        { ToggleOption('PlayMusic', 'TheScore-TheHeat');      };
+  if ((Menu == 'TheScore1') && (nr == 4))        { ToggleOption('PlayMusic', 'TheScore-Unstoppable');  };
+  if ((Menu == 'TheScore1') && (nr == 5))        { ToggleOption('PlayMusic', 'TheScore-WhoIAm');       };
 
-  if ((Menu == 'WesternRDR1') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'ApacheTribe' })); };
-  if ((Menu == 'WesternRDR1') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'BillyTheKid' })); };
-  if ((Menu == 'WesternRDR1') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'CactusDesert' })); };
-  if ((Menu == 'WesternRDR1') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'CampfireTales' })); };
-  if ((Menu == 'WesternRDR1') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'GhostTown' })); };
-  if ((Menu == 'WesternRDR1') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'GoldRush' })); };
+  if ((Menu == 'WesternRDR1') && (nr == 0))      { ToggleOption('PlayMusic', 'ApacheTribe');           };
+  if ((Menu == 'WesternRDR1') && (nr == 1))      { ToggleOption('PlayMusic', 'BillyTheKid');           };
+  if ((Menu == 'WesternRDR1') && (nr == 2))      { ToggleOption('PlayMusic', 'CactusDesert');          };
+  if ((Menu == 'WesternRDR1') && (nr == 3))      { ToggleOption('PlayMusic', 'CampfireTales');         };
+  if ((Menu == 'WesternRDR1') && (nr == 4))      { ToggleOption('PlayMusic', 'GhostTown');             };
+  if ((Menu == 'WesternRDR1') && (nr == 5))      { ToggleOption('PlayMusic', 'GoldRush');              };
 
-  if ((Menu == 'WesternRDR2') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'GunslingingOutlaws' })); };
-  if ((Menu == 'WesternRDR2') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'IndianCamp' })); };
-  if ((Menu == 'WesternRDR2') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'LegendsoftheWest' })); };
-  if ((Menu == 'WesternRDR2') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'NightinthePrairie' })); };
-  if ((Menu == 'WesternRDR2') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'NoMansLand' })); };
-  if ((Menu == 'WesternRDR2') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'OldMiningTown' })); };
+  if ((Menu == 'WesternRDR2') && (nr == 0))      { ToggleOption('PlayMusic', 'GunslingingOutlaws');    };
+  if ((Menu == 'WesternRDR2') && (nr == 1))      { ToggleOption('PlayMusic', 'IndianCamp');            };
+  if ((Menu == 'WesternRDR2') && (nr == 2))      { ToggleOption('PlayMusic', 'LegendsoftheWest');      };
+  if ((Menu == 'WesternRDR2') && (nr == 3))      { ToggleOption('PlayMusic', 'NightinthePrairie');     };
+  if ((Menu == 'WesternRDR2') && (nr == 4))      { ToggleOption('PlayMusic', 'NoMansLand');            };
+  if ((Menu == 'WesternRDR2') && (nr == 5))      { ToggleOption('PlayMusic', 'OldMiningTown');         };
 
-  if ((Menu == 'WesternRDR3') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'RowdyCowboys' })); };
-  if ((Menu == 'WesternRDR3') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheGreatMountain' })); };
-  if ((Menu == 'WesternRDR3') && (nr == 2)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheOldTrain' })); };
-  if ((Menu == 'WesternRDR3') && (nr == 3)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheOregonTrail' })); };
-  if ((Menu == 'WesternRDR3') && (nr == 4)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TheWildWest' })); };
-  if ((Menu == 'WesternRDR3') && (nr == 5)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'TumbleweedTown' })); };
+  if ((Menu == 'WesternRDR3') && (nr == 0))      { ToggleOption('PlayMusic', 'RowdyCowboys');          };
+  if ((Menu == 'WesternRDR3') && (nr == 1))      { ToggleOption('PlayMusic', 'TheGreatMountain');      };
+  if ((Menu == 'WesternRDR3') && (nr == 2))      { ToggleOption('PlayMusic', 'TheOldTrain');           };
+  if ((Menu == 'WesternRDR3') && (nr == 3))      { ToggleOption('PlayMusic', 'TheOregonTrail');        };
+  if ((Menu == 'WesternRDR3') && (nr == 4))      { ToggleOption('PlayMusic', 'TheWildWest');           };
+  if ((Menu == 'WesternRDR3') && (nr == 5))      { ToggleOption('PlayMusic', 'TumbleweedTown');        };
 
-  if ((Menu == 'BobMarley') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'BM-IShotTheSheriff' })); };
+  if ((Menu == 'BobMarley') && (nr == 0))        { ToggleOption('PlayMusic', 'BM-IShotTheSheriff');    };
 
-  if ((Menu == 'ModernOtherMusic') && (nr == 0)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'RunHome' })); };
-  if ((Menu == 'ModernOtherMusic') && (nr == 1)) { $.post('https://DokusCore--CoreMenu/PlayMusic', JSON.stringify({ Song: 'ThemeSong' })); };
+  if ((Menu == 'ModernOtherMusic') && (nr == 0)) { ToggleOption('PlayMusic', 'RunHome');               };
+  if ((Menu == 'ModernOtherMusic') && (nr == 1)) { ToggleOption('PlayMusic', 'ThemeSong');             };
 };
 
 const OpenInventory = () => {
   Menu = ''
   Keys = []
   $('body').fadeOut();
-  $.post('https://DokusCore--CoreMenu/Close', JSON.stringify({}));
-  $.post('https://DokusCore--CoreMenu/OpenInventory', JSON.stringify({}));
+  ToggleOption('Close')
+  ToggleOption('OpenInventory')
 };
 
 const CloseMenu = () => {
   Menu = ''
   Keys = []
   $('body').fadeOut();
-  $.post('https://DokusCore--CoreMenu/SetMenu', JSON.stringify({ Menu: '' }));
-  $.post('https://DokusCore--CoreMenu/Close', JSON.stringify({}));
+  OpenThisMenu('');
+  ToggleOption('Close');
 };
 
-$(document).on('click', "#option0", function() { $.post('https://DokusCore--CoreMenu/Cooldown', JSON.stringify({})); InitData(0) });
-$(document).on('click', "#option1", function() { $.post('https://DokusCore--CoreMenu/Cooldown', JSON.stringify({})); InitData(1) });
-$(document).on('click', "#option2", function() { $.post('https://DokusCore--CoreMenu/Cooldown', JSON.stringify({})); InitData(2) });
-$(document).on('click', "#option3", function() { $.post('https://DokusCore--CoreMenu/Cooldown', JSON.stringify({})); InitData(3) });
-$(document).on('click', "#option4", function() { $.post('https://DokusCore--CoreMenu/Cooldown', JSON.stringify({})); InitData(4) });
-$(document).on('click', "#option5", function() { $.post('https://DokusCore--CoreMenu/Cooldown', JSON.stringify({})); InitData(5) });
+const OpenThisMenu = (M) => { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: M })); }
+const ToggleOption = (M, Opt) => {
+  if (Opt == null || Opt == undefined) {
+    $.post('https://DokusCore--CoreMenu/'+M, JSON.stringify({}));
+  } else {
+    $.post('https://DokusCore--CoreMenu/'+M, JSON.stringify({ Option: Opt }));
+  };
+};
+
+$(document).on('click', "#option0", function() { ToggleOption('Cooldown'); InitData(0); });
+$(document).on('click', "#option1", function() { ToggleOption('Cooldown'); InitData(1); });
+$(document).on('click', "#option2", function() { ToggleOption('Cooldown'); InitData(2); });
+$(document).on('click', "#option3", function() { ToggleOption('Cooldown'); InitData(3); });
+$(document).on('click', "#option4", function() { ToggleOption('Cooldown'); InitData(4); });
+$(document).on('click', "#option5", function() { ToggleOption('Cooldown'); InitData(5); });
 
 // Close the menu
 $(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
 
 // Back up the menu
 $(document).on('click', ".btn-backinterface", function() {
-  if (Menu == 'SettingsMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MainMenu' })); }
-  if (Menu == 'FunctionsMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MainMenu' })); }
-  if (Menu == 'SkinMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'FunctionsMenu' })); }
-  if (Menu == 'MusicMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MainMenu' })); }
-  if (Menu == 'Playlist') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }
-  if (Menu == 'Volume') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }
-  if (Menu == 'Volume2') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume' })); }
-  if (Menu == 'Volume3') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume2' })); }
-  if (Menu == 'Volume4') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume3' })); }
-  if (Menu == 'AutoPlay') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }
-  if (Menu == 'AutoPlaylistMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'AutoPlay' })); }
-  if (Menu == 'LangList1') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'SettingsMenu' })); }
-  if (Menu == 'LangList2') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'LangList1' })); }
-  if (Menu == 'ModernMusicMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }
-  if (Menu == 'WesternMusicMenu') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'MusicMenu' })); }
-  if (Menu == 'WesternRDR1') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternMusicMenu' })); }
-  if (Menu == 'WesternRDR2') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternMusicMenu' })); }
-  if (Menu == 'WesternRDR3') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternMusicMenu' })); }
-  if (Menu == 'BobMarley') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'ModernMusicMenu' })); }
-  if (Menu == 'TheScore1') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'ModernMusicMenu' })); }
-  if (Menu == 'ModernOtherMusic') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'ModernMusicMenu' })); }
-  $.post('https://DokusCore--CoreMenu/NoBackButton', JSON.stringify({}));
+  if (Menu == 'MainMenu')         { return CloseMenu()                           };
+  if (Menu == 'SettingsMenu')     { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'AdminMenu')        { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'TeleportMenu')     { return OpenThisMenu('AdminMenu')             };
+  if (Menu == 'FunctionsMenu')    { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'InfoMenu')         { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'SkinMenu')         { return OpenThisMenu('FunctionsMenu')         };
+  if (Menu == 'MusicMenu')        { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'Playlist')         { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'Volume')           { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'Volume2')          { return OpenThisMenu('Volume')                };
+  if (Menu == 'Volume3')          { return OpenThisMenu('Volume2')               };
+  if (Menu == 'Volume4')          { return OpenThisMenu('Volume3')               };
+  if (Menu == 'AutoPlay')         { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'AutoPlaylistMenu') { return OpenThisMenu('AutoPlay')              };
+  if (Menu == 'LangList1')        { return OpenThisMenu('SettingsMenu')          };
+  if (Menu == 'LangList2')        { return OpenThisMenu('LangList1')             };
+  if (Menu == 'ModernMusicMenu')  { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'WesternMusicMenu') { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'WesternRDR1')      { return OpenThisMenu('WesternMusicMenu')      };
+  if (Menu == 'WesternRDR2')      { return OpenThisMenu('WesternMusicMenu')      };
+  if (Menu == 'WesternRDR3')      { return OpenThisMenu('WesternMusicMenu')      };
+  if (Menu == 'BobMarley')        { return OpenThisMenu('ModernMusicMenu')       };
+  if (Menu == 'TheScore1')        { return OpenThisMenu('ModernMusicMenu')       };
+  if (Menu == 'ModernOtherMusic') { return OpenThisMenu('ModernMusicMenu')       };
+  ToggleOption('NoBackButton')
 });
 
 // Next Button
 $(document).on('click', ".btn-nextinterface", function() {
-  if (Menu == 'WesternRDR1') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternRDR2' })); }
-  if (Menu == 'WesternRDR2') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'WesternRDR3' })); }
-  if (Menu == 'LangList1') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'LangList2' })); }
-  if (Menu == 'Volume') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume2' })); }
-  if (Menu == 'Volume2') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume3' })); }
-  if (Menu == 'Volume3') { return $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: 'Volume4' })); }
-  $.post('https://DokusCore--CoreMenu/NoNextButton', JSON.stringify({}));
+  if (Menu == 'WesternRDR1')      { return OpenThisMenu('WesternRDR2')           };
+  if (Menu == 'WesternRDR2')      { return OpenThisMenu('WesternRDR3')           };
+  if (Menu == 'LangList1')        { return OpenThisMenu('LangList2')             };
+  if (Menu == 'Volume')           { return OpenThisMenu('Volume2')               };
+  if (Menu == 'Volume2')          { return OpenThisMenu('Volume3')               };
+  if (Menu == 'Volume3')          { return OpenThisMenu('Volume4')               };
+  ToggleOption('NoNextButton');
 });

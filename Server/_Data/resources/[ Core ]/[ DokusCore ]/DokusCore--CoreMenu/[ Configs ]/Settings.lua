@@ -26,10 +26,10 @@ LangList1 = {
     MenuTitle = 'Language Menu',
     MenuOptions = {
       { Type = 'Option', Option = 'English', Title = 'English' },
-      { Type = 'Option', Option = 'German', Title = 'German' },
+      { Type = 'Option', Option = 'German', Title = 'German'   },
       { Type = 'Option', Option = 'Italian', Title = 'Italian' },
       { Type = 'Option', Option = 'Russian', Title = 'Russian' },
-      { Type = 'Option', Option = 'France', Title = 'France' },
+      { Type = 'Option', Option = 'France', Title = 'France'   },
       { Type = 'Option', Option = 'Spanish', Title = 'Spanish' },
     }
   }

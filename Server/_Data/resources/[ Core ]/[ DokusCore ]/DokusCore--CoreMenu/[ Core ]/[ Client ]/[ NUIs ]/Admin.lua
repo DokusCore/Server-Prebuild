@@ -2,7 +2,7 @@
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Teleport', function(Data)
-  if (Data.Type == 'TPM') then TriggerEvent('DokusCore:Core:Admin:Commands:TPM') CloseMenu() return end
+  if (Data.Option == 'TPM') then TriggerEvent('DokusCore:Core:Admin:Commands:TPM') CloseMenu() return end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

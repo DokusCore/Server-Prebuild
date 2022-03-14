@@ -1,7 +1,17 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-function ToggleMenu(bool) SetNuiFocus(bool, bool) SendNUIMessage({action = "ui", toggle = bool}) skyCam(bool) end
+function FrameReady()
+  local Data = TCTCC('DokusCore:Core:GetCoreData')
+  return Data.FrameReady
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function ToggleMenu(bool)
+  UIFocus(bool, bool)
+  SendNUIMessage({action = "ui", toggle = bool})
+  skyCam(bool)
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function skyCam(bool)
@@ -20,28 +30,6 @@ function skyCam(bool)
     RenderScriptCams(false, false, 1, true, true)
     FreezeEntityPosition(GetPlayerPed(-1), false)
   end
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetInvisible(Visible, Freeze)
-  local source = source
-  local PedID = PlayerPedId()
-  SetEntityVisible(PedID, Visible)
-  FreezeEntityPosition(PedID, Freeze)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function Notify(txt, pos, time)
-  TriggerEvent("pNotify:SendNotification", {
-    text = "<height='40' width='40' style='float:left; margin-bottom:10px; margin-left:20px;' />"..txt,
-    type = "success", timeout = time, layout = pos, queue = "right"
-  })
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetCoords(PedID, Coords, Heading)
-  SetEntityCoords(PedID, Coords)
-  SetEntityHeading(PedID, Heading)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

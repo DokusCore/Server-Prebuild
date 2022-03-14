@@ -5,34 +5,32 @@ description 'DokusCore Inventory'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.5.6 BETA'
+version '1.6.0 BETA'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-client_scripts { '[ Core ]/[ Client ]/*.lua', '@DokusCore/[ Core ]/[ System ]/[ Menu ]/DokusMenu.lua' }
+client_scripts {
+  '@DokusCore/[ Core ]/[ System ]/[ Client ]/DokusMenu.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
+  '[ Core ]/[ Client ]/*.lua',
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 shared_script {
-  '@DokusCore/[ Core ]/[ System ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
-  '@DokusCore/[ Core ]/[ System ]/Languinator.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Inventory.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/bg.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/de.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/dk.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/en.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/es.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/fr.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/gr.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/it.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/nl.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/pl.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/pt.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Language ]/ru.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 ui_page 'UI/index.html'
-files{
+files {
   'UI/index.html',
   'UI/css/main.css',
   'UI/css/items.css',

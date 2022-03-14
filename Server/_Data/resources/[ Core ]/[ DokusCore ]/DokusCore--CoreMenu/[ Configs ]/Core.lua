@@ -14,12 +14,12 @@ MainMenu = {
     MenuName = 'MainMenu',
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
-      { Type = 'Option', Option = 'Inventory', Title = 'Inventory' },
-      { Type = 'Menu', Option = 'SettingsMenu', Title = 'Settings' },
-      { Type = 'Menu', Option = 'FunctionsMenu', Title = 'Character Menu' },
-      { Type = 'Menu', Option = 'MusicMenu', Title = 'Music' },
-      { Type = 'Menu', Option = 'AdminMenu', Title = 'Admin Menu' },
-      { Type = 'Menu', Option = 'InfoMenu', Title = 'Information Menu' },
+      { Type = 'Option', Option = 'Inventory',     Title = 'Inventory'        },
+      { Type = 'Menu',   Option = 'SettingsMenu',  Title = 'Settings'         },
+      { Type = 'Menu',   Option = 'FunctionsMenu', Title = 'Character Menu'   },
+      { Type = 'Menu',   Option = 'MusicMenu',     Title = 'Music'            },
+      { Type = 'Menu',   Option = 'AdminMenu',     Title = 'Admin Menu'       },
+      { Type = 'Menu',   Option = 'InfoMenu',      Title = 'Information Menu' },
     }
   }
 }

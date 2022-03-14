@@ -1,34 +1,27 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
+function FrameReady()
+  local Data = TCTCC('DokusCore:Core:GetCoreData')
+  return Data.FrameReady
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function UserInGame()
+  local Data = TCTCC('DokusCore:Core:GetCoreData')
+  return Data.UserInGame
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function CloseMenu()
-  TSC('DokusCore:Core:Hud:Toggle', true)
-  SetNuiFocus(false, false)
-  DisplayRadar(true)
+  -- TSC('DokusCore:Core:Hud:Toggle', true)
+  SetNuiFocus(false, false) Radar(true)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function OpenMenu()
-  TSC('DokusCore:Core:Hud:Toggle', false)
-  SetNuiFocus(true, true)
-  DisplayRadar(false)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function Notify(txt, pos, time)
-  TriggerEvent("pNotify:SendNotification", {
-    text = "<height='40' width='40' style='float:left; margin-bottom:10px; margin-left:20px;' />"..txt,
-    type = "success", timeout = time, layout = pos, queue = "right"
-  })
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SendVolumeWarning()
-  if not (VolumeWarning) then
-    VolumeWarning = true
-    Notify('The volume of the music can be adjusted by your PCs volume mixer!')
-    return
-  end
+  -- TSC('DokusCore:Core:Hud:Toggle', false)
+  SetNuiFocus(true, true) Radar(false)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -39,13 +32,33 @@ function APWarning()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function GetData() Data = TSC('DokusCore:Core:GetCoreUserData') return Data end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
-
 
 
 

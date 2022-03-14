@@ -15,6 +15,12 @@ function Notify(txt, pos, time)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function FrameReady()
+  local Data = TCTCC('DokusCore:Core:GetCoreData')
+  return Data.FrameReady
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function destory()
   SetCamActive(cam, false)
   RenderScriptCams(false, true, 500, true, true)
@@ -32,7 +38,7 @@ function Light(Coords)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function LoadModel(target, model)
+function LModel(target, model)
   local _model = GetHashKey(model)
   while not HasModelLoaded( _model ) do
     Wait(1)

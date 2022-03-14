@@ -5,16 +5,27 @@ description 'DokusCore Settings Menu'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.0'
+version '1.2.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-client_scripts { '[ Core ]/[ Client ]/*.*', '[ Core ]/[ Client ]/[ NUIs ]/*.*' }
+client_scripts {
+  '[ Core ]/[ Client ]/*.*',
+  '[ Core ]/[ Client ]/[ NUIs ]/*.*',
+  '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 server_scripts { '@oxmysql/lib/MySQL.lua' }
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
   'Config.lua',
-  '@DokusCore/[ Core ]/[ System ]/CBSystem.lua',
-  '@DokusCore/[ Configs ]/[ Core ]/Core.lua'
+  '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/en.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

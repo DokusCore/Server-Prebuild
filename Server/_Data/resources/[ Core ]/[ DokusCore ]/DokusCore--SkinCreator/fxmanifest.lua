@@ -5,15 +5,23 @@ description 'DokusCore Skin Creator'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.0'
+version '1.3.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-client_scripts { '[ Core ]/[ Client ]/*.lua', '[ Core ]/[ Client ]/[ Menus ]/*.lua' }
-server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
+client_scripts {
+  '[ Core ]/[ Client ]/*.*',
+  '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.*' }
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  '@DokusCore/[ Core ]/[ System ]/CBSystem.lua',
-  '@DokusCore/[ Configs ]/[ Core ]/Core.lua'
+  '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

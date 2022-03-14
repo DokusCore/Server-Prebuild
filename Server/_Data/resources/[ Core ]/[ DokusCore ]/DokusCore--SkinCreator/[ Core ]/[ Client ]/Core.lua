@@ -42,14 +42,22 @@ features_name = {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
+  while not FrameReady() do Wait(1000) end
+  local Data = TCTCC('DokusCore:Core:GetCoreUserData')
+  Steam = Data.Steam
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CreateThread(function()
   if (_Modules.SkinCreator) then
+    while not FrameReady() do Wait(1000) end
     RegisterCommand("skin", function(source, args, rawCommand)
       local source = source
       local PedID = PlayerPedId()
       local pCoords = GetEntityCoords(PedID)
       if (Low(args[1]) == 'menu') then TriggerEvent("DokusCore:SkinCreator:OpenMenu", PedID, pCoords) end
       if (Low(args[1]) == 'load') then
-        local Data = TSC('DokusCore:Core:GetCoreUserData')
+        local Data = TCTCC('DokusCore:Core:GetCoreUserData')
         local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.Steam, Data.CharID } }).Result[1]
         if (User.Skin == nil) then return Notify("You've no skin to load! Please create a skin first with /skin menu") end
         local Skin = json.decode(User.Skin)
@@ -79,6 +87,7 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.SkinCreator) then
+    while not FrameReady() do Wait(1000) end
     for i, v in pairs(cloth_hash_names) do
     if v.category_hashname == "BODIES_LOWER"
     or v.category_hashname == "BODIES_UPPER"
@@ -121,7 +130,7 @@ AddEventHandler('DokusCore:SkinCreator:SetSkin', function(_data, clothes)
       elseif tonumber(data.sex) == 2 then
         model = "mp_female"
       end
-      LoadModel(PlayerPedId(), model)
+      LModel(PlayerPedId(), model)
       _target = PlayerPedId()
       SetEntityAlpha(_target, 0)
     end
@@ -159,7 +168,7 @@ AddEventHandler('DokusCore:SkinCreator:UpdateSkin', function(data)
       model = "mp_female"
       sex = 2
     end
-    LoadModel(PlayerPedId(), model)
+    LModel(PlayerPedId(), model)
     LoadHeight(PlayerPedId(), data)
     FixIssues(PlayerPedId(), data)
   end

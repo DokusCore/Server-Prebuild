@@ -1,6 +1,28 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
+function FrameReady()
+  local Data = TCTCC('DokusCore:Core:GetCoreData')
+  return Data.FrameReady
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function UserInGame()
+  local Data = TCTCC('DokusCore:Core:GetCoreData')
+  return Data.UserInGame
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function GetUsersItems(Inv)
+  local Items = {}
+  for k, v in pairs(Inv.Result) do
+    I, A = v.Item, v.Amount
+    table.insert(Items, {I, A})
+    end Wait(100)
+  return Items
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function OpenInv(Steam, CharID)
   IsInvOpen = true
   SetNuiFocus(true, true)
@@ -20,6 +42,20 @@ function CloseInv()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function ClosestBox(Coords)
+  local ClosestBox = nil
+  local Storage = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'All' })
+  if not (Storage.Exist) then return { Closest = ClosestBox } end
+  for k,v in pairs(Storage.Result) do
+    local DCoords = Decoded(Storage.Result[k].Coords)
+    local nVector = vector3(DCoords.x, DCoords.y, DCoords.z)
+    local Dist = Vdist(nVector, Coords)
+    if (ClosestBox == nil) then ClosestBox = Dist end
+    if (Dist < ClosestBox) then ClosestBox = Dist end
+  end return { Closest = ClosestBox, Data = Storage.Result }
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function CreateNewBox(pCoords)
   local Hash = 'P_COTTONBOX01X'
   if (IsModelValid(Hash)) then LoadModel(Hash) end
@@ -31,25 +67,6 @@ function CreateNewBox(pCoords)
   SetEntityAsMissionEntity(Box)
   PlaySoundFrontend("show_info", "Study_Sounds", true, 0)
   return Box
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function Animation(PedID)
-  local dict = "amb_work@world_human_box_pickup@1@male_a@stand_exit_withprop"
-  RequestAnimDict(dict)
-  while not HasAnimDictLoaded(dict) do Wait(10) end
-  TaskPlayAnim(PedID, dict, "exit_front", 1.0, 8.0, -1, 1, 0, false, false, false)
-  Wait(1200)
-  PlaySoundFrontend("CHECKPOINT_PERFECT", "HUD_MINI_GAME_SOUNDSET", true, 1)
-  Wait(1000)
-  ClearPedTasks(PedID)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function LoadModel(pHash)
-  if not HasModelLoaded(pHash) then RequestModel(pHash)
-    while not HasModelLoaded(pHash) do Wait(10) end
-  end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -67,53 +84,6 @@ function DrawText3D(x, y, z, f, text)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function Notify(txt, pos, time)
-  TriggerEvent("pNotify:SendNotification", {
-    text = "<height='40' width='40' style='float:left; margin-bottom:10px; margin-left:20px;' />"..txt,
-    type = "success", timeout = time, layout = pos, queue = "right"
-  })
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function GetUsersItems(Inv)
-  local Items = {}
-  for k, v in pairs(Inv.Result) do
-    I, A = v.Item, v.Amount
-    table.insert(Items, {I, A})
-    end Wait(100)
-  return Items
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function ClosestBox(Coords)
-  local ClosestBox = nil
-  local Storage = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'All' })
-  if not (Storage.Exist) then return { Closest = ClosestBox } end
-  for k,v in pairs(Storage.Result) do
-    local DCoords = json.decode(Storage.Result[k].Coords)
-    local nVector = vector3(DCoords.x, DCoords.y, DCoords.z)
-    local Dist = Vdist(nVector, Coords)
-    if (ClosestBox == nil) then ClosestBox = Dist end
-    if (Dist < ClosestBox) then ClosestBox = Dist end
-  end return { Closest = ClosestBox, Data = Storage.Result }
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

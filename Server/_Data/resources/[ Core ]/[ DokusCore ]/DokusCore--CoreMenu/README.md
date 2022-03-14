@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Settings Menu (v1.2.0) [BETA]</b> - A Players Settings System for DokusCore!.
+ <b>DokusCore Settings Menu (v1.3.0) [BETA]</b> - A Players Settings System for DokusCore!.
 </p>
 
 ---
@@ -11,14 +11,14 @@ Make sure that DokusCore is started before this plugin!
 
 ---
 # Installation
-Simply extract the `DokusCore--SettingsMenu` into your `resources` folder, and <br>
-start it via `ensure DokusCore--SettingsMenu`.
+Simply extract the `DokusCore--CoreMenu` into your `resources` folder, and <br>
+start it via `ensure DokusCore--CoreMenu`.
 
 ---
 # Plugin Information
 With this settings menu, players can adjust their client language, logout, <br>
-save player coordinates to the database, play music and many more. This menu is 
-mandatory for DokusCore to run properly. 
+save player coordinates to the database, play music and many more. This menu is
+mandatory for DokusCore to run properly.
 
 ---
 # Discord

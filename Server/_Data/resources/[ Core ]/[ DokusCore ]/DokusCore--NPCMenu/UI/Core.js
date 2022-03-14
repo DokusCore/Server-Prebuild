@@ -41,10 +41,8 @@ const IndexKeys = (Data) => {
 };
 
 const OpenMenu = (Data) => {
-  console.log('OPENING MENU', Dialog);
   $('#npc-name').html(TitleName);
   $('#dialog').html(Dialog);
-  console.log('DIALOG');
   for (var i = 0; i < Keys.length; i++) {
     if (i <= 6) {
       $("#option" + i).show();
