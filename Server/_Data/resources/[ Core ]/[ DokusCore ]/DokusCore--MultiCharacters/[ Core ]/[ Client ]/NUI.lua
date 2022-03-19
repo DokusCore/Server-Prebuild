@@ -12,8 +12,9 @@ RegisterNUICallback('selectCharacter', function(Data)
   local Steam = Data['cData']['Steam']
   local cName = Data['cData']['cName']
   UserID = CharID
-  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } })
-  local Data = Decoded(Char.Result[1].Coords)
+  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } }).Result[1]
+  local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'All', 'Bank', { Steam, CharID } })
+  local Data = Decoded(Char.Coords)
   local Coords = vector3(Data['x'], Data['y'], Data['z'])
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { CharID } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'Coords', { Coords } })
@@ -21,11 +22,21 @@ RegisterNUICallback('selectCharacter', function(Data)
   SetVisible(PedID, true)
   SetFreeze(PedID, false)
 
-
-
-  -- Set user in game
+  -- Sync all user Data with DataSync
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { cName } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { Char.Money } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { Char.Gold } })
+
+  -- Set Bank / Money to sync with DataSync
+  if (Bank.Exist) then
+    local BankMoney, BankGold = {}, {}
+    for k,v in pairs(Bank.Result) do table.insert(BankMoney, { Loc = v.Bank, Money = v.Money }) end
+    for k,v in pairs(Bank.Result) do table.insert(BankGold,  { Loc = v.Bank, Gold = v.Gold   }) end
+    local BM, BG = json.encode(BankMoney), json.encode(BankGold)
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankMoney', { BM } })
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { BG } })
+  end
 
   -- Start the metabolism
   TriggerEvent('DokusCore:Metabolism:UserLoggedIn')
@@ -78,7 +89,9 @@ RegisterNUICallback('createNewCharacter', function(Data)
   -- Set user in game
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { cName } })
-  
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { Char.Money } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { Char.Gold } })
+
   -- Open the skin menu
   if (_Modules.SkinCreator) then
     local pCoords = GetEntityCoords(PedID)

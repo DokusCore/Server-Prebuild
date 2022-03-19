@@ -5,7 +5,7 @@ Steam, UserID = nil, 0
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
-  while not FrameReady() do print("Frame not ready") Wait(1000) end
+  while not FrameReady() do Wait(1000) end
   local Data = TCTCC('DokusCore:Sync:Get:UserData')
   Steam = Data.SteamID
 end)
@@ -56,7 +56,11 @@ RegisterCommand('logout', function(source, args, rawCommand)
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 0 } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { nil } })
-  TriggerEvent('DokusCore:CoreMenu:SetData', { 'Logout' })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankMoney', { nil } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { nil } })
+  TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
   UserID = 0
 end)
@@ -75,7 +79,11 @@ AddEventHandler('DokusCore:MultiChar:Logout', function()
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 0 } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { nil } })
-  TriggerEvent('DokusCore:CoreMenu:SetData', { 'Logout' })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankMoney', { nil } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { nil } })
+  TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
   UserID = 0
 end)

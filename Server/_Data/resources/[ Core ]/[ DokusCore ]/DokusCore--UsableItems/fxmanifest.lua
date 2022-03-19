@@ -1,36 +1,28 @@
 --------------------------------------------------------------------------------
 ----------------------------------- DevDokus -----------------------------------
 --------------------------------------------------------------------------------
-description 'DokusCore Multi Characters'
+description 'DokusCore UsableItems -- You seriously can use them!'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.5.0'
+version '1.0.0'
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+server_scripts { '@oxmysql/lib/MySQL.lua' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
-  '[ Core ]/[ Client ]/*.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
-}
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-server_scripts {
-  '@oxmysql/lib/MySQL.lua',
-  '[ Core ]/[ Server ]/*.lua'
+  '[ Core ]/[ Client ]/*.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
-  '@DokusCore/[ Configs ]/[ Modules ]/MultiCharacters.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Core.lua'
 }
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-ui_page "UI/index.html"
-files { 'UI/index.html', 'UI/style.css', 'UI/reset.css', 'UI/script.js' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'

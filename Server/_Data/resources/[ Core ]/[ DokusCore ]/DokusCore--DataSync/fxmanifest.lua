@@ -5,7 +5,7 @@ description 'DokusSync -- A plugin that stores all core data to stay synced'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.0.0 BETA'
+version '1.1.0 BETA'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -14,6 +14,7 @@ client_scripts {
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '[ Core ]/[ Client ]/*.lua',
   '[ Core ]/[ Client ]/[ Callbacks ]/*.lua',
+  '[ Core ]/[ Client ]/[ Modules ]/*.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
