@@ -3,7 +3,7 @@ You dont want to spend hours on setting up your server? <br>
 Just use the prebuild and your on your way within 10 minutes!<br>
 
 ----
-### Current DokusCore Version 0.5.1
+### Current DokusCore Version 0.5.3
 
 ----
 # Important !
