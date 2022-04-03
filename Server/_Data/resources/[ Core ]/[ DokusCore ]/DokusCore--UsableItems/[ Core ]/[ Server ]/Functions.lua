@@ -1,22 +1,59 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-local File = '@DokusCore/[ Core ]/[ Server ]/[ Events ]/[ Callbacks ]/[ Database ]/Items.lua'
+function TableItems(Data)
+  local Table = {}
+  for k,v in pairs(Data.Result) do
+    table.insert(Table, {
+      Item     = v.Item,
+      Name     = v.Name,
+      Type     = v.Type,
+      CTI      = v.CTI,
+      Limit    = v.InvLimit,
+      Meta     = v.Metabolism,
+      CanPlace = v.CanPlace,
+      Hunger   = v.Hunger,
+      Thirst   = v.Thirst,
+      Health   = v.Health,
+      Stamina  = v.Stamina,
+      GHI      = v.GHI,
+      GHO      = v.GHO,
+      GSI      = v.GSI,
+      GSO      = v.GSO,
+      Prop     = v.Prop,
+      Ani      = v.Ani,
+      Event    = v.Event
+    })
+  end return Table
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RSC('DokusCore:Core:DBGet:Items', function(source, args)
-  local Exist, Result = false, nil
-  -- if (args == nil) then return ErrorMsg('Err_WrongCallbackFormat') end
-  -- if (args[1] == nil) then return ErrorMsg('Err_NoCatType') end
 
-  if (Low(args[1]) == 'all') then
-    local X = DBGet(DB.Items.GetAll, {}, function() end)
-    if (X[1] ~= nil) then Exist = true Result = X end
-    return { Exist = Exist, Result = Result }
-  end
-end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+
+
 
 
 

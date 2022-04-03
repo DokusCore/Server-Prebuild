@@ -9,6 +9,9 @@ RegisterNetEvent('DokusCore:Sync:Get:UserData', function(cb) return cb(_User) en
 RegisterNetEvent('DokuCore:Sync:Get:CoreData', function(cb) return cb(_Core) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNetEvent('DokuCore:Sync:Get:ModuleData', function(cb) return cb(_Mod) end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 RCC('DokusCore:Sync:Get:UserData', function(args) return _User end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -14,8 +14,8 @@
 
 
 -- Dumping database structure for dokuscorev2
-CREATE DATABASE IF NOT EXISTS `dokuscore` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `dokuscore`;
+CREATE DATABASE IF NOT EXISTS `dokuscorev2` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `dokuscorev2`;
 
 -- Dumping structure for table dokuscorev2.banks
 CREATE TABLE IF NOT EXISTS `banks` (

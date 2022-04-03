@@ -89,8 +89,8 @@ RegisterNUICallback('createNewCharacter', function(Data)
   -- Set user in game
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { cName } })
-  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { Char.Money } })
-  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { Char.Gold } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { cChar.Money } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { cChar.Gold } })
 
   -- Open the skin menu
   if (_Modules.SkinCreator) then

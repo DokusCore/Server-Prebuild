@@ -51,6 +51,7 @@ const OpenMenu = (Data) => {
 };
 
 const InitData = (nr) => {
+  // Page 1
   if ((Menu == 'MainMenu') && (nr == 0))         { OpenInventory();                                    };
   if ((Menu == 'MainMenu') && (nr == 1))         { OpenThisMenu('SettingsMenu');                       };
   if ((Menu == 'MainMenu') && (nr == 2))         { OpenThisMenu('FunctionsMenu');                      };
@@ -61,9 +62,22 @@ const InitData = (nr) => {
   if ((Menu == 'SettingsMenu') && (nr == 0))     { OpenThisMenu('LangList1');                          };
   if ((Menu == 'SettingsMenu') && (nr == 1))     { ToggleOption('ToggleMusic');                        };
 
-  if ((Menu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                           };
+
   if ((Menu == 'InfoMenu') && (nr == 0))         { ToggleOption('ShowDiscord');                        };
+
+  // Admin Actions
+  if ((Menu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                       };
+  if ((Menu == 'AdminMenu') && (nr == 1))        { OpenThisMenu('AdminSelfActionsMenu');               };
+  if ((Menu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('ModuleSyncMenu');                     };
   if ((Menu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
+  if ((Menu == 'AdminSelfActionsMenu') && (nr == 0)) { OpenThisMenu('AdminMetamolismMenu');            };
+
+  if ((Menu == 'AdminMetamolismMenu') && (nr == 0))        { ToggleOption('ASelfMenu', 'HealHealth');  };
+  if ((Menu == 'AdminMetamolismMenu') && (nr == 1))        { ToggleOption('ASelfMenu', 'HealStamina'); };
+  if ((Menu == 'AdminMetamolismMenu') && (nr == 2))        { ToggleOption('ASelfMenu', 'HealHunger');  };
+  if ((Menu == 'AdminMetamolismMenu') && (nr == 3))        { ToggleOption('ASelfMenu', 'HealThirst');  };
+
+  if ((Menu == 'ModuleSyncMenu') && (nr == 0))        { ToggleOption('SyncUsableItems');  };
 
   if ((Menu == 'LangList1') && (nr == 0))        { ToggleOption('ChangeLanguage', 'en');               };
   if ((Menu == 'LangList1') && (nr == 1))        { ToggleOption('ChangeLanguage', 'de');               };
@@ -200,31 +214,34 @@ $(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
 
 // Back up the menu
 $(document).on('click', ".btn-backinterface", function() {
-  if (Menu == 'MainMenu')         { return CloseMenu()                           };
-  if (Menu == 'SettingsMenu')     { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'AdminMenu')        { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'TeleportMenu')     { return OpenThisMenu('AdminMenu')             };
-  if (Menu == 'FunctionsMenu')    { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'InfoMenu')         { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'SkinMenu')         { return OpenThisMenu('FunctionsMenu')         };
-  if (Menu == 'MusicMenu')        { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'Playlist')         { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'Volume')           { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'Volume2')          { return OpenThisMenu('Volume')                };
-  if (Menu == 'Volume3')          { return OpenThisMenu('Volume2')               };
-  if (Menu == 'Volume4')          { return OpenThisMenu('Volume3')               };
-  if (Menu == 'AutoPlay')         { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'AutoPlaylistMenu') { return OpenThisMenu('AutoPlay')              };
-  if (Menu == 'LangList1')        { return OpenThisMenu('SettingsMenu')          };
-  if (Menu == 'LangList2')        { return OpenThisMenu('LangList1')             };
-  if (Menu == 'ModernMusicMenu')  { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'WesternMusicMenu') { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'WesternRDR1')      { return OpenThisMenu('WesternMusicMenu')      };
-  if (Menu == 'WesternRDR2')      { return OpenThisMenu('WesternMusicMenu')      };
-  if (Menu == 'WesternRDR3')      { return OpenThisMenu('WesternMusicMenu')      };
-  if (Menu == 'BobMarley')        { return OpenThisMenu('ModernMusicMenu')       };
-  if (Menu == 'TheScore1')        { return OpenThisMenu('ModernMusicMenu')       };
-  if (Menu == 'ModernOtherMusic') { return OpenThisMenu('ModernMusicMenu')       };
+  if (Menu == 'MainMenu')             { return CloseMenu()                           };
+  if (Menu == 'SettingsMenu')         { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'AdminMenu')            { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'TeleportMenu')         { return OpenThisMenu('AdminMenu')             };
+  if (Menu == 'AdminSelfActionsMenu') { return OpenThisMenu('AdminMenu')             };
+  if (Menu == 'AdminMetamolismMenu')  { return OpenThisMenu('AdminSelfActionsMenu')  };
+  if (Menu == 'FunctionsMenu')        { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'ModuleSyncMenu')       { return OpenThisMenu('AdminMenu')             };
+  if (Menu == 'InfoMenu')             { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'SkinMenu')             { return OpenThisMenu('FunctionsMenu')         };
+  if (Menu == 'MusicMenu')            { return OpenThisMenu('MainMenu')              };
+  if (Menu == 'Playlist')             { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'Volume')               { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'Volume2')              { return OpenThisMenu('Volume')                };
+  if (Menu == 'Volume3')              { return OpenThisMenu('Volume2')               };
+  if (Menu == 'Volume4')              { return OpenThisMenu('Volume3')               };
+  if (Menu == 'AutoPlay')             { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'AutoPlaylistMenu')     { return OpenThisMenu('AutoPlay')              };
+  if (Menu == 'LangList1')            { return OpenThisMenu('SettingsMenu')          };
+  if (Menu == 'LangList2')            { return OpenThisMenu('LangList1')             };
+  if (Menu == 'ModernMusicMenu')      { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'WesternMusicMenu')     { return OpenThisMenu('MusicMenu')             };
+  if (Menu == 'WesternRDR1')          { return OpenThisMenu('WesternMusicMenu')      };
+  if (Menu == 'WesternRDR2')          { return OpenThisMenu('WesternMusicMenu')      };
+  if (Menu == 'WesternRDR3')          { return OpenThisMenu('WesternMusicMenu')      };
+  if (Menu == 'BobMarley')            { return OpenThisMenu('ModernMusicMenu')       };
+  if (Menu == 'TheScore1')            { return OpenThisMenu('ModernMusicMenu')       };
+  if (Menu == 'ModernOtherMusic')     { return OpenThisMenu('ModernMusicMenu')       };
   ToggleOption('NoBackButton')
 });
 

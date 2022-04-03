@@ -169,7 +169,6 @@ AddEventHandler('DokusCore:SkinCreator:UpdateSkin', function(data)
       sex = 2
     end
     LModel(PlayerPedId(), model)
-    LoadHeight(PlayerPedId(), data)
     FixIssues(PlayerPedId(), data)
   end
   LoadBoody(PlayerPedId(), data, true)
@@ -181,6 +180,7 @@ AddEventHandler('DokusCore:SkinCreator:UpdateSkin', function(data)
   Citizen.CreateThread(function()
     LoadOverlays(PlayerPedId(), data)
   end)
+  LoadHeight(PlayerPedId(), data)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -28,8 +28,10 @@ function SetBankGold(v)   _User.BankGold   = v Call('SetBankGold')  end
 function SetFrameReady(v) _Core.FrameReady = v Call('FrameReady') end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
+-- Module Data
+function SetUsableItems(v) _Mod.UsableItems = v Call('SetUsableItems') end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

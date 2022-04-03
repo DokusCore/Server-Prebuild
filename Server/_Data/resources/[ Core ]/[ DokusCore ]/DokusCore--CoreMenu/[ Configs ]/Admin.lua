@@ -15,6 +15,8 @@ AdminMenu = {
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
       { Type = 'Menu', Option = 'TeleportMenu', Title = 'Teleport Menu' },
+      { Type = 'Menu', Option = 'AdminSelfActionsMenu', Title = 'Actions Menu' },
+      { Type = 'Menu', Option = 'ModuleSyncMenu', Title = 'Model Sync Menu' },
     }
   }
 }
@@ -25,6 +27,39 @@ TeleportMenu = {
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
       { Type = 'Option', Option = 'TPM', Title = 'Teleport To Marker' },
+    }
+  }
+}
+
+AdminSelfActionsMenu = {
+  {
+    MenuName = 'AdminSelfActionsMenu',
+    MenuTitle = 'Self Actions',
+    MenuOptions = {
+      { Type = 'Menu', Option = 'AdminMetamolismMenu', Title = 'Open Metabolism Menu' },
+    }
+  }
+}
+
+AdminMetamolismMenu = {
+  {
+    MenuName = 'AdminMetamolismMenu',
+    MenuTitle = 'Metabolism Actions',
+    MenuOptions = {
+      { Type = 'Option', Option = 'ASelfHeal',   Title = 'Heal Yourself' },
+      { Type = 'Option', Option = 'ASelfStam',   Title = 'Heal Stamina' },
+      { Type = 'Option', Option = 'ASelfHunger', Title = 'Heal Hunger' },
+      { Type = 'Option', Option = 'ASelfThirst', Title = 'Heal Thirst' },
+    }
+  }
+}
+
+ModuleSyncMenu = {
+  {
+    MenuName = 'ModuleSyncMenu',
+    MenuTitle = 'Module Sync Menu',
+    MenuOptions = {
+      { Type = 'Option', Option = 'SyncUsableItems',   Title = 'Sync UsableItems' },
     }
   }
 }

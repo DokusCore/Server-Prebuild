@@ -165,8 +165,12 @@ AddEventHandler('DokusCore:Metabolism:VitalFlash', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
+RegisterNetEvent('DokusCore:Metabolism:Heal:Health',  function() TriggerEvent('DokusCore:Metabolism:Edit:Health',  { 100 }) end)
+RegisterNetEvent('DokusCore:Metabolism:Heal:Stamina', function() TriggerEvent('DokusCore:Metabolism:Edit:Stamina', { 100 }) end)
+RegisterNetEvent('DokusCore:Metabolism:Heal:Hunger',  function() TriggerEvent('DokusCore:Metabolism:Edit:Hunger', { 100 }) end)
+RegisterNetEvent('DokusCore:Metabolism:Heal:Thirst',  function() TriggerEvent('DokusCore:Metabolism:Edit:Thirst', { 100 }) end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

@@ -13,8 +13,7 @@ client_scripts {
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '[ Core ]/[ Client ]/*.lua',
-  '[ Core ]/[ Client ]/[ Callbacks ]/*.lua',
-  '[ Core ]/[ Client ]/[ Modules ]/*.lua',
+  '[ Core ]/[ Client ]/[ Callbacks ]/*.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

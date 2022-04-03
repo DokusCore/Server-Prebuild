@@ -6,3 +6,14 @@ RegisterNUICallback('Teleport', function(Data)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNUICallback('ASelfMenu', function(Data)
+  if (Data.Option == 'HealHealth') then TriggerEvent('DokusCore:Metabolism:Heal:Health') return end
+  if (Data.Option == 'HealStamina') then TriggerEvent('DokusCore:Metabolism:Heal:Stamina') return end
+  if (Data.Option == 'HealHunger') then print("healing Hunger") TriggerEvent('DokusCore:Metabolism:Heal:Hunger') return end
+  if (Data.Option == 'HealThirst') then TriggerEvent('DokusCore:Metabolism:Heal:Thirst') return end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('SyncUsableItems', function(Data) TriggerEvent('DokusCore:UsableItems:Sync') end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

@@ -56,6 +56,15 @@ RegisterNUICallback('OpenMenu', function(Data)
   elseif (Data.Menu == 'TeleportMenu') then
     SendNUIMessage({ Action = 'SetMenu',  Menu = 'TeleportMenu' })
     SendNUIMessage({ Action = 'OpenMenu', Menu = TeleportMenu[1] })
+  elseif (Data.Menu == 'AdminSelfActionsMenu') then
+    SendNUIMessage({ Action = 'SetMenu',  Menu = 'AdminSelfActionsMenu' })
+    SendNUIMessage({ Action = 'OpenMenu', Menu = AdminSelfActionsMenu[1] })
+  elseif (Data.Menu == 'AdminMetamolismMenu') then
+    SendNUIMessage({ Action = 'SetMenu',  Menu = 'AdminMetamolismMenu' })
+    SendNUIMessage({ Action = 'OpenMenu', Menu = AdminMetamolismMenu[1] })
+  elseif (Data.Menu == 'ModuleSyncMenu') then
+    SendNUIMessage({ Action = 'SetMenu',  Menu = 'ModuleSyncMenu' })
+    SendNUIMessage({ Action = 'OpenMenu', Menu = ModuleSyncMenu[1] })
   end
 
   -- Language Menus

@@ -22,7 +22,7 @@ $(document).ready(function() {
     } else {
       $("#beard").css("display", "none");
     }
-    $.post('http://DokusCore--SkinCreator/updateBody', JSON.stringify({
+    $.post('https://DokusCore--SkinCreator/updateBody', JSON.stringify({
       value: false,
       // Body
       sex: $('input[name=sex]:checked', '#formSkinCreator').val(),
@@ -138,7 +138,7 @@ $(document).ready(function() {
     } else {
       $("#beard").css("display", "none");
     }
-    $.post('http://DokusCore--SkinCreator/updateBody', JSON.stringify({
+    $.post('https://DokusCore--SkinCreator/updateBody', JSON.stringify({
       value: false,
       // Body
       sex: $('input[name=sex]:checked', '#formSkinCreator').val(),
@@ -247,7 +247,7 @@ $(document).ready(function() {
   // Form submited
   $('.yes').on('click', function(e) {
     e.preventDefault();
-    $.post('http://DokusCore--SkinCreator/saveSkin', JSON.stringify({
+    $.post('https://DokusCore--SkinCreator/saveSkin', JSON.stringify({
       value: true,
       // Face
       // Body
@@ -357,35 +357,35 @@ $(document).ready(function() {
   // Rotate player
   $(document).keypress(function(e) {
     if (e.which == 113) { // Q pressed
-      $.post('http://DokusCore--SkinCreator/heading', JSON.stringify({
+      $.post('https://DokusCore--SkinCreator/heading', JSON.stringify({
         value: -10
       }));
     }
     if (e.which == 120) { // x pressed
-      $.post('http://DokusCore--SkinCreator/defcam');
+      $.post('https://DokusCore--SkinCreator/defcam');
     }
     if (e.which == 101) { // E pressed
-      $.post('http://DokusCore--SkinCreator/heading', JSON.stringify({
+      $.post('https://DokusCore--SkinCreator/heading', JSON.stringify({
         value: 10
       }));
     }
     if (e.which == 119) { // w pressed
-      $.post('http://DokusCore--SkinCreator/camera', JSON.stringify({
+      $.post('https://DokusCore--SkinCreator/camera', JSON.stringify({
         offset: 0.05
       }));
     }
     if (e.which == 115) { // s pressed
-      $.post('http://DokusCore--SkinCreator/camera', JSON.stringify({
+      $.post('https://DokusCore--SkinCreator/camera', JSON.stringify({
         offset: -0.05
       }));
     }
     if (e.which == 97) { // a pressed
-      $.post('http://DokusCore--SkinCreator/camera', JSON.stringify({
+      $.post('https://DokusCore--SkinCreator/camera', JSON.stringify({
         zoom: 0.05
       }));
     }
     if (e.which == 100) { // d pressed
-      $.post('http://DokusCore--SkinCreator/camera', JSON.stringify({
+      $.post('https://DokusCore--SkinCreator/camera', JSON.stringify({
         zoom: -0.05
       }));
     }

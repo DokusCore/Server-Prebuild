@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-__Version = '0.5.4'
---------------------------------------------------------------------------------
-System   = '^5[ DokusCore ]^2[ System ]: ^0'
-Error    = '^5[ DokusCore ]^1[ Error ]: ^0'
-Warn     = '^5[ DokusCore ]^3[ Warning ]: ^0'
-Location = '^5[ DokusCore ]^3[ Location ]: ^0'
+RegisterServerEvent('DokusCore:UsableItems:Sync')
+AddEventHandler('DokusCore:UsableItems:Sync', function(Data)
+  local Table = nil
+  Table = TableItems(Data[1])
+  TriggerEvent('DokusCore:Sync:Set:ModuleData', { 'UsableItems', { Table } })
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
