@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Metabolism (v1.0.0) BETA</b> - Controls your players vitals.
+ <b>DokusCore Metabolism (v1.0.1) BETA</b> - Controls your players vitals.
 </p>
 
 ---
@@ -16,6 +16,15 @@ and start it via `ensure DokusCore--Metabolism`. Then go to the Config.lua <br>
 file of `DokusCore` itself and at `_Modules = { Metabolism }` set it to `true`.
 If left to `false` the core will create its own character on ID 1 and not the
 multi characters plugin
+
+---
+# Server Prebuild:
+If you do not want to build your own server you don't have to, we already did all   <br>
+the work for you! Download our [Prebuild](https://github.com/DokusCore/Server-Prebuild) server package and you will be setup  <br>
+within minutes. You also do not have to worry about dependencies or if the plugins <br>
+are started in the right order. Just insert your server artifacts, change the .cfg <br>
+and config files to your liking and off you go! For more information on how to <br>
+set up a DokusCore server, see the following video: [Installation video](https://www.youtube.com/watch?v=NlJFFRzWvDE) <br>
 
 ---
 # Plugin Information

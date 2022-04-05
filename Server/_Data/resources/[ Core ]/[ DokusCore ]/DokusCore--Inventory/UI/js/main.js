@@ -107,8 +107,10 @@ $('document').ready(function() {
 
   document.getElementById('button-use').addEventListener('click', function(event) {
     var itemSelected = document.getElementsByClassName('selected')[0].id;
-    $.post('http://DokusCore--Inventory/use', JSON.stringify({
-      item: itemSelected
+    let amount = Number(document.getElementById('drop-count').value)
+    $.post('http://DokusCore--Inventory/UseItem', JSON.stringify({
+      Item: itemSelected,
+      Count: amount
     }));
   })
 
@@ -118,7 +120,7 @@ $('document').ready(function() {
       $.post('http://DokusCore--Inventory/NoAmountSet', JSON.stringify({}));
       return
     }
-    
+
     if (itemSelected.id == 'money') {
       let amount = Number(document.getElementById('drop-count').value)
       $.post('http://DokusCore--Inventory/dropcash', JSON.stringify({

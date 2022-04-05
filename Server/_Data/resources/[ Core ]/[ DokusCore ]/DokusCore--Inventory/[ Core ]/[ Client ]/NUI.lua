@@ -69,7 +69,22 @@ RegisterNUICallback("drop", function(Data)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNUICallback("UseItem", function(Data)
+  local Item, Amount = Data.Item, Data.Count
+  local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
+  for k,v in pairs(Inv.Result) do
+    if (Item == v.Item) then
+      if (v.Amount < Amount) then Notify("You do not have enough of this item!") return end
 
+      -- remove items from the inventory
+      -- CODE
+
+      -- Trigger Animation
+      TriggerEvent('DokusCore:UsableItems:UseItem', { Item = Item, Amount = Amount })
+      CloseInv() 
+    end
+  end
+end)
 
 
 

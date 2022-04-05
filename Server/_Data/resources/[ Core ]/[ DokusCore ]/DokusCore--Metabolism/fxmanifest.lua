@@ -5,7 +5,7 @@ description 'DokusCore Metabolism -- Its vital to have some vitals'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.0.0 BETA'
+version '1.0.1 BETA'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {

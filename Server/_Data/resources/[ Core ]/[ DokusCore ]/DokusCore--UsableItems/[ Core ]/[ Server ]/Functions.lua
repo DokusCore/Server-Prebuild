@@ -21,8 +21,9 @@ function TableItems(Data)
       GSI      = v.GSI,
       GSO      = v.GSO,
       Prop     = v.Prop,
-      Ani      = v.Ani,
-      Event    = v.Event
+      PropPos  = v.PropPos,
+      Ani      = v.Animation,
+      AniTime  = v.AniTime
     })
   end return Table
 end

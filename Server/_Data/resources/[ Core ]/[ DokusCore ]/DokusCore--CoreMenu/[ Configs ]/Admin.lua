@@ -15,8 +15,8 @@ AdminMenu = {
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
       { Type = 'Menu', Option = 'TeleportMenu', Title = 'Teleport Menu' },
-      { Type = 'Menu', Option = 'AdminSelfActionsMenu', Title = 'Actions Menu' },
-      { Type = 'Menu', Option = 'ModuleSyncMenu', Title = 'Model Sync Menu' },
+      { Type = 'Menu', Option = 'AdminSelfActionsMenu', Title = 'Self Actions' },
+      { Type = 'Menu', Option = 'ModuleSyncMenu', Title = 'Modules Sync Menu' },
     }
   }
 }
@@ -36,7 +36,7 @@ AdminSelfActionsMenu = {
     MenuName = 'AdminSelfActionsMenu',
     MenuTitle = 'Self Actions',
     MenuOptions = {
-      { Type = 'Menu', Option = 'AdminMetamolismMenu', Title = 'Open Metabolism Menu' },
+      { Type = 'Menu', Option = 'AdminMetamolismMenu', Title = 'Metabolism' },
     }
   }
 }

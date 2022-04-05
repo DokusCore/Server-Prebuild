@@ -1,20 +1,26 @@
 
 /* Consumables */
-#water_clean    { background: url('../img/items/water_clean.png') no-repeat; background-size: 90%;  }
-#water_dirty    { background: url('../img/items/water_dirty.png') no-repeat; background-size: 90%;  }
+#apple          { background: url('../img/items/apple.png') no-repeat; background-size: 90%; }
+#blueberry      { background: url('../img/items/blueberry.png') no-repeat; background-size: 90%; }
+#blackberry     { background: url('../img/items/blackberry.png') no-repeat; background-size: 90%; }
+#carrot         { background: url('../img/items/carrots.png') no-repeat; background-size: 120%; }
 #coffee         { background: url('../img/items/coffee.png') no-repeat; background-size: 90%; }
-#carrot         { background: url('../img/items/carrots.png') no-repeat; background-size: 100%; }
-#egg            { background: url('../img/items/egg.png') no-repeat; background-size: 100%; }
-#egg_box        { background: url('../img/items/egg_box.png') no-repeat; background-size: 100%; }
-#meat_uncooked  { background: url('../img/items/meat_uncooked.png') no-repeat; background-size: 100%; }
 #cigarette      { background: url('../img/items/cigarette.png') no-repeat; background-size: 100%; }
 #cigarette_box  { background: url('../img/items/cigarette_box.png') no-repeat; background-size: 100%; }
 #cigar          { background: url('../img/items/cigar.png') no-repeat; background-size: 100%; }
+#egg            { background: url('../img/items/egg.png') no-repeat; background-size: 100%; }
+#egg_box        { background: url('../img/items/egg_box.png') no-repeat; background-size: 100%; }
+#meat_uncooked  { background: url('../img/items/meat_uncooked.png') no-repeat; background-size: 100%; }
+#orange         { background: url('../img/items/orange.png') no-repeat; background-size: 90%; }
+#water_clean    { background: url('../img/items/water_clean.png') no-repeat; background-size: 90%;  }
+#water_dirty    { background: url('../img/items/water_dirty.png') no-repeat; background-size: 90%;  }
+#whiskey        { background: url('../img/items/whiskey.png') no-repeat; background-size: 85%; }
 
 /* Tools */
+#campfire       { background: url('../img/items/campfire.png') no-repeat; background-size: 100%; }
+#gold_pan       { background: url('../img/items/gold_pan.png') no-repeat; background-size: 100%; }
 #horsebrush     { background: url('../img/items/horsebrush.png') no-repeat; background-size: 100%; }
 #lockpick       { background: url('../img/items/lockpick.png') no-repeat; background-size: 100%; }
-#gold_pan       { background: url('../img/items/gold_pan.png') no-repeat; background-size: 100%; }
 
 /* Valutas */
 #gold_bar       { background: url('../img/items/gold_bar.png') no-repeat; background-size: 100%; }

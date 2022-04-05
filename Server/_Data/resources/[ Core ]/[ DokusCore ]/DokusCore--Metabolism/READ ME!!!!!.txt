@@ -3,7 +3,6 @@ Work in progress by DevDokus
 Currently you have 2 options that everyone can do until we have the option to
 eat and drink. These following options you can use.
 
-/heal =  To reset your vitals to max
 /gold [nr] = to activate your golden status, number is in seconds.
 
 
