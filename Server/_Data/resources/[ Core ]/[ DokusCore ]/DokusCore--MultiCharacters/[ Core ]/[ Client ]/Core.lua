@@ -62,6 +62,7 @@ RegisterCommand('logout', function(source, args, rawCommand)
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { nil } })
   TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
+  DisplayRadar(false)
   UserID = 0
 end)
 --------------------------------------------------------------------------------
@@ -85,23 +86,35 @@ AddEventHandler('DokusCore:MultiChar:Logout', function()
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { nil } })
   TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
+  DisplayRadar(false)
   UserID = 0
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-AddEventHandler('onResourceStart', function(R)
-  if (R == 'DokusCore') then
-    while not FrameReady() do Wait(1000) end
-    print('^2[ System ]: ^0'.."^3FrameWork Restart Detected^0")
-    print('^2[ System ]: ^0'.."^3Going to sync UserID with the Core^0")
-    TriggerEvent('DokusCore:Core:SyncCharID', UserID)
-    TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
-    -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
-    -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
-  elseif (R == 'DokusCore--MultiCharacters') then
+AddEventHandler('onResourceStop', function(R)
+  if (GetCurrentResourceName() == R) then
     TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 0 } })
   end
 end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- DEPRECATED
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- AddEventHandler('onResourceStart', function(R)
+--   if (R == 'DokusCore') then
+--     while not FrameReady() do Wait(1000) end
+--     print('^2[ System ]: ^0'.."^3FrameWork Restart Detected^0")
+--     print('^2[ System ]: ^0'.."^3Going to sync UserID with the Core^0")
+--     TriggerEvent('DokusCore:Core:SyncCharID', UserID)
+--     TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })
+--     -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
+--     -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
+--   elseif (R == 'DokusCore--MultiCharacters') then
+--     TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
+--   end
+-- end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

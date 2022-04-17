@@ -28,3 +28,6 @@
 
 /* Minerals */
 #gold_nugget    { background: url('../img/items/gold_nugget.png') no-repeat; background-size: 100%; }
+
+/* Instruments */
+#trumpet        { background: url('../img/items/trumpet.png') no-repeat; background-size: 85%; }

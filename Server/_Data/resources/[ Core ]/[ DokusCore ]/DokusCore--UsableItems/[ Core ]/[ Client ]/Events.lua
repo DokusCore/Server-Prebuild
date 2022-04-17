@@ -36,6 +36,9 @@ RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
       if (Low(Type) == 'valuta') then Notify('UsableItems is not ready to work with valutas yet!') return end
       if (Low(Type) == 'mineral') then Notify('UsableItems is not ready to work with minerals yet!') return end
       if (Low(Type) == 'tool') then Notify('UsableItems is not ready to work with tools yet!') return end
+      if (Low(Type) == 'instrument') then
+        if (Low(Item) == 'trumpet') then TriggerEvent('DokuCore:ScriptBundle:Trumpet:Play', { Ani }) end
+      end
     end
   end
 end)

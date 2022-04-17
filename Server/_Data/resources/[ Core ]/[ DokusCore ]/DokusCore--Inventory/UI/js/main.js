@@ -24,10 +24,10 @@ $('document').ready(function() {
           'width': '15%',
           'float': 'left',
           'background-position': 'center',
-          'background-color': 'rgb(31, 30, 43)',
+          'background-color': '#161616',
           'box-shadow:': '11px 15px 13px 0px rgba(0,0,0,0.75)',
           'border-radius': '5px',
-          'border': 'rgb(0, 230, 247) solid 1px',
+          'border': 'rgb(69, 69, 69) solid 1px',
           'margin': '1%'
         })
       })
@@ -69,7 +69,7 @@ $('document').ready(function() {
         count: Number(el.innerHTML),
         item: el.id
       }));
-      $(`#${el.id}`).css('background-color', 'rgb(31, 30, 43)');
+      $(`#${el.id}`).css('background-color', '#161616');
       $(`#${el.id}`).removeClass('selected')
       $(`#${el.id}`).hide()
     }
@@ -77,32 +77,32 @@ $('document').ready(function() {
 
   $('body').on('click', '.default', (event) => {
     var selectedItem = event.target.id
-    $('#drag2').children().css('background-color', 'rgb(31, 30, 43)');
+    $('#drag2').children().css('background-color', '#161616');
     $('#drag2').children().removeClass('selected');
     $('#money').removeClass('selected');
-    $('#money').css('background-color', 'rgb(31, 30, 43)');
+    $('#money').css('background-color', '#161616');
     $('#blackcash').removeClass('selected');
-    $('#blackcash').css('background-color', 'rgb(31, 30, 43)');
+    $('#blackcash').css('background-color', '#161616');
     $(`#${selectedItem}`).addClass('selected');
-    $(`#${selectedItem}`).css('background-color', '#1d3459');
+    $(`#${selectedItem}`).css('background-color', '#242424');
   })
 
   document.getElementById('money').addEventListener('click', function(event) {
-    $('#drag2').children().css('background-color', 'rgb(31, 30, 43)');
+    $('#drag2').children().css('background-color', '#161616');
     $('#drag2').children().removeClass('selected')
     $(`#blackcash`).removeClass('selected');
-    $(`#blackcash`).css('background-color', 'rgb(31, 30, 43)');
+    $(`#blackcash`).css('background-color', '#161616');
     $(`#money`).addClass('selected');
-    $(`#money`).css('background-color', '#1d3459');
+    $(`#money`).css('background-color', '#242424');
   })
 
   document.getElementById('blackcash').addEventListener('click', function(event) {
-    $('#drag2').children().css('background-color', 'rgb(31, 30, 43)');
+    $('#drag2').children().css('background-color', '#161616');
     $('#drag2').children().removeClass('selected')
     $(`#money`).removeClass('selected');
-    $(`#money`).css('background-color', 'rgb(31, 30, 43)');
+    $(`#money`).css('background-color', '#161616');
     $(`#blackcash`).addClass('selected');
-    $(`#blackcash`).css('background-color', '#1d3459');
+    $(`#blackcash`).css('background-color', '#242424');
   })
 
   document.getElementById('button-use').addEventListener('click', function(event) {

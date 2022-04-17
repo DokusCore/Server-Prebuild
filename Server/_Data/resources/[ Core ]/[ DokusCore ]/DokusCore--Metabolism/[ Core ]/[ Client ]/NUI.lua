@@ -2,6 +2,7 @@
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
 local Type = _Metabolism.Temp.Format
+local nTemp = 0
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
@@ -9,17 +10,16 @@ CreateThread(function()
   while not UserInGame() do Wait(1000) end
 
   while true do Wait(1000)
-    ShowCores(true)
-    -- Calculate farenheit is this setting is choosen.
-    if (Low(Type) == 'f') then Temp = (Temp * 1.8 + 32.0) end
+    if (Low(Type) == 'f') then nTemp = (Temp * 1.8 + 32.0) end
+    if (Low(Type) == 'c') then nTemp = Temp end
 
     SendNUIMessage({
       Action = 'SetHud',
       Show = not IsRadarHidden(),
       Hunger = Hunger,
       Thirst = Thirst,
-      Temp = (Round(Temp, 2).."°"..tostring(Type)),
-      rTemp = (Round(Temp, 2))
+      Temp = (Round(nTemp, 2).."°"..tostring(Type)),
+      rTemp = (Round(nTemp, 2))
     })
   end
 end)

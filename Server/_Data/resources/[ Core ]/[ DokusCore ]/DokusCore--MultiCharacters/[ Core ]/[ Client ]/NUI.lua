@@ -44,7 +44,7 @@ RegisterNUICallback('selectCharacter', function(Data)
   -- Update the users hud
   -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
   -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
-  UIFadeIn(1500) Wait(5000)
+  UIFadeIn(1500) Wait(5000) DisplayRadar(true)
 
   -- Apply users skin
   local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } }).Result[1]
@@ -85,6 +85,7 @@ RegisterNUICallback('createNewCharacter', function(Data)
 
   UserID = CharID
   UIFadeIn(15000)
+  DisplayRadar(true)
 
   -- Set user in game
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { true } })

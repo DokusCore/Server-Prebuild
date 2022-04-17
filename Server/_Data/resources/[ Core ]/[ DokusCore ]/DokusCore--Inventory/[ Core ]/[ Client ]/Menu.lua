@@ -3,6 +3,8 @@
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Inventory) then
+    while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
     DokusMenu.CreateMenu('BoxMenu', 'DropBox', '')
     DokusMenu.SetSubTitle('BoxMenu', 'Loot Box')
     DokusMenu.CreateMenu('BoxItems', 'DropBox', '')

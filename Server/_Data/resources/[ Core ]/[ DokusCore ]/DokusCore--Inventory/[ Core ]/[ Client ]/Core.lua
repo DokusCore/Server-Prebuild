@@ -74,6 +74,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Inventory) then
+    while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
     local Data = TSC('DokusCore:Core:DBGet:Storages', { 'DropBox', 'All' })
     if (Data.Exist) then
       for k,v in pairs(Data.Result) do
@@ -91,6 +93,8 @@ end)
 local PlayerCoords = nil
 CreateThread(function()
   if (_Modules.Inventory) then
+    while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
     while true do Wait(1)
       local PedID = PedID()
       local Coords = GetCoords(PedID)

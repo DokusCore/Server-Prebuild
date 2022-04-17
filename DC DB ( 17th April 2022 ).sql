@@ -13,11 +13,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for dokuscorev2
-CREATE DATABASE IF NOT EXISTS `dokuscorev2` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `dokuscorev2`;
+-- Dumping database structure for dokuscore
+CREATE DATABASE IF NOT EXISTS `dokuscore` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `dokuscore`;
 
--- Dumping structure for table dokuscorev2.banks
+-- Dumping structure for table dokuscore.banks
 CREATE TABLE IF NOT EXISTS `banks` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) NOT NULL,
@@ -30,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `banks` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.banks: ~0 rows (approximately)
+-- Dumping data for table dokuscore.banks: ~0 rows (approximately)
 /*!40000 ALTER TABLE `banks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `banks` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.blacklist
+-- Dumping structure for table dokuscore.blacklist
 CREATE TABLE IF NOT EXISTS `blacklist` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) DEFAULT NULL,
@@ -49,11 +49,11 @@ CREATE TABLE IF NOT EXISTS `blacklist` (
   UNIQUE KEY `Steam` (`Steam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.blacklist: ~0 rows (approximately)
+-- Dumping data for table dokuscore.blacklist: ~0 rows (approximately)
 /*!40000 ALTER TABLE `blacklist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `blacklist` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.characters
+-- Dumping structure for table dokuscore.characters
 CREATE TABLE IF NOT EXISTS `characters` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) NOT NULL,
@@ -75,11 +75,11 @@ CREATE TABLE IF NOT EXISTS `characters` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.characters: ~0 rows (approximately)
+-- Dumping data for table dokuscore.characters: ~0 rows (approximately)
 /*!40000 ALTER TABLE `characters` DISABLE KEYS */;
 /*!40000 ALTER TABLE `characters` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.inventory
+-- Dumping structure for table dokuscore.inventory
 CREATE TABLE IF NOT EXISTS `inventory` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) DEFAULT NULL,
@@ -91,11 +91,11 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.inventory: ~0 rows (approximately)
+-- Dumping data for table dokuscore.inventory: ~0 rows (approximately)
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.items
+-- Dumping structure for table dokuscore.items
 CREATE TABLE IF NOT EXISTS `items` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Item` varchar(50) DEFAULT NULL,
@@ -119,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `items` (
   `Animation` varchar(200) DEFAULT NULL,
   `AniTime` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.items: ~25 rows (approximately)
+-- Dumping data for table dokuscore.items: ~26 rows (approximately)
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
 INSERT INTO `items` (`ID`, `Item`, `Name`, `Type`, `CTI`, `CA`, `InvLimit`, `Metabolism`, `CanPlace`, `Hunger`, `Thirst`, `Health`, `Stamina`, `GHI`, `GHO`, `GSI`, `GSO`, `Prop`, `PropPos`, `Animation`, `AniTime`) VALUES
 	(1, 'carrot', 'Carrot', 'Consumable', NULL, 0, 10, 'true', 'false', 5, 2, 0, 0, 0, 0, 0, 0, NULL, NULL, 'EAT_MULTI_BITE_FOOD_SPHERE_D8-2_SANDWICH_QUICK_LEFT_HAND', NULL),
@@ -148,10 +148,11 @@ INSERT INTO `items` (`ID`, `Item`, `Name`, `Type`, `CTI`, `CA`, `InvLimit`, `Met
 	(22, 'blueberry', 'Blueberry', 'Consumable', NULL, 0, 500, 'true', 'false', 2, 2, 2, 2, 0, 0, 0, 0, NULL, NULL, 'EAT_MULTI_BITE_FOOD_SPHERE_D8-2_SANDWICH_QUICK_LEFT_HAND', NULL),
 	(23, 'blackberry', 'Blackberry', 'Consumable', NULL, 0, 500, 'true', 'false', 2, 2, 2, 2, 0, 0, 0, 0, NULL, NULL, 'EAT_MULTI_BITE_FOOD_SPHERE_D8-2_SANDWICH_QUICK_LEFT_HAND', NULL),
 	(24, 'apple', 'Apple', 'Consumable', NULL, 0, 150, 'true', 'false', 5, 5, 5, 5, 0, 0, 0, 0, NULL, NULL, 'EAT_MULTI_BITE_FOOD_SPHERE_D8-2_SANDWICH_QUICK_LEFT_HAND', NULL),
-	(25, 'orange', 'Orange', 'Consumable', NULL, 0, 150, 'true', 'false', 5, 10, 5, 5, 0, 0, 0, 0, NULL, NULL, 'EAT_MULTI_BITE_FOOD_SPHERE_D8-2_SANDWICH_QUICK_LEFT_HAND', NULL);
+	(25, 'orange', 'Orange', 'Consumable', NULL, 0, 150, 'true', 'false', 5, 10, 5, 5, 0, 0, 0, 0, NULL, NULL, 'EAT_MULTI_BITE_FOOD_SPHERE_D8-2_SANDWICH_QUICK_LEFT_HAND', NULL),
+	(26, 'trumpet', 'Trumpet', 'Instrument', NULL, 0, 1, 'false', 'false', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WORLD_HUMAN_TRUMPET', NULL);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.metabolism
+-- Dumping structure for table dokuscore.metabolism
 CREATE TABLE IF NOT EXISTS `metabolism` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) NOT NULL,
@@ -162,11 +163,26 @@ CREATE TABLE IF NOT EXISTS `metabolism` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.metabolism: ~0 rows (approximately)
+-- Dumping data for table dokuscore.metabolism: ~0 rows (approximately)
 /*!40000 ALTER TABLE `metabolism` DISABLE KEYS */;
 /*!40000 ALTER TABLE `metabolism` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.settings
+-- Dumping structure for table dokuscore.paperwork
+CREATE TABLE IF NOT EXISTS `paperwork` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `steam` varchar(50) DEFAULT NULL,
+  `charid` int(11) DEFAULT NULL,
+  `isown` int(11) DEFAULT NULL,
+  `cardowner` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table dokuscore.paperwork: ~0 rows (approximately)
+/*!40000 ALTER TABLE `paperwork` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paperwork` ENABLE KEYS */;
+
+-- Dumping structure for table dokuscore.settings
 CREATE TABLE IF NOT EXISTS `settings` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) NOT NULL,
@@ -177,11 +193,11 @@ CREATE TABLE IF NOT EXISTS `settings` (
   UNIQUE KEY `Steam` (`Steam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.settings: ~0 rows (approximately)
+-- Dumping data for table dokuscore.settings: ~0 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.storages
+-- Dumping structure for table dokuscore.storages
 CREATE TABLE IF NOT EXISTS `storages` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) DEFAULT NULL,
@@ -194,11 +210,11 @@ CREATE TABLE IF NOT EXISTS `storages` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.storages: ~0 rows (approximately)
+-- Dumping data for table dokuscore.storages: ~0 rows (approximately)
 /*!40000 ALTER TABLE `storages` DISABLE KEYS */;
 /*!40000 ALTER TABLE `storages` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.users
+-- Dumping structure for table dokuscore.users
 CREATE TABLE IF NOT EXISTS `users` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) NOT NULL,
@@ -211,11 +227,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `Steam` (`Steam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.users: ~0 rows (approximately)
+-- Dumping data for table dokuscore.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
--- Dumping structure for table dokuscorev2.whitelist
+-- Dumping structure for table dokuscore.whitelist
 CREATE TABLE IF NOT EXISTS `whitelist` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Steam` varchar(50) NOT NULL,
@@ -227,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `whitelist` (
   KEY `ID` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table dokuscorev2.whitelist: ~0 rows (approximately)
+-- Dumping data for table dokuscore.whitelist: ~0 rows (approximately)
 /*!40000 ALTER TABLE `whitelist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `whitelist` ENABLE KEYS */;
 

@@ -13,6 +13,10 @@ window.addEventListener('message', function(Event) {
   // Show or Hide the Hud
   $("body").animate({ opacity: Data.Show ? 1 : 0 }, 500);
 
+  // Hide or show the hud
+  if (Action == 'HideHud') { $("body").hide() };
+  if (Action == 'ShowHud') { $("body").show() };
+
   // Events
   if (Action == 'SetHud') {
     if (Temp) { $("#varTemp small").text(Temp) }

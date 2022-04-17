@@ -36,7 +36,7 @@ function DoVitalFlash()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function DoHealthDamage()
+function SetHealthDamage()
   if (not (HealthDamage)) then
     HealthDamage = true
     TriggerEvent('DokusCore:Metabolism:HealthDamage')
