@@ -38,12 +38,14 @@ RegisterNUICallback('selectCharacter', function(Data)
     TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { BG } })
   end
 
-  -- Start the metabolism
+  -- Set data for all plugins.
   TriggerEvent('DokusCore:Metabolism:UserLoggedIn')
+  TriggerEvent('DokusCore:Inventory:User:Login')
 
-  -- Update the users hud
-  -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
-  -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
+  -- Update DataSync
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'Alive', { true } })
+
+  --Continue
   UIFadeIn(1500) Wait(5000) DisplayRadar(true)
 
   -- Apply users skin
@@ -98,10 +100,11 @@ RegisterNUICallback('createNewCharacter', function(Data)
     local pCoords = GetEntityCoords(PedID)
     TriggerEvent('DokusCore:SkinCreator:OpenMenu', PedID, pCoords)
   else
-    -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
-    -- TriggerEvent('DokusCore:Core:Hud:Update', { 'User' })
     TriggerEvent('DokusCore:Core:ShowTopNote', 'Welcome', _ServerName)
   end
+
+  -- Update DataSync
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'Alive', { true } })
 
   -- Give the user his / her starting items
   if (_MultiCharacters.GiveStartItems) then

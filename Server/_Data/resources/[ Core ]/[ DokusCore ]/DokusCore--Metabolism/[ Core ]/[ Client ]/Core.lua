@@ -105,3 +105,79 @@ CreateThread(function() Wait(5000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+-- Send out warnings when the player vitals are getting low.
+--------------------------------------------------------------------------------
+CreateThread(function()
+  if (_Modules.Metabolism) then
+    while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
+    Wait(180000) -- Wait 60 sec to not cut the intro song
+    while true do Wait(1000)
+      while Online do Wait(1000)
+        if (Hunger <= 20) then SendHungerWarning() end
+        if (Thirst <= 20) then SendThirstWarning() end
+      end
+    end
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Send out random farts, just for the fun and hec of it :P
+--------------------------------------------------------------------------------
+CreateThread(function()
+  if (_Modules.Metabolism) then
+    if (Meta.Farting.Enabled) then
+      while not FrameReady() do Wait(1000) end
+      while not UserInGame() do Wait(1000) end
+      Wait(180000) -- Wait 60 sec to not cut the intro song
+      while true do Wait(1000)
+        while Online do Wait(Meta.Farting.Frequention * 1000)
+          local Random = math.random(1, 10)
+          if (Random == 5) then DoFarting() end
+        end
+      end
+    end
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Send out random burps, just for the fun and hec of it :P
+--------------------------------------------------------------------------------
+CreateThread(function()
+  if (_Modules.Metabolism) then
+    if (Meta.Burping.Enabled) then
+      while not FrameReady() do Wait(1000) end
+      while not UserInGame() do Wait(1000) end
+      Wait(180000) -- Wait 60 sec to not cut the intro song
+      while true do Wait(1000)
+        while Online do Wait(Meta.Burping.Frequention * 1000)
+          local Random = math.random(1, 10)
+          if (Random == 5) then DoBurps() end
+        end
+      end
+    end
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

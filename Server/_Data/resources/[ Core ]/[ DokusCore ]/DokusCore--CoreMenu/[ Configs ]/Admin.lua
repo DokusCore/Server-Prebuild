@@ -27,6 +27,7 @@ TeleportMenu = {
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
       { Type = 'Option', Option = 'TPM', Title = 'Teleport To Marker' },
+      { Type = 'Option', Option = 'TTC', Title = 'Teleport to Coords' },
     }
   }
 }
@@ -60,6 +61,7 @@ ModuleSyncMenu = {
     MenuTitle = 'Module Sync Menu',
     MenuOptions = {
       { Type = 'Option', Option = 'SyncUsableItems',   Title = 'Sync UsableItems' },
+      { Type = 'Option', Option = 'SyncStoreItems',    Title = 'Sync Store Items' },
     }
   }
 }

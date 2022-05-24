@@ -15,6 +15,7 @@ InfoMenu = {
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
       { Type = 'Option', Option = 'Discord', Title = 'Discord' },
+      { Type = 'Option', Option = 'GuideUp', Title = 'Updates & Guidelines' },
     }
   }
 }

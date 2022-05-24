@@ -15,21 +15,23 @@ $('document').ready(function() {
       let Data = event.data.items
       if (Data != undefined) { for (let i = 0; i < 50; i++) { Array.push(Data[i]) } }
       Array.forEach(function(item) {
-        $('.item-inner').append(`<div class="${item[0]} default" id="${item[0]}"><div>`);
-        $(`#${item[0]}`).html(item[1])
-        $(`#${item[0]}`).css({
-          'padding': '1px',
-          'color': 'white',
-          'height': '15%',
-          'width': '15%',
-          'float': 'left',
-          'background-position': 'center',
-          'background-color': '#161616',
-          'box-shadow:': '11px 15px 13px 0px rgba(0,0,0,0.75)',
-          'border-radius': '5px',
-          'border': 'rgb(69, 69, 69) solid 1px',
-          'margin': '1%'
-        })
+        if (item != undefined) {
+          $('.item-inner').append(`<div class="${item[0]} default" id="${item[0]}"><div>`);
+          $(`#${item[0]}`).html(item[1])
+          $(`#${item[0]}`).css({
+            'padding': '1px',
+            'color': 'white',
+            'height': '15%',
+            'width': '15%',
+            'float': 'left',
+            'background-position': 'center',
+            'background-color': '#161616',
+            'box-shadow:': '11px 15px 13px 0px rgba(0,0,0,0.75)',
+            'border-radius': '5px',
+            'border': 'rgb(69, 69, 69) solid 1px',
+            'margin': '1%'
+          })
+        };
       })
       Array = []
     }

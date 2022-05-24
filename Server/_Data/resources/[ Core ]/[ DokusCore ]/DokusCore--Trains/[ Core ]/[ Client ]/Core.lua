@@ -17,7 +17,7 @@ CreateThread(function()
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     for k,v in pairs(_Trains.Blips) do SetBlip(v.Coords, -250506368, Radius, 'Train Station') end
-    for k,v in pairs(_Trains.NPCs) do Tabi(NPCs, SpawnNPC(v.Hash, v.Coords)) end
+    for k,v in pairs(_Trains.NPCs) do Tabi(NPCs, SpawnNPC(v.Hash, v.Coords, v.Heading)) end
 
     -- Add the user to the server online player array
     local Data = TCTCC('DokusCore:Sync:Get:UserData')
@@ -131,15 +131,15 @@ CreateThread(function()
 
           -- Train first start up procedure.
           if (Trains[k].TrainStart) then
-            print("Trains Spawned")
+            -- print("Trains Spawned")
             local Inc = Round((_Trains.StartSpeed / _Trains.StartForce), 10)
-            print("Speed Set")
+            -- print("Speed Set")
             while ((Trains[k].TrainStart) and (Floor(Trains[k].Speed) < (Floor(_Trains.StartSpeed)))) do Wait(1)
               Trains[k].Speed = (Trains[k].Speed + Inc)
               SetTrainCruiseSpeed(Trains[k].TrainID, Trains[k].Speed)
-              print("StartUp", Trains[k].Speed, Trains[k].OnRoute)
+              -- print("StartUp", Trains[k].Speed, Trains[k].OnRoute)
             end
-            print("Startup Ended")
+            -- print("Startup Ended")
             Trains[k].TrainStart = false
             Trains[k].OnRoute = (Trains[k].OnRoute + 1)
           end
@@ -151,7 +151,7 @@ CreateThread(function()
             while (not (Trains[k].TrainStart) and (Trains[k].Speed) < (Next.Speed)) do Wait(1)
               Trains[k].Speed = (Trains[k].Speed + Inc)
               SetTrainCruiseSpeed(Trains[k].TrainID, Trains[k].Speed)
-              print("Route - Speed", Trains[k].Speed, Trains[k].OnRoute)
+              -- print("Route - Speed", Trains[k].Speed, Trains[k].OnRoute)
             end
             Trains[k].OnRoute = (Trains[k].OnRoute + 1)
             Next.Type = nil
@@ -163,7 +163,7 @@ CreateThread(function()
             while (not (Trains[k].TrainStart) and (Trains[k].Speed) > (Next.Speed)) do Wait(1)
               Trains[k].Speed = (Trains[k].Speed - Inc)
               SetTrainCruiseSpeed(Trains[k].TrainID, Trains[k].Speed)
-              print("Route - Slow", Trains[k].Speed, Trains[k].OnRoute)
+              -- print("Route - Slow", Trains[k].Speed, Trains[k].OnRoute)
             end
             Trains[k].OnRoute = (Trains[k].OnRoute + 1)
             Next.Type = nil
@@ -175,10 +175,10 @@ CreateThread(function()
             while (not (Trains[k].TrainStart) and (Trains[k].Speed) > (Next.Speed)) do Wait(1)
               Trains[k].Speed = (Trains[k].Speed - Inc)
               SetTrainCruiseSpeed(Trains[k].TrainID, Trains[k].Speed)
-              print("Route - Station", Trains[k].Speed, Trains[k].OnRoute, Next.StopTime)
+              -- print("Route - Station", Trains[k].Speed, Trains[k].OnRoute, Next.StopTime)
               if (Trains[k].Speed <= 0.2) then
                 for i=0, Next.StopTime do
-                  print("Waiting ", i)
+                  -- print("Waiting ", i)
                   Trains[k].Speed = 0
                   SetTrainCruiseSpeed(Trains[k].TrainID, 0.0)
                   SetTrainSpeed(Trains[k].TrainID, 0.0)

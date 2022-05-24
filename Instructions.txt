@@ -3,8 +3,11 @@
 --------------------------------------------------------------------------------
 Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-Currently DokusCore is @ v0.5.6 --- Artifacts 5402
+Currently DokusCore is @ v0.5.9 --- Artifacts 5562
 --------------------------------------------------------------------------------
+DATABASE LAST UPDATED:   @ 24th May 2022
+--------------------------------------------------------------------------------
+
 
 ==========================
 Installation Instructions:
@@ -35,7 +38,7 @@ Extra Information:
 ==========================
 * DokusCore is now running over game build 1436! You must let your client
   update to this version also to join the server. If you do not want to run
-  the latest game build you can always revert to build 1355
+  the latest game build you can always revert to build 1436
 
 * DokusCore is up to date with the latest FXServer (Artifacts) files that are
   required for TXAdmin. You do NOT need to update these files!

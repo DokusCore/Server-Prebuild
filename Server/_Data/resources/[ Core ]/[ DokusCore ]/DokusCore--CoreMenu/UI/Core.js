@@ -64,12 +64,14 @@ const InitData = (nr) => {
 
 
   if ((Menu == 'InfoMenu') && (nr == 0))         { ToggleOption('ShowDiscord');                        };
+  if ((Menu == 'InfoMenu') && (nr == 1))         { ToggleOption('GuideUp'); CloseMenu();               };
 
   // Admin Actions
   if ((Menu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                       };
   if ((Menu == 'AdminMenu') && (nr == 1))        { OpenThisMenu('AdminSelfActionsMenu');               };
   if ((Menu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('ModuleSyncMenu');                     };
   if ((Menu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
+  if ((Menu == 'TeleportMenu') && (nr == 1))     { ToggleOption('Teleport', 'TTC'); CloseMenu();       };
   if ((Menu == 'AdminSelfActionsMenu') && (nr == 0)) { OpenThisMenu('AdminMetamolismMenu');            };
 
   if ((Menu == 'AdminMetamolismMenu') && (nr == 0))        { ToggleOption('ASelfMenu', 'HealHealth');  };
@@ -78,6 +80,7 @@ const InitData = (nr) => {
   if ((Menu == 'AdminMetamolismMenu') && (nr == 3))        { ToggleOption('ASelfMenu', 'HealThirst');  };
 
   if ((Menu == 'ModuleSyncMenu') && (nr == 0))        { ToggleOption('SyncUsableItems');  };
+  if ((Menu == 'ModuleSyncMenu') && (nr == 1))        { ToggleOption('SyncStoreItems');   };
 
   if ((Menu == 'LangList1') && (nr == 0))        { ToggleOption('ChangeLanguage', 'en');               };
   if ((Menu == 'LangList1') && (nr == 1))        { ToggleOption('ChangeLanguage', 'de');               };

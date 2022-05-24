@@ -50,7 +50,37 @@ function IsError(Reason)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function Logout()
+  local PedID = PedID()
+  local Pos = GetCoords(PedID)
+  local Coords = Encoded(Pos)
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { Steam, UserID, Coords } })
+  -- TriggerEvent('DokusCore:Core:Hud:Toggle', false)
+  SetVisible(PedID, false)
+  SetFreeze(PedID, true)
 
+  -- Open MultiCharacters login screen
+  TriggerEvent('DokusCore:MultiChar:ChooseChar')
+
+  -- Reset the DataSync
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'cName', { nil } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharMoney', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetCharGold', { 0 } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankMoney', { nil } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'SetBankGold', { nil } })
+  TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'Alive', { false } })
+
+  -- Reset Plugin Data
+  TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
+  TriggerEvent('DokusCore:Inventory:User:Logout')
+
+  -- Disable Radar and reset CharID
+  DisplayRadar(false)
+  UserID = 0
+end
 
 
 

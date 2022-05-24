@@ -16,6 +16,7 @@ function SetCharName(v)   _User.cName       = v Call('cName')          end
 function SetServerID(v)   _User.ServerID    = v Call('ServerID')       end
 function SetSteamName(v)  _User.sName       = v Call('sName')          end
 function SetCoords(v)     _User.Coords      = v Call('Coords')         end
+function SetUserAlive(v)  _User.Alive       = v Call('Alive')          end
 function SetInGameStat(v) _User.UserInGame  = v Call('UserInGame')     end
 function SetCharMoney(v)  _User.CharMoney   = v Call('SetCharMoney')   end
 function SetCharGold(v)   _User.CharGold    = v Call('SetCharGold')    end

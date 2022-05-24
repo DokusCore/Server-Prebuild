@@ -13,6 +13,7 @@ function Call(v)
   if (Low(v) == 'sname')          then print(System.."You're Steam Name is stored succesfully!")                  end
   if (Low(v) == 'cname')          then print(System.."You're Character Name is stored succesfully!")              end
   if (Low(v) == 'coords')         then print(System.."You're Coords are stored succesfully!")                     end
+  if (Low(v) == 'alive')          then print(System.."You're Character death status has been updated!")           end
   if (Low(v) == 'serverid')       then print(System.."You're Server ID is stored succesfully!")                   end
   if (Low(v) == 'useringame')     then print(System.."You're InGame Status is stored succesfully!")               end
   if (Low(v) == 'setcharmoney')   then print(System.."You're Character Money Amount is stored succesfully!")      end

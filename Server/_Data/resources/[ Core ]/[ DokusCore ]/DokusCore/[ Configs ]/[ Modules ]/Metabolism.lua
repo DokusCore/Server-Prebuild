@@ -12,9 +12,13 @@ _Metabolism = {
     Damage = { Cold = { Thirst = 0.02, Hunger = 0.15  }, Hot = { Thirst = 0.15, Hunger = 0.02 } }
   },
 
-  Vitals = { LoseWhen = 10.0, DPS = 2.5 },
+  Vitals = { LoseWhen = 1.0, DPS = 1.0 },
   Hunger = { Drain = { Idle = 0.01, Walking = 0.07, Running = 0.15, Sprinting = 0.25 }},
-  Thirst = { Drain = { Idle = 0.02, Walking = 0.10, Running = 0.50, Sprinting = 0.75 }}
+  Thirst = { Drain = { Idle = 0.02, Walking = 0.10, Running = 0.50, Sprinting = 0.75 }},
+
+  -- Spice up your RP with random character farts and burps.
+  Farting = { Enabled = true, Frequention = 60 },
+  Burping = { Enabled = true, Frequention = 60 },
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
