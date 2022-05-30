@@ -3,7 +3,14 @@
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('CloseNUI', function() ResetStore() end)
+RegisterNUICallback('CloseNUI', function()
+  ShowPrompt = false
+  SetNuiFocus(false, false)
+  local Random = Dialog.MenuExit[math.random(#Dialog.MenuExit)]
+  NoteNPCTalk(Dialog.NPCName, Random, 1500) Wait(500)
+  ShowPrompt = true
+  ResetStore()
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('NoSelectItemError', function() Notify("You've have not selected an item yet!") end)

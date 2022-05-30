@@ -14,9 +14,10 @@ AdminMenu = {
     MenuName = 'AdminMenu',
     MenuTitle = 'DokusCore Menu',
     MenuOptions = {
-      { Type = 'Menu', Option = 'TeleportMenu', Title = 'Teleport Menu' },
-      { Type = 'Menu', Option = 'AdminSelfActionsMenu', Title = 'Self Actions' },
-      { Type = 'Menu', Option = 'ModuleSyncMenu', Title = 'Modules Sync Menu' },
+      { Type = 'Menu',   Option = 'TeleportMenu', Title = 'Teleport Menu' },
+      { Type = 'Option', Option = 'WeatherSyncMenu', Title = 'Weather Sync Menu' },
+      { Type = 'Menu',   Option = 'AdminSelfActionsMenu', Title = 'Self Actions' },
+      { Type = 'Menu',   Option = 'ModuleSyncMenu', Title = 'Modules Sync Menu' },
     }
   }
 }

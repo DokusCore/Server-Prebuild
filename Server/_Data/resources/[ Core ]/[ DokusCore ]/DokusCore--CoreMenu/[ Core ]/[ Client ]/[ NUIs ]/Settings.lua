@@ -9,7 +9,7 @@ RegisterNUICallback('ToggleMusic', function()
   SetAutoPlay = false AutoPlayWarning = false
   if (SetMusic == 0) then Notify('All in game music has turned off!', 'topCenter', 5000) end
   if (SetMusic == 1) then Notify('All in game music has turned on!', 'topCenter', 5000) end
-  if (SetMusic == 0) then TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'None', 0.0) end
+  if (SetMusic == 0) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', 'None', 0.0) end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

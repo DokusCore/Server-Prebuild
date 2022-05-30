@@ -79,8 +79,8 @@ RegisterNUICallback('createNewCharacter', function(Data)
   local Config = _MultiCharacters.StartPositions[1]
   SetCoords(PedID, Config.Coords)
   SetHeading(PedID, Config.Heading)
-  TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'TrainPass', 0.3) Wait(17000)
-  if (_MultiCharacters.IntroSong.Enabled) then TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'RunHome', _MultiCharacters.IntroSong.Volume) end
+  TriggerEvent('DokusCore:Core:MP:Sounds:PlayOnUser', 'TrainPass', 0.3) Wait(10000)
+  if (_MultiCharacters.IntroSong.Enabled) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', 'RunHome', _MultiCharacters.IntroSong.Volume) end
   SetVisible(PedID, true)
   SetFreeze(PedID, false)
   Wait(2000)

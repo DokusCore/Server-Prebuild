@@ -322,7 +322,7 @@ function LoadHeight(target, data)
     if IsPedMale(target) == 1 then
       SetPedScale(target, tonumber(data.height/100))
     else
-      SetPedScale(target, tonumber(data.height/100))	
+      SetPedScale(target, tonumber(data.height/100))
     end
   end
 end
@@ -419,9 +419,13 @@ function HasBodyComponentsLoaded (target, hair, beard)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function GetTorso() return torso end
-function GetLegs() return legs end
-function GetComponentId(name) return components_data["beard"] end
-function GetBodyComponents() return {list, list_f} end
+RegisterNetEvent('DokusCore:SkinCreator:Export:Torso', function(cb) return cb(torso) end)
+RegisterNetEvent('DokusCore:SkinCreator:Export:Legs', function(cb) return cb(legs) end)
+RegisterNetEvent('DokusCore:SkinCreator:Export:CompID', function(cb) return cb(components_data["beard"]) end)
+RegisterNetEvent('DokusCore:SkinCreator:Export:CompBody', function(cb) return cb({list, list_f}) end)
+-- function GetTorso() return torso end
+-- function GetLegs() return legs end
+-- function GetComponentId(name) return components_data["beard"] end
+-- function GetBodyComponents() return {list, list_f} end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

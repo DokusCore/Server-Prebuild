@@ -3,12 +3,13 @@
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
-SteamID, CharID, NPCs = nil, 0, {}
+SteamID, CharID, NPCs, Blips = nil, 0, {}, {}
 Array_Inv, Array_Store = {}, {}
 InArea, InStore, NearNPC = false, false, false
 Loc, StoreInUse = nil, false
 Prompt_Buy, Prompt_Sell, Prompt_Manage = nil, nil, nil
 PromptGroup = GetRandomIntInRange(0, 0xffffff)
+Dialog = _Dialogs.Stores
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Set the players data
@@ -26,7 +27,7 @@ CreateThread(function()
   if (_Modules.Trains) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    for k,v in pairs(_Stores.Stores) do if (v.Enabled) then SetBlip(v.Coords, 1475879922, Radius, 'General Store') end end
+    for k,v in pairs(_Stores.Stores) do if (v.Enabled) then Tabi(Blips, SetBlip(v.Coords, 1475879922, Radius, 'General Store')) end end
     for k,v in pairs(_Stores.NPCs) do if (v.Enabled) then Tabi(NPCs, SpawnNPC(v.Hash, v.Coords, v.Heading)) end end
   end
 end)
@@ -65,10 +66,10 @@ CreateThread(function()
     while true do Wait(500)
       for k,v in pairs(_Stores.Stores) do
         local Dist = GetDistance(v.Coords)
-        if ((Loc == nil) and (Dist <= 30)) then Loc = Low(v.ID) end
+        if ((Loc == nil) and (Dist <= v.Radius)) then Loc = Low(v.ID) end
         if ((Loc ~= nill) and (Low(Loc) == Low(v.ID))) then
-          if ((Dist > 30) and (InArea)) then SetOutArea() end
-          if ((Dist <= 30) and not (InArea)) then SetInArea() end
+          if ((Dist > v.Radius) and (InArea)) then SetOutArea() end
+          if ((Dist <= v.Radius) and not (InArea)) then SetInArea() end
         end
       end
     end
@@ -195,9 +196,10 @@ end)
 --------------------------------------------------------------------------------
 -- Delete all NPCs when the resource stops
 --------------------------------------------------------------------------------
-AddEventHandler('onResourceStop', function(resourceName)
-  if (GetCurrentResourceName() ~= resourceName) then return end
-  for k,v in pairs(NPCs) do DeleteEntity(v) end
+AddEventHandler('onResourceStop', function(Name)
+  if (GetCurrentResourceName() ~= Name) then return end
+  for k,v in pairs(NPCs)  do DeleteEntity(v) end
+  for k,v in pairs(Blips) do RemoveBlip(v)   end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

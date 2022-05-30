@@ -47,7 +47,7 @@ end
 function SendHungerWarning()
   local R = HungerTxt[math.random(#HungerTxt)]
   Notify(R, 'BottomCenter', 7000)
-  TriggerEvent('DokusCore:Core:Sounds:PlayOnUser', 'StomachGrowl1', 0.3)
+  TriggerEvent('DokusCore:Core:MP:Metabolism:PlayOnUser', 'StomachGrowl1', 0.3)
   Wait(30000)
 end
 --------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ end
 function DoFarting()
   local Coords = GetEntityCoords(PedID())
   local R = FartSounds[math.random(#FartSounds)]
-  TriggerEvent('DokusCore:Core:Sounds:PlayInRadiusOfCoords', Coords, 10.0, R.Sound, R.Volume)
+  TriggerEvent('DokusCore:Core:MP:Metabolism:PlayInRadiusOfCoords', Coords, 10.0, R.Sound, R.Volume)
   Wait(5000)
 end
 --------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ end
 function DoBurps()
   local Coords = GetEntityCoords(PedID())
   local R = BurpSounds[math.random(#BurpSounds)]
-  TriggerEvent('DokusCore:Core:Sounds:PlayInRadiusOfCoords', Coords, 10.0, R.Sound, R.Volume)
+  TriggerEvent('DokusCore:Core:MP:Metabolism:PlayInRadiusOfCoords', Coords, 10.0, R.Sound, R.Volume)
   Wait(5000)
 end
 --------------------------------------------------------------------------------

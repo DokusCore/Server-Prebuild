@@ -5,7 +5,8 @@ description 'DokusCore Global Server SafeGuard - http://DokusCore.com (Anti-Chea
 author 'DevDokus'
 fx_version "adamant"
 games {"rdr3"}
-version '0.0.2 BETA'
+version '0.0.2-BETA'
+this_is_a_map "yes"
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -21,7 +22,7 @@ server_scripts { '[ Core ]/[ Server ]/*.*' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  -- 'Config.lua', -- Just for Development
+  -- 'Config.lua', -- Only for Development
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/SafeGuard.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',

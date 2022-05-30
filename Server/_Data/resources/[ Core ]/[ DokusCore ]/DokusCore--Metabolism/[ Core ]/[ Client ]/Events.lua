@@ -173,9 +173,10 @@ AddEventHandler('DokusCore:Metabolism:VitalFlash', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
+-- Pause Burps, Farts and stomach rumbling to it does not interrupt with the music
+RegisterNetEvent('DokusCore:Metabolism:PPBurpsFartsStomach', function(Bool) PPBurpsFartsRumble = Bool end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

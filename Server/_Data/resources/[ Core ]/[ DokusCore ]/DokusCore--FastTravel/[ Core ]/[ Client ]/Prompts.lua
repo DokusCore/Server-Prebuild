@@ -10,8 +10,7 @@ Group = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 function SetDenisPrompts()
   CreateThread(function()
-    -- Set Prompt to Guarma
-    local str = 'Guarma'
+    local str = _Dialogs.Guarma
     Prompt_Guarma = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Guarma, _Keys['G'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -21,9 +20,8 @@ function SetDenisPrompts()
     PromptSetHoldMode(Prompt_Guarma, true)
     PromptSetGroup(Prompt_Guarma, Group)
     PromptRegisterEnd(Prompt_Guarma)
-    
-    -- Set Prompt to the jail
-    local str = 'Sisika Jail'
+
+    local str = _Dialogs.Jail
     Prompt_Jail = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Jail, _Keys['X'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -39,8 +37,7 @@ end
 --------------------------------------------------------------------------------
 function SetGuarmaPrompts()
   CreateThread(function()
-    -- Set Prompt to Guarma
-    local str = 'Saint Denis'
+    local str = _Dialogs.SaintDenis
     Prompt_Guarma_sDenis = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Guarma_sDenis, _ActionKey)
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -56,8 +53,7 @@ end
 --------------------------------------------------------------------------------
 function SetJailPrompts()
   CreateThread(function()
-    -- Set Prompt to Jail
-    local str = 'Saint Denis'
+    local str = _Dialogs.SaintDenis
     Prompt_Jail_sDenis = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Jail_sDenis, _ActionKey)
     str = CreateVarString(10, 'LITERAL_STRING', str)

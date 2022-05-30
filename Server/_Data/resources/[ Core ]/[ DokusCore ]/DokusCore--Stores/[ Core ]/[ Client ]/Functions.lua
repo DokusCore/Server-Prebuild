@@ -15,7 +15,7 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function NREntryErr() Notify("You've not inserted a number, but inserted text or nothing!!") end
+function NREntryErr() NoteObjective("ERROR", "You've not inserted a number, but inserted text or nothing!!", 'Alert', 5000) end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Open(Type) TriggerEvent('DokusCore:Stores:OpenStore', Type) end
@@ -28,11 +28,21 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function SetOutArea()
+  ShowPrompt = false
+  SetNuiFocus(false, false)
+  local Random = Dialog.ExitStore[math.random(#Dialog.ExitStore)]
+  NoteNPCTalk(Dialog.NPCName, Random, 1500) Wait(500)
+  ShowPrompt = true
   InArea, Loc = false, nil
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function SetInStore()
+  ShowPrompt = false
+  SetNuiFocus(false, false)
+  local Random = Dialog.EnterStore[math.random(#Dialog.EnterStore)]
+  NoteNPCTalk(Dialog.NPCName, Random, 1500) Wait(500)
+  ShowPrompt = true
   InStore = true
   TriggerEvent('DokusCore:Stores:CheckDistNPC')
 end
@@ -179,6 +189,9 @@ function OpenStore() IndexAllData() end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function OpenStoreBuy()
+  ShowPrompt = false
+  local Random = Dialog.MenuBuy[math.random(#Dialog.MenuBuy)]
+  NoteNPCTalk(Dialog.NPCName, Random, 1500) Wait(500)
   StoreInUse = true
   Array_Inv, Array_Store = {}, {}
   IndexAllData()
@@ -187,6 +200,9 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function OpenStoreSell()
+  ShowPrompt = false
+  local Random = Dialog.MenuSell[math.random(#Dialog.MenuSell)]
+  NoteNPCTalk(Dialog.NPCName, Random, 1500) Wait(500)
   Array_Inv, Array_Store = {}, {}
   IndexAllData()
   StoreInUse = true
@@ -195,12 +211,12 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Message(Type, Item, Amount)
-  if (Type == 'NotEnough') then Notify("You do not have this much in your inventory!") end
-  if (Type == 'InDev') then Notify('This Option is in developement!') Wait(5000) end
-  if (Type == 'NoMinNumber') then Notify("You can not use negative numbers!") end
-  if (Type == 'Buy') then Notify("You've bought "..Amount.." "..Item.."'s") end
-  if (Type == 'Sell') then Notify("You've sold "..Amount.." "..Item.."'s") end
-  if (Type == 'NoBuyMoney') then Notify("You've not enough money to buys this / these amount of items!") end
+  if (Type == 'NotEnough') then NoteObjective("ERROR", "You do not have this much in your inventory!", 'Alert', 5000) end
+  if (Type == 'InDev') then NoteObjective("ERROR", 'This Option is in developement!', '', 5000) Wait(5000) end
+  if (Type == 'NoMinNumber') then NoteObjective("ERROR", "You can not use negative numbers!", 'Alert', 5000) end
+  if (Type == 'Buy') then NoteObjective("ERROR", "You've bought "..Amount.." "..Item.."'s", 'Alert', 5000) end
+  if (Type == 'Sell') then NoteObjective("ERROR", "You've sold "..Amount.." "..Item.."'s", 'Alert', 5000) end
+  if (Type == 'NoBuyMoney') then NoteObjective("ERROR", "You've not enough money to buys this / these amount of items!", 'Alert', 5000) end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

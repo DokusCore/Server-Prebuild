@@ -21,3 +21,6 @@ RegisterNUICallback('SyncUsableItems', function(Data) TriggerEvent('DokusCore:Us
 RegisterNUICallback('SyncStoreItems', function(Data) TriggerEvent('DokusCore:Stores:ReSyncStoreItems') end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNUICallback('WeatherSyncMenu', function(Data) TriggerServerEvent('DokusCore:WeatherSync:OpenMenu') end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

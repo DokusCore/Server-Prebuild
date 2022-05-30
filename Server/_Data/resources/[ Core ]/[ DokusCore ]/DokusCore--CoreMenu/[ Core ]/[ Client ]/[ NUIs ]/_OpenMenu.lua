@@ -50,7 +50,7 @@ RegisterNUICallback('OpenMenu', function(Data)
     while not UserInGame() do Wait(1000) end
     local Data = TCTCC('DokusCore:Sync:Get:UserData')
     local IsAdmin = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Data.SteamID, Data.CharID }}).Result[1].Group
-    if (string.lower(IsAdmin) == 'user') then return Notify("ERROR: Unable to open this menu, you're not a admin!") end
+    if (string.lower(IsAdmin) == 'user') then return NoteObjective("ERROR", "Unable to open this menu, you're not a admin!", 'Alert', 5000) end
     SendNUIMessage({ Action = 'SetMenu',  Menu = 'AdminMenu' })
     SendNUIMessage({ Action = 'OpenMenu', Menu = AdminMenu[1] })
   elseif (Data.Menu == 'TeleportMenu') then

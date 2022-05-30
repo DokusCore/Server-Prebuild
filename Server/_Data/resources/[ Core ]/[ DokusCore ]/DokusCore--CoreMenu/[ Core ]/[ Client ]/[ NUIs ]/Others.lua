@@ -7,10 +7,10 @@ RegisterNUICallback('Close', function() CloseMenu() end)
 RegisterNUICallback('SetMenu', function(Data) InMenu = Data.Menu end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('NoNextButton', function() Notify("No next page at the moment", 'topCenter', 5000) end)
+RegisterNUICallback('NoNextButton', function() NoteObjective("Core System", "No next page at the moment", 'Alert', 5000) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('NoBackButton', function() Notify("No back page at the moment", 'topCenter', 5000) end)
+RegisterNUICallback('NoBackButton', function() NoteObjective("Core System", "No back page at the moment", 'Alert', 5000) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('OpenInventory', function()

@@ -9,6 +9,7 @@ ShowHud, VitalFlash = true, false
 IsIdle, IsWalking, IsRunning, IsSprinting = false, false, false, false
 Num = tonumber
 Meta = _Metabolism
+PPBurpsFartsRumble = false
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Initialize User Data on user joining
@@ -38,10 +39,13 @@ CreateThread(function() Wait(5000)
         local PedID  = PedID()
         local Control = IsControlPressed(0, _Keys["SHIFT"])
         local Walking, Running = IsPedWalking(PedID), IsPedRunning(PedID)
-        if (not (Walking) and not (Running)) then IsIdle = true else IsIdle = false end
-        if (Walking) then IsWalking = true else IsWalking = false end
-        if (Running) then IsRunning = true else IsRunning = false end
-        if ((Control) and (IsIdle)) then IsSprinting = true else IsSprinting = false end
+        local MHorse = Citizen.InvokeNative(0x95CBC65780DE7EB1, PedID, true)
+        if (MHorse) then IsIdle, IsWalking, IsRunning, IsSprinting = true, false, false, false else
+          if (not (Walking) and not (Running)) then IsIdle = true else IsIdle = false end
+          if (Walking) then IsWalking = true else IsWalking = false end
+          if (Running) then IsRunning = true else IsRunning = false end
+          if ((Control) and (IsIdle)) then IsSprinting = true else IsSprinting = false end
+        end
       end
     end
   end
@@ -111,11 +115,12 @@ CreateThread(function()
   if (_Modules.Metabolism) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    Wait(180000) -- Wait 60 sec to not cut the intro song
     while true do Wait(1000)
       while Online do Wait(1000)
-        if (Hunger <= 20) then SendHungerWarning() end
-        if (Thirst <= 20) then SendThirstWarning() end
+        if not (PPBurpsFartsRumble) then
+          if (Hunger <= 20) then SendHungerWarning() end
+          if (Thirst <= 20) then SendThirstWarning() end
+        end
       end
     end
   end
@@ -129,11 +134,12 @@ CreateThread(function()
     if (Meta.Farting.Enabled) then
       while not FrameReady() do Wait(1000) end
       while not UserInGame() do Wait(1000) end
-      Wait(180000) -- Wait 60 sec to not cut the intro song
       while true do Wait(1000)
         while Online do Wait(Meta.Farting.Frequention * 1000)
-          local Random = math.random(1, 10)
-          if (Random == 5) then DoFarting() end
+          if not (PPBurpsFartsRumble) then
+            local Random = math.random(1, 10)
+            if (Random == 5) then DoFarting() end
+          end
         end
       end
     end
@@ -148,11 +154,12 @@ CreateThread(function()
     if (Meta.Burping.Enabled) then
       while not FrameReady() do Wait(1000) end
       while not UserInGame() do Wait(1000) end
-      Wait(180000) -- Wait 60 sec to not cut the intro song
       while true do Wait(1000)
         while Online do Wait(Meta.Burping.Frequention * 1000)
-          local Random = math.random(1, 10)
-          if (Random == 5) then DoBurps() end
+          if not (PPBurpsFartsRumble) then
+            local Random = math.random(1, 10)
+            if (Random == 5) then DoBurps() end
+          end
         end
       end
     end

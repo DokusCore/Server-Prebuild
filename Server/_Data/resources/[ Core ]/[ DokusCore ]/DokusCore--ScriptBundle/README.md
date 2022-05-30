@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Script Bundle (v1.1.0) [BETA]</b> - A bundle of small scripts for the DokusCore Framework!.
+ <b>DokusCore Script Bundle (v1.2.0) [BETA]</b> - A bundle of small scripts for the DokusCore Framework!.
 </p>
 
 ---
@@ -20,18 +20,12 @@ set up a DokusCore server, see the following video: [Installation video](https:/
 
 ---
 # Installation
-Simply extract the `DokusCore--UsableItems` into your `resources` folder, and <br>
-start it via `ensure DokusCore--UsableItems`.
+Simply extract the `DokusCore--ScriptBundle` into your `resources` folder, and <br>
+start it via `ensure DokusCore--ScriptBundle`.
 
 ---
 # Plugin Information
-With this plugin you can make items usable, this can be consumables, <br>
-but also things like placing a tent or campfire. The Usable Item's plugin <br>
-will also take care of the player's metabolism if you eat or drink something, <br>
-your vital stats will be adjusted. The same goes for placing objects and using <br>
-tools, this costs you stamina but also thirst and hunger. In the database you <br>
-can set your own animations for each item with this you get true <br>
-customizability on how you want your animations to behave. <br>
+This plugin is a bundle of all kinds of small scripts for DokusCore
 
 ---
 # Discord

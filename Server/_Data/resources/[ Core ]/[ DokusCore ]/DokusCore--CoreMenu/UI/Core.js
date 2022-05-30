@@ -68,8 +68,9 @@ const InitData = (nr) => {
 
   // Admin Actions
   if ((Menu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                       };
-  if ((Menu == 'AdminMenu') && (nr == 1))        { OpenThisMenu('AdminSelfActionsMenu');               };
-  if ((Menu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('ModuleSyncMenu');                     };
+  if ((Menu == 'AdminMenu') && (nr == 1))        { ToggleOption('WeatherSyncMenu'); CloseMenu();       };
+  if ((Menu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('AdminSelfActionsMenu');               };
+  if ((Menu == 'AdminMenu') && (nr == 3))        { OpenThisMenu('ModuleSyncMenu');                     };
   if ((Menu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
   if ((Menu == 'TeleportMenu') && (nr == 1))     { ToggleOption('Teleport', 'TTC'); CloseMenu();       };
   if ((Menu == 'AdminSelfActionsMenu') && (nr == 0)) { OpenThisMenu('AdminMetamolismMenu');            };
