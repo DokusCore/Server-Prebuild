@@ -10,7 +10,7 @@ ShowPrompt = true
 -- Set Users SteamID
 --------------------------------------------------------------------------------
 CreateThread(function()
-  if (_Modules.FastTavel) then
+  if (_Modules.FastTravel) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     local Data = TCTCC('DokusCore:Sync:Get:UserData')
@@ -23,7 +23,7 @@ end)
 -- Create the map markers and spawn the bank npcs
 --------------------------------------------------------------------------------
 CreateThread(function()
-  if (_Modules.FastTavel) then
+  if (_Modules.FastTravel) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     for k,v in pairs(_FastTravel.Zones) do Tabi(Blips, SetBlip(v.Coords, -1505442625, 1.0, 'Fast Travel')) end
@@ -33,7 +33,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
-  if (_Modules.FastTavel) then
+  if (_Modules.FastTravel) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     while true do Wait(1000)
@@ -53,11 +53,11 @@ CreateThread(function()
             local S = PromptHasHoldModeCompleted(Prompt_Guarma_sDenis)
             local A = PromptHasHoldModeCompleted(Prompt_Jail_sDenis)
 
-            if ((G)) then TriggerEvent('DokusCore:FastTavel:Teleport:Guarma') Wait(10000) end
-            if ((C)) then TriggerEvent('DokusCore:FastTavel:Teleport:Casino') Wait(10000) end
-            if ((J)) then TriggerEvent('DokusCore:FastTavel:Teleport:Jail')   Wait(10000) end
-            if ((S)) then TriggerEvent('DokusCore:FastTavel:Teleport:sDenis') Wait(10000) end
-            if ((A)) then TriggerEvent('DokusCore:FastTavel:Teleport:sDenis') Wait(10000) end
+            if ((G)) then TriggerEvent('DokusCore:FastTravel:Teleport:Guarma') Wait(10000) end
+            if ((C)) then TriggerEvent('DokusCore:FastTravel:Teleport:Casino') Wait(10000) end
+            if ((J)) then TriggerEvent('DokusCore:FastTravel:Teleport:Jail')   Wait(10000) end
+            if ((S)) then TriggerEvent('DokusCore:FastTravel:Teleport:sDenis') Wait(10000) end
+            if ((A)) then TriggerEvent('DokusCore:FastTravel:Teleport:sDenis') Wait(10000) end
           end
         end
       end

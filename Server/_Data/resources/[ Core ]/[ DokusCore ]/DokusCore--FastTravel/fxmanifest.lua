@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 ----------------------------------- DevDokus -----------------------------------
 --------------------------------------------------------------------------------
-description 'DokusCore FastTavel -- Teleports you to off map locations!'
+description 'DokusCore FastTravel -- Teleports you to off map locations!'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.0 BETA'
+version '1.1.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts {

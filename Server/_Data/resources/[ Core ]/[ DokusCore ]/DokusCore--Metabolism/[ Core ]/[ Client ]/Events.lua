@@ -177,8 +177,12 @@ end)
 RegisterNetEvent('DokusCore:Metabolism:PPBurpsFartsStomach', function(Bool) PPBurpsFartsRumble = Bool end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
+RegisterNetEvent('DokusCore:Metabolism:ShowHud', function(Bool)
+  ShowHud = Bool
+  SendNUIMessage({ Show = ShowHud })
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

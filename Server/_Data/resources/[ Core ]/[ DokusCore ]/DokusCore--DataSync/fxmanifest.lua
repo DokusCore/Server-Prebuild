@@ -5,7 +5,7 @@ description 'DokusSync -- A plugin that stores all core data to stay synced'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.3.0 BETA'
+version '1.3.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {

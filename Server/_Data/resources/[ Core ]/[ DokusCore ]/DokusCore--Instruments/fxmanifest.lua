@@ -1,5 +1,6 @@
 game 'rdr3'
 fx_version 'adamant'
+version '1.0.1'
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 
 files {
@@ -29,7 +30,7 @@ files {
 
 ui_page 'ui/index.html'
 
-server_script 'server.lua'
+server_script {'server.lua', 'Version.lua'}
 
 client_scripts {
 	'config.lua',

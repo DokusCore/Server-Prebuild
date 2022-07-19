@@ -15,6 +15,9 @@ RegisterNetEvent('DokusCore:Sync:Set:UserData', function(a)
   if (Low(a[1]) == 'bankmoney')    then SetBankMoney(a[2][1])  end
   if (Low(a[1]) == 'bankgold')     then SetBankGold(a[2][1])   end
 
+  if (Low(a[1]) == 'gender')       then SetCharGender(a[2][1]) end
+  if (Low(a[1]) == 'skin')         then SetCharSkin(a[2][1])   end
+
 
   -- NOTE: Need to be removed from all plugins.
   if (Low(a[1]) == 'setcharmoney') then SetCharMoney(a[2][1])  end

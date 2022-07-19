@@ -20,6 +20,10 @@ function SetUserAlive(v)  _User.Alive       = v Call('Alive')          end
 function SetInGameStat(v) _User.UserInGame  = v Call('UserInGame')     end
 function SetCharMoney(v)  _User.CharMoney   = v Call('SetCharMoney')   end
 function SetCharGold(v)   _User.CharGold    = v Call('SetCharGold')    end
+function SetCharGender(v) _User.Gender      = v Call('SetCharGender')  end
+function SetCharSkin(v)   _User.Skin        = v Call('SetCharSkin')    end
+
+-- NOTE: DEPRECATED--  Need to be removed from all plugins
 function SetBankMoney(v)  _User.BankMoney   = v Call('SetBankMoney')   end
 function SetBankGold(v)   _User.BankGold    = v Call('SetBankGold')    end
 --------------------------------------------------------------------------------

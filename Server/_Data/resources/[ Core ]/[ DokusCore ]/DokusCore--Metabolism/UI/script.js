@@ -4,18 +4,16 @@ window.addEventListener('message', function(Event) {
   // Variables
   const Data   = Event.data;
   const Action = Data.Action;
+  const Show   = Data.Show;
   const Temp   = Data.Temp;
   const rTemp  = Data.rTemp; // For later use to change the temperature color for hot and cold
   const Hunger = Data.Hunger;
   const Thirst = Data.Thirst;
   const Stress = Data.Stress;
 
-  // Show or Hide the Hud
-  $("body").animate({ opacity: Data.Show ? 1 : 0 }, 500);
-
   // Hide or show the hud
-  if (Action == 'HideHud') { $("body").hide() };
-  if (Action == 'ShowHud') { $("body").show() };
+  if (Show == false) { $("body").hide(1500) };
+  if (Show == true)  { $("body").show(1500) };
 
   // Events
   if (Action == 'SetHud') {

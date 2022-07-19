@@ -10,7 +10,7 @@ local DBChecked = false
 --------------------------------------------------------------------------------
 RegisterServerEvent('DokusCore:Stores:CheckDatabase')
 AddEventHandler('DokusCore:Stores:CheckDatabase', function(Bool, Data, Items)
-  if (Bool ~= nil) then DBChecked = Bool end 
+  if (Bool ~= nil) then DBChecked = Bool end
   if not (DBChecked) then
     for k,v in pairs(Data) do
       if (v.Stores      == '--') then TriggerEvent('DokusCore:Core:DBSet:Stores', { 'StoreData', { v.Item, SetStoreData()     } }) end
@@ -24,6 +24,11 @@ AddEventHandler('DokusCore:Stores:CheckDatabase', function(Bool, Data, Items)
   end
 end)
 --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
 
 
 

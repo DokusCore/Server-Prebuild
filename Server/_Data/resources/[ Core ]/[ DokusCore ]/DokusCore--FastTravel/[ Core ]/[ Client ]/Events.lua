@@ -10,7 +10,7 @@ AddEventHandler('onResourceStop', function(Name)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:FastTavel:Teleport:Guarma', function()
+RegisterNetEvent('DokusCore:FastTravel:Teleport:Guarma', function()
   local PedID = PedID()
   for k,v in pairs(_FastTravel.Locations) do
     if (v.ID == Loc) then
@@ -39,7 +39,7 @@ RegisterNetEvent('DokusCore:FastTavel:Teleport:Guarma', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:FastTavel:Teleport:Jail', function()
+RegisterNetEvent('DokusCore:FastTravel:Teleport:Jail', function()
   local PedID = PedID()
   for k,v in pairs(_FastTravel.Locations) do
     if (v.ID == Loc) then
@@ -67,7 +67,7 @@ RegisterNetEvent('DokusCore:FastTavel:Teleport:Jail', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:FastTavel:Teleport:sDenis', function()
+RegisterNetEvent('DokusCore:FastTravel:Teleport:sDenis', function()
   local PedID = PedID()
   for k,v in pairs(_FastTravel.Locations) do
     if (v.ID == Loc) then

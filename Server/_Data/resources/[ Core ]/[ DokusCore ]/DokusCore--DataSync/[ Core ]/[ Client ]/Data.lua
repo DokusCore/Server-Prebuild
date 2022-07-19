@@ -17,10 +17,12 @@ _User.CharID         = 0
 _User.ServerID       = 0
 _User.CharMoney      = 0
 _User.CharGold       = 0
-_User.BankMoney      = nil
-_User.BankGold       = nil
+-- _User.BankMoney      = nil -- Deprecated
+-- _User.BankGold       = nil -- Deprecated
 _User.Alive          = false
 _User.UserInGame     = false
+_User.Gender         = nil
+_User.Skin           = nil
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Store Core Client Data

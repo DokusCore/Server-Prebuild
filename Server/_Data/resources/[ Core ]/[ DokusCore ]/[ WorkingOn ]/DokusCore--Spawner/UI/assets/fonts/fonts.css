@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'stephen_typeregular';
+    src: url('stephentype-webfont.woff2') format('woff2'),
+         url('stephentype-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'milkstore02_clean';
+    src: url('milkstore02-clean-webfont.woff2') format('woff2'),
+         url('milkstore02-clean-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

@@ -8,3 +8,11 @@ end)
 AddEventHandler('instruments:noteOff', function(channel, note, octave)
 	TriggerClientEvent('instruments:noteOff', -1, source, channel, note, octave)
 end)
+
+CreateThread(function()
+  local Name = GetCurrentResourceName()
+  local Version = GetResourceMetadata(Name, 'version')
+  TriggerEvent('DokusCore:Sync:Modules:Version', { Name, { Version } })
+end)
+--------------------------------------------------------------------------------``
+--------------------------------------------------------------------------------

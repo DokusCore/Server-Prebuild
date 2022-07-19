@@ -3,10 +3,10 @@ You dont want to spend hours on setting up your server? <br>
 Just use the prebuild and your on your way within 10 minutes!<br>
 
 ----
-CURRENT DOKUSCORE VERSION: | v0.6.0 
-CURRENT ARTIFACT VERSION:  | 5562
-DATABASE LAST UPDATED:     | 24th May 2022
-DOKUSCORE LAST UPDATED:    | 30th May 2022
+CURRENT DOKUSCORE VERSION  | v0.6.1
+CURRENT ARTIFACT VERSION   | 5738
+DATABASE LAST UPDATED      | 18th July 2022
+DOKUSCORE LAST UPDATED:    | 18th July 2022
 
 ----
 # Important !
