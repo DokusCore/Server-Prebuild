@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<CMapData>
+  <flags value="2"/>
+  <contentFlags value="65"/>
+  <streamingExtentsMin x="394.24219" y="1376.7361" z="-118.81741"/>
+  <streamingExtentsMax x="1194.33319" y="2177.2567" z="681.79581"/>
+  <entitiesExtentsMin x="794.24219" y="1776.7361" z="281.18259"/>
+  <entitiesExtentsMax x="794.33319" y="1777.2567" z="281.79581"/>
+  <entities>
+    <Item type="CEntityDef">
+      <archetypeName>p_cs_playerbelt01x</archetypeName>
+      <flags value="1572865"/>
+      <position x="794.33319" y="1776.7361" z="281.27789"/>
+      <rotation w="0.47213" x="-0.4693" y="0.34832" z="-0.65995"/>
+      <scaleXY value="1"/>
+      <scaleZ value="1"/>
+      <parentIndex value="-1"/>
+      <lodDist value="500"/>
+      <childLodDist value="500"/>
+      <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+      <numChildren value="0"/>
+      <ambientOcclusionMultiplier value="255"/>
+      <artificialAmbientOcclusion value="255"/>
+    </Item>
+    <Item type="CEntityDef">
+      <archetypeName>p_cs_playersatchel</archetypeName>
+      <flags value="1572865"/>
+      <position x="794.26477" y="1777.2567" z="281.18259"/>
+      <rotation w="0.65189" x="-0.08586" y="0.08038" z="-0.74913"/>
+      <scaleXY value="1"/>
+      <scaleZ value="1"/>
+      <parentIndex value="-1"/>
+      <lodDist value="500"/>
+      <childLodDist value="500"/>
+      <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+      <numChildren value="0"/>
+      <ambientOcclusionMultiplier value="255"/>
+      <artificialAmbientOcclusion value="255"/>
+    </Item>
+    <Item type="CEntityDef">
+      <archetypeName>p_cs_arthurhat01x</archetypeName>
+      <flags value="1572865"/>
+      <position x="794.24219" y="1777.1276" z="281.79581"/>
+      <rotation w="0.6553" x="0.03621" y="-0.03148" z="-0.75384"/>
+      <scaleXY value="1"/>
+      <scaleZ value="1"/>
+      <parentIndex value="-1"/>
+      <lodDist value="500"/>
+      <childLodDist value="500"/>
+      <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+      <numChildren value="0"/>
+      <ambientOcclusionMultiplier value="255"/>
+      <artificialAmbientOcclusion value="255"/>
+    </Item>
+  </entities>
+</CMapData>

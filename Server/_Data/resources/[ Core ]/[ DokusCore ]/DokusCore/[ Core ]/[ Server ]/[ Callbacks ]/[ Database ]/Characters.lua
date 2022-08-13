@@ -26,6 +26,12 @@ RSC('DokusCore:Core:DBGet:Characters', function(source, args)
       return { Exist = Exist, Result = Result }
     end
   end
+
+  if (Low(args[1]) == 'all') then
+    local X = DBGet(DB.Characters.GetAll, {})
+    if (X[1] ~= nil) then Exist = true Result = X end
+    return { Exist = Exist, Result = Result }
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

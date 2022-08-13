@@ -128,7 +128,7 @@ AddEventHandler('DokusCore:Banking:StartBank', function()
         TriggerEvent('DokusCore:NPCInteract:OpenMenu', { Menu = 'BankMenu', MenuTitle = (Loc .. ' Bank'), Location = Loc })
         Wait(2000)
       elseif (Prompt) and (BankInUse) then
-        NoteNPCTalk(Dialog.NPCName, Dialog.NPCBusy, 5000)
+        NoteNPCTalk(Dialog.NPCName, Dialog.NPCBusy, true, 5000)
         Wait(2000)
       end
     end

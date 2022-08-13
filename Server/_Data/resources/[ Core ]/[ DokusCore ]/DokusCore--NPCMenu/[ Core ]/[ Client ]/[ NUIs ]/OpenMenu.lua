@@ -26,6 +26,12 @@ RegisterNUICallback('OpenMenu', function(Data)
     local rDia = BM.Dialogs[rNR]
     SendNUIMessage({ Action = 'SetMenu',  Menu = 'CreateBankAccount' })
     SendNUIMessage({ Action = 'OpenMenu', Menu = _NPCInteract.CreateBankAccount[1], Dialog = rDia })
+  elseif (Data.Menu == 'ScratchTickets') then
+    local BM = _NPCInteract.ScratchTickets[1]
+    local rNR = math.random(#BM.Dialogs)
+    local rDia = BM.Dialogs[rNR]
+    SendNUIMessage({ Action = 'SetMenu',  Menu = 'ScratchTickets' })
+    SendNUIMessage({ Action = 'OpenMenu', Menu = _NPCInteract.ScratchTickets[1], Dialog = rDia })
   end
 end)
 --------------------------------------------------------------------------------

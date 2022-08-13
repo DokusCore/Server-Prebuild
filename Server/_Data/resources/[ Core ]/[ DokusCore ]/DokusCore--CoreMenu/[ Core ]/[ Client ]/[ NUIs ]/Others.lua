@@ -38,7 +38,7 @@ AddEventHandler('DokusCore:CoreMenu:AntiClickAbuse', function()
     if ((ClickTC < 10) and (Clicks >= 5)) then
       CCRunning = false
       local Player = GetPlayerServerId(PlayerId(-1))
-      TriggerServerEvent('DokusCore:Core:KickPlayer', { Player, ' [ AUTO KICK ]: Do not spawm DokusCore Menu!' })
+      TriggerServerEvent('DokusCore:Core:KickPlayer', { Player, ' [ AUTO KICK ]: Do not spam DokusCore Menu!' })
       return
     end
   end

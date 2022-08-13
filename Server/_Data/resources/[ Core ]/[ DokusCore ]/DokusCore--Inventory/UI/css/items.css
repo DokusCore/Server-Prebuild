@@ -16,6 +16,8 @@
 #water_clean    { background: url('../img/items/water_clean.png') no-repeat; background-size: 90%;  }
 #water_dirty    { background: url('../img/items/water_dirty.png') no-repeat; background-size: 90%;  }
 #whiskey        { background: url('../img/items/whiskey.png') no-repeat; background-size: 85%; }
+#scratchcard    { background: url('../img/items/scratchcard.png') no-repeat; background-size: 85%; }
+#scratchprize    { background: url('../img/items/scratchprize.png') no-repeat; background-size: 85%; }
 
 /* Tools */
 #campfire       { background: url('../img/items/campfire.png') no-repeat; background-size: 100%; }

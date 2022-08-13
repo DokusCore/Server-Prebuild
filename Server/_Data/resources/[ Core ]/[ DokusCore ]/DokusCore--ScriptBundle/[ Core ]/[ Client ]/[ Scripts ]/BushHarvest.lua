@@ -18,7 +18,7 @@ CreateThread(function()
         if ((Loc == nil) and (Near)) then Loc = v.Hash end
         if (Loc == v.Hash) then
           while Check do Wait(1)
-            if ((Near) and not (InRange)) then
+            if ((Near) and not (InRange) and (not IsPedOnMount(PedID)) and (not IsPedInAnyVehicle(PedID, true))) then
               InRange = true
               bCoords = Coords
               Check = false

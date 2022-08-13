@@ -15,14 +15,13 @@ end
 --------------------------------------------------------------------------------
 function CloseMenu()
   MenuOpen = false
-  -- TriggerEvent('DokusCore:Core:Hud:Toggle', true)
   SetNuiFocus(false, false)
   DisplayRadar(true)
+  UserData = nil
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function OpenMenu()
-  -- TriggerEvent('DokusCore:Core:Hud:Toggle', false)
   SetNuiFocus(true, true)
   DisplayRadar(false)
 end

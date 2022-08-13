@@ -5,7 +5,8 @@ description 'DokusCore FastTravel -- All kinds of edits to the world map'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.1'
+version '1.2.0'
+this_is_a_map "yes"
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {

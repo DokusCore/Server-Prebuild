@@ -80,7 +80,11 @@ CreateThread(function() Wait(5000)
     while true do Wait(1000)
       while Online do Wait(1000)
         if (Health <= 0) then
-          TriggerEvent('DokusCore:Metabolism:Respawn')
+          local ID = PedID()
+          UIFadeOut(1500)
+          TriggerEvent('DokusCore:Metabolism:Edit:Hunger', { 15 })
+          TriggerEvent('DokusCore:Metabolism:Edit:Thirst', { 15 })
+          TriggerEvent('DokusCore:Spawner:DeathRespawn', ID)
           Wait(5000)
         end
       end

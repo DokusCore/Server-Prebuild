@@ -19,7 +19,7 @@ RegisterNetEvent('DokusCore:FastTravel:Teleport:Guarma', function()
           ShowPrompt = false
           SetFreeze(PedID, true)
           local Random = Dialog.GoodTravels[math.random(#Dialog.GoodTravels)]
-          NoteNPCTalk(Dialog.NPCName, Random, 5000)
+          NoteNPCTalk(Dialog.NPCName, Random, true, 5000)
           SetFreeze(PedID, false)
           TaskGoToCoordAnyMeans(PedID, 2789.3, -1497.6, 42.7, 1.0, 0, 0, 786603, 0xbf800000)
           Wait(18000)
@@ -48,7 +48,7 @@ RegisterNetEvent('DokusCore:FastTravel:Teleport:Jail', function()
           ShowPrompt = false
           SetFreeze(PedID, true)
           local Random = Dialog.GoodTravels[math.random(#Dialog.GoodTravels)]
-          NoteNPCTalk(Dialog.NPCName, Random, 5000)
+          NoteNPCTalk(Dialog.NPCName, Random, true, 5000)
           SetFreeze(PedID, false)
           TaskGoToCoordAnyMeans(PedID, 2789.3, -1497.6, 42.7, 1.0, 0, 0, 786603, 0xbf800000)
           Wait(18000)
@@ -76,7 +76,7 @@ RegisterNetEvent('DokusCore:FastTravel:Teleport:sDenis', function()
           ShowPrompt = false
           SetFreeze(PedID, true)
           local Random = Dialog.GoodTravels[math.random(#Dialog.GoodTravels)]
-          NoteNPCTalk(Dialog.NPCName, Random, 5000)
+          NoteNPCTalk(Dialog.NPCName, Random, true, 5000)
           SetFreeze(PedID, false)
           UIFadeOut(2000) Wait(2000)
           SetCoords(PedID, v.Coords)

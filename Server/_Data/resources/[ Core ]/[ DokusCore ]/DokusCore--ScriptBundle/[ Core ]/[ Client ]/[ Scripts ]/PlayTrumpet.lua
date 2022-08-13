@@ -10,11 +10,10 @@ local IsPlaying = false
 RegisterNetEvent('DokuCore:ScriptBundle:Trumpet:Play', function(Data)
   IsPlaying = true
   local PedID  = PedID()
-  local Coords = GetCoords(PedID)
   local Hash   = GetHashKey(Data[1])
   TaskStartScenarioInPlace(PedID, Hash, -1, true, false, false, false)
   TriggerEvent('DokuCore:ScriptBundle:Trumpet:WaitToStop', PedID)
-  Notify("You can stop playing by pressing Backspace - Spacebar or X")
+  NoteObjective("System", "You can stop playing by pressing Backspace - Spacebar or X", "Horn", 5000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -27,6 +26,7 @@ RegisterNetEvent('DokuCore:ScriptBundle:Trumpet:WaitToStop', function(PedID)
 			ClearPedTasks(PedID) Wait(1500)
       ClearPedTasksImmediately(PedID)
       IsPlaying = false
+      NoteObjective('System', "If the trumpet stays stuck in your hand, reload your skin via the menu to fix it", 'Horn', 5000)
     end
   end
 end)

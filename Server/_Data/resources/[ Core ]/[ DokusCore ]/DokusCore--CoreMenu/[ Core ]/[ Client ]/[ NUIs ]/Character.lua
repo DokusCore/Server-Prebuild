@@ -16,16 +16,15 @@ end)
 RegisterNUICallback('SkinMenu', function(Data)
   CloseMenu()
   if (Data.Option == 'OpenMenu') then
-    local PedID = PedID()
-    local Coords = GetCoords(PedID)
-    TriggerEvent('DokusCore:SkinCreator:OpenMenu', PedID, Coords)
+    -- TriggerEvent('DokusCore:Skins:Open:Menu')
+    NoteObjective("System", "This function is currently unavailable", 'Horn', 5000)
   elseif (Data.Option == 'LoadSkin') then
     CloseMenu()
     if (CharID == 0) then return RestartError() end
-    print("CoreMenu", Steam, CharID)
     local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } }).Result[1]
     if (User.Skin == '--') then return NoteObjective("Error", "You've no skin to load! Please create a skin first with /skin menu", 'Alert', 5000) end
-    TriggerEvent("DokusCore:Skins:User:LoadSkin", CharID, User)
+    TriggerEvent('DokusCore:Skins:Load:User') Wait(500)
+    TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
   end
 end)
 --------------------------------------------------------------------------------

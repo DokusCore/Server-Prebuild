@@ -123,6 +123,7 @@ end)
 RegisterNetEvent('DokusCore:Stores:OpenStore', function(Type)
   if (Low(Type) == 'buy') then
     Radar(false)
+    SetFreeze(PedID(), true)
     ShowCores(false) Wait(1000)
     SetNuiFocus(true, true)
     SendNUIMessage({
@@ -133,6 +134,7 @@ RegisterNetEvent('DokusCore:Stores:OpenStore', function(Type)
     })
   elseif (Low(Type) == 'sell') then
     Radar(false)
+    SetFreeze(PedID(), true)
     ShowCores(false) Wait(1000)
     SetNuiFocus(true, true)
     SendNUIMessage({
@@ -142,7 +144,6 @@ RegisterNetEvent('DokusCore:Stores:OpenStore', function(Type)
       ShopName = 'Inventory (Sell)'
     })
   end
-
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

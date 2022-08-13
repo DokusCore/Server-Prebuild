@@ -62,6 +62,7 @@ const OpenMenu = (Data) => {
 const InitData = (nr) => {
   if ((Menu == 'BankMenu') && (nr == 0)) { $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'BankAccountMenu' })); };
   if ((Menu == 'BankMenu') && (nr == 1)) { $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'BankVaultMenu' })); };
+  if ((Menu == 'BankMenu') && (nr == 2)) { $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'ScratchTickets' })); };
 
   if ((Menu == 'BankAccountMenu') && (nr == 0)) { $.post('https://DokusCore--NPCMenu/OpenBankAccount', JSON.stringify({})); CloseMenu() };
   if ((Menu == 'BankAccountMenu') && (nr == 1)) { $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'CreateBankAccount' })); };
@@ -72,6 +73,9 @@ const InitData = (nr) => {
 
   if ((Menu == 'BankVaultMenu') && (nr == 0)) { $.post('https://DokusCore--NPCMenu/OpenVault', JSON.stringify({})); };
   if ((Menu == 'BankVaultMenu') && (nr == 1)) { $.post('https://DokusCore--NPCMenu/CreateVault', JSON.stringify({})); };
+
+  if ((Menu == 'ScratchTickets') && (nr == 0)) { $.post('https://DokusCore--NPCMenu/ScratchYes', JSON.stringify({})); CloseMenu() };
+  if ((Menu == 'ScratchTickets') && (nr == 1)) { $.post('https://DokusCore--NPCMenu/ScratchNo', JSON.stringify({})); CloseMenu() };
 };
 
 const NoAccount = () => {
@@ -102,6 +106,7 @@ $(document).on('click', ".btn-backinterface", function() {
   if (Menu == 'BankMenu') { return CloseMenu()  }
   if (Menu == 'BankAccountMenu') { return $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'BankMenu' })); }
   if (Menu == 'BankVaultMenu') { return $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'BankMenu' })); }
+  if (Menu == 'ScratchTickets') { return $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'BankMenu' })); }
   if (Menu == 'CreateBankAccount') { return $.post('https://DokusCore--NPCMenu/OpenMenu', JSON.stringify({ Menu: 'BankMenu' })); }
   $.post('https://DokusCore--NPCMenu/NoBackButton', JSON.stringify({}));
 });

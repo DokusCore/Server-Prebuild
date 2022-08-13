@@ -22,6 +22,9 @@ RegisterNUICallback('CreatingBankAcc', function() TriggerEvent('DokusCore:Bankin
 RegisterNUICallback('OpenVault', function() Notify('This option is not finished yet!', 'TopCenter', 5000) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('CreateVault', function() Notify('This option is not finished yet!', 'TopCenter', 5000) end)
+RegisterNUICallback('ScratchYes', function() TriggerEvent('DokusCore:ScratchCards:Get:Rewards') end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('ScratchNo', function() NoteNPCTalk("Bank Worker", "Alrighty, you can always come back later to collect your rewards", true, 7000) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

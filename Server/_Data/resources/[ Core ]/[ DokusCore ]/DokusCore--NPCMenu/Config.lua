@@ -17,7 +17,8 @@ _NPCInteract = {
       MenuTitle = 'Banking Menu',
       MenuOptions = {
         { Type = 'Menu', Option = 'BankAccountMenu', Title = 'Account Menu' },
-        { Type = 'Menu', Option = 'BankVaultMenu', Title = 'Bank Vault Menu' },
+        { Type = 'Menu', Option = 'BankVaultMenu',   Title = 'Bank Vault Menu' },
+        { Type = 'Menu', Option = 'ScratchTickets',  Title = 'Scratch Tickets' },
       },
 
       Dialogs = {
@@ -74,6 +75,21 @@ _NPCInteract = {
 
       Dialogs = {
         'UNDER CONSTRUCTION'
+      },
+    }
+  },
+
+  ScratchTickets = {
+    {
+      MenuName = 'ScratchTickets',
+      MenuTitle = 'Scratch Tickets',
+      MenuOptions = {
+        { Type = 'Option', Option = 'ScratchYes',   Title = 'Yes' },
+        { Type = 'Option', Option = 'ScratchNo',    Title = 'No' },
+      },
+
+      Dialogs = {
+        'Do you want to collect your rewards?'
       },
     }
   },

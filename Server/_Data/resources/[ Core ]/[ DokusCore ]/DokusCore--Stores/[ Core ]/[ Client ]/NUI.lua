@@ -4,10 +4,11 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('CloseNUI', function()
+  SetFreeze(PedID(), false)
   ShowPrompt = false
   SetNuiFocus(false, false)
   local Random = Dialog.MenuExit[math.random(#Dialog.MenuExit)]
-  NoteNPCTalk(Dialog.NPCName, Random, 1500) Wait(500)
+  NoteNPCTalk(Dialog.NPCName, Random, true, 1500) Wait(500)
   ShowPrompt = true
   ResetStore()
 end)
@@ -26,14 +27,10 @@ RegisterNUICallback('SellItem', function(Data) CloseStore()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('OpenBuyScreen', function(Data) CloseStore()
-  OpenStoreSell()
-end)
+RegisterNUICallback('OpenBuyScreen', function(Data) CloseStore() OpenStoreSell() end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('OpenSellScreen', function(Data) CloseStore()
-  OpenStoreBuy()
-end)
+RegisterNUICallback('OpenSellScreen', function(Data) CloseStore() OpenStoreBuy() end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

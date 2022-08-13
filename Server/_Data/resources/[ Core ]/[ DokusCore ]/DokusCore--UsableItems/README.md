@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore UsableItems (v1.0.2) [BETA]</b> - Use items and take care of its animations!.
+ <b>DokusCore UsableItems (v1.1.0) [BETA]</b> - Use items and take care of its animations!.
 </p>
 
 ---
@@ -35,13 +35,13 @@ customizability on how you want your animations to behave. <br>
 
 ---
 # Discord
-On our [Discord](https://discord.io/DokusCore) you can find all Information about this<br>
+On our [Discord](https://discord.io/dokuscore) you can find all Information about this<br>
 project, feel free to join. Here you can also interact with other playing and testing<br>
 the Core, as well as giving your suggestions and opinions.
 
 ---
 # Searching for Developers
 Do you enjoy developing, and would you like to take part into the DokusCore<br>
-project ? Join our [Discord](https://discord.io/DokusCore) and contact one of the Administrators.
+project ? Join our [Discord](https://discord.io/dokuscore) and contact one of the Administrators.
 
 ---

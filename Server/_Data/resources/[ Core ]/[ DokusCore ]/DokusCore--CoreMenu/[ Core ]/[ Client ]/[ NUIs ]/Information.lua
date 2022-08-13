@@ -4,6 +4,6 @@
 RegisterNUICallback('ShowDiscord', function() TriggerEvent('DokusCore:Core:Commands:Discord') end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('GuideUp', function() TriggerEvent('DokusCore:SafeGuard:GuideUp') end)
+RegisterNUICallback('GuideUp', function() TriggerEvent('DokusCore:Guidance:GuideUp') end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

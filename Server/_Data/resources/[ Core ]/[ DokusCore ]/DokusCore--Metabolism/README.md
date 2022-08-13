@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Metabolism (v1.2.2) BETA</b> - Controls your players vitals.
+ <b>DokusCore Metabolism (v1.2.3) BETA</b> - Controls your players vitals.
 </p>
 
 ---

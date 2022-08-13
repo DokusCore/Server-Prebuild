@@ -41,8 +41,8 @@ end)
 -- Activate the vital flash is vitals are to low or temp is to high/low
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Metabolism:CheckHealthDamage', function()
-  if (Hunger <= 0) then SetHealthDamage() return end
-  if (Thirst <= 0) then SetHealthDamage() return end
+  if (Hunger <= Meta.Vitals.LoseWhen) then SetHealthDamage() return end
+  if (Thirst <= Meta.Vitals.LoseWhen) then SetHealthDamage() return end
   HealthDamage = false
 end)
 --------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ RegisterNetEvent('DokusCore:Metabolism:HealthDamage', function()
   while Online do Wait(0)
     while HealthDamage do Wait(1000)
       local PedID  = PedID()
-      Citizen.InvokeNative(0x697157CED63F18D4, PedID, Meta.Vitals.DPS, false, true, true)
+      Citizen.InvokeNative(0x697157CED63F18D4, PedID, TN(Meta.Vitals.DPS), false, true, true)
     end
   end
 end)
@@ -178,8 +178,8 @@ RegisterNetEvent('DokusCore:Metabolism:PPBurpsFartsStomach', function(Bool) PPBu
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Metabolism:ShowHud', function(Bool)
-  ShowHud = Bool
-  SendNUIMessage({ Show = ShowHud })
+  if (Bool) then return SendNUIMessage({ Show = true }) end
+  if (not (Bool)) then return SendNUIMessage({ Show = false }) end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

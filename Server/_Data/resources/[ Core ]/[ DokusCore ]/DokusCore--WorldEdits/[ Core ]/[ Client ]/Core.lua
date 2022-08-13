@@ -10,6 +10,10 @@ local BPos = {
   { ID = 'Gladiator Arena',        Hash = -184692826, Coords = vector3(1200.8, 720.3, 101.4)  },
   { ID = 'The Mexico Bridge',      Hash = 784218150,  Coords = vector3(-1307.7, -2658.3, 83.9)},
   { ID = 'The Hanging Bridge',     Hash = 784218150,  Coords = vector3(-6578.7, -3447.1, -31.1)},
+  { ID = 'Nakota Native Camp',     Hash = -1606321000,  Coords = vector3(2477.1, 1750.8, 87.1)},
+  { ID = 'Apache Native Camp',     Hash = -1606321000,  Coords = vector3(-6436.6, -3518.6, -24.7)},
+  { ID = 'Lakota Native Camp',     Hash = -1606321000,  Coords = vector3(-87.0, 1474.6, 110.5)},
+  { ID = "Arthur's Gravestone",    Hash = 350569997,    Coords = vector3(795.0, 1777.1, 281.4)},
 }
 --------------------------------------------------------------------------------
 -- Set Blips on the map
