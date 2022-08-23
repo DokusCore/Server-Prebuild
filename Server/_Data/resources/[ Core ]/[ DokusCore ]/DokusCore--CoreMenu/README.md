@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Settings Menu (v1.5.2) [BETA]</b> - A Players Settings System for DokusCore!.
+ <b>DokusCore Settings Menu (v1.6.0) [BETA]</b> - A Players Settings System for DokusCore!.
 </p>
 
 ---

@@ -1,63 +1,89 @@
 --------------------------------------------------------------------------------
----------------------------------- DokusCore -----------------------------------
+----------------------------------- DevDokus -----------------------------------
 --------------------------------------------------------------------------------
-Steam, CharID, InMenu = nil, 1, ''
-SetMusic, SetVolume = 0, 0.3
+----------------------- I feel a disturbance in the force ----------------------
+--------------------------------------------------------------------------------
+SteamID, CharID = nil, nil
+SetMusic, SetVolume = 1, 0.3
 SetAutoPlay, AutoPlayWarning = false, false
-Language = ''
-local Low = string.lower
+Language = nil
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Set Users SteamID
+IsAnyMenuOpen    = false
+IsMainMPShown    = false
+IsInventOpen     = false
+IsUserMenuOpen   = false
+IsAdminMenuOpen  = false
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Prompt_Settings  = nil
+Prompt_Invent    = nil
+Prompt_AdminMenu = nil
+Group            = GetRandomIntInRange(0, 0xffffff)
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
-  if (_Modules.SettingsMenu) then
-    Notify('Setting Menu Loading....', 'topCenter', 2500)
+  if (_Modules.CoreMenu) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Sync:Get:UserData')
-    Steam, CharID = Data.SteamID, Data.CharID
-    local Data = TSC('DokusCore:Core:DBGet:Settings', { 'User', { Steam } })
-    if (Data.Exist) then
-      local Result = Data.Result[1]
-      SetVolume = Result.Volume
-      Language = Result.Language
-      SetMusic = Result.Music
-    end
+    local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+    SteamID, CharID = Sync.SteamID, Sync.CharID
+    local Data = TSC('DokusCore:Core:DBGet:Settings', { 'User', { SteamID } }).Result[1]
+    SetVolume, Language, SetMusic = Data.Volume, Data.Language, Data.Music
+    NoteObjective("System", "Setting Menu Initialized!", "Horn", 5000)
+    NoteObjective("System", "You can now open the settings menu with the left alt key!", "Horn", 5000)
   end
-  Notify('Setting Menu Initialized!', 'topCenter', 3000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-CreateThread(function() Wait(3000)
-  if (_Modules.SettingsMenu) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
-    while true do Wait(0)
-      local Control = IsControlJustReleased(0, _Keys['TAB'])
-      if (Control) then
-        InMenu = 'MainMenu'
-        local Menu = MainMenu[1].MenuName
-        SendNUIMessage({ Action = 'SetMenu',  Menu = Menu }) OpenMenu()
-        SendNUIMessage({ Action = 'OpenMenu', Menu = MainMenu[1] })
+CreateThread(function()
+  if (_Modules.CoreMenu) then
+    while (not (FrameReady())) do Wait(1000) end
+    while (not (UserInGame())) do Wait(1000) end
+    while true do Wait(1)
+      while (not (IsMainMPShown) and (not (IsAnyMenuOpen))) do Wait(1)
+        local Control = IsControlJustPressed(0, _Keys.LALT)
+        if ((Control and (not (IsMainMPShown)))) then OpenMenu() end
+      end
+
+      while (IsMainMPShown) do Wait(1)
+        local Control = IsControlJustPressed(0, _Keys.LALT)
+        if ((Control) and (IsMainMPShown)) then CloseMenu() end
       end
     end
   end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:CoreMenu:SetData')
-AddEventHandler('DokusCore:CoreMenu:SetData', function(Data)
-  if (Low(Data[1]) == 'logout') then
-    CharID = 0
-    Notify('SettingsMenu: User Data Reset due to being logged out')
-    while not UserInGame() do Wait(1000) end
-    local Data = TCTCC('DokusCore:Sync:Get:UserData')
-    Steam, CharID = Data.SteamID, Data.CharID
-  end
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

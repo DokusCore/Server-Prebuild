@@ -5,7 +5,7 @@ description 'DokusCore Skin Creator v2'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.1.0'
+version '2.1.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts {

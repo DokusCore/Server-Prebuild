@@ -5,7 +5,7 @@ description 'DokusCore User Guidance'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.0.0'
+version '1.0.1'
 this_is_a_map "yes"
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

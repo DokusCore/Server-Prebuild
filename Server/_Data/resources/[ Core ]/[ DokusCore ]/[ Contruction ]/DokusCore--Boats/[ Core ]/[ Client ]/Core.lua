@@ -4,6 +4,7 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 BoatArr = {}
+UserBoats = {}
 NPCs, Blips = {}, {}
 SteamID, CharID = nil, nil
 InArea, InRange = false, false
@@ -11,6 +12,12 @@ NearNPC, CloseNPC = false, false
 ShowPrompts, Loc = false, nil
 StoreInUse = false
 MenuPage = nil
+PauseScript = false
+Ready = false
+MenuPaused = false
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+UserBoatName = nil
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 Dialog = _Dialogs.Boats
@@ -23,7 +30,6 @@ CreateThread(function()
     while not UserInGame() do Wait(1000) end
     local Sync = TCTCC('DokusCore:Sync:Get:UserData')
     SteamID, CharID = Sync.SteamID, Sync.CharID
-    print("Data Set", SteamID, CharID)
   end
 end)
 --------------------------------------------------------------------------------
@@ -47,9 +53,8 @@ CreateThread(function()
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     local Data = TSC('DokusCore:Core:DBGet:Items', { 'All' }).Result
-    for k,v in pairs(Data) do
-      if (Low(v.Type) == 'boat') then Tabi(BoatArr, v) end
-    end
+    for k,v in pairs(Data) do if (Low(v.Type) == 'boat') then Tabi(BoatArr, v) end end
+    Ready = true
   end
 end)
 --------------------------------------------------------------------------------

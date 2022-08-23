@@ -343,7 +343,7 @@ RegisterNUICallback('CloseCreator', function()
   TriggerEvent('DokusCore:Spawner:User:New')
   ResetScriptForNextUse()
   ResetAllCameras()
-  DestroyAllCameras()
+  -- DestroyAllCameras()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -5,7 +5,7 @@ description 'DokusCore ScriptBundle -- A bundle of small scripts'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.3.0'
+version '1.3.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts {

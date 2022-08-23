@@ -17,7 +17,7 @@ RegisterNetEvent('DokusCore:Clothing:Start:ViaNPC', function()
   local SetBusy = TSC('DokusCore:Tailor:NPCStatus', { 'Set', { Loc, true } })
   local Txt = RandomDialog(PedID(), Dialog.EnterMenu)
   local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
+  NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000))
 
   -- Get NPC
   for k,v in pairs(NPCs) do
@@ -32,7 +32,7 @@ RegisterNetEvent('DokusCore:Clothing:Start:ViaNPC', function()
       SetFreeze(ThisNPC, false)
       TaskGoToCoordAnyMeans(ThisNPC, v.Coords, 1.2, 0, 0, 786603, 0xbf800000)
     end
-  end Wait(2500)
+  end Wait(1000)
 
 
   -- SetFreeze(PedID(), true)
@@ -48,7 +48,9 @@ RegisterNetEvent('DokusCore:Clothing:Start:ViaNPC', function()
       SetFreeze(ThisNPC, true)
       SetCoords(ThisNPC, ThisCoords)
       SetHeading(ThisNPC, ThisHeading)
-      UIFadeIn(5000)
+
+      -- Start AFK Detection
+      TriggerEvent('DokusCore:Clothing:DetectAFK')
 
       -- Set Camera
       Zoom, Offset = v.Camera[1], v.Camera[2]
@@ -65,63 +67,11 @@ RegisterNetEvent('DokusCore:Clothing:Start:ViaNPC', function()
 
       -- Open the menu
       SetNuiFocus(true, true)
-    end
-  end
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Clothing:Start:NewUser', function()
-  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-  local IsBusy = TSC('DokusCore:Tailor:NPCStatus', { 'Get', { Loc } })
-  CharID = Sync.CharID
-  if (IsBusy) then Error('PleaseWait') return end
-  SetInvincible(PedID(), true)
 
-  -- Set the NPC status busy server wide.
-  local Txt = RandomDialog(PedID(), Dialog.EnterMenu)
-  local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
-
-  for k,v in pairs(NPCs) do
-    if (Low(v.ID) == (Low(Loc))) then
-      ThisNPC = v.Hash
-    end
-  end
-
-  for k,v in pairs(_Clothing.NPCPosing) do
-    if (Low(Loc) == Low(v.ID)) then
-      ThisCoords, ThisHeading = v.Coords, v.Heading
-      SetFreeze(ThisNPC, false)
-      TaskGoToCoordAnyMeans(ThisNPC, v.Coords, 1.2, 0, 0, 786603, 0xbf800000)
-    end
-  end Wait(7000)
-
-  for k,v in pairs(_Clothing.Posing) do
-    if (Low(Loc) == Low(v.ID)) then
-      TaskGoToCoordAnyMeans(PedID(), v.Coords, 0.7, 0, 0, 786603, 0xbf800000)
-      UIFadeOut(5000) Wait(5000)
-      SetCoords(PedID(), v.Coords)
-      SetHeading(PedID(), v.Heading)
-      SetFreeze(ThisNPC, true)
-      SetCoords(ThisNPC, ThisCoords)
-      SetHeading(ThisNPC, ThisHeading)
+      -- Reset Default Camera position
+      Wait(1000)
+      SendNUIMessage({ Action = 'SetCamPos' })
       UIFadeIn(5000)
-
-      -- Set Camera
-      Zoom, Offset = v.Camera[1], v.Camera[2]
-      SetCamera(Zoom, Offset)
-
-      local List = MaleCloth
-      if (not (IsPedMale(PedID()))) then List = FemaleCloth end
-      SendNUIMessage({
-        openSkinCreator = true,
-        elements = List,
-        numbers = CNumber,
-        translation = _Clothing.Labels
-      })
-
-      -- Open the menu
-      SetNuiFocus(true, true)
     end
   end
 end)
@@ -183,7 +133,18 @@ RegisterNetEvent('DokusCore:Clothing:NPC:Load:Clothing', function(NPC, CharData)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+RegisterNetEvent('DokusCore:Clothing:DetectAFK', function()
+  DetectAFK = true
+  while DetectAFK do Wait(1000)
+    AFKCount = (AFKCount + 1)
+    if (AFKCount >= Floor(_Clothing.AntiAFK)) then
+      DetectAFK = false
+      AFKCount = 0
+      NoteNPCTalk("Tailor", "I've more to do and more customers to attend to, let me know when you need some more help", false, 10000)
+      ResetData()
+    end
+  end
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

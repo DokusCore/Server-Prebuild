@@ -5,7 +5,7 @@ description 'DokusCore Spawn / Respawn module'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games { "rdr3" }
-version '1.0.0'
+version '1.1.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -20,9 +20,8 @@ server_scripts { '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  'Config.lua', -- FOR DEVELOPMENT -- LEAVE OFF!
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
-  -- '@DokusCore/[ Configs ]/[ Modules ]/Spawner.lua',
+  '@DokusCore/[ Configs ]/[ Modules ]/Spawner.lua',
   '@DokusCore/[ Configs ]/[ Dialogs ]/Spawner.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
 }

@@ -21,17 +21,19 @@ AddEventHandler('DokusCore:Inventory:OpenBoxMenu', function(BoxID)
   local Items = Decoded(Data.Result[1].Meta)
   TriggerEvent('DokusCore:Inventory:WaitToClose')
   while IsBoxOpen do Wait(0)
-    if DokusPage('BoxMenu') then
-      for k,v in pairs(Items) do
-        local Item, Amount = v.Item, v.Amount
-        if (Amount <= 9) then Amount = (0 .. Amount) end
-        local Button = DokusMenu.Button(Amount.. "      "..v.Item)
-        if (Button) then
-          TriggerEvent('DokusCore:Inventory:PickUpBoxItem', { BoxID, Item, Amount })
+    if (not (IsPickingUpItem)) then
+      if DokusPage('BoxMenu') then
+        for k,v in pairs(Items) do
+          local Item, Amount = v.Item, v.Amount
+          if (Amount <= 9) then Amount = (0 .. Amount) end
+          local Button = DokusMenu.Button(Amount.. "      "..v.Item)
+          if (Button) then
+            TriggerEvent('DokusCore:Inventory:PickUpBoxItem', { BoxID, Item, Amount })
+          end
         end
       end
+      DokusMenu.Display()
     end
-    DokusMenu.Display()
   end
 end)
 --------------------------------------------------------------------------------

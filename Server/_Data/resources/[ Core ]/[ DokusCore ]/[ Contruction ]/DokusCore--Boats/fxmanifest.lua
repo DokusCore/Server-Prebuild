@@ -5,7 +5,7 @@ description 'DokusCore Boats'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '0.0.1'
+version '1.0.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {

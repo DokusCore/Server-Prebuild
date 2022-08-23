@@ -7,6 +7,7 @@ RegisterNetEvent('DokusCore:Inventory:OpenInventory', function()
   if (_Modules.Inventory) then
     if (not (IsInvOpen) and not (IsPickingUpItem)) then
       IsInvOpen = true
+      Notify("Change the amount using the numbers on your keyboard!", "TopCenter", 5000)
       TriggerEvent('DokusCore:Inventory:UpdateBankValues')
       local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
       if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end

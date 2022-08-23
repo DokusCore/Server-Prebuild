@@ -44,6 +44,7 @@ RegisterNUICallback('close', function()
   ClearPedTasks(PedID)
   SetNuiFocus(false, false) Wait(3500)
   ClearPedTasksImmediately(PedID)
+  Cinema(0)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

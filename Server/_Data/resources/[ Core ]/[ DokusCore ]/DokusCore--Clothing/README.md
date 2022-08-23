@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Clothing (v1.0.0)</b> - Gives player the ability cloth themselves.
+ <b>DokusCore Clothing (v1.1.0)</b> - Gives player the ability cloth themselves.
 </p>
 
 ---
@@ -34,7 +34,7 @@ plugin is completed, we will add the other clothing stores to the config. <br>
 
 ---
 # Discord
-On our [Discord](https://discord.gg/dokuscore) you can find all Information about this<br>
+On our [Discord](https://discord.io/dokuscore) you can find all Information about this<br>
 project, feel free to join. Here you can also interact with other playing and testing<br>
 the Core, as well as giving your suggestions and opinions.
 

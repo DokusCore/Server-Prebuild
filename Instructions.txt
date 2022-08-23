@@ -3,11 +3,11 @@
 --------------------------------------------------------------------------------
 Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-CURRENT DOKUSCORE VERSION  |  v0.6.2
-CURRENT ARTIFACT VERSION   |  5738
+CURRENT DOKUSCORE VERSION  | v0.6.3
+CURRENT ARTIFACT VERSION   | 5811
 --------------------------------------------------------------------------------
-DATABASE LAST UPDATED:     | 13th August 2022
-DOKUSCORE LAST UPDATED:    | 13th August 2022
+DATABASE LAST UPDATED      | 23rd August 2022
+DOKUSCORE LAST UPDATED:    | 23rd August 2022
 --------------------------------------------------------------------------------
 
 

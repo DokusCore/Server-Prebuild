@@ -43,14 +43,14 @@ be reworked so that the trains sync up with all clients so that they continue to
 
 ---
 # Discord
-On our [Discord](https://discord.gg/dokuscore) you can find all Information about this<br>
+On our [Discord](https://discord.io/dokuscore) you can find all Information about this<br>
 project, feel free to join. Here you can also interact with other playing and testing<br>
 the Core, as well as giving your suggestions and opinions.
 
 ---
 # Searching for Developers
 Do you enjoy developing, and would you like to take part into the DokusCore<br>
-project ? Join our [Discord](https://discord.gg/dokuscore) and contact one of the Administrators.
+project ? Join our [Discord](https://discord.io/dokuscore) and contact one of the Administrators.
 
 ---
 # Future ideas for this plugin

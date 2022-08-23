@@ -4,22 +4,28 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('updateClothes', function(Data)
-  local Random = math.random(1, 20)
+  if (_Clothing.DialogChance >= 1) then
+    local Invert = ( 100 - _Clothing.DialogChance)
+    if (Invert <= 2) then Invert = 2 end
+    if (Invert > 100) then Invert = 100 end
+    local Chance = math.floor(Round((Invert / 2), 0))
+    local Random = math.random(0, Invert)
+    if (Random == Chance) then
+      local Txt = RandomDialog(PedID(), Dialog.ClothingChoice)
+      local Random = Txt[math.random(#Txt)]
+      NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
+    end
+  end
+
+  AFKCount = 0
+
   for k,v in pairs(Data) do
     if ((CNumber[k] ~= TN(v)) and (v ~= nil)) then
       CNumber[k] = TN(v)
       if (IsPedMale(PedID())) then
-        if (Random == 10) then
-          local Txt = RandomDialog(PedID(), Dialog.ClothingChoice)
-          local Random = Txt[math.random(#Txt)]
-          NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
-        end UpdateClothes(v, MaleCloth, k)
+         UpdateClothes(v, MaleCloth, k)
       else
-        if (Random == 18) then
-          local Txt = RandomDialog(PedID(), Dialog.ExitStore)
-          local Random = Txt[math.random(#Txt)]
-          NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
-        end UpdateClothes(v, FemaleCloth, k)
+        UpdateClothes(v, FemaleCloth, k)
       end
     end
   end
@@ -54,6 +60,9 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('exit', function()
+  DetectAFK = false
+  IsNewCharacter = false
+  AFKCount = 0
   ResetData()
 end)
 --------------------------------------------------------------------------------

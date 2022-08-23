@@ -1,39 +1,31 @@
-var Menu = ''
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+var InMenu = '';
 var Keys = [];
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+window.addEventListener('message', function(e) {
+  var Act = e.data.Action
 
-window.addEventListener('message', function(event) {
-  var Data = event.data
-  var Action = Data.Action
-
-  switch (Action) {
-    case 'SetMenu':
-      Menu = Data.Menu
-      break;
-    case 'OpenMenu':
-      Keys = []
-      IndexKeys(event.data.Menu);
-      setTimeout(function() {
-        OpenMenu(Keys);
-      }, 100);
-      break;
-    case 'CloseMenu':
-      CloseMenu();
-    break;
-    default:
-  };
+  if (Act == 'SetMenu') { InMenu = e.data.Menu };
+  if (Act == 'IndexKeys') { Keys = []; IndexKeys(e.data.Menu); };
+  if (Act == 'OpenMenu') { OpenMenu() };
+  if (Act == 'CloseMenu') { CloseMenu() };
 });
-
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 const IndexKeys = (Data) => {
-  for (var i = 0; i < Data.MenuOptions.length; i++) {
+  for (var i = 0; i < Data.Options.length; i++) {
     Keys.push({
-      Type: Data.MenuOptions[i].Type,
-      Option: Data.MenuOptions[i].Option,
-      Title: Data.MenuOptions[i].Title
+      Type: Data.Options[i].Type,
+      Option: Data.Options[i].Option,
+      Title: Data.Options[i].Title
     })
   }
 };
-
-const OpenMenu = (Data) => {
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+const OpenMenu = () => {
   for (var i = 0; i < Keys.length; i++) {
     if (i <= 6) {
       $("#option" + i).show();
@@ -49,155 +41,52 @@ const OpenMenu = (Data) => {
 
   $('body').fadeIn();
 };
-
-const InitData = (nr) => {
-  // Page 1
-  if ((Menu == 'MainMenu') && (nr == 0))         { OpenInventory();                                    };
-  if ((Menu == 'MainMenu') && (nr == 1))         { OpenThisMenu('SettingsMenu');                       };
-  if ((Menu == 'MainMenu') && (nr == 2))         { OpenThisMenu('FunctionsMenu');                      };
-  if ((Menu == 'MainMenu') && (nr == 3))         { OpenThisMenu('MusicMenu');                          };
-  if ((Menu == 'MainMenu') && (nr == 4))         { OpenThisMenu('AdminMenu');                          };
-  if ((Menu == 'MainMenu') && (nr == 5))         { OpenThisMenu('InfoMenu');                           };
-
-  if ((Menu == 'SettingsMenu') && (nr == 0))     { OpenThisMenu('LangList1');                          };
-  if ((Menu == 'SettingsMenu') && (nr == 1))     { ToggleOption('ToggleMusic');                        };
-
-
-  if ((Menu == 'InfoMenu') && (nr == 0))         { ToggleOption('ShowDiscord');                        };
-  if ((Menu == 'InfoMenu') && (nr == 1))         { ToggleOption('GuideUp'); CloseMenu();               };
-
-  // Admin Actions
-  if ((Menu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                       };
-  if ((Menu == 'AdminMenu') && (nr == 1))        { ToggleOption('WeatherSyncMenu'); CloseMenu();       };
-  if ((Menu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('AdminSelfActionsMenu');               };
-  if ((Menu == 'AdminMenu') && (nr == 3))        { OpenThisMenu('ModuleSyncMenu');                     };
-  if ((Menu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
-  if ((Menu == 'TeleportMenu') && (nr == 1))     { ToggleOption('Teleport', 'TTC'); CloseMenu();       };
-  if ((Menu == 'AdminSelfActionsMenu') && (nr == 0)) { OpenThisMenu('AdminMetamolismMenu');            };
-
-  if ((Menu == 'AdminMetamolismMenu') && (nr == 0))        { ToggleOption('ASelfMenu', 'HealHealth');  };
-  if ((Menu == 'AdminMetamolismMenu') && (nr == 1))        { ToggleOption('ASelfMenu', 'HealStamina'); };
-  if ((Menu == 'AdminMetamolismMenu') && (nr == 2))        { ToggleOption('ASelfMenu', 'HealHunger');  };
-  if ((Menu == 'AdminMetamolismMenu') && (nr == 3))        { ToggleOption('ASelfMenu', 'HealThirst');  };
-
-  if ((Menu == 'ModuleSyncMenu') && (nr == 0))        { ToggleOption('SyncUsableItems');  };
-  if ((Menu == 'ModuleSyncMenu') && (nr == 1))        { ToggleOption('SyncStoreItems');   };
-
-  if ((Menu == 'LangList1') && (nr == 0))        { ToggleOption('ChangeLanguage', 'en');               };
-  if ((Menu == 'LangList1') && (nr == 1))        { ToggleOption('ChangeLanguage', 'de');               };
-  if ((Menu == 'LangList1') && (nr == 2))        { ToggleOption('ChangeLanguage', 'it');               };
-  if ((Menu == 'LangList1') && (nr == 3))        { ToggleOption('ChangeLanguage', 'ru');               };
-  if ((Menu == 'LangList1') && (nr == 4))        { ToggleOption('ChangeLanguage', 'fr');               };
-  if ((Menu == 'LangList1') && (nr == 5))        { ToggleOption('ChangeLanguage', 'es');               };
-  if ((Menu == 'LangList2') && (nr == 0))        { ToggleOption('ChangeLanguage', 'bg');               };
-  if ((Menu == 'LangList2') && (nr == 1))        { ToggleOption('ChangeLanguage', 'dk');               };
-  if ((Menu == 'LangList2') && (nr == 2))        { ToggleOption('ChangeLanguage', 'gr');               };
-  if ((Menu == 'LangList2') && (nr == 3))        { ToggleOption('ChangeLanguage', 'nl');               };
-  if ((Menu == 'LangList2') && (nr == 4))        { ToggleOption('ChangeLanguage', 'pl');               };
-  if ((Menu == 'LangList2') && (nr == 5))        { ToggleOption('ChangeLanguage', 'pt');               };
-
-  if ((Menu == 'MusicMenu') && (nr == 0))        { ToggleOption('StopMusic');                          };
-  if ((Menu == 'MusicMenu') && (nr == 1))        { OpenThisMenu('AutoPlay');                           };
-  if ((Menu == 'MusicMenu') && (nr == 2))        { OpenThisMenu('Volume');                             };
-  if ((Menu == 'MusicMenu') && (nr == 3))        { OpenThisMenu('Playlist');                           };
-
-  if ((Menu == 'AutoPlay') && (nr == 0))         { ToggleOption('AutoPlayMusic', 'All');               };
-  if ((Menu == 'AutoPlay') && (nr == 1))         { OpenThisMenu('AutoPlaylistMenu');                   };
-
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 0)) { ToggleOption('AutoPlayMusic', 'TheScore');          };
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 1)) { ToggleOption('AutoPlayMusic', 'WesternRDR');        };
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 2)) { ToggleOption('AutoPlayMusic', 'BobMarley');         };
-  if ((Menu == 'AutoPlaylistMenu') && (nr == 3)) { ToggleOption('AutoPlayMusic', 'Others');            };
-
-  if ((Menu == 'Playlist') && (nr == 0))         { OpenThisMenu('ModernMusicMenu');                    };
-  if ((Menu == 'Playlist') && (nr == 1))         { OpenThisMenu('WesternMusicMenu');                   };
-
-  if ((Menu == 'Volume') && (nr == 0))           { ToggleOption('SetVolume', 0.05);                    };
-  if ((Menu == 'Volume') && (nr == 1))           { ToggleOption('SetVolume', 0.10);                    };
-  if ((Menu == 'Volume') && (nr == 2))           { ToggleOption('SetVolume', 0.15);                    };
-  if ((Menu == 'Volume') && (nr == 3))           { ToggleOption('SetVolume', 0.20);                    };
-  if ((Menu == 'Volume') && (nr == 4))           { ToggleOption('SetVolume', 0.25);                    };
-  if ((Menu == 'Volume') && (nr == 5))           { ToggleOption('SetVolume', 0.30);                    };
-  if ((Menu == 'Volume2') && (nr == 0))          { ToggleOption('SetVolume', 0.35);                    };
-  if ((Menu == 'Volume2') && (nr == 1))          { ToggleOption('SetVolume', 0.40);                    };
-  if ((Menu == 'Volume2') && (nr == 2))          { ToggleOption('SetVolume', 0.45);                    };
-  if ((Menu == 'Volume2') && (nr == 3))          { ToggleOption('SetVolume', 0.50);                    };
-  if ((Menu == 'Volume2') && (nr == 4))          { ToggleOption('SetVolume', 0.55);                    };
-  if ((Menu == 'Volume2') && (nr == 5))          { ToggleOption('SetVolume', 0.60);                    };
-  if ((Menu == 'Volume3') && (nr == 0))          { ToggleOption('SetVolume', 0.65);                    };
-  if ((Menu == 'Volume3') && (nr == 1))          { ToggleOption('SetVolume', 0.70);                    };
-  if ((Menu == 'Volume3') && (nr == 2))          { ToggleOption('SetVolume', 0.75);                    };
-  if ((Menu == 'Volume3') && (nr == 3))          { ToggleOption('SetVolume', 0.80);                    };
-  if ((Menu == 'Volume3') && (nr == 4))          { ToggleOption('SetVolume', 0.85);                    };
-  if ((Menu == 'Volume3') && (nr == 5))          { ToggleOption('SetVolume', 0.90);                    };
-  if ((Menu == 'Volume4') && (nr == 0))          { ToggleOption('SetVolume', 0.95);                    };
-  if ((Menu == 'Volume4') && (nr == 1))          { ToggleOption('SetVolume', 1.00);                    };
-
-
-  if ((Menu == 'FunctionsMenu') && (nr == 0))    { ToggleOption('Logout');                             };
-  if ((Menu == 'FunctionsMenu') && (nr == 1))    { ToggleOption('SaveCoords');                         };
-  if ((Menu == 'FunctionsMenu') && (nr == 2))    { OpenThisMenu('SkinMenu');                           };
-
-  if ((Menu == 'SkinMenu') && (nr == 0))         { ToggleOption('SkinMenu', 'OpenMenu'); CloseMenu();  };
-  if ((Menu == 'SkinMenu') && (nr == 1))         { ToggleOption('SkinMenu', 'LoadSkin'); CloseMenu();  };
-
-  if ((Menu == 'WesternMusicMenu') && (nr == 0)) { OpenThisMenu('WesternRDR1');                        };
-
-  if ((Menu == 'ModernMusicMenu') && (nr == 0))  { OpenThisMenu('BobMarley');                          };
-  if ((Menu == 'ModernMusicMenu') && (nr == 1))  { OpenThisMenu('TheScore1');                          };
-  if ((Menu == 'ModernMusicMenu') && (nr == 2))  { OpenThisMenu('ModernOtherMusic');                   };
-
-  if ((Menu == 'TheScore1') && (nr == 0))        { ToggleOption('PlayMusic', 'TheScore-Revolution_');  };
-  if ((Menu == 'TheScore1') && (nr == 1))        { ToggleOption('PlayMusic', 'TheScore-Stronger');     };
-  if ((Menu == 'TheScore1') && (nr == 2))        { ToggleOption('PlayMusic', 'TheScore-TheFear');      };
-  if ((Menu == 'TheScore1') && (nr == 3))        { ToggleOption('PlayMusic', 'TheScore-TheHeat');      };
-  if ((Menu == 'TheScore1') && (nr == 4))        { ToggleOption('PlayMusic', 'TheScore-Unstoppable');  };
-  if ((Menu == 'TheScore1') && (nr == 5))        { ToggleOption('PlayMusic', 'TheScore-WhoIAm');       };
-
-  if ((Menu == 'WesternRDR1') && (nr == 0))      { ToggleOption('PlayMusic', 'ApacheTribe');           };
-  if ((Menu == 'WesternRDR1') && (nr == 1))      { ToggleOption('PlayMusic', 'BillyTheKid');           };
-  if ((Menu == 'WesternRDR1') && (nr == 2))      { ToggleOption('PlayMusic', 'CactusDesert');          };
-  if ((Menu == 'WesternRDR1') && (nr == 3))      { ToggleOption('PlayMusic', 'CampfireTales');         };
-  if ((Menu == 'WesternRDR1') && (nr == 4))      { ToggleOption('PlayMusic', 'GhostTown');             };
-  if ((Menu == 'WesternRDR1') && (nr == 5))      { ToggleOption('PlayMusic', 'GoldRush');              };
-
-  if ((Menu == 'WesternRDR2') && (nr == 0))      { ToggleOption('PlayMusic', 'GunslingingOutlaws');    };
-  if ((Menu == 'WesternRDR2') && (nr == 1))      { ToggleOption('PlayMusic', 'IndianCamp');            };
-  if ((Menu == 'WesternRDR2') && (nr == 2))      { ToggleOption('PlayMusic', 'LegendsoftheWest');      };
-  if ((Menu == 'WesternRDR2') && (nr == 3))      { ToggleOption('PlayMusic', 'NightinthePrairie');     };
-  if ((Menu == 'WesternRDR2') && (nr == 4))      { ToggleOption('PlayMusic', 'NoMansLand');            };
-  if ((Menu == 'WesternRDR2') && (nr == 5))      { ToggleOption('PlayMusic', 'OldMiningTown');         };
-
-  if ((Menu == 'WesternRDR3') && (nr == 0))      { ToggleOption('PlayMusic', 'RowdyCowboys');          };
-  if ((Menu == 'WesternRDR3') && (nr == 1))      { ToggleOption('PlayMusic', 'TheGreatMountain');      };
-  if ((Menu == 'WesternRDR3') && (nr == 2))      { ToggleOption('PlayMusic', 'TheOldTrain');           };
-  if ((Menu == 'WesternRDR3') && (nr == 3))      { ToggleOption('PlayMusic', 'TheOregonTrail');        };
-  if ((Menu == 'WesternRDR3') && (nr == 4))      { ToggleOption('PlayMusic', 'TheWildWest');           };
-  if ((Menu == 'WesternRDR3') && (nr == 5))      { ToggleOption('PlayMusic', 'TumbleweedTown');        };
-
-  if ((Menu == 'BobMarley') && (nr == 0))        { ToggleOption('PlayMusic', 'BM-IShotTheSheriff');    };
-
-  if ((Menu == 'ModernOtherMusic') && (nr == 0)) { ToggleOption('PlayMusic', 'RunHome');               };
-  if ((Menu == 'ModernOtherMusic') && (nr == 1)) { ToggleOption('PlayMusic', 'ThemeSong');             };
-};
-
-const OpenInventory = () => {
-  Menu = ''
-  Keys = []
-  $('body').fadeOut();
-  ToggleOption('Close')
-  ToggleOption('OpenInventory')
-};
-
-const CloseMenu = () => {
-  Menu = ''
-  Keys = []
-  $('body').fadeOut();
-  OpenThisMenu('');
-  ToggleOption('Close');
-};
-
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+$(document).on('click', "#option0", function() { InitData(0); });
+$(document).on('click', "#option1", function() { InitData(1); });
+$(document).on('click', "#option2", function() { InitData(2); });
+$(document).on('click', "#option3", function() { InitData(3); });
+$(document).on('click', "#option4", function() { InitData(4); });
+$(document).on('click', "#option5", function() { InitData(5); });
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+$(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+$(document).on('click', ".btn-backinterface", function() {
+  if (InMenu == 'UserMenu')         { return CloseMenu() };
+  if (InMenu == 'AdminMenu')        { return CloseMenu() };
+  if (InMenu == 'InfoMenu')         { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'TeleportMenu')     { return OpenThisMenu('AdminMenu') };
+  if (InMenu == 'ModuleSyncMenu')   { return OpenThisMenu('AdminMenu') };
+  if (InMenu == 'CharacterMenu')    { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'DelCharacter')     { return OpenThisMenu('CharacterMenu')  };
+  if (InMenu == 'SkinMenu')         { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'SettingsMenu')     { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'LangList1')        { return OpenThisMenu('SettingsMenu') };
+  if (InMenu == 'LangList2')        { return OpenThisMenu('LangList1') };
+  if (InMenu == 'MusicMenu')        { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'Playlist')         { return OpenThisMenu('MusicMenu') };
+  if (InMenu == 'ModernMusicMenu')  { return OpenThisMenu('Playlist')  };
+  if (InMenu == 'WesternMusicMenu') { return OpenThisMenu('Playlist')  };
+  if (InMenu == 'BobMarley')        { return OpenThisMenu('ModernMusicMenu')  };
+  if (InMenu == 'TheScore')         { return OpenThisMenu('ModernMusicMenu')  };
+  if (InMenu == 'ModernOtherMusic') { return OpenThisMenu('ModernMusicMenu')  };
+  if (InMenu == 'WesternRDR1')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'WesternRDR2')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'WesternRDR3')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'Volume')           { return OpenThisMenu('MusicMenu') };
+  if (InMenu == 'Volume2')          { return OpenThisMenu('Volume') };
+  if (InMenu == 'Volume3')          { return OpenThisMenu('Volume2') };
+  if (InMenu == 'Volume4')          { return OpenThisMenu('Volume3') };
+  ToggleOption('NoBackButton')
+});
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 const OpenThisMenu = (M) => { $.post('https://DokusCore--CoreMenu/OpenMenu', JSON.stringify({ Menu: M })); }
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 const ToggleOption = (M, Opt) => {
   if (Opt == null || Opt == undefined) {
     $.post('https://DokusCore--CoreMenu/'+M, JSON.stringify({}));
@@ -205,57 +94,228 @@ const ToggleOption = (M, Opt) => {
     $.post('https://DokusCore--CoreMenu/'+M, JSON.stringify({ Option: Opt }));
   };
 };
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+const CloseMenu = () => {
+  InMenu = ''
+  Keys = []
+  $('body').fadeOut();
+  OpenThisMenu('');
+  ToggleOption('Close');
+};
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 
-$(document).on('click', "#option0", function() { ToggleOption('Cooldown'); InitData(0); });
-$(document).on('click', "#option1", function() { ToggleOption('Cooldown'); InitData(1); });
-$(document).on('click', "#option2", function() { ToggleOption('Cooldown'); InitData(2); });
-$(document).on('click', "#option3", function() { ToggleOption('Cooldown'); InitData(3); });
-$(document).on('click', "#option4", function() { ToggleOption('Cooldown'); InitData(4); });
-$(document).on('click', "#option5", function() { ToggleOption('Cooldown'); InitData(5); });
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 
-// Close the menu
-$(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 
-// Back up the menu
-$(document).on('click', ".btn-backinterface", function() {
-  if (Menu == 'MainMenu')             { return CloseMenu()                           };
-  if (Menu == 'SettingsMenu')         { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'AdminMenu')            { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'TeleportMenu')         { return OpenThisMenu('AdminMenu')             };
-  if (Menu == 'AdminSelfActionsMenu') { return OpenThisMenu('AdminMenu')             };
-  if (Menu == 'AdminMetamolismMenu')  { return OpenThisMenu('AdminSelfActionsMenu')  };
-  if (Menu == 'FunctionsMenu')        { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'ModuleSyncMenu')       { return OpenThisMenu('AdminMenu')             };
-  if (Menu == 'InfoMenu')             { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'SkinMenu')             { return OpenThisMenu('FunctionsMenu')         };
-  if (Menu == 'MusicMenu')            { return OpenThisMenu('MainMenu')              };
-  if (Menu == 'Playlist')             { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'Volume')               { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'Volume2')              { return OpenThisMenu('Volume')                };
-  if (Menu == 'Volume3')              { return OpenThisMenu('Volume2')               };
-  if (Menu == 'Volume4')              { return OpenThisMenu('Volume3')               };
-  if (Menu == 'AutoPlay')             { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'AutoPlaylistMenu')     { return OpenThisMenu('AutoPlay')              };
-  if (Menu == 'LangList1')            { return OpenThisMenu('SettingsMenu')          };
-  if (Menu == 'LangList2')            { return OpenThisMenu('LangList1')             };
-  if (Menu == 'ModernMusicMenu')      { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'WesternMusicMenu')     { return OpenThisMenu('MusicMenu')             };
-  if (Menu == 'WesternRDR1')          { return OpenThisMenu('WesternMusicMenu')      };
-  if (Menu == 'WesternRDR2')          { return OpenThisMenu('WesternMusicMenu')      };
-  if (Menu == 'WesternRDR3')          { return OpenThisMenu('WesternMusicMenu')      };
-  if (Menu == 'BobMarley')            { return OpenThisMenu('ModernMusicMenu')       };
-  if (Menu == 'TheScore1')            { return OpenThisMenu('ModernMusicMenu')       };
-  if (Menu == 'ModernOtherMusic')     { return OpenThisMenu('ModernMusicMenu')       };
-  ToggleOption('NoBackButton')
-});
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+const InitData = (nr) => {
+  if ((InMenu == 'UserMenu') && (nr == 0))         { OpenThisMenu('InfoMenu');                           };
+  if ((InMenu == 'UserMenu') && (nr == 1))         { OpenThisMenu('CharacterMenu');                      };
+  if ((InMenu == 'UserMenu') && (nr == 2))         { OpenThisMenu('SettingsMenu');                       };
+  if ((InMenu == 'UserMenu') && (nr == 3))         { OpenThisMenu('MusicMenu');                          };
+  if ((InMenu == 'InfoMenu') && (nr == 0))         { ToggleOption('ShowDiscord');                        };
+  if ((InMenu == 'InfoMenu') && (nr == 1))         { ToggleOption('GuideUp'); CloseMenu();               };
+  if ((InMenu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                       };
+  if ((InMenu == 'AdminMenu') && (nr == 1))        { ToggleOption('WeatherSyncMenu'); CloseMenu();       };
+  if ((InMenu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('ModuleSyncMenu');                     };
+  if ((InMenu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
+  if ((InMenu == 'TeleportMenu') && (nr == 1))     { ToggleOption('Teleport', 'TTC'); CloseMenu();       };
+  if ((InMenu == 'ModuleSyncMenu') && (nr == 0))   { ToggleOption('SyncUsableItems');                    };
+  if ((InMenu == 'ModuleSyncMenu') && (nr == 1))   { ToggleOption('SyncStoreItems');                     };
+  if ((InMenu == 'CharacterMenu') && (nr == 0))    { ToggleOption('Logout');                             };
+  if ((InMenu == 'CharacterMenu') && (nr == 1))    { ToggleOption('SaveCoords');                         };
+  if ((InMenu == 'CharacterMenu') && (nr == 2))    { OpenThisMenu('SkinMenu');                           };
+  if ((InMenu == 'CharacterMenu') && (nr == 3))    { CloseMenu(); ToggleOption('DelCharComfirm', true);  };
+  if ((InMenu == 'DelCharacter') && (nr == 0))     { ToggleOption('DelCharacter', true);                 };
+  if ((InMenu == 'DelCharacter') && (nr == 1))     { ToggleOption('DelCharacter', false);                };
+  if ((InMenu == 'SkinMenu') && (nr == 0))         { ToggleOption('SkinMenu', 'OpenMenu');               };
+  if ((InMenu == 'SkinMenu') && (nr == 1))         { ToggleOption('SkinMenu', 'LoadSkin'); CloseMenu();  };
+  if ((InMenu == 'SettingsMenu') && (nr == 0))     { OpenThisMenu('LangList1');                          };
+  if ((InMenu == 'SettingsMenu') && (nr == 1))     { ToggleOption('ToggleMusic');                        };
 
-// Next Button
-$(document).on('click', ".btn-nextinterface", function() {
-  if (Menu == 'WesternRDR1')      { return OpenThisMenu('WesternRDR2')           };
-  if (Menu == 'WesternRDR2')      { return OpenThisMenu('WesternRDR3')           };
-  if (Menu == 'LangList1')        { return OpenThisMenu('LangList2')             };
-  if (Menu == 'Volume')           { return OpenThisMenu('Volume2')               };
-  if (Menu == 'Volume2')          { return OpenThisMenu('Volume3')               };
-  if (Menu == 'Volume3')          { return OpenThisMenu('Volume4')               };
+  if ((InMenu == 'LangList1') && (nr == 0))        { ToggleOption('ChangeLanguage', 'en');               };
+  if ((InMenu == 'LangList1') && (nr == 1))        { ToggleOption('ChangeLanguage', 'de');               };
+  if ((InMenu == 'LangList1') && (nr == 2))        { ToggleOption('ChangeLanguage', 'it');               };
+  if ((InMenu == 'LangList1') && (nr == 3))        { ToggleOption('ChangeLanguage', 'ru');               };
+  if ((InMenu == 'LangList1') && (nr == 4))        { ToggleOption('ChangeLanguage', 'fr');               };
+  if ((InMenu == 'LangList1') && (nr == 5))        { ToggleOption('ChangeLanguage', 'es');               };
+  if ((InMenu == 'LangList2') && (nr == 0))        { ToggleOption('ChangeLanguage', 'bg');               };
+  if ((InMenu == 'LangList2') && (nr == 1))        { ToggleOption('ChangeLanguage', 'dk');               };
+  if ((InMenu == 'LangList2') && (nr == 2))        { ToggleOption('ChangeLanguage', 'gr');               };
+  if ((InMenu == 'LangList2') && (nr == 3))        { ToggleOption('ChangeLanguage', 'nl');               };
+  if ((InMenu == 'LangList2') && (nr == 4))        { ToggleOption('ChangeLanguage', 'pl');               };
+  if ((InMenu == 'LangList2') && (nr == 5))        { ToggleOption('ChangeLanguage', 'pt');               };
+
+  if ((InMenu == 'MusicMenu') && (nr == 0))        { ToggleOption('StopMusic');                          };
+  if ((InMenu == 'MusicMenu') && (nr == 1))        { OpenThisMenu('AutoPlay');                           };
+  if ((InMenu == 'MusicMenu') && (nr == 2))        { OpenThisMenu('Volume');                             };
+  if ((InMenu == 'MusicMenu') && (nr == 3))        { OpenThisMenu('Playlist');                           };
+
+  if ((InMenu == 'Playlist') && (nr == 0))         { OpenThisMenu('ModernMusicMenu');                    };
+  if ((InMenu == 'Playlist') && (nr == 1))         { OpenThisMenu('WesternMusicMenu');                   };
+
+  if ((InMenu == 'ModernMusicMenu') && (nr == 0))  { OpenThisMenu('BobMarley');                          };
+  if ((InMenu == 'ModernMusicMenu') && (nr == 1))  { OpenThisMenu('TheScore');                           };
+  if ((InMenu == 'ModernMusicMenu') && (nr == 2))  { OpenThisMenu('ModernOtherMusic');                   };
+
+  if ((InMenu == 'WesternMusicMenu') && (nr == 0))   { OpenThisMenu('WesternRDR1');                        };
+
+  if ((InMenu == 'BobMarley') && (nr == 0))        { ToggleOption('PlayMusic', 'BM-IShotTheSheriff');    };
+  if ((InMenu == 'ModernOtherMusic') && (nr == 0)) { ToggleOption('PlayMusic', 'RunHome');               };
+  if ((InMenu == 'ModernOtherMusic') && (nr == 1)) { ToggleOption('PlayMusic', 'ThemeSong');             };
+
+  if ((InMenu == 'TheScore') && (nr == 0))         { ToggleOption('PlayMusic', 'TheScore-Revolution_');  };
+  if ((InMenu == 'TheScore') && (nr == 1))         { ToggleOption('PlayMusic', 'TheScore-Stronger');     };
+  if ((InMenu == 'TheScore') && (nr == 2))         { ToggleOption('PlayMusic', 'TheScore-TheFear');      };
+  if ((InMenu == 'TheScore') && (nr == 3))         { ToggleOption('PlayMusic', 'TheScore-TheHeat');      };
+  if ((InMenu == 'TheScore') && (nr == 4))         { ToggleOption('PlayMusic', 'TheScore-Unstoppable');  };
+  if ((InMenu == 'TheScore') && (nr == 5))         { ToggleOption('PlayMusic', 'TheScore-WhoIAm');       };
+
+  if ((InMenu == 'WesternRDR1') && (nr == 0))      { ToggleOption('PlayMusic', 'ApacheTribe');           };
+  if ((InMenu == 'WesternRDR1') && (nr == 1))      { ToggleOption('PlayMusic', 'BillyTheKid');           };
+  if ((InMenu == 'WesternRDR1') && (nr == 2))      { ToggleOption('PlayMusic', 'CactusDesert');          };
+  if ((InMenu == 'WesternRDR1') && (nr == 3))      { ToggleOption('PlayMusic', 'CampfireTales');         };
+  if ((InMenu == 'WesternRDR1') && (nr == 4))      { ToggleOption('PlayMusic', 'GhostTown');             };
+  if ((InMenu == 'WesternRDR1') && (nr == 5))      { ToggleOption('PlayMusic', 'GoldRush');              };
+
+  if ((InMenu == 'WesternRDR2') && (nr == 0))      { ToggleOption('PlayMusic', 'GunslingingOutlaws');    };
+  if ((InMenu == 'WesternRDR2') && (nr == 1))      { ToggleOption('PlayMusic', 'IndianCamp');            };
+  if ((InMenu == 'WesternRDR2') && (nr == 2))      { ToggleOption('PlayMusic', 'LegendsoftheWest');      };
+  if ((InMenu == 'WesternRDR2') && (nr == 3))      { ToggleOption('PlayMusic', 'NightinthePrairie');     };
+  if ((InMenu == 'WesternRDR2') && (nr == 4))      { ToggleOption('PlayMusic', 'NoMansLand');            };
+  if ((InMenu == 'WesternRDR2') && (nr == 5))      { ToggleOption('PlayMusic', 'OldMiningTown');         };
+
+  if ((InMenu == 'WesternRDR3') && (nr == 0))      { ToggleOption('PlayMusic', 'RowdyCowboys');          };
+  if ((InMenu == 'WesternRDR3') && (nr == 1))      { ToggleOption('PlayMusic', 'TheGreatMountain');      };
+  if ((InMenu == 'WesternRDR3') && (nr == 2))      { ToggleOption('PlayMusic', 'TheOldTrain');           };
+  if ((InMenu == 'WesternRDR3') && (nr == 3))      { ToggleOption('PlayMusic', 'TheOregonTrail');        };
+  if ((InMenu == 'WesternRDR3') && (nr == 4))      { ToggleOption('PlayMusic', 'TheWildWest');           };
+  if ((InMenu == 'WesternRDR3') && (nr == 5))      { ToggleOption('PlayMusic', 'TumbleweedTown');        };
+
+  if ((InMenu == 'Volume') && (nr == 0))           { ToggleOption('SetVolume', 0.05);                    };
+  if ((InMenu == 'Volume') && (nr == 1))           { ToggleOption('SetVolume', 0.10);                    };
+  if ((InMenu == 'Volume') && (nr == 2))           { ToggleOption('SetVolume', 0.15);                    };
+  if ((InMenu == 'Volume') && (nr == 3))           { ToggleOption('SetVolume', 0.20);                    };
+  if ((InMenu == 'Volume') && (nr == 4))           { ToggleOption('SetVolume', 0.25);                    };
+  if ((InMenu == 'Volume') && (nr == 5))           { ToggleOption('SetVolume', 0.30);                    };
+  if ((InMenu == 'Volume2') && (nr == 0))          { ToggleOption('SetVolume', 0.35);                    };
+  if ((InMenu == 'Volume2') && (nr == 1))          { ToggleOption('SetVolume', 0.40);                    };
+  if ((InMenu == 'Volume2') && (nr == 2))          { ToggleOption('SetVolume', 0.45);                    };
+  if ((InMenu == 'Volume2') && (nr == 3))          { ToggleOption('SetVolume', 0.50);                    };
+  if ((InMenu == 'Volume2') && (nr == 4))          { ToggleOption('SetVolume', 0.55);                    };
+  if ((InMenu == 'Volume2') && (nr == 5))          { ToggleOption('SetVolume', 0.60);                    };
+  if ((InMenu == 'Volume3') && (nr == 0))          { ToggleOption('SetVolume', 0.65);                    };
+  if ((InMenu == 'Volume3') && (nr == 1))          { ToggleOption('SetVolume', 0.70);                    };
+  if ((InMenu == 'Volume3') && (nr == 2))          { ToggleOption('SetVolume', 0.75);                    };
+  if ((InMenu == 'Volume3') && (nr == 3))          { ToggleOption('SetVolume', 0.80);                    };
+  if ((InMenu == 'Volume3') && (nr == 4))          { ToggleOption('SetVolume', 0.85);                    };
+  if ((InMenu == 'Volume3') && (nr == 5))          { ToggleOption('SetVolume', 0.90);                    };
+  if ((InMenu == 'Volume4') && (nr == 0))          { ToggleOption('SetVolume', 0.95);                    };
+  if ((InMenu == 'Volume4') && (nr == 1))          { ToggleOption('SetVolume', 1.00);                    };
+
+};
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+const GoPageForward = () => {
+  if (InMenu == 'LangList1')   { return OpenThisMenu('LangList2')   };
+  if (InMenu == 'WesternRDR1') { return OpenThisMenu('WesternRDR2') };
+  if (InMenu == 'WesternRDR2') { return OpenThisMenu('WesternRDR3') };
+  if (InMenu == 'Volume')      { return OpenThisMenu('Volume2') };
+  if (InMenu == 'Volume2')     { return OpenThisMenu('Volume3') };
+  if (InMenu == 'Volume3')     { return OpenThisMenu('Volume4') };
   ToggleOption('NoNextButton');
+};
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+const GoPageBack = () => {
+  if (InMenu == 'UserMenu')         { return CloseMenu() };
+  if (InMenu == 'AdminMenu')        { return CloseMenu() };
+  if (InMenu == 'InfoMenu')         { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'TeleportMenu')     { return OpenThisMenu('AdminMenu') };
+  if (InMenu == 'ModuleSyncMenu')   { return OpenThisMenu('AdminMenu') };
+  if (InMenu == 'CharacterMenu')    { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'DelCharacter')     { return OpenThisMenu('CharacterMenu')  };
+  if (InMenu == 'SkinMenu')         { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'SettingsMenu')     { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'LangList1')        { return OpenThisMenu('SettingsMenu') };
+  if (InMenu == 'LangList2')        { return OpenThisMenu('LangList1') };
+  if (InMenu == 'MusicMenu')        { return OpenThisMenu('UserMenu')  };
+  if (InMenu == 'Playlist')         { return OpenThisMenu('MusicMenu') };
+  if (InMenu == 'ModernMusicMenu')  { return OpenThisMenu('Playlist')  };
+  if (InMenu == 'WesternMusicMenu') { return OpenThisMenu('Playlist')  };
+  if (InMenu == 'BobMarley')        { return OpenThisMenu('ModernMusicMenu')  };
+  if (InMenu == 'TheScore')         { return OpenThisMenu('ModernMusicMenu')  };
+  if (InMenu == 'ModernOtherMusic') { return OpenThisMenu('ModernMusicMenu')  };
+  if (InMenu == 'WesternRDR1')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'WesternRDR2')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'WesternRDR3')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'Volume')           { return OpenThisMenu('MusicMenu') };
+  if (InMenu == 'Volume2')          { return OpenThisMenu('Volume') };
+  if (InMenu == 'Volume3')          { return OpenThisMenu('Volume2') };
+  if (InMenu == 'Volume4')          { return OpenThisMenu('Volume3') };
+  ToggleOption('NoBackButton')
+};
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
+$(document).on('keypress', function(e) {
+  var Key = e.which
+  if (Key == 113) { InitData(0)     }; // Q
+  if (Key == 119) { InitData(1)     }; // W
+  if (Key == 101) { InitData(2)     }; // E
+  if (Key == 97)  { InitData(3)     }; // A
+  if (Key == 115) { InitData(4)     }; // S
+  if (Key == 100) { InitData(5)     }; // D
+  if (Key == 122) { GoPageBack()    }; // Z
+  if (Key == 120) { CloseMenu()     }; // X
+  if (Key == 99)  { GoPageForward() }; // C
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------------------------- \\

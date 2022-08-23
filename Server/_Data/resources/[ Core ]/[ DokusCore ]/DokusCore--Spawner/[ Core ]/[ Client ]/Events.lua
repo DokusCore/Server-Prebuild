@@ -25,7 +25,7 @@ RegisterNetEvent('DokusCore:Spawner:User:Login', function()
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharGold',   { Char.Result[1].Gold   } })
 
   -- Continue
-  TriggerEvent('DokusCore:Skins:Load:User') print("Load Skin") Wait(2000)
+  TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
   TriggerEvent('DokusCore:Clothing:User:Load:Clothing') print("Load Clothing")
   DisplayHud(true) DisplayRadar(true)
   UIFadeIn(5000)
@@ -111,7 +111,7 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   SetInvincible(PedID(), true)
   SetHeading(PedID(), SpawnPos.Heading)
   RenderCam(false, false, 1, true, true) Wait(100)
-  TriggerEvent('DokusCore:Skins:Load:User') Wait(1000)
+  TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
   TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
   if (Song.Enabled) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Song.Song, Song.Volume) end
   VehicleID = SpawnVehicle('STAGECOACH001X', SP, SpawnPos.Heading)
@@ -156,7 +156,7 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   -- Continue
   TaskVehicleDriveToCoord(DriverID, VehicleID, dCoords, 10.0, 1.0, 'STAGECOACH001X', 67633207, 5.0, false)
   Wait(3000) TriggerEvent('DokusCore:Spawner:Spawn:DeleteVehicle')
-  TaskGoToCoordAnyMeans(PedID(), tCoords, 1.0, 0, 0, 786603, 0xbf800000) Wait(25000)
+  TaskGoToCoordAnyMeans(PedID(), tCoords, 1.0, 0, 0, 786603, 0xbf800000) --Wait(25000)
   WalkUserToTailor()
 
   -- Set Route back to false so it can be used
@@ -166,9 +166,6 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   -- Continue
   Cinema(false) DisplayHud(true) DisplayRadar(true)
   NetworkGhosting(PedID(), false)
-
-  -- Go to the clothing menu
-  TriggerEvent('DokusCore:Clothing:Start:NewUser')
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -208,7 +205,7 @@ RegisterNetEvent('DokusCore:Spawner:DeathRespawn', function(ID)
   local PedID = PedID()
   TriggerEvent('DokusCore:Metabolism:Edit:Hunger', { 50 })
   TriggerEvent('DokusCore:Metabolism:Edit:Thirst', { 50 })
-  TriggerEvent('DokusCore:Skins:Load:User') Wait(250)
+  TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
   TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
   TriggerEvent('DokusCore:Metabolism:Edit:Health', { 100.0 })
   SetInvincible(ID, false) SetVisible(ID, true)

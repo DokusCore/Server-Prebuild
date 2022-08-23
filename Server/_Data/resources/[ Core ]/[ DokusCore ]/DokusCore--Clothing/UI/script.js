@@ -1,25 +1,30 @@
 $(document).ready(function() {
-    var elements;
-    var numbers;
+  var elements;
+  var numbers;
 	var translation;
-    // Listen for NUI Events
-    window.addEventListener('message', function(event) {
-        // Open Skin Creator
-        if (event.data.openSkinCreator == true) {
-            $(".skinCreator").css("display", "block");
-            $(".rotation").css("display", "flex");
-            elements = event.data.elements;
-            numbers = event.data.numbers;
-			translation = event.data.translation;
-            Load();
-        }
-        // Close Skin Creator
-        if (event.data.openSkinCreator == false) {
-            $(".skinCreator").fadeOut(400);
-            $(".rotation").fadeOut(400);
-        }
+  // Listen for NUI Events
+  window.addEventListener('message', function(event) {
 
-    });
+    // Set Default cam position
+    if (event.data.Action == 'SetCamPos') { console.log('CAMPOS'); return $.post('http://DokusCore--Clothing/ResetCam'); };
+
+      // Open Skin Creator
+      if (event.data.openSkinCreator == true) {
+          $(".skinCreator").css("display", "block");
+          $(".rotation").css("display", "flex");
+          elements = event.data.elements;
+          numbers = event.data.numbers;
+		translation = event.data.translation;
+          Load();
+      }
+      // Close Skin Creator
+      if (event.data.openSkinCreator == false) {
+          $(".skinCreator").fadeOut(400);
+          $(".rotation").fadeOut(400);
+      }
+
+  });
+
 function keys(obj)
 {
     var keys = [];

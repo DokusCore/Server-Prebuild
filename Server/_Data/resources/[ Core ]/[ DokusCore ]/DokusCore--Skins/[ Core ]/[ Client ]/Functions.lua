@@ -240,10 +240,10 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function ResetAllCameras()
-  if (StartCam ~= false)  then DestroyCam(StartCam, true)       StartCam = false   end
-  if (EndCam ~= false)    then DestroyCam(EndCam,  true)        EndCam  = false    end
-  if (MaleCam ~= false)   then DestroyCam(MaleCam.Cam,  true)   MaleCam  = false   end
-  if (FemaleCam ~= false) then DestroyCam(FemaleCam.Cam,  true) FemaleCam  = false end
+  if (StartCam ~= false)  then SetCamActive(StartCam, false)       DestroyCam(StartCam, true)       StartCam = false   end
+  if (EndCam ~= false)    then SetCamActive(EndCam,  false)        DestroyCam(EndCam,  true)        EndCam  = false    end
+  if (MaleCam ~= false)   then SetCamActive(MaleCam.Cam,  false)   DestroyCam(MaleCam.Cam,  true)   MaleCam  = false   end
+  if (FemaleCam ~= false) then SetCamActive(FemaleCam.Cam,  false) DestroyCam(FemaleCam.Cam,  true) FemaleCam  = false end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

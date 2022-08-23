@@ -105,15 +105,21 @@ function ExecNewClothes()
     end
   end
 
-  TaskGoToCoordAnyMeans(PedID(), vec3(2551.1, -1159.8, 53.7), 1.0, 0, 0, 786603, 0xbf800000)
-  Wait(2500) UIFadeOut(5000)
-  local OldPos = GetCoords(PedID())
-  Wait(5000)
-  TriggerEvent('DokusCore:Skins:Load:User') Wait(500)
-  TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
-  Wait(1000) UIFadeIn(2500)
-  TaskGoToCoordAnyMeans(PedID(), OldPos, 1.0, 0, 0, 786603, 0xbf800000)
-  Wait(7000)
+  for k,v in pairs(_Clothing.Dressing) do
+    if (Low(v.ID) == Low(Loc)) then
+      TaskGoToCoordAnyMeans(PedID(), v.Coords, 1.0, 0, 0, 786603, 0xbf800000)
+      Wait(2500) UIFadeOut((v.Fade * 1000))
+      local OldPos = GetCoords(PedID())
+      Wait((v.Fade * 1000))
+      TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
+      TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
+      Wait(1000) UIFadeIn(2500)
+      TaskGoToCoordAnyMeans(PedID(), OldPos, 1.0, 0, 0, 786603, 0xbf800000)
+      Wait(7000)
+    end
+  end
+
+
   ChangingClothes = false
 end
 --------------------------------------------------------------------------------

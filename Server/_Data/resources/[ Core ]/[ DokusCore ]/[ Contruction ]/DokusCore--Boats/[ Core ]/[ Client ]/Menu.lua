@@ -15,11 +15,14 @@ end)
 RegisterNetEvent('DokusCore:Boats:OpenMenu', function()
   local DokusPage = DokusMenu.IsMenuOpened
   DokusMenu.OpenMenu('StoreMenu')
+  SetUserBoats()
   while StoreInUse do Wait(1)
-    if DokusPage('StoreMenu') then StoreMenu() end
-    if DokusPage('ManageMenu') then ManageMenu() end
-    if DokusPage('BuyPage') then BuyPage() end
-    if DokusPage('SellPage') then SellPage() end
+    while (not (MenuPaused)) do Wait(1)
+      if DokusPage('StoreMenu') then StoreMenu() end
+      if DokusPage('ManageMenu') then ManageMenu() end
+      if DokusPage('BuyPage') then BuyPage() end
+      if DokusPage('SellPage') then SellPage() end
+    end
   end Wait(2000)
 end)
 --------------------------------------------------------------------------------
@@ -46,10 +49,10 @@ function StoreMenu()
   local SellItem  = DokusMenu.Button(Dialog.SellBoat)
   local Manager   = DokusMenu.Button(Dialog.ManageBoat)
   local Brexit    = DokusMenu.Button(Dialog.ExitMenu)
-  if ( BuyItem )  then DokusMenu.OpenMenu(Dialog.BuyPage) end
-  if ( SellItem ) then DokusMenu.OpenMenu(Dialog.SellPage) end
-  if ( Manager )  then DokusMenu.OpenMenu(Dialog.ManageMenu) end
-  if ( Brexit )   then ExitMenu() end
+  if ( BuyItem )  then DokusMenu.OpenMenu('BuyPage') end
+  if ( SellItem ) then DokusMenu.OpenMenu('SellPage') end
+  if ( Manager )  then DokusMenu.OpenMenu('ManageMenu') end
+  if ( Brexit )   then ExitMenu() UserBoats = {} end
   DokusMenu.Display()
 end
 --------------------------------------------------------------------------------
@@ -67,10 +70,10 @@ function BuyPage()
   MenuPage = 'BuyPage'
   for k,v in pairs(BoatArr) do
     local Dec = Decoded(v.Meta)
-    -- if (Low(v.Type) == 'boat') then
+    if (Low(v.Type) == 'boat') then
       local Button = DokusMenu.Button("$"..TS(Dec.BuyPrice).."  |  "..v.Name)
-      if (Button) then TriggerEvent('DokusCore:Boats:Buy', v) end
-    -- end
+      if ((Button) and (not (PauseScript))) then TriggerEvent('DokusCore:Boats:Buy', v) Wait(2000) end
+    end
   end
   DokusMenu.Display()
 end
@@ -78,15 +81,13 @@ end
 --------------------------------------------------------------------------------
 function SellPage()
   MenuPage = 'SellPage'
-  for k,v in pairs(BoatArr) do
-    local Dec = Decoded(v.Meta)
-    if (Low(v.Type) == 'boat') then
-      local Button = DokusMenu.Button("$"..TS(Dec.SellPrice).."  |  "..v.Name)
-      if (Button) then TriggerEvent('DokusCore:Boats:Sell', v) end
-    end
+  for k,v in pairs(UserBoats) do
+    local Button = DokusMenu.Button(v.Name)
+    if ((Button) and (not (PauseScript))) then TriggerEvent('DokusCore:Boats:Sell', v) Wait(2000) end
   end
   DokusMenu.Display()
 end
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function ManageMenu()

@@ -70,39 +70,20 @@ end
 --------------------------------------------------------------------------------
 function OutShopRange()
   StoreInUse = false
+  UserBoats = {}
   ShowPrompts, CloseNPC = false, false
   Prompt_Menu, Group = nil, GetRandomIntInRange(0, 0xffffff)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function GetUserBoats()
-  local arrBoats = {}
-  local Boats = TSC('DokusCore:Core:DBGet:Boats', { 'User', 'All', { SteamID } })
-  local Result, BoatID = Boats.Result, Boats.BID
-  
-  for k,v in pairs(Result) do
-    arrBoats = v.BID
-    print(v.BID, v.Name, v.Hanger, v.Coords)
-  end
-  return arrBoats
+function SetUserBoats()
+  local Data = TSC('DokusCore:Core:DBGet:Boats', { 'User', 'All', { SteamID } }).Result
+  for k,v in pairs(Data) do Tabi(UserBoats, v) end
+  print("User boats are set")
 end
 
-RegisterCommand('testes', function()
-  print('a')
-  local Boats = TSC('DokusCore:Core:DBGet:Boats', { 'User', 'All', { SteamID } })
-  local Result, BoatID = Boats.Result, Boats.BID
-  print('b')
-
-  for k,v in pairs(Result) do
-    print(v.BID, v.Name, v.Hanger, v.Coords)
-  end
-end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
-
 
 
 

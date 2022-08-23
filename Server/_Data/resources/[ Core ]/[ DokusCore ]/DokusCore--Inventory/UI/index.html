@@ -23,7 +23,7 @@
   <div class="overlay">
     <div class="arrow"></div>
     <div class="item-section">
-      <p class="heading">INVENTORY</p>
+      <p class="heading">BACKPACK</p>
       <div id="item-box"><i class="fas fa-box-open"></i></div>
       <div class="item-inner" id="drag2"></div>
     </div>
@@ -43,11 +43,11 @@
       <div id="job-box">
         <div class="job">JOB:<span id="job"></span></div>
       </div>
-      <button id="button-use">Use</button>
-      <button id="button-split" onclick="Mess()">Give</button>
-      <button id="button-give" onclick="Mess()">Split</button>
-      <button id="button-drop">Drop</button>
-      <input type="number" placeholder="amount" value="1" id="drop-count">
+      <button id="button-use">[E] Use</button>
+      <button id="button-split" onclick="Mess()">[G] Give</button>
+      <button id="button-give" onclick="Mess()">[S] Split</button>
+      <button id="button-drop">[D] Drop</button>
+      <input id="drop-count" idtype="number" placeholder="amount" value="1">
     </div>
   </div>
 </body>

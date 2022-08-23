@@ -42,16 +42,6 @@ $('document').ready(function() {
     document.getElementById('job').innerHTML = event.data.label
   });
 
-  // Close the menu when tab or exit is pressed
-  document.onkeyup = function(data) {
-    const Key = data.which
-    if (Key == 9 || Key == 27) {
-      $('.overlay').hide();
-      clearDocument()
-      $.post('http://DokusCore--Inventory/NUIFocusOff', JSON.stringify({}));
-    }
-  }
-
   var containers = dragula([
     document.getElementById('drag1'),
     document.getElementById('drag2'),
@@ -117,6 +107,10 @@ $('document').ready(function() {
   })
 
   document.getElementById("button-drop").addEventListener("click", function(event) {
+    DropItem()
+  });
+
+  function DropItem() {
     var itemSelected = document.getElementsByClassName('selected')[0];
     if (itemSelected == undefined) {
       $.post('http://DokusCore--Inventory/NoAmountSet', JSON.stringify({}));
@@ -152,10 +146,47 @@ $('document').ready(function() {
         itemSelected.style.display = 'none'
       }
     };
-  });
+  };
 
   function clearDocument() {
     $("#drag1").empty();
     $("#drag2").empty();
-  }
+  };
+
+  // Close the menu when tab or exit is pressed
+  document.onkeyup = function(data) {
+    const Key = data.which
+    console.log(Key);
+    // Use Item
+    if (Key == 69) {
+      var itemSelected = document.getElementsByClassName('selected')[0].id;
+      let amount = Number(document.getElementById('drop-count').value)
+      $.post('http://DokusCore--Inventory/UseItem', JSON.stringify({
+        Item: itemSelected,
+        Count: amount
+      }));
+    };
+
+    // Drop Item
+    if (Key == 68) { DropItem() };
+
+    // CLose Inventory
+    if (Key == 9 || Key == 27) {
+      $('.overlay').hide();
+      clearDocument()
+      $.post('http://DokusCore--Inventory/NUIFocusOff', JSON.stringify({}));
+    };
+
+    // Edit item amount box
+    if (Key == 49) { Number(document.getElementById('drop-count').value = 1)  };
+    if (Key == 50) { Number(document.getElementById('drop-count').value = 2)  };
+    if (Key == 51) { Number(document.getElementById('drop-count').value = 3)  };
+    if (Key == 52) { Number(document.getElementById('drop-count').value = 4)  };
+    if (Key == 53) { Number(document.getElementById('drop-count').value = 5)  };
+    if (Key == 54) { Number(document.getElementById('drop-count').value = 6)  };
+    if (Key == 55) { Number(document.getElementById('drop-count').value = 7)  };
+    if (Key == 56) { Number(document.getElementById('drop-count').value = 8)  };
+    if (Key == 57) { Number(document.getElementById('drop-count').value = 9)  };
+
+  };
 });

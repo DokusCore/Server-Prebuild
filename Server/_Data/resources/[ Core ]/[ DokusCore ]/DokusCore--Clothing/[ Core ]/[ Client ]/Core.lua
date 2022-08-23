@@ -9,6 +9,8 @@ InArea, InStore, NearNPC = false, false, false
 Loc, StoreInUse, MenuInUse = nil, false, false
 Warned = false
 ChangingClothes = false
+DetectAFK = false
+AFKCount = 0
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 Prompt_Menu   = nil
@@ -52,6 +54,7 @@ end)
 CreateThread(function()
   if (_Modules.Clothing) then
     while not FrameReady() do Wait(1000) end
+    while not UserInGame() do Wait(1000) end
     for k,v in pairs(_Clothing.NPCs) do Tabi(Blips, SetBlip(v.Coords, 1195729388, 1.0, Dialog.NPCName)) end
     for k,v in pairs(_Clothing.NPCs) do Tabi(NPCs, { ID = v.ID, Hash = SpawnNPC(v.Hash, v.Coords, v.Heading) }) end
   end

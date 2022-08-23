@@ -5,6 +5,7 @@ RegisterNUICallback('NUIFocusOff', function()
   IsInvOpen = false
   SetNuiFocus(false, false)
   SendNUIMessage({type = 'close'})
+  TriggerEvent('DokusCore:CoreMenu:InventoryClosed')
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -81,7 +82,7 @@ RegisterNUICallback("UseItem", function(Data)
 
       -- Trigger Animation
       TriggerEvent('DokusCore:UsableItems:UseItem', { Item = Item, Amount = Amount })
-      CloseInv() 
+      CloseInv()
     end
   end
 end)

@@ -32,9 +32,15 @@ end
 function SetInStore()
   ShowPrompt = false
   SetNuiFocus(false, false)
-  local Txt = RandomDialog(PedID(), Dialog.EnterStore)
-  local Random = Txt[math.random(#Txt)]
-  if (not (ChangingClothes)) then NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000)) Wait(500) end
+  for k,v in pairs(_Clothing.Dialogs) do
+    if (Low(v.ID) == Low(Loc)) then
+      if (v.Welcome) then
+        local Txt = RandomDialog(PedID(), Dialog.EnterStore)
+        local Random = Txt[math.random(#Txt)]
+        if (not (ChangingClothes)) then NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000)) Wait(500) end
+      end
+    end
+  end
   ShowPrompt = true
   InStore = true
   SetPedClothingData()
@@ -45,9 +51,15 @@ end
 function SetOutStore()
   InStore = false
   SetClothingData()
-  local Txt = RandomDialog(PedID(), Dialog.ExitStore)
-  local Random = Txt[math.random(#Txt)]
-  if (not (ChangingClothes)) then NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000)) Wait(500) end
+  for k,v in pairs(_Clothing.Dialogs) do
+    if (Low(v.ID) == Low(Loc)) then
+      if (v.Goodbye) then
+        local Txt = RandomDialog(PedID(), Dialog.ExitStore)
+        local Random = Txt[math.random(#Txt)]
+        if (not (ChangingClothes)) then NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000)) Wait(500) end
+      end
+    end
+  end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -140,6 +152,7 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function ResetData()
+  DetectAFK = false
   SendNUIMessage({ openSkinCreator = false })
   SetNuiFocus(false, false)
   SetCamActive(ClothCam, false)
@@ -151,7 +164,7 @@ function ResetData()
   SetFreeze(PedID(), false)
   SetInvincible(PedID(), false)
   Warned = false
-  TriggerEvent('DokusCore:Skins:Load:User') Wait(500)
+  TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
   TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
   AlreadySaid = {}
 
