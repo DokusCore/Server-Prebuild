@@ -1,0 +1,21 @@
+1: Go to the Config.lua and set Debug to true
+3: Create a file called "Zoning.lua" ( WITH CAPITAL )
+4: The Zoning_Default.lua holds the template.
+5: Enter in data that is asked in the config. ( A YT Video will be made later on how to )
+6: Create the zone with our edited version of PolyZones build into DokusCore.
+7: Enter in the vectors to the file and set the min/max Z height.
+
+Now restart the plugin and a box will appear when Grid and Poly is set to 1.
+You can fine tune your zone until to your likings.
+When done:
+
+8: Go to Config.lua and set Debug to false.
+9: Restart the plugin. 
+
+The Zoning.lua will now be deleted and the data will be pushed
+to the database. After that the plugin will run automatically 
+with the newly added zone.
+
+You can still edit your zone when it is in the database!
+Just restart the plugin after a database edit.
+No need to relog, or restart the server!

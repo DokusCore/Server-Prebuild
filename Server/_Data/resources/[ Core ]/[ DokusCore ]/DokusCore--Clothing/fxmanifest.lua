@@ -5,7 +5,7 @@ description 'DokusCore Clothing'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.0'
+version '1.1.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -21,6 +21,7 @@ server_scripts { '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 shared_script {
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Client ]/DokusMenu.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Dialogs ]/Clothing.lua',

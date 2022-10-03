@@ -5,7 +5,7 @@ description 'DokusCore Inventory'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.9.0'
+version '1.9.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -25,6 +25,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Inventory.lua',
 }
 --------------------------------------------------------------------------------

@@ -17,6 +17,13 @@ Talk       = _Dialogs.Spawner
 Despawn    = _Spawner.VehDespawn
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+ShowPrompt    = false
+Prompt_Stop   = nil
+Prompt_Out    = nil
+Prompt_Cinema = nil
+Group         = GetRandomIntInRange(0, 0xffffff)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Spawner) then
     while not FrameReady() do Wait(1000) end

@@ -6,6 +6,7 @@
 RegisterNetEvent('DokusCore:Spawner:User:Login', function()
   local Sync   = TCTCC('DokusCore:Sync:Get:UserData')
   local Char   = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, Sync.CharID } })
+  if (Sync.CharID == 0) then return RestartCharPicker() end
   local Dec    = Decoded(Char.Result[1].Coords)
   local Coords = vec3(Dec.x, Dec.y, Dec.z)
   SetCoords(PedID(), Coords)
@@ -32,7 +33,7 @@ RegisterNetEvent('DokusCore:Spawner:User:Login', function()
 
   -- Update all depending plugins
   TriggerEvent('DokusCore:Metabolism:ShowHud', true)
-  TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Login' })
+  -- TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Login' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedIn')
   TriggerEvent('DokusCore:Inventory:User:Login')
 end)
@@ -61,7 +62,7 @@ RegisterNetEvent('DokusCore:Spawner:User:Logout', function()
 
   -- Update Depening Plugins
   TriggerEvent('DokusCore:Metabolism:ShowHud', false)
-  TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
+  -- TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Logout' })
   TriggerEvent('DokusCore:Metabolism:UserLoggedOut')
   TriggerEvent('DokusCore:Inventory:User:Logout')
 
@@ -72,7 +73,7 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Spawner:User:New', function()
   local Sync  = TCTCC('DokusCore:Sync:Get:UserData')
-  TriggerEvent('DokusCore:Spawner:DisableAllControls', true)
+  -- TriggerEvent('DokusCore:Spawner:DisableAllControls', true)
 
   -- Get random starting area
   SpawnPos = TSC('DokusCore:Spawner:GetRoute')
@@ -113,6 +114,7 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   RenderCam(false, false, 1, true, true) Wait(100)
   TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
   TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
+  TriggerEvent('DokuCore:Spawner:StopMusicPrompt')
   if (Song.Enabled) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Song.Song, Song.Volume) end
   VehicleID = SpawnVehicle('STAGECOACH001X', SP, SpawnPos.Heading)
   DriverID = CreateDriver(PedID(), 'CS_BivCoachDriver', SP)
@@ -151,6 +153,7 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   end
 
 
+  ShowPrompt = false
   WaitForUserToLeaveVehicle(PedID()) Wait(3000) Cinema(true)
 
   -- Continue
@@ -169,11 +172,14 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Spawner:DisableAllControls', function(Bool)
-  DisableControls = Bool
-  while (DisableControls) do Wait(1) DisableAllControlActions(1) end
-  DisableAllControlActions(0)
-end)
+-- RegisterNetEvent('DokusCore:Spawner:DisableAllControls', function(Bool)
+--   DisableControls = Bool
+--   while (DisableControls) do Wait(1)
+--     -- DisableAllControlActions(1)
+--     DisableControlAction(1, _Keys.E, true)
+--   end
+--   DisableAllControlActions(0)
+-- end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Spawner:Spawn:RandomChatter', function(Bool)
@@ -212,7 +218,42 @@ RegisterNetEvent('DokusCore:Spawner:DeathRespawn', function(ID)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNetEvent('DokuCore:Spawner:StopMusicPrompt', function()
+  local Cine = true
+  local Playing = true
+  ShowPrompt = true
+  HidePrompt = false
+  ActPrompts()
+  while (ShowPrompt) do Wait(0)
+    local pName = CreateVarString(10, 'LITERAL_STRING', '')
+    PromptSetActiveGroupThisFrame(Group, pName)
+    local S = PromptHasHoldModeCompleted(Prompt_Stop)
+    local C = PromptHasHoldModeCompleted(Prompt_Cinema)
+    local O = PromptHasHoldModeCompleted(Prompt_Out)
 
+    if ((S) and (Playing)) then
+      Playing = false
+      TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', 'None', 0)
+      Notify("You turned off the music", "TopCenter", 5000)
+      Wait(3000)
+    elseif ((S) and (not (Playing))) then
+      Playing = true
+      TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Song.Song, Song.Volume)
+      Notify("You turned the music on", "TopCenter", 5000)
+      Wait(3000)
+    end
+
+    if (O) then
+      Notify("Preventing you from stepping out in the cut scene.", 'TopCenter', 10000)
+      Wait(5000)
+    end
+
+    if (C) then
+      Cine = not Cine
+      Citizen.InvokeNative(0xCE7A90B160F75046, Cine)
+    end
+  end
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

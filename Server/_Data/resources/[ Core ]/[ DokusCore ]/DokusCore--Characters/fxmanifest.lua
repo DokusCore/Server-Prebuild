@@ -5,7 +5,7 @@ description 'DokusCore Characters v2'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.1.1'
+version '2.2.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -21,6 +21,7 @@ server_scripts { '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 shared_script {
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Characters.lua',
 }

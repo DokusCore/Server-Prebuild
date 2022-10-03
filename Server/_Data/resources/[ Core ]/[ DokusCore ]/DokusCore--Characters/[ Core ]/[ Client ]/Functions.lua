@@ -140,8 +140,11 @@ end
 function PlaySong() if (Song.Enabled) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Song.Song, Song.Volume) end end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
+function Error(Type)
+  if (Type == 'NoCharSelected') then NoteObjective("Error", "No character selected!", 'Horn', 5000) end
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

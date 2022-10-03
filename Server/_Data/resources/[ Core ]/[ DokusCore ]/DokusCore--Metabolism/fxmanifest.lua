@@ -5,7 +5,7 @@ description 'DokusCore Metabolism -- Its vital to have some vitals'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.3'
+version '1.2.4'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -25,6 +25,7 @@ server_scripts {
 shared_script {
   -- 'Config.lua', -- Development Only
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Metabolism.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
 }

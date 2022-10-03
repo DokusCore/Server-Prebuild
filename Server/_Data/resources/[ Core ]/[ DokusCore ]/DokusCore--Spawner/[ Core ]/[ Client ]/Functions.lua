@@ -65,7 +65,10 @@ function WaitForUserToLeaveVehicle(PedID)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+function RestartCharPicker()
+  NoteObjective('ERROR:', "The system was unable to detect yoru CharID! We are restarting the characters screen!", 'Horn', 5000)
+  TriggerEvent('DokusCore:Characters:Start')
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

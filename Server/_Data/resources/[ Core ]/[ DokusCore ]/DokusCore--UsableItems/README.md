@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore UsableItems (v1.1.0) [BETA]</b> - Use items and take care of its animations!.
+ <b>DokusCore UsableItems (v1.1.1) [BETA]</b> - Use items and take care of its animations!.
 </p>
 
 ---
@@ -20,8 +20,11 @@ set up a DokusCore server, see the following video: [Installation video](https:/
 
 ---
 # Installation
-Simply extract the `DokusCore--UsableItems` into your `resources` folder, and <br>
-start it via `ensure DokusCore--UsableItems`.
+Simply extract the `DokusCore--UsableItems` into your `resources` folder, <br>
+and start it via `ensure DokusCore--UsableItems`. Then go to the Modules.lua <br>
+file of `DokusCore` itself and at `_Modules = { UsableItems }` set it to `true`. <br>
+If left to `false` the core will create its own character on ID 1 and not the <br>
+multi characters plugin.
 
 ---
 # Plugin Information

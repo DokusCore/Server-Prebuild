@@ -3,13 +3,13 @@
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
-RegisterCommand('logout', function()
-  TriggerEvent('DokusCore:Spawner:User:Logout')
-end)
+-- RegisterCommand('logout', function()
+--   TriggerEvent('DokusCore:Spawner:User:Logout')
+-- end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterCommand('info', function()
-  TriggerEvent('DokusCore:Spawner:User:New')
+  TriggerEvent('DokuCore:Spawner:StopMusicPrompt')
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

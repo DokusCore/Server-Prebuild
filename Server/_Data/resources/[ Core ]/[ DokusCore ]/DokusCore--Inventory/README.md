@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Inventory (v1.9.0) [BETA]</b> - A Inventory system for DokusCore!.
+ <b>DokusCore Inventory (v1.9.1) [BETA]</b> - A Inventory system for DokusCore!.
 </p>
 
 ---
@@ -11,8 +11,11 @@ Make sure that DokusCore is started before this plugin!
 
 ---
 # Installation
-Simply extract the `DokusCore--Inventory` into your `resources` folder, and <br>
-start it via `ensure DokusCore--Inventory`.
+Simply extract the `DokusCore--Inventory` into your `resources` folder, <br>
+and start it via `ensure DokusCore--Inventory`. Then go to the Modules.lua <br>
+file of `DokusCore` itself and at `_Modules = { Inventory }` set it to `true`. <br>
+If left to `false` the core will create its own character on ID 1 and not the <br>
+multi characters plugin.
 
 ---
 # Plugin Information

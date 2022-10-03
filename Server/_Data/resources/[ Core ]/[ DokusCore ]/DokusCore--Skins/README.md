@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Skin Creator (v2.1.1) [BETA]</b> - A plugin to create your characters skin!.
+ <b>DokusCore Skin Creator (v2.1.2) [BETA]</b> - A plugin to create your characters skin!.
 </p>
 
 ---
@@ -12,7 +12,7 @@ Make sure that DokusCore is started before this plugin!
 ---
 # Installation
 Simply extract the `DokusCore--Skins` into your `resources` folder, <br>
-and start it via `ensure DokusCore--Skins`. Then go to the Config.lua <br>
+and start it via `ensure DokusCore--Skins`. Then go to the Modules.lua <br>
 file of `DokusCore` itself and at `_Modules = { Skins }` set it to `true`.
 If left to `false` the core will create its own character on ID 1 and not the
 multi characters plugin

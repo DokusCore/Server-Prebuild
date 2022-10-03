@@ -5,7 +5,7 @@ description 'DokusCore UsableItems -- Use items and take care of its animations'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.0'
+version '1.1.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
@@ -22,7 +22,8 @@ client_scripts {
 --------------------------------------------------------------------------------
 shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
-  '@DokusCore/[ Configs ]/[ Core ]/Core.lua'
+  '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

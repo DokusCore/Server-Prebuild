@@ -56,6 +56,9 @@ function ResetPrompts()
   Prompt_Settings  = nil
   Prompt_Invent    = nil
   Prompt_AdminMenu = nil
+  Prompt_Zoning    = nil
+  Prompt_AutoDriveStart = nil
+  Prompt_AutoDriveStop  = nil
   Group         = GetRandomIntInRange(0, 0xffffff)
 end
 --------------------------------------------------------------------------------
@@ -67,10 +70,20 @@ function OpenInventory()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
-
+function DoAutoMove()
+  AutoMoveOn = true
+  Cinema(true)
+  TaskGoToCoordAnyMeans(PedID(), GetWaypointCoords(), 20.0, 0, 0, 786603, 0xbf800000)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function EndAutoMove()
+  AutoMoveOn = false
+  Cinema(false)
+  ClearPedTasks(PedID())
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

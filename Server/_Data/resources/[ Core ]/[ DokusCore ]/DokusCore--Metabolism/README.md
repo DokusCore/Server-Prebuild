@@ -1,7 +1,7 @@
 ---
 <p align="center">
   <img width="600" height="200" src="https://user-images.githubusercontent.com/49053928/111937011-2e9b8080-8ac7-11eb-914a-a0d94380d611.gif"><br>
- <b>DokusCore Metabolism (v1.2.3) BETA</b> - Controls your players vitals.
+ <b>DokusCore Metabolism (v1.2.4) BETA</b> - Controls your players vitals.
 </p>
 
 ---
@@ -12,7 +12,7 @@ Make sure that DokusCore is started before this plugin!
 ---
 # Installation
 Simply extract the `DokusCore--Metabolism` into your `resources` folder, <br>
-and start it via `ensure DokusCore--Metabolism`. Then go to the Config.lua <br>
+and start it via `ensure DokusCore--Metabolism`. Then go to the Modules.lua <br>
 file of `DokusCore` itself and at `_Modules = { Metabolism }` set it to `true`.
 If left to `false` the core will create its own character on ID 1 and not the
 multi characters plugin

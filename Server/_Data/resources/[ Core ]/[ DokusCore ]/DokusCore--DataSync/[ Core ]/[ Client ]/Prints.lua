@@ -22,9 +22,8 @@ function Call(v)
   if (Low(v) == 'setbankgold')    then print(System.."You're Character Bank Gold Amount is stored succesfully!")  end
   if (Low(v) == 'frameready')     then print(System.."DokusCore is Synced with DataSync")                         end
   if (Low(v) == 'setusableitems') then print(System.."Module UsableItems is synced with DataSync")                end
-
-  if (Low(v) == 'setchargender') then print(System.."You're Character Gender is stored succesfully!")             end
-  if (Low(v) == 'setcharskin')   then print(System.."You're Character Skin Settings are stored succesfully!")     end
+  if (Low(v) == 'setchargender')  then print(System.."You're Character Gender is stored succesfully!")             end
+  if (Low(v) == 'setcharskin')    then print(System.."You're Character Skin Settings are stored succesfully!")     end
 end
 
 

@@ -5,7 +5,7 @@ description 'DokusSync -- General Stores'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.1.3'
+version '2.1.4'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -21,6 +21,7 @@ server_scripts { '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 shared_script {
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Stores.lua',
   '@DokusCore/[ Configs ]/[ Dialogs ]/Stores.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua'

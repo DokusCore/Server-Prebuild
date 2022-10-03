@@ -5,7 +5,7 @@ description 'DokusCore Lottery Scratch Cards'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games { "rdr3" }
-version '1.0.1'
+version '1.0.2'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -21,6 +21,7 @@ server_scripts { '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 shared_script {
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/ScratchCards.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
 }

@@ -5,7 +5,7 @@ description 'DokusCore Banking System - http://DokusCore.com'
 author 'DevDokus'
 fx_version "adamant"
 games {"rdr3"}
-version '2.6.2'
+version '2.6.4'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -25,6 +25,7 @@ server_scripts {
 --------------------------------------------------------------------------------
 shared_script {
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
+  '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Banking.lua',
   '@DokusCore/[ Configs ]/[ Dialogs ]/Banking.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',

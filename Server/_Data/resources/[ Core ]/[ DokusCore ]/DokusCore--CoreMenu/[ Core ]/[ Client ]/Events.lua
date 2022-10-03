@@ -10,9 +10,22 @@ RegisterNetEvent('DokusCore:CoreMenu:ActPrompts', function()
     local Menu   = PromptHasHoldModeCompleted(Prompt_Settings)
     local Invent = PromptHasHoldModeCompleted(Prompt_Invent)
     local Admin  = PromptHasHoldModeCompleted(Prompt_AdminMenu)
+    local Zoning  = PromptHasHoldModeCompleted(Prompt_Zoning)
+    local AutoStart = PromptHasHoldModeCompleted(Prompt_AutoDriveStart)
+    local AutoStop  = PromptHasHoldModeCompleted(Prompt_AutoDriveStop)
     if ((Menu) and (not (IsUserMenuOpen))) then OpenUserMenu() end
     if ((Invent) and (not IsInventOpen)) then OpenInventory() end
     if ((Admin) and (not IsAdminMenuOpen)) then OpenAdminMenu() end
+    if (AutoStart) then DoAutoMove()  return end
+    if (AutoStop)  then EndAutoMove() return end
+
+    if ((Zoning)) then
+      IsMainMPShown = false
+      TriggerEvent('DokusZones:Start:Zoning')
+      CloseMenu()
+      ResetPrompts()
+      break
+    end
   end
 end)
 --------------------------------------------------------------------------------

@@ -11,7 +11,9 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('EnterWorld', function(Data)
+  print("Character Selected ID", Data.CharID)
   if (Data.CharID == nil) then return Error('NoCharSelected') end
+  if (Data.CharID == 0)   then return Error('NoCharSelected') end
   SendNUIMessage({ Type = 'Hide', Time = 3000 }) Wait(3500)
   UIFadeOut(5000) Wait(5000) SetNuiFocus(false, false)
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { Data.CharID } })
