@@ -8356,7 +8356,7 @@ class ConnectionConfig {
     this.isServer = options.isServer;
     this.stream = options.stream;
     this.host = options.host || 'localhost';
-    this.port = options.port || 3308;
+    this.port = options.port || 3306;
     this.localAddress = options.localAddress;
     this.socketPath = options.socketPath;
     this.user = options.user || undefined;
