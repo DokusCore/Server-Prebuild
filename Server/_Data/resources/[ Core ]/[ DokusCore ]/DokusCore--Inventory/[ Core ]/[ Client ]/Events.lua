@@ -55,6 +55,7 @@ RegisterNetEvent('DokusCore:Inventory:PickUpBoxItem', function(args)
     TriggerServerEvent('DokusCore:Core:DBSet:Storages',  { 'DropBox', 'RemoveItem', { BoxID, Data.Result[1].Meta, Item, Amount } })
   end
 
+  Wait(2000)
   IsPickingUpItem = false
 end)
 --------------------------------------------------------------------------------

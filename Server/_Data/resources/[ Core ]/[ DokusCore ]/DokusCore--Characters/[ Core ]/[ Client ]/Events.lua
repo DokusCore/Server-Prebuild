@@ -6,18 +6,19 @@
 RegisterNetEvent('DokusCore:Characters:Start', function()
   local CharData = SetCharData()
   if (SkipCamp(CharData)) then return end
-  PlaySong() DisplayRadar(false) --DisplayHud(false)
+  PlaySong() DisplayRadar(false)
   if (not (CamCampSet)) then SetCampCamera() end
   SendPedToCamp(PedID())
   SetNuiFocus(true, true)
-  SpawnPlayerPeds(CharData) Wait(7000)
-  LoadAllPlayerPedSkins(CharData) Wait(3000)
+  SpawnPlayerPeds(CharData) Wait(4000)
+  LoadAllPlayerPedSkins(CharData) Wait(5000)
   TriggerEvent('DokusCore:Clothing:NPC:Load:Clothing', NPCs, CharData)
   NetworkGhosting(PedID(), true)
   UIFadeIn(5000)
+  TriggerEvent('DokusCore:Characters:SendWaring')
   WalkPlayerPedsToPosition()
   TaskPlayerPedsToScenario()
-  if (not (CamPedsSet)) then CreatePedCams() Wait(8000) end
+  if (not (CamPedsSet)) then CreatePedCams() end
   SendNUIMessage({ Type = 'Hide', Time = 500 }) Wait(500)
   SendNUIMessage({ Type = 'Show', Time = 1500 })
   SendNUIMessage({ Type = 'Load', Data = CharData })

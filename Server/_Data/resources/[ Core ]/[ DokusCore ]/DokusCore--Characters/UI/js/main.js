@@ -58,7 +58,6 @@ function SelectedChar(id) {
   CharID = id
   $(".enter-world").css("opacity", "1");
   $.post('http://DokusCore--Characters/SelectedChar', JSON.stringify({ CharID: CharID }));
-  return ResetData();
 };
 
 
@@ -71,7 +70,6 @@ function EnterWorld() {
 function NewCharacter() {
   $(".enter-world").css("opacity", "1");
   $.post('http://DokusCore--Characters/CreateCharacter', JSON.stringify({ CharID: CharID }));
-  return ResetData()
 };
 
 function ResetData() {

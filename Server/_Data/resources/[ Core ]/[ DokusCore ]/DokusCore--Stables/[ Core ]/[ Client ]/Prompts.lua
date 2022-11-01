@@ -5,20 +5,21 @@
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Stables:ShowPrompts', function()
   ActPrompts()
+  print("Start Prompts")
   while (not (StoreInUse) and (ShowPrompts)) do Wait(1)
     local IsMounted = IsPedOnMount(PedID())
     if (not (IsMounted)) then
       local pName = CreateVarString(10, 'LITERAL_STRING', Dialog.NPCName)
-      PromptSetActiveGroupThisFrame(Group, pName)
-      local ME = PromptHasHoldModeCompleted(Prompt_Menu)
-      local ST = PromptHasHoldModeCompleted(Prompt_Store)
+      PromptSetActiveGroupThisFrame(pGroup_Stables, pName)
+      local ME = PromptHasHoldModeCompleted(Stables_Menu)
+      local ST = PromptHasHoldModeCompleted(Stables_Store)
 
-      if ((ME) and (not (StoreInUse))) then
+      if (ME) then
         StoreInUse = true
         TriggerEvent('DokusCore:Stables:OpenMenu')
       end
 
-      if ((ST) and (not (StoreInUse))) then
+      if(ST) then
         StoreInUse = true
         TriggerEvent('DokusCore:Stables:StoreHorse')
       end
@@ -28,17 +29,18 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function ActPrompts()
+  print("Activate Prompts")
   CreateThread(function()
     local str = 'Open Menu'
-    Prompt_Menu = PromptRegisterBegin()
-    PromptSetControlAction(Prompt_Menu, _Keys['E'])
+    Stables_Menu = PromptRegisterBegin()
+    PromptSetControlAction(Stables_Menu, _Keys.E)
     str = CreateVarString(10, 'LITERAL_STRING', str)
-    PromptSetText(Prompt_Menu, str)
-    PromptSetEnabled(Prompt_MenuPrompt_Menu, true)
-    PromptSetVisible(Prompt_Menu, true)
-    PromptSetHoldMode(Prompt_Menu, true)
-    PromptSetGroup(Prompt_Menu, Group)
-    PromptRegisterEnd(Prompt_Menu)
+    PromptSetText(Stables_Menu, str)
+    PromptSetEnabled(Stables_Menu, true)
+    PromptSetVisible(Stables_Menu, true)
+    PromptSetHoldMode(Stables_Menu, true)
+    PromptSetGroup(Stables_Menu, pGroup_Stables)
+    PromptRegisterEnd(Stables_Menu)
 
     if (MyActiveHorse ~= nil) then
       for k,v in pairs(_Stables.NPCs) do
@@ -47,15 +49,15 @@ function ActPrompts()
           local Dist = Vdist(v.Coords, Coords)
           if (Dist <= 20) then
             local str = 'Store Horse'
-            Prompt_Store = PromptRegisterBegin()
-            PromptSetControlAction(Prompt_Store, _Keys['G'])
+            Stables_Store = PromptRegisterBegin()
+            PromptSetControlAction(Stables_Store, _Keys.G)
             str = CreateVarString(10, 'LITERAL_STRING', str)
-            PromptSetText(Prompt_Store, str)
-            PromptSetEnabled(Prompt_Store, true)
-            PromptSetVisible(Prompt_Store, true)
-            PromptSetHoldMode(Prompt_Store, true)
-            PromptSetGroup(Prompt_Store, Group)
-            PromptRegisterEnd(Prompt_Store)
+            PromptSetText(Stables_Store, str)
+            PromptSetEnabled(Stables_Store, true)
+            PromptSetVisible(Stables_Store, true)
+            PromptSetHoldMode(Stables_Store, true)
+            PromptSetGroup(Stables_Store, pGroup_Stables)
+            PromptRegisterEnd(Stables_Store)
           end
         end
       end

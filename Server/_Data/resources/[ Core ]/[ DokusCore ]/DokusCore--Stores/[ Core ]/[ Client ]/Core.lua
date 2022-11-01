@@ -24,7 +24,7 @@ end)
 -- Set the NPCs and Blips on the map
 --------------------------------------------------------------------------------
 CreateThread(function()
-  if (_Modules.Trains) then
+  if (_Modules.Stores) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     for k,v in pairs(_Stores.Stores) do if (v.Enabled) then Tabi(Blips, SetBlip(v.Coords, 1475879922, Radius, 'General Store')) end end
@@ -143,47 +143,6 @@ RegisterNetEvent('DokusCore:Stores:OpenStore', function(Type)
       StoreData = Array_Inv,
       ShopName = 'Inventory (Sell)'
     })
-  end
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Stores:BuyItem', function(Item)
-  local Amount  = tonumber(Item.Result)
-  if (Amount == nil) then NREntryErr() ResetStore() IndexAllData() Open('Buy') return end
-  if (Amount < 0) then Message('NoMinNumber') ResetStore() IndexAllData() Open('Buy') return end
-  local PricePP  = Item.Data.Price
-  local NewPrice = (PricePP * Amount)
-  local Item     = Item.Data.Item
-
-
-  if (Amount >= 1) then
-    local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, CharID } })
-    local Money = User.Result[1].Money
-    if (NewPrice > Money) then Message('NoBuyMoney') ResetStore() IndexAllData() Open('Buy') return end
-    local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', { SteamID, CharID, Item } })
-    if not (Inv.Exist) then InsertInvItem(Item, Amount) ResetStore() IndexAllData() Open('Buy') end
-    if (Inv.Exist) then AddInvItem(Item, Amount, Inv.Result) ResetStore() IndexAllData() Open('Buy') end
-    TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Payment', { SteamID, CharID, (Money - NewPrice) } })
-  end
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:Stores:SellItem', function(Item)
-  local Amount = tonumber(Item.Result)
-  if (Amount == nil) then NREntryErr() ResetStore() IndexAllData() Open('Sell') return end
-  if (Amount < 0) then Message('NoMinNumber') ResetStore() IndexAllData() Open('Sell') return end
-  local PricePP  = Item.Data.Price
-  local NewPrice = (PricePP * Amount)
-  local Item = Item.Data.Item
-
-  if (Amount >= 1) then
-    local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, CharID } })
-    local Money = User.Result[1].Money
-    local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', { SteamID, CharID, Item } })
-    if (Amount > Inv.Result[1].Amount) then Message('NotEnough') ResetStore() IndexAllData() Open('Sell') return end
-    if ((Inv.Result[1].Amount - Amount) == 0) then DelInvItem(Item, Amount) ResetStore() IndexAllData() Open('Sell') end
-    if ((Inv.Result[1].Amount - Amount > 0)) then SetInvItem(Item, Amount, Inv.Result[1].Amount) ResetStore() IndexAllData() Open('Sell') end
-    TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Payment', { SteamID, CharID, (Money + NewPrice) } })
   end
 end)
 --------------------------------------------------------------------------------

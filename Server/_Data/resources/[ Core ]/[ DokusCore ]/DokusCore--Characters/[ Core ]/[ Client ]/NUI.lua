@@ -11,7 +11,6 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('EnterWorld', function(Data)
-  print("Character Selected ID", Data.CharID)
   if (Data.CharID == nil) then return Error('NoCharSelected') end
   if (Data.CharID == 0)   then return Error('NoCharSelected') end
   SendNUIMessage({ Type = 'Hide', Time = 3000 }) Wait(3500)
@@ -20,8 +19,12 @@ RegisterNUICallback('EnterWorld', function(Data)
   RenderScriptCams(false, false, 1, true, true)
   NetworkGhosting(PedID(), false)
   TriggerEvent('DokusCore:Spawner:User:Login')
+
   for k,v in pairs(NPCs) do DeleteEntity(v) end
   NPCs = {}
+
+  Wait(5000)
+  TriggerEvent('DokusCore:Core:MP:Music:MusicFade')
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

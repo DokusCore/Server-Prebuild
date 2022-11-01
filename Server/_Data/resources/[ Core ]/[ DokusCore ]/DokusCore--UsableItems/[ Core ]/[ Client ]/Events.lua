@@ -34,13 +34,13 @@ RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
       if (Low(IsEvent) == 'true') then
         if (Event == nil) then NoteObjective('Error', 'Item has no event in the database', 'Warning', 5000) return end
         local Dec = Decoded(Event)
-        local Animation = { Prop = Prop, PropPos = PropPos, Ani = Ani, AniTime = AniTime }
-        if (Low(Dec.Delete) == 'true') then
-          if (Low(Dec.Type) == 'client') then TriggerEvent(Dec.Event, Animation) DelInv(PedID, Amount, v) end
-          if (Low(Dec.Type) == 'server') then TriggerServerEvent(Dec.Event, Animation) DelInv(PedID, Amount, v) end
+        local Delete = (Dec.Delete or 'false')
+        if (Delete == 'true') then
+          if (Low(Dec.Type) == 'client') then TriggerEvent(Dec.Event, v, k) DelInv(PedID, Amount, v) end
+          if (Low(Dec.Type) == 'server') then TriggerServerEvent(Dec.Event, v, k) DelInv(PedID, Amount, v) end
         else
-          if (Low(Dec.Type) == 'client') then TriggerEvent(Dec.Event, Animation) end
-          if (Low(Dec.Type) == 'server') then TriggerServerEvent(Dec.Event, Animation) end
+          if (Low(Dec.Type) == 'client') then TriggerEvent(Dec.Event, v, k) end
+          if (Low(Dec.Type) == 'server') then TriggerServerEvent(Dec.Event, v, k) end
         end
       end
 
@@ -59,4 +59,4 @@ RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
   end
 end)
 --------------------------------------------------------------------------------
----------------------------------------------------------- ----------------------
+--------------------------------------------------------------------------------

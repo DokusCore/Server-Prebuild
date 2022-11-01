@@ -89,15 +89,9 @@ function CreatePedCams()
   PedCam1 = { Cam = CreateCam("DEFAULT_SCRIPTED_CAMERA"), Pos = nil, Rot = nil }
   PedCam2 = { Cam = CreateCam("DEFAULT_SCRIPTED_CAMERA"), Pos = nil, Rot = nil }
   PedCam3 = { Cam = CreateCam("DEFAULT_SCRIPTED_CAMERA"), Pos = nil, Rot = nil }
-
-  for k,v in pairs(NPCs) do
-    local Offset = GetCoords(v)
-    local Rotation = GetEntityRotation(v)
-    if (k == 1) then PedCam1.Pos, PedCam1.Rot = Offset, Rotation end
-    if (k == 2) then PedCam2.Pos, PedCam2.Rot = Offset, Rotation end
-    if (k == 3) then PedCam3.Pos, PedCam3.Rot = Offset, Rotation end
-  end
-
+  PedCam1.Pos, PedCam1.Rot = vector3(882.9272, 1268.631, 234.2571), vector3(-1.293306, 3.026091, -87.96433)
+  PedCam2.Pos, PedCam2.Rot = vector3(882.8522, 1270.744, 234.3688), vector3(-1.293305, 3.026092, -87.96432)
+  PedCam3.Pos, PedCam3.Rot = vector3(886.7281, 1269.423, 234.6214), vector3(-1.456217, -1.262961, 84.55676)
   CamPedsSet = true
 end
 --------------------------------------------------------------------------------

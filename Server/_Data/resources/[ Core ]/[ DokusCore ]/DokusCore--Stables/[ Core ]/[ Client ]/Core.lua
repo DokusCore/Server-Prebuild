@@ -10,10 +10,10 @@ StoreInUse, UseThisNPC = false, nil
 HorseLoaded, MyActiveHorse = nil, nil
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-ShowPrompts   = false
-Prompt_Menu   = nil
-Prompt_Store  = nil
-Group         = GetRandomIntInRange(0, 0xffffff)
+ShowPrompts    = false
+Stables_Menu   = nil
+Stables_Store  = nil
+pGroup_Stables = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Set the blips on the map

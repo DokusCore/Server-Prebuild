@@ -43,6 +43,7 @@ RegisterNetEvent('DokusCore:Stables:Start', function(Data)
       Loc = Low(Data.City)
       ShowPrompts = true
       TriggerEvent('DokusCore:Stables:ShowPrompts')
+      break
     end
   end
 end)

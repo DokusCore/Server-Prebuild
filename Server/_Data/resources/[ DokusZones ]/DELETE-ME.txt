@@ -1,5 +1,0 @@
-This file can be deleted!
-It was just used to make sure the 
-[ DokusZones ] folder was uploaded
-to Github, as it is ignoring empty 
-folders!

@@ -1,6 +1,6 @@
 var aType = null
 var aPrice = 0
-var aAmount = 0
+var aAmount = 1
 
 document.addEventListener('DOMContentLoaded', function() {
   $(".container").hide();
@@ -20,35 +20,6 @@ window.addEventListener("message", function(event) {
       ShowShop(Data.ShopName, Data.StoreData)
     }
   }
-  // /* Plus and minus signs calculation */
-  // if (Data.message == "add"){
-	// 	$( ".container" ).append(/*'<div class="card">' +
-	// 				'<div class="image-holder">' +
-	// 					'<img src="img/' + Data.item + '.png" onerror="this.src = \'img/default.png\'" alt="' + Data.label + '" style="width:100%;">' +
-	// 				'</div>' +
-	// 				'<div class="container" style=" max-width: 100%;overflow: hidden;text-overflow: ellipsis;">' +
-	// 					'<h4 style="white-space: nowrap; font-size: 0.8vw;"><b>' + Data.label + '<div class="price">' + Data.price + '$' + '</div>' + '</b></h4> ' +
-	// 					*/'<div class="quantity">' +
-	// 						'<div class="minus-btn btnquantity" name="' + Data.item + '" id="minus">' +
-	// 							'<img src="img/minus.png" alt="" />' +
-	// 						'</div>' +
-	// 						'<div class="number" name="name">1</div>' +
-	// 						'<div class="plus-btn btnquantity" name="' + Data.item + '" id="plus">' +
-	// 							'<img src="img/plus.png" alt="" />' +
-	// 						'</div>' +
-	// 					'</div>'/* +
-	// 					'<div class="purchase">' +
-  //
-	// 						'<div class="buy" name="' + Data.item + '">Kup</div>' +
-	// 					'</div>' +
-	// 				'</div>' +
-	// 			'</div>'*/);
-	// 	//prices[Data.item] = Data.price;
-	// 	maxes[Data.item] = 99;
-	// 	//zone = Data.loc;
-	// }
-  // //ends here//
-  ;
 });
 
 function ShowShop(ShopName, Items) {
@@ -99,8 +70,8 @@ function select(element) {
     var item_description = $(element).attr('description');
     var item_p_dollar = $(element).attr('p_dollar');
     aPrice = item_p_dollar
-
-    $('#p_dollar').text(item_p_dollar);
+    cPrice = (aPrice * aAmount).toFixed(2);
+    $('#p_dollar').text(cPrice);
     $('.description-title').text(item_name);
     $('.description-description').text(item_description);
     $('#confirmation-container #confirm_title').text(item_name);
@@ -140,8 +111,14 @@ function Confirm() {
       $(".container").hide();
       $.post('http://DokusCore--Stores/SellItem', JSON.stringify({
         Item: sItem,
-        Price: aPrice
+        Price: (aPrice * aAmount).toFixed(2),
+        Amount: aAmount
       }));
+
+      aPrice = 0;
+      aAmount = 1;
+      document.getElementById('MenuNumber').innerHTML = aAmount;
+      document.getElementById('p_dollar').innerHTML = 0;
     };
   } else {
     if ($('.selected').length > 0) {
@@ -151,8 +128,14 @@ function Confirm() {
       $(".container").hide();
       $.post('http://DokusCore--Stores/BuyItem', JSON.stringify({
         Item: sItem,
-        Price: aPrice
+        Price: (aPrice * aAmount).toFixed(2),
+        Amount: aAmount
       }));
+
+      aPrice = 0;
+      aAmount = 1;
+      document.getElementById('MenuNumber').innerHTML = aAmount;
+      document.getElementById('p_dollar').innerHTML = 0;
     };
   };
 };
@@ -163,8 +146,12 @@ function cancelPurchase() {
 };
 
 function Exit() {
+  aPrice = 0;
+  aAmount = 1;
   $(".container").fadeOut(100);
   $("#ui").css('display', 'none');
+  document.getElementById('MenuNumber').innerHTML = aAmount;
+  document.getElementById('p_dollar').innerHTML = 0;
   $.post('http://DokusCore--Stores/CloseNUI', JSON.stringify({}));
 };
 
@@ -182,12 +169,15 @@ function SwitchScreen() {
 
 function ClickPlus() {
   aAmount = ( aAmount + 1 )
-  console.log('New Amount', aAmount);
+  document.getElementById('MenuNumber').innerHTML = aAmount;
+  document.getElementById('p_dollar').innerHTML = (aPrice * aAmount).toFixed(2);
 };
 
 function ClickMinus() {
   aAmount = ( aAmount - 1 )
-  console.log('New Amount', aAmount);
+  if (aAmount <= 1) { aAmount = 1; };
+  document.getElementById('MenuNumber').innerHTML = aAmount;
+  document.getElementById('p_dollar').innerHTML = (aPrice * aAmount).toFixed(2);
 };
 
 
@@ -196,35 +186,12 @@ $(document).keyup(function(Data) {
   var Code = Data.keyCode
   if (Code == 8 || Code == 27) {
     aType = null
+    aPrice = 0;
+    aAmount = 1;
     $(".container").fadeOut(100);
     $("#ui").css('display', 'none');
+    document.getElementById('MenuNumber').innerHTML = aAmount;
+    document.getElementById('p_dollar').innerHTML = 0;
     $.post('http://DokusCore--Stores/CloseNUI', JSON.stringify({}));
   } else if (Code == 13) { Confirm() };
 });
-
-// /* Plus and minus signs calculation*/
-// $(".container").on("click", ".btnquantity", function() {
-//
-// 	var $button = $(this);
-// 	var $name = $button.attr('name')
-// 	var oldValue = $button.parent().find(".number").text();
-// 	if ($button.get(0).id == "plus") {
-// 		if (oldValue <  maxes[$name]){
-// 			var newVal = parseFloat(oldValue) + 1;
-// 		}else{
-// 			var newVal = parseFloat(oldValue);
-// 		}
-// 	} else {
-// 	// Don't allow decrementing below zero
-// 		if (oldValue > 1) {
-// 			var newVal = parseFloat(oldValue) - 1;
-// 		} else {
-// 			newVal = 1;
-// 		}
-// 	}
-// 	//$button.parent().parent().find(".price").text((prices[$name] * newVal) + "$");
-// 	$button.parent().find(".number").text(newVal);
-//
-// });
-//
-// // ends here //

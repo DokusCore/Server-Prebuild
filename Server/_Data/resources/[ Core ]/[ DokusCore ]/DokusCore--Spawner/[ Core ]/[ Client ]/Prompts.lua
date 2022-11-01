@@ -29,13 +29,14 @@ function ActPrompts()
 
     local str = 'Cinema'
     Prompt_Cinema = PromptRegisterBegin()
-    PromptSetControlAction(Prompt_Cinema, _Keys['V'])
+    PromptSetControlAction(Prompt_Cinema, _Keys.V)
     str = CreateVarString(10, 'LITERAL_STRING', str)
     PromptSetText(Prompt_Cinema, str)
-    PromptSetEnabled(Prompt_Cinema, true)
-    PromptSetVisible(Prompt_Cinema, true)
-    PromptSetHoldMode(Prompt_Cinema, true)
+    PromptSetEnabled(Prompt_Cinema,  true)
+    PromptSetVisible(Prompt_Cinema,  true)
+    PromptSetStandardMode(Prompt_Cinema, true)
     PromptSetGroup(Prompt_Cinema, Group)
+    Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_Cinema, true)
     PromptRegisterEnd(Prompt_Cinema)
   end)
 end

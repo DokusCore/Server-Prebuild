@@ -8,16 +8,18 @@ RegisterNetEvent('DokusCore:CoreMenu:ActPrompts', function()
     local pName = CreateVarString(10, 'LITERAL_STRING', 'DokuCore')
     PromptSetActiveGroupThisFrame(Group, pName)
     local Menu   = PromptHasHoldModeCompleted(Prompt_Settings)
-    local Invent = PromptHasHoldModeCompleted(Prompt_Invent)
-    local Admin  = PromptHasHoldModeCompleted(Prompt_AdminMenu)
+    local Invent = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Invent)
+    local Admin  = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_AdminMenu)
     local Zoning  = PromptHasHoldModeCompleted(Prompt_Zoning)
     local AutoStart = PromptHasHoldModeCompleted(Prompt_AutoDriveStart)
     local AutoStop  = PromptHasHoldModeCompleted(Prompt_AutoDriveStop)
+    local Unequipt  = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_UnEqWeapon)
     if ((Menu) and (not (IsUserMenuOpen))) then OpenUserMenu() end
     if ((Invent) and (not IsInventOpen)) then OpenInventory() end
     if ((Admin) and (not IsAdminMenuOpen)) then OpenAdminMenu() end
     if (AutoStart) then DoAutoMove()  return end
     if (AutoStop)  then EndAutoMove() return end
+    if (Unequipt)  then TriggerEvent('DokusCore:GunStore:Weapon:Unequipt', false) return end
 
     if ((Zoning)) then
       IsMainMPShown = false

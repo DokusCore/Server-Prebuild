@@ -23,6 +23,7 @@ Prompt_AdminMenu = nil
 Prompt_Zoning    = nil
 Prompt_AutoDriveStart = nil
 Prompt_AutoDriveStop  = nil
+Prompt_UnEqWeapon     = nil
 Group            = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

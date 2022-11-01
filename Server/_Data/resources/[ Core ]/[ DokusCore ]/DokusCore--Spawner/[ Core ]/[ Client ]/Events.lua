@@ -228,7 +228,7 @@ RegisterNetEvent('DokuCore:Spawner:StopMusicPrompt', function()
     local pName = CreateVarString(10, 'LITERAL_STRING', '')
     PromptSetActiveGroupThisFrame(Group, pName)
     local S = PromptHasHoldModeCompleted(Prompt_Stop)
-    local C = PromptHasHoldModeCompleted(Prompt_Cinema)
+    local C = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Cinema)
     local O = PromptHasHoldModeCompleted(Prompt_Out)
 
     if ((S) and (Playing)) then
@@ -244,8 +244,7 @@ RegisterNetEvent('DokuCore:Spawner:StopMusicPrompt', function()
     end
 
     if (O) then
-      Notify("Preventing you from stepping out in the cut scene.", 'TopCenter', 10000)
-      Wait(5000)
+      NoteNPCTalk("Driver", "You can't step out in the cut scene.", false, 5000)
     end
 
     if (C) then

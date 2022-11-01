@@ -21,10 +21,11 @@ function ActPrompts()
     PromptSetControlAction(Prompt_Invent, _Keys.X)
     str = CreateVarString(10, 'LITERAL_STRING', str)
     PromptSetText(Prompt_Invent, str)
-    PromptSetEnabled(Prompt_Invent, true)
-    PromptSetVisible(Prompt_Invent, true)
-    PromptSetHoldMode(Prompt_Invent, true)
+    PromptSetEnabled(Prompt_Invent,  true)
+    PromptSetVisible(Prompt_Invent,  true)
+    PromptSetStandardMode(Prompt_Invent, true)
     PromptSetGroup(Prompt_Invent, Group)
+    Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_Invent, true)
     PromptRegisterEnd(Prompt_Invent)
 
     local Sync = TCTCC('DokusCore:Sync:Get:UserData')
@@ -36,10 +37,11 @@ function ActPrompts()
       PromptSetControlAction(Prompt_AdminMenu, _Keys.G)
       str = CreateVarString(10, 'LITERAL_STRING', str)
       PromptSetText(Prompt_AdminMenu, str)
-      PromptSetEnabled(Prompt_AdminMenu, true)
-      PromptSetVisible(Prompt_AdminMenu, true)
-      PromptSetHoldMode(Prompt_AdminMenu, true)
+      PromptSetEnabled(Prompt_AdminMenu,  true)
+      PromptSetVisible(Prompt_AdminMenu,  true)
+      PromptSetStandardMode(Prompt_AdminMenu, true)
       PromptSetGroup(Prompt_AdminMenu, Group)
+      Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_AdminMenu, true)
       PromptRegisterEnd(Prompt_AdminMenu)
 
       local str = 'Start Zoning'
@@ -54,6 +56,7 @@ function ActPrompts()
       PromptRegisterEnd(Prompt_Zoning)
     end
 
+    -- Show prompt when mounted
     local Mount = IsPedOnMount(PedID())
     if ((Mount) and (not (AutoMoveOn))) then
       local str = 'Auto Move'
@@ -78,6 +81,26 @@ function ActPrompts()
       PromptSetGroup(Prompt_AutoDriveStop, Group)
       PromptRegisterEnd(Prompt_AutoDriveStop)
     end
+
+    -- Show prompt when weapon in hands
+    local HasWeapon = Citizen.InvokeNative(0x3B390A939AF0B5FC, PedID())
+    if (HasWeapon ~= false) then
+      local str = 'Unequipt Weapon'
+      Prompt_UnEqWeapon = PromptRegisterBegin()
+      PromptSetControlAction(Prompt_UnEqWeapon, _Keys.B)
+      str = CreateVarString(10, 'LITERAL_STRING', str)
+      PromptSetText(Prompt_UnEqWeapon, str)
+      PromptSetEnabled(Prompt_UnEqWeapon,  true)
+      PromptSetVisible(Prompt_UnEqWeapon,  true)
+      PromptSetStandardMode(Prompt_UnEqWeapon, true)
+      PromptSetGroup(Prompt_UnEqWeapon, Group)
+      Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_UnEqWeapon, true)
+      PromptRegisterEnd(Prompt_UnEqWeapon)
+    end
+
+
+
+
   end)
 end
 --------------------------------------------------------------------------------

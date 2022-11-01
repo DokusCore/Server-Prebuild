@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('SetGender', function(Data) print("Gender is iset") MyGender = Data.Gender end)
+RegisterNUICallback('SetGender', function(Data) MyGender = Data.Gender end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Rotation', function(Data)
@@ -315,9 +315,16 @@ RegisterNUICallback('Nationality', function(Data) CharData.Nationality = tostrin
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('CloseCreator', function()
+  print("I guess my gender is", MyGender)
   local Sync = TCTCC('DokusCore:Sync:Get:UserData')
   if (CharData.Name == nil) then Error('Name') return end
   if (CharData.Age  == nil) then Error('Age') return end
+  if (CharData.Nationality == nil) then Error('Nationality') return end
+  if (CharData.Skin.Torso == nil) then Error('Torso') return end
+  if (CharData.Skin.Legs  == nil) then Error('Legs') return end
+  if (CharData.Skin.Head  == nil) then Error('Head') return end
+  if (CharData.Skin.Eyes  == nil) then Error('Eyes') return end
+  if (CharData.Skin.Hair  == nil) then Error('Hair') return end
   local Skin = Encoded({ Skin = Encoded(CharData.Skin), Face = Encoded(CharData.Face) })
   local Clothing = nil
   SendNUIMessage({ Action = 'Hide' })

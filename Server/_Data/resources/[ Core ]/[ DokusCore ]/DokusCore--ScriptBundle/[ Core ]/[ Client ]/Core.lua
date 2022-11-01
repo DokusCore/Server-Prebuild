@@ -20,14 +20,6 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
-CreateThread(function()
-  -- local blip = Citizen.InvokeNative(0x45F13B7E0A15C880, 28148096, 2176.7, -1250.2, 41.6, 10.0)
-  local blip = N_0x554d9d53f696d002(1664425300, Coords)
-  SetBlipSprite(blip, 28148096, 1)
-  SetBlipScale(blip, 150.0)
-  -- Citizen.InvokeNative(0x9CB1A1623062F402, blip, Title)
-end)
-
 
 
 
