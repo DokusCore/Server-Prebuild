@@ -5,11 +5,10 @@
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Stables:ShowPrompts', function()
   ActPrompts()
-  print("Start Prompts")
   while (not (StoreInUse) and (ShowPrompts)) do Wait(1)
     local IsMounted = IsPedOnMount(PedID())
     if (not (IsMounted)) then
-      local pName = CreateVarString(10, 'LITERAL_STRING', Dialog.NPCName)
+      local pName = CreateVarString(10, 'LITERAL_STRING', MSG("NPCName").MSG)
       PromptSetActiveGroupThisFrame(pGroup_Stables, pName)
       local ME = PromptHasHoldModeCompleted(Stables_Menu)
       local ST = PromptHasHoldModeCompleted(Stables_Store)
@@ -29,9 +28,8 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function ActPrompts()
-  print("Activate Prompts")
   CreateThread(function()
-    local str = 'Open Menu'
+    local str = MSG("OpenMenu").MSG
     Stables_Menu = PromptRegisterBegin()
     PromptSetControlAction(Stables_Menu, _Keys.E)
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -48,7 +46,7 @@ function ActPrompts()
           local Coords = GetCoords(MyActiveHorse)
           local Dist = Vdist(v.Coords, Coords)
           if (Dist <= 20) then
-            local str = 'Store Horse'
+            local str = MSG("StoreHorse").MSG
             Stables_Store = PromptRegisterBegin()
             PromptSetControlAction(Stables_Store, _Keys.G)
             str = CreateVarString(10, 'LITERAL_STRING', str)

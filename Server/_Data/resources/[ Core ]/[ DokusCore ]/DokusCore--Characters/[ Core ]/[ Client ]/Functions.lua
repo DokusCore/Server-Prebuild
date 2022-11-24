@@ -15,6 +15,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Characters", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function SetCharData()
   local CharData = {}
   local Data = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'All', { SteamID } })
@@ -135,7 +147,8 @@ function PlaySong() if (Song.Enabled) then TriggerEvent('DokusCore:Core:MP:Music
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Error(Type)
-  if (Type == 'NoCharSelected') then NoteObjective("Error", "No character selected!", 'Horn', 5000) end
+  local Lang = TCTCC("DokusCore:Sync:Get:UserData").Language
+  if (Type == 'NoCharSelected') then NoteObjective(SYS("Error").MSG, MSG("NoCharSelected").MSG, 'Horn', Floor(MSG("NoCharSelected").Time * 1000)) end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

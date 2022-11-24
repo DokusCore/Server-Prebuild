@@ -96,7 +96,7 @@ RegisterNUICallback('BuyWeapon', function(Weapon)
       SendNUIMessage({ type = 'Show' })
     else
       SendNUIMessage({ type = 'Hide' })
-      NoteNPCTalk('Arms Dealer', "This item is currently not working as expected, and is not sold at the moment!", true, 5000)
+      NoteNPCTalk(MSG("NPCName").MSG, MSG("ErrNotWorking").MSG, true, Floor(MSG("ErrNotWorking").Time * 1000))
       SendNUIMessage({ type = 'Show' })
       UserIsBuying = false
     end

@@ -8,7 +8,6 @@ Type = nil
 InRange = false
 BushCoords = nil
 IsHarvesting = false
-Dialog = _Dialogs.Scavenger
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 Prompt_Bush = nil

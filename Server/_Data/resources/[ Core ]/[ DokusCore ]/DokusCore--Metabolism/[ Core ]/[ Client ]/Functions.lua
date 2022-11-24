@@ -13,6 +13,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Metabolism", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function CalcTempDamage()
   local Min = Meta.Temp.Limit.Min
   local Max = Meta.Temp.Limit.Max
@@ -45,23 +57,25 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function SendHungerWarning()
-  local R = HungerTxt[math.random(#HungerTxt)]
-  Notify(R, 'BottomCenter', 7000)
+  local Txt = RandomDialog(MSG("HungerTxt"))
+  local R = Txt[math.random(#Txt)]
+  Notify(R.MSG, 'TopCenter', Floor(R.Time * 1000))
   TriggerEvent('DokusCore:Core:MP:Metabolism:PlayOnUser', 'StomachGrowl1', 0.3)
   Wait(30000)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function SendThirstWarning()
-  local R = ThirstTxt[math.random(#ThirstTxt)]
-  Notify(R, 'BottomCenter', 7000)
+  local Txt = RandomDialog(MSG("ThirstTxt"))
+  local R = Txt[math.random(#Txt)]
+  Notify(R.MSG, 'TopCenter', Floor(R.Time * 1000))
   Wait(30000)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function DoFarting()
   local Coords = GetEntityCoords(PedID())
-  local R = FartSounds[math.random(#FartSounds)]
+  local R = Meta.FartSounds[math.random(#Meta.FartSounds)]
   TriggerEvent('DokusCore:Core:MP:Metabolism:PlayInRadiusOfCoords', Coords, 10.0, R.Sound, R.Volume)
   Wait(5000)
 end
@@ -69,7 +83,7 @@ end
 --------------------------------------------------------------------------------
 function DoBurps()
   local Coords = GetEntityCoords(PedID())
-  local R = BurpSounds[math.random(#BurpSounds)]
+  local R = Meta.BurpSounds[math.random(#Meta.BurpSounds)]
   TriggerEvent('DokusCore:Core:MP:Metabolism:PlayInRadiusOfCoords', Coords, 10.0, R.Sound, R.Volume)
   Wait(5000)
 end

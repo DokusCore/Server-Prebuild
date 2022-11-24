@@ -15,6 +15,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Clothing", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function SetInArea()
   InArea = true
   TriggerEvent('DokusCore:Clothing:CheckDistStore')
@@ -35,9 +47,9 @@ function SetInStore()
   for k,v in pairs(_Clothing.Dialogs) do
     if (Low(v.ID) == Low(Loc)) then
       if (v.Welcome) then
-        local Txt = RandomDialog(PedID(), Dialog.EnterStore)
+        local Txt = RandomDialog(MSG("EnterStore"))
         local Random = Txt[math.random(#Txt)]
-        if (not (ChangingClothes)) then NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000)) Wait(500) end
+        if (not (ChangingClothes)) then NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500) end
       end
     end
   end
@@ -54,9 +66,9 @@ function SetOutStore()
   for k,v in pairs(_Clothing.Dialogs) do
     if (Low(v.ID) == Low(Loc)) then
       if (v.Goodbye) then
-        local Txt = RandomDialog(PedID(), Dialog.ExitStore)
+        local Txt = RandomDialog(MSG("ExitStore"))
         local Random = Txt[math.random(#Txt)]
-        if (not (ChangingClothes)) then NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000)) Wait(500) end
+        if (not (ChangingClothes)) then NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500) end
       end
     end
   end
@@ -67,9 +79,9 @@ function SetNearNPC()
   NearNPC = true
   local IsBusy = TSC('DokusCore:Tailor:NPCStatus', { 'Get', { Loc } })
   if (IsBusy) then NPCIsBusy() end
-  local Txt = RandomDialog(PedID(), Dialog.NearNPC)
+  local Txt = RandomDialog(MSG("NearNPC"))
   local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, (Random.Time * 1000))
   TriggerEvent('DokusCore:Clothing:Start')
   TriggerEvent('DokusCore:Clothing:ShowPrompt')
 end
@@ -139,11 +151,10 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function SetCamera(Zoom, Height)
-  local PedID = PedID()
   DestroyCam(ClothCam, true)
   ClothCam = CreateCam('DEFAULT_SCRIPTED_CAMERA')
 	local CC = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.2, Zoom, Height)
-	local CP = GetCoords(PedID)
+	local CP = GetCoords(PedID())
 	SetCamCoord(ClothCam, CC)
 	PointCamAtCoord(ClothCam, CP.x, CP.y, (CP.z + Height))
 	SetCamActive(ClothCam, true)
@@ -253,7 +264,7 @@ end
 --------------------------------------------------------------------------------
 function Error(Type)
   if (Type == 'InDev') then NoteObjective("ERROR", 'This Option is in developement!', 'Horn', 5000) end
-  if (Type == 'NPCBusy') then NoteObjective("ERROR", "I'm currently busy with another customer, hold on for one moment. I'll be with you as soon as possible!", 'NPC', 5000) end
+  if (Type == 'NPCBusy') then NoteNPCTalk(MSG("NPCName").MSG, MSG("NPCBusy").MSG, true, Floor(MSG("NPCBusy").Time * 1000)) end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -81,7 +81,7 @@ RegisterNUICallback('OpenMenu', function(Data)
   -- Music Lists
   if (Data.Menu == 'BobMarley') then
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
-    SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMusic.Music.Modern.BobMarley })
+    SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMusic.Music.Modern.BobMarley }) 
     SendNUIMessage({ Action = 'OpenMenu' })
   elseif (Data.Menu == 'TheScore') then
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })

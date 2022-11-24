@@ -10,18 +10,19 @@ Location = '^4[ DataSync ]^3[ Location ]: ^5'
 --------------------------------------------------------------------------------
 -- User Data
 --------------------------------------------------------------------------------
-function SetSteamID(v)    _User.SteamID     = v Call('SteamID')        end
-function SetCharID(v)     _User.CharID      = v Call('CharID')         end
-function SetCharName(v)   _User.cName       = v Call('cName')          end
-function SetServerID(v)   _User.ServerID    = v Call('ServerID')       end
-function SetSteamName(v)  _User.sName       = v Call('sName')          end
-function SetCoords(v)     _User.Coords      = v Call('Coords')         end
-function SetUserAlive(v)  _User.Alive       = v Call('Alive')          end
-function SetInGameStat(v) _User.UserInGame  = v Call('UserInGame')     end
-function SetCharMoney(v)  _User.CharMoney   = v Call('SetCharMoney')   end
-function SetCharGold(v)   _User.CharGold    = v Call('SetCharGold')    end
-function SetCharGender(v) _User.Gender      = v Call('SetCharGender')  end
-function SetCharSkin(v)   _User.Skin        = v Call('SetCharSkin')    end
+function SetSteamID(v)     _User.SteamID     = v Call('SteamID')        end
+function SetCharID(v)      _User.CharID      = v Call('CharID')         end
+function SetCharName(v)    _User.cName       = v Call('cName')          end
+function SetServerID(v)    _User.ServerID    = v Call('ServerID')       end
+function SetCoords(v)      _User.Coords      = v Call('Coords')         end
+function SetUserAlive(v)   _User.Alive       = v Call('Alive')          end
+function SetInGameStat(v)  _User.UserInGame  = v Call('UserInGame')     end
+function SetCharMoney(v)   _User.CharMoney   = v Call('SetCharMoney')   end
+function SetCharGold(v)    _User.CharGold    = v Call('SetCharGold')    end
+function SetCharGender(v)  _User.Gender      = v Call('SetCharGender')  end
+function SetCharSkin(v)    _User.Skin        = v Call('SetCharSkin')    end
+function SetCharLang(v)    _User.Language    = v Call('SetCharLang')    end
+function SetMusicVolume(v) _User.MusicVolume = v Call('SetMusicVolume') end
 
 -- NOTE: DEPRECATED--  Need to be removed from all plugins
 function SetBankMoney(v)  _User.BankMoney   = v Call('SetBankMoney')   end

@@ -13,6 +13,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("FastTravel", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function ResetData()
   Loc, InRange  = nil, false
   Prompt_Guarma = nil

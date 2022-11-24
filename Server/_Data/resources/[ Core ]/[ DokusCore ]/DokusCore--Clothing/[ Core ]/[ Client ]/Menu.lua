@@ -4,10 +4,14 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 CreateThread(function()
-  DokusMenu.CreateMenu('DressingRoom',  'Dressing Room', '')
-  DokusMenu.CreateMenu('YourOutfits',   'Dressing Room', '')
-  DokusMenu.CreateMenu('Confirmation',  'Confirmation', '')
-  DokusMenu.SetSubTitle('Confirmation', "Do you want to switch clothing?")
+  if (_Modules.Clothing) then
+    while (not (FrameReady())) do Wait(1000) end
+    while (not (UserInGame())) do Wait(1000) end
+    DokusMenu.CreateMenu('DressingRoom',  MSG("DressingRoom").MSG, '')
+    DokusMenu.CreateMenu('YourOutfits',   MSG("DressingRoom").MSG, '')
+    DokusMenu.CreateMenu('Confirmation',  MSG("Confirmation").MSG, '')
+    DokusMenu.SetSubTitle('Confirmation', MSG("ConfirmSwitch").MSG)
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -80,8 +84,9 @@ end
 --------------------------------------------------------------------------------
 function Confirmation()
   MenuPage   = 'Confirmation'
-  local Yes  = DokusMenu.Button('Yes')
-  local No   = DokusMenu.Button('No')
+  local Sync = TCTCC("DokusCore:Sync:Get:UserData").Language
+  local Yes  = DokusMenu.Button(_("System", "Yes", Sync).MSG)
+  local No   = DokusMenu.Button(_("System", "No", Sync).MSG)
   if ( Yes ) then ExecNewClothes() end
   if ( No )  then DokusMenu.OpenMenu('YourOutfits') end
   DokusMenu.Display()

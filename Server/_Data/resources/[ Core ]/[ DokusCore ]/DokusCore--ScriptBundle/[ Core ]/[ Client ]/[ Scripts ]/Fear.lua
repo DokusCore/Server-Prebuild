@@ -6,13 +6,25 @@
 local InAni = false
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-TriggerEvent('chat:addSuggestion', '/fear', 'show fear', {})
+CreateThread(function()
+  if (_Modules.ScriptBundle.Fear) then
+    while (not (FrameReady())) do Wait(1000) end
+    while (not (UserInGame())) do Wait(1000) end
+    TriggerEvent('chat:addSuggestion', '/fear', MSG("ShowFear").MSG, {})
+  end
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterCommand('fear', function()
-  local PedID = PedID()
-  if (not (InAni)) then return StartAni(PedID) end
-  if (InAni) then return EndAni(PedID) end
+CreateThread(function()
+  if (_Modules.ScriptBundle.Fear) then
+    while (not (FrameReady())) do Wait(1000) end
+    while (not (UserInGame())) do Wait(1000) end
+    RegisterCommand('fear', function()
+      local PedID = PedID()
+      if (not (InAni)) then return StartAni(PedID) end
+      if (InAni) then return EndAni(PedID) end
+    end)
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

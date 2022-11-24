@@ -9,7 +9,7 @@ Group = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 function SetPrompts()
   CreateThread(function()
-    local str = 'Male'
+    local str = MSG("Male").MSG
     Prompt_Male = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Male, _Keys['LEFT'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -20,7 +20,7 @@ function SetPrompts()
     PromptSetGroup(Prompt_Male, Group)
     PromptRegisterEnd(Prompt_Male)
 
-    local str = 'Female'
+    local str = MSG("Female").MSG
     Prompt_Female = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Female, _Keys['RIGHT'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -31,7 +31,7 @@ function SetPrompts()
     PromptSetGroup(Prompt_Female, Group)
     PromptRegisterEnd(Prompt_Female)
 
-    local str = 'Select'
+    local str = MSG("Select").MSG
     Prompt_Enter = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Enter, _Keys['ENTER'])
     str = CreateVarString(10, 'LITERAL_STRING', str)

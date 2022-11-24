@@ -5,7 +5,7 @@ description 'DokusCore Inventory'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.0.0'
+version '2.1.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -21,12 +21,25 @@ server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
-  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
-  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Inventory.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
+  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/de.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/dk.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/en.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/es.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fr.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/gr.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/it.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/nl.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pl.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

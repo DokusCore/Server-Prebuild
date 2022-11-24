@@ -54,6 +54,14 @@ $(document).on('click', "#option5", function() { InitData(5); });
 $(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
 // -------------------------------------------------------------------------- \\
 // -------------------------------------------------------------------------- \\
+$(document).on('click', ".btn-nextinterface", function() {
+  if (InMenu == 'LangList1')        { return OpenThisMenu('LangList2') };
+  if (InMenu == 'WesternRDR1')        { return OpenThisMenu('WesternRDR2') };
+  if (InMenu == 'WesternRDR2')        { return OpenThisMenu('WesternRDR3') };
+  ToggleOption('NoNextButton')
+});
+// -------------------------------------------------------------------------- \\
+// -------------------------------------------------------------------------- \\
 $(document).on('click', ".btn-backinterface", function() {
   if (InMenu == 'UserMenu')         { return CloseMenu() };
   if (InMenu == 'AdminMenu')        { return CloseMenu() };
@@ -61,7 +69,7 @@ $(document).on('click', ".btn-backinterface", function() {
   if (InMenu == 'TeleportMenu')     { return OpenThisMenu('AdminMenu') };
   if (InMenu == 'ModuleSyncMenu')   { return OpenThisMenu('AdminMenu') };
   if (InMenu == 'CharacterMenu')    { return OpenThisMenu('UserMenu')  };
-  if (InMenu == 'DelCharacter')     { return OpenThisMenu('CharacterMenu')  };
+  if (InMenu == 'DelCharacter')     { return OpenThisMenu('DelCharacter')  };
   if (InMenu == 'SkinMenu')         { return OpenThisMenu('UserMenu')  };
   if (InMenu == 'SettingsMenu')     { return OpenThisMenu('UserMenu')  };
   if (InMenu == 'LangList1')        { return OpenThisMenu('SettingsMenu') };
@@ -74,8 +82,8 @@ $(document).on('click', ".btn-backinterface", function() {
   if (InMenu == 'TheScore')         { return OpenThisMenu('ModernMusicMenu')  };
   if (InMenu == 'ModernOtherMusic') { return OpenThisMenu('ModernMusicMenu')  };
   if (InMenu == 'WesternRDR1')      { return OpenThisMenu('WesternMusicMenu') };
-  if (InMenu == 'WesternRDR2')      { return OpenThisMenu('WesternMusicMenu') };
-  if (InMenu == 'WesternRDR3')      { return OpenThisMenu('WesternMusicMenu') };
+  if (InMenu == 'WesternRDR2')      { return OpenThisMenu('WesternRDR1') };
+  if (InMenu == 'WesternRDR3')      { return OpenThisMenu('WesternRDR2') };
   if (InMenu == 'Volume')           { return OpenThisMenu('MusicMenu') };
   if (InMenu == 'Volume2')          { return OpenThisMenu('Volume') };
   if (InMenu == 'Volume3')          { return OpenThisMenu('Volume2') };

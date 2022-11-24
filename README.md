@@ -3,10 +3,11 @@ You dont want to spend hours on setting up your server? <br>
 Just use the prebuild and your on your way within 10 minutes!<br>
 
 ----
-CURRENT DOKUSCORE VERSION  | v0.6.5
+CURRENT DOKUSCORE VERSION  | v0.6.6
 CURRENT ARTIFACT VERSION   | 5848
-DATABASE LAST UPDATED      | 11th October 2022
-DOKUSCORE LAST UPDATED:    | 11th October 2022
+CURRENT REDM GAME BUILD    | 1491
+DATABASE LAST UPDATED      | 24th November 2022
+DOKUSCORE LAST UPDATED:    | 24th November 2022
 
 ----
 # Important !

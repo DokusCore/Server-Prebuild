@@ -64,6 +64,14 @@ function TrainMyHorse(ID, Name) {
   $.post('http://DokusCore--Stables/TrainMyHorse', JSON.stringify({ ID: ID, Name: Name }))
 }
 
+function BreedMyHorse(ID, Name) {
+  $.post('http://DokusCore--Stables/BreedMyHorse', JSON.stringify({ ID: ID, Name: Name }))
+  // $('#button-customization').addClass("disabled");
+  // $('#page_myhorses .scroll-container .collapsible').html('');
+  // $('#page_shop .scroll-container .collapsible').html('');
+  // $("#creatormenu").fadeOut(3000);
+}
+
 function minTwoDigits(n) {
   return (n < 10 ? '0' : '') + n;
 }

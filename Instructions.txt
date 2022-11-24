@@ -3,14 +3,23 @@
 --------------------------------------------------------------------------------
 Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-CURRENT DOKUSCORE VERSION  | v0.6.5
+CURRENT DOKUSCORE VERSION  | v0.6.6
 CURRENT ARTIFACT VERSION   | 5848
+CURRENT REDM GAME BUILD    | 1491
 --------------------------------------------------------------------------------
-DATABASE LAST UPDATED      | 11th October 2022
-DOKUSCORE LAST UPDATED:    | 11th October 2022
+DATABASE LAST UPDATED      | 24th November 2022
+DOKUSCORE LAST UPDATED:    | 24th November 2022
 --------------------------------------------------------------------------------
-
-
+==========================
+IMPORTANT!!!
+==========================
+PreBuild v0.6.6 has a new Database structure, please replace your old
+database with the new sql file! All tables that should never be emptied
+during a server wipe start now with a underscore ( _ ). All tables that
+do not start with the underscore can be emptied for cleaning up the database.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 ==========================
 Installation Instructions:
 ==========================
@@ -38,9 +47,9 @@ then as everything is pre-installed and up to date. Plug and play :D
 ==========================
 Extra Information:
 ==========================
-* DokusCore is now running over game build 1436! You must let your client
+* DokusCore is now running over game build 1491! You must let your client
   update to this version also to join the server. If you do not want to run
-  the latest game build you can always revert to build 1436
+  the latest game build you can always revert to build 1491
 
 * DokusCore is up to date with the latest FXServer (Artifacts) files that are
   required for TXAdmin. You do NOT need to update these files!

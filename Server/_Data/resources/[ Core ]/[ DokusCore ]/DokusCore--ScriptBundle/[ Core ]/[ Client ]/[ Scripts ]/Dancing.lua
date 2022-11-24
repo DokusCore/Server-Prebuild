@@ -20,7 +20,7 @@ end)
 --------------------------------------------------------------------------------
 local function SetupDancePrompt()
   CreateThread(function()
-    local str = 'Dance'
+    local str = MSG("MenuDance").MSG
     DanceDoPrompt = PromptRegisterBegin()
     PromptSetControlAction(DanceDoPrompt, _Keys.SPACEBAR)
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -32,7 +32,7 @@ local function SetupDancePrompt()
     Citizen.InvokeNative(0xC5F428EE08FA7F2C,DanceDoPrompt,true)
     PromptRegisterEnd(DanceDoPrompt)
 
-    local str2 = 'Stop'
+    local str2 = MSG("MenuStop").MSG
     DanceEndPrompt = PromptRegisterBegin()
     PromptSetControlAction(DanceEndPrompt, _Keys.DOWN)
     str2 = CreateVarString(10, 'LITERAL_STRING', str2)
@@ -44,7 +44,7 @@ local function SetupDancePrompt()
     Citizen.InvokeNative(0xC5F428EE08FA7F2C,DanceEndPrompt,true)
     PromptRegisterEnd(DanceEndPrompt)
 
-    local str3 = 'Next'
+    local str3 = MSG("MenuNext").MSG
     DanceNext = PromptRegisterBegin()
     PromptSetControlAction(DanceNext, _Keys.RIGHT)
     str3 = CreateVarString(10, 'LITERAL_STRING', str3)
@@ -56,7 +56,7 @@ local function SetupDancePrompt()
     Citizen.InvokeNative(0xC5F428EE08FA7F2C,DanceNext,true)
     PromptRegisterEnd(DanceNext)
 
-    local str4 = 'Back'
+    local str4 = MSG("MenuBack").MSG
     DancePrev = PromptRegisterBegin()
     PromptSetControlAction(DancePrev, _Keys.LEFT)
     str4 = CreateVarString(10, 'LITERAL_STRING', str4)

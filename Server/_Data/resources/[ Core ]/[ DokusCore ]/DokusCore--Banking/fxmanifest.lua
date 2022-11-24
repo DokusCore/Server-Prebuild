@@ -5,7 +5,7 @@ description 'DokusCore Banking System - http://DokusCore.com'
 author 'DevDokus'
 fx_version "adamant"
 games {"rdr3"}
-version '2.6.4'
+version '2.7.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -27,10 +27,20 @@ shared_script {
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Banking.lua',
-  '@DokusCore/[ Configs ]/[ Dialogs ]/Banking.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/de.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/dk.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/en.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/es.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fr.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/gr.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/it.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/nl.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pl.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

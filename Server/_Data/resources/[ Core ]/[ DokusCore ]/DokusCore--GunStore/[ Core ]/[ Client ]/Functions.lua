@@ -15,6 +15,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("GunStore", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function SetNPCToUse()
   for k,v in pairs(NPCs) do
     if (Low(v.City) == (Low(Loc))) then
@@ -30,7 +42,7 @@ function SpawnCatalog()
     if (Low(v.ID) == (Low(Loc))) then
       RequestModel(Log)
       while not HasModelLoaded(Log) do Wait(100) end
-      SetHeading(Log, v.Heading) SetFreeze(Log, true)
+      -- SetHeading(Log, v.Heading) SetFreeze(Log, true)
       Tabi(Props, { City = v.ID, Prop = CreateObjectNoOffset(Log, v.Coords, false, false, false, false) })
     end
   end
@@ -50,14 +62,14 @@ end
 --------------------------------------------------------------------------------
 function Error(Type)
   SendNUIMessage({ type = "Hide" })
-  if (Type == 'NotEnoughMoney') then NoteNPCTalk(Dialog.NPCName, "You've not enough money!", true, 3000) end
+  if (Type == 'NotEnoughMoney') then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoMoney").MSG, true, Floor(MSG("NoMoney").Time * 1000)) end
   SendNUIMessage({ type = "Show" })
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function SendMessage(Type, Name, Amount)
   SendNUIMessage({ type = "Hide" })
-  if (Type == 'BoughtAmmo') then NoteNPCTalk(Dialog.NPCName, "You've bought " .. Amount .." " .. Name .. " Ammo!", true, 3000) end
+  if (Type == 'BoughtAmmo') then NoteNPCTalk(MSG("NPCName").MSG, MSG("BoughtAmmo1").MSG .. Amount .." " .. Name .. MSG("BoughtAmmo2").MSG, true, Floor(MSG("BoughtAmmo1").Time * 1000)) end
   SendNUIMessage({ type = "Show" })
 end
 --------------------------------------------------------------------------------

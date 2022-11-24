@@ -16,7 +16,7 @@ RegisterCommand('status', function(s,a,r)
   end
 
   if not (Status) then
-    TextEntry('Set your Status!', 'Server', 'DokusCore:ScriptBundle:Status:Set')
+    TextEntry(MSG("SetStatus").MSG, 'Server', 'DokusCore:ScriptBundle:Status:Set')
     TriggerEvent('DokusCore:ScriptBundle:Status:Toggle', true)
     Wait(1000)
     return

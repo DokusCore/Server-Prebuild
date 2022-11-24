@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------
 SteamID, CharID = nil, nil
 Loc, AliveNPCs, Blips = nil, {}, {}
-Dialog = _Dialogs.FastTravel
 ShowPrompt = true
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -26,8 +25,8 @@ CreateThread(function()
   if (_Modules.FastTravel) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    for k,v in pairs(_FastTravel.Zones) do Tabi(Blips, SetBlip(v.Coords, -1505442625, 1.0, 'Fast Travel')) end
-    for k,v in pairs(_FastTravel.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading))          end
+    for k,v in pairs(_FastTravel.Zones) do Tabi(Blips, SetBlip(v.Coords, -1505442625, 1.0, MSG("FastTravel").MSG)) end
+    for k,v in pairs(_FastTravel.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading)) end
   end
 end)
 --------------------------------------------------------------------------------
@@ -47,7 +46,7 @@ CreateThread(function()
           while ((InRange) and (ShowPrompt)) do Wait(1)
             local Dist = GetDistance(v.Coords)
             if (Dist > v.Radius) then InRange = false Wait(100) end
-            local Name  = CreateVarString(10, 'LITERAL_STRING', Dialog.NPCName)
+            local Name  = CreateVarString(10, 'LITERAL_STRING', MSG("NPCName").MSG)
             PromptSetActiveGroupThisFrame(Group, Name)
             local G = PromptHasHoldModeCompleted(Prompt_Guarma)
             local C = PromptHasHoldModeCompleted(Prompt_Casino)

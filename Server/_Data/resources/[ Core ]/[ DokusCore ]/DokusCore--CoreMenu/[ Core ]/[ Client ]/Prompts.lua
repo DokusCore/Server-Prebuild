@@ -5,18 +5,19 @@
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
-    local str = 'Open Menu'
+    local str = MSG("OpenMenu").MSG
     Prompt_Settings = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Settings, _Keys.SPACEBAR)
     str = CreateVarString(10, 'LITERAL_STRING', str)
     PromptSetText(Prompt_Settings, str)
-    PromptSetEnabled(Prompt_Settings, true)
-    PromptSetVisible(Prompt_Settings, true)
-    PromptSetHoldMode(Prompt_Settings, true)
+    PromptSetEnabled(Prompt_Settings,  true)
+    PromptSetVisible(Prompt_Settings,  true)
+    PromptSetStandardMode(Prompt_Settings, true)
     PromptSetGroup(Prompt_Settings, Group)
+    Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_Settings, true)
     PromptRegisterEnd(Prompt_Settings)
 
-    local str = 'Inventory'
+    local str = MSG("Inventory").MSG
     Prompt_Invent = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Invent, _Keys.X)
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -29,10 +30,10 @@ function ActPrompts()
     PromptRegisterEnd(Prompt_Invent)
 
     local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-    local Status = Low(GetUserGroup(SteamID, Sync.CharID))
+    local Status = Low(GetUserChar(SteamID, Sync.CharID).Group)
     local Admin, Owner = Low(_Moderation.Admin), Low(_Moderation.SuperAdmin)
     if ((Status == Admin) or (Status == Owner)) then
-      local str = 'Admin Menu'
+      local str = MSG("AdminMenu").MSG
       Prompt_AdminMenu = PromptRegisterBegin()
       PromptSetControlAction(Prompt_AdminMenu, _Keys.G)
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -44,7 +45,7 @@ function ActPrompts()
       Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_AdminMenu, true)
       PromptRegisterEnd(Prompt_AdminMenu)
 
-      local str = 'Start Zoning'
+      local str = MSG("Zoning").MSG
       Prompt_Zoning = PromptRegisterBegin()
       PromptSetControlAction(Prompt_Zoning, _Keys.Z)
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -59,7 +60,7 @@ function ActPrompts()
     -- Show prompt when mounted
     local Mount = IsPedOnMount(PedID())
     if ((Mount) and (not (AutoMoveOn))) then
-      local str = 'Auto Move'
+      local str = MSG("StartMove").MSG
       Prompt_AutoDriveStart = PromptRegisterBegin()
       PromptSetControlAction(Prompt_AutoDriveStart, _Keys.SHIFT)
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -70,7 +71,7 @@ function ActPrompts()
       PromptSetGroup(Prompt_AutoDriveStart, Group)
       PromptRegisterEnd(Prompt_AutoDriveStart)
     elseif ((Mount) and (AutoMoveOn)) then
-      local str = 'Stop Auto Move'
+      local str = MSG("StopMove").MSG
       Prompt_AutoDriveStop = PromptRegisterBegin()
       PromptSetControlAction(Prompt_AutoDriveStop, _Keys.SHIFT)
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -85,7 +86,7 @@ function ActPrompts()
     -- Show prompt when weapon in hands
     local HasWeapon = Citizen.InvokeNative(0x3B390A939AF0B5FC, PedID())
     if (HasWeapon ~= false) then
-      local str = 'Unequipt Weapon'
+      local str = MSG("Unequipt").MSG
       Prompt_UnEqWeapon = PromptRegisterBegin()
       PromptSetControlAction(Prompt_UnEqWeapon, _Keys.B)
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -97,10 +98,6 @@ function ActPrompts()
       Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_UnEqWeapon, true)
       PromptRegisterEnd(Prompt_UnEqWeapon)
     end
-
-
-
-
   end)
 end
 --------------------------------------------------------------------------------

@@ -6,10 +6,10 @@
 RegisterNUICallback('Close', function() ResetAllMenus() CloseMenu() end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('NoNextButton', function() NoteObjective("System", "No next page at the moment", 'Horn', 5000) end)
+RegisterNUICallback('NoNextButton', function() NoteObjective(SYS("System").MSG, MSG("NoNextPage").MSG, 'Horn', Floor(MSG("NoNextPage").Time * 1000)) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('NoBackButton', function() NoteObjective("System", "No back page at the moment", 'Horn', 5000) end)
+RegisterNUICallback('NoBackButton', function() NoteObjective(SYS("System").MSG, MSG("NoBackPage").MSG, 'Horn', Floor(MSG("NoNextPage").Time * 1000)) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('ShowDiscord', function() TriggerEvent('DokusCore:Core:Commands:Discord') end)
@@ -33,7 +33,10 @@ RegisterNUICallback('SyncStoreItems', function(Data) TriggerEvent('DokusCore:Sto
 RegisterNUICallback('WeatherSyncMenu', function(Data) TriggerServerEvent('DokusCore:WeatherSync:OpenMenu') end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('ChangeLanguage', function(Data) return TriggerEvent('DokusCore:Core:Commands:SetLanguage', Data.Option) end)
+RegisterNUICallback('ChangeLanguage', function(Data)
+  Language = TS(Data.Option)
+  TriggerEvent('DokusCore:Core:Commands:SetLanguage', TS(Data.Option))
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('SaveCoords', function()
@@ -41,7 +44,7 @@ RegisterNUICallback('SaveCoords', function()
   local Coords = Encoded(Pos)
   if (CharID == 0) then return RestartError() end
   TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { SteamID, CharID, Coords } })
-  NoteObjective("System", "You've saved your coordinates!", 'Check', 5000)
+  NoteObjective(SYS("System").MSG, MSG("CoordsSave").MSG, 'Check', Floor(MSG("CoordsSave").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -52,7 +55,7 @@ RegisterNUICallback('SkinMenu', function(Data)
   elseif (Data.Option == 'LoadSkin') then
     if (CharID == 0) then return RestartError() end
     local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, CharID } }).Result[1]
-    if (User.Skin == '--') then return NoteObjective("Error", "You've no skin to load! Please create a skin first with /skin menu", 'Alert', 5000) end
+    if (User.Skin == '--') then return NoteObjective(MSG("Error").MSG, MSG("ErrSkin").MSG, 'Alert', Floor(MSG("ErrSkin").Time * 1000)) end
     TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
     TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
   end
@@ -61,8 +64,12 @@ end)
 --------------------------------------------------------------------------------
 RegisterNUICallback('Logout', function()
   CloseMenu()
+  local Pos = GetCoords(PedID())
+  local Coords = Encoded(Pos)
+  if (CharID == 0) then return RestartError() end
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { SteamID, CharID, Coords } })
   SendNUIMessage({ Action = 'CloseMenu' })
-  NoteObjective("Logging Out", 'Logging Out, and saving coords', 'Horn', 5000)
+  NoteObjective(MSG("LogOut").MSG, MSG("LogOutCoords").MSG, 'Horn', Floor(MSG("LogOutCoords").Time * 1000))
   TriggerEvent('DokusCore:Characters:BackToCamp')
 end)
 --------------------------------------------------------------------------------
@@ -73,8 +80,8 @@ RegisterNUICallback('ToggleMusic', function()
   if (Music.Result[1].Music == 0) then SetMusic = 1 end
   TriggerServerEvent('DokusCore:Core:DBSet:Settings', { 'Music', { SteamID, SetMusic } })
   SetAutoPlay = false AutoPlayWarning = false
-  if (SetMusic == 0) then NoteObjective('System', 'All in game music has turned off!', 'Success', 5000) end
-  if (SetMusic == 1) then NoteObjective('System', 'All in game music has turned on!', 'Success', 5000) end
+  if (SetMusic == 0) then NoteObjective(SYS("System").MSG, MSG("MusicOn").MSG, 'Horn', Floor(MSG("MusicOn").Time * 1000)) end
+  if (SetMusic == 1) then NoteObjective(SYS("System").MSG, MSG("MusicOff").MSG, 'Horn', Floor(MSG("MusicOff").Time * 1000)) end
   if (SetMusic == 0) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', 'None', 0.0) end
 end)
 --------------------------------------------------------------------------------
@@ -83,7 +90,7 @@ RegisterNUICallback('StopMusic', function() TriggerEvent('DokusCore:Core:MP:Musi
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('PlayMusic', function(Data)
-  if (SetMusic == 0) then NoteObjective("System Settings", "You've toggled music off in settings, unable to play music!", 'Alert', 5000) return end
+  if (SetMusic == 0) then NoteObjective(SYS("System").MSG, MSG("MusicUnable").MSG, 'Alert', Floor(MSG("MusicUnable").Time * 1000)) return end
   TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Data.Option, SetVolume)
 end)
 --------------------------------------------------------------------------------
@@ -91,26 +98,36 @@ end)
 RegisterNUICallback('SetVolume', function(Data)
  SetVolume = Data.Option
  TriggerServerEvent('DokusCore:Core:DBSet:Settings', { 'Volume', { SteamID, SetVolume } })
- NoteObjective("Music Settings", 'Volume set to '..math.floor((SetVolume * 100))..'%', 'Check', 5000)
- NoteObjective("Music Settings", 'The volume will take effect on the next song!', 'Alert', 5000)
+ NoteObjective(SYS("System").MSG, MSG("VolSet").MSG .. Floor((SetVolume * 100)), 'Check', Floor(MSG("VolSet").Time * 1000))
+ NoteObjective(SYS("System").MSG, MSG("VolSet2").MSG, 'Alert', Floor(MSG("VolSet2").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('DelCharacter', function(Data)
   if (Data.Option) then
-    NoteObjective("System", "Character deletion in progress", "Horn", 1500)
-    TriggerServerEvent('DokusCore:Core:DBDel:Characters', { 'User', 'Single', { SteamID, CharID } })
-    NoteObjective("System", "Character Table Data Deleted", "Check", 1500)
-    TriggerServerEvent('DokusCore:Core:DBDel:Banks', { 'User', 'Single', { SteamID, CharID } })
-    NoteObjective("System", "Character Bank Accounts Deleted", "Check", 1500)
-    TriggerServerEvent('DokusCore:Core:DBDel:Inventory', { 'User', 'All', { SteamID, CharID } })
-    NoteObjective("System", "Character Inventories Deleted", "Check", 1500)
-    TriggerServerEvent('DokusCore:Core:DBDel:Metabolism', { 'User', 'Single', { SteamID, CharID } })
-    NoteObjective("System", "Character Metabolism Deleted", "Check", 1500)
-    NoteObjective("System", "All character information is purged, we are bringing you back to the character selection menu", "Horn", 10000)
-    SetVisible(PedID(), false)
-    SetInvincible(PedID(), true)
-    TriggerEvent('DokusCore:Characters:BackToCamp')
+    local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+    local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'All', { Sync.SteamID } })
+    if (User.Exist) then
+      if (#User.Result <= 1) then
+        NoteObjective(SYS("System").MSG, "You can't delete your last character, please create a new one first!", "Horn", 7000)
+        return
+      else
+        NoteObjective(SYS("System").MSG, MSG("CharDel").MSG, "Horn", Floor(MSG("CharDel").Time * 1000))
+        TriggerServerEvent('DokusCore:Core:DBDel:Characters', { 'User', 'Single', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Banks', { 'User', 'Single', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Inventory', { 'User', 'All', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Metabolism', { 'User', 'Single', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Outfits', { 'User', 'Single', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Boats', { 'User', 'All', 'Char', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Stables', { 'User', 'All', 'Char', { SteamID, CharID } })
+        TriggerServerEvent('DokusCore:Core:DBDel:Weapons', { 'User', 'All', 'Char', { SteamID, CharID } })
+
+        NoteObjective(SYS("System").MSG, MSG("DelDone").MSG, "Horn", Floor(MSG("DelDone").Time * 1000))
+        SetVisible(PedID(), false)
+        SetInvincible(PedID(), true)
+        TriggerEvent('DokusCore:Characters:BackToCamp')
+      end
+    end
   else
     SendNUIMessage({ Action = 'SetMenu',   Menu = Menu })
     SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.CharacterMenu  })
@@ -120,18 +137,12 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('DelCharComfirm', function(Data)
-  NoteObjective("System", "This feature is currently in development!", "Horn", 5000)
-  -- NoteObjective("WARNING", "You're going to delete your character, this also deletes everything associated with this character!", "Horn", 7000)
-  -- NoteObjective("WARNING", "Are you absolutely sure?", "Horn", 5000)
-  -- IsAnyMenuOpen = true
-  -- SetNuiFocus(true, true)
-  -- SendNUIMessage({ Action = 'SetMenu',   Menu = 'DelCharacter' })
-  -- SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.DelCharacter  })
-  -- SendNUIMessage({ Action = 'OpenMenu' })
+  NoteObjective("WARNING", "You're going to delete your character, this also deletes everything associated with this character!", "Horn", 7000)
+  NoteObjective("WARNING", "Are you absolutely sure?", "Horn", 5000)
   IsAnyMenuOpen = true
   SetNuiFocus(true, true)
-  SendNUIMessage({ Action = 'SetMenu',   Menu = 'CharacterMenu' })
-  SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.CharacterMenu  })
+  SendNUIMessage({ Action = 'SetMenu',   Menu = 'DelCharacter' })
+  SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.DelCharacter  })
   SendNUIMessage({ Action = 'OpenMenu' })
 end)
 --------------------------------------------------------------------------------

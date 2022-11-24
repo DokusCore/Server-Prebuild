@@ -15,6 +15,12 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Skins", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function FixIssues(ID, Gender)
   Citizen.InvokeNative(0x77FF8D35EEC6BBC4, ID, 0, 0)
   while not Citizen.InvokeNative(0xA0BC8FAED8CFEB3C, ID) do Wait(0) end
@@ -119,31 +125,24 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function CreateNPCs()
-  print("Start to create NPCS")
   local rMale   = _Skins.Outfits.Male[math.random(#_Skins.Outfits.Male)]
   local rFemale = _Skins.Outfits.Female[math.random(#_Skins.Outfits.Female)]
-  print("Outfits chosen")
+
   for k,v in pairs(_Skins.PEDs) do
-    print("LoadModel")
     LoadModel(v.Gender)
     local cPed = CreatePed(v.Gender, v.x, v.y, v.z, v.h, false, 0)
-    print("Ped Created")
     Tabi(NPCs, cPed)
     Citizen.InvokeNative(0xED40380076A31506, cPed, v.Gender, false) --SetPlayerModel
     Citizen.InvokeNative(0x77FF8D35EEC6BBC4, cPed, 0, 0) --EquipPedOutfitPreset
-    print("Is Ped ready to render")
-    -- while not Citizen.InvokeNative(0xA0BC8FAED8CFEB3C, cPed) do print("No :(") Wait(100) end -- IsPedReadyToRender
-    print("Yes")
+    -- while not Citizen.InvokeNative(0xA0BC8FAED8CFEB3C, cPed) do Wait(100) end -- IsPedReadyToRender
     Citizen.InvokeNative(0x0BFA1BD465CDFEFD, cPed) -- ResetPedComponents
 
     if IsPedMale(cPed) then
-      print("I am male")
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Male['BODIES_UPPER'], false, true, true) -- ApplyShopItemToPed
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Male['BODIES_LOWER'], false, true, true) -- ApplyShopItemToPed
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Male['heads'], false, true, true) -- ApplyShopItemToPed
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Male['eyes'], false, true, true) -- ApplyShopItemToPed
     else
-      print("I am female")
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Female['BODIES_UPPER'], false, true, true) -- ApplyShopItemToPed
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Female['BODIES_LOWER'], false, true, true) -- ApplyShopItemToPed
       Citizen.InvokeNative(0xD3A7B003ED343FD9, cPed, _Skins.Looks.Default.Female['heads'], false, true, true) -- ApplyShopItemToPed
@@ -326,37 +325,41 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Error(Type)
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  local User = TSC('DokusCore:Core:DBGet:Settings', { 'User', { Sync.SteamID }})
+  local Lang = User.Result[1].Language
+
   if (Type == 'Age') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters age!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrAge").MSG, 'Horn', Floor(MSG("ErrAge").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Name') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters name!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrName").MSG, 'Horn', Floor(MSG("ErrName").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Nationality') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters nationality!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrNatio").MSG, 'Horn', Floor(MSG("ErrNatio").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Torso') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters torso type!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrTorso").MSG, 'Horn', Floor(MSG("ErrTorso").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Legs') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters legs type!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrLegs").MSG, 'Horn', Floor(MSG("ErrLegs").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Head') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters head type!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrHead").MSG, 'Horn', Floor(MSG("ErrHead").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Eyes') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters eyes type!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrEyes").MSG, 'Horn', Floor(MSG("ErrEyes").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   elseif (Type == 'Hair') then
     SendNUIMessage({ Action = 'Hide' })
-    NoteObjective("System", "You've not set your characters hair type!", 'Horn', 5000)
+    NoteObjective(_("System", "Error", Lang).MSG, MSG("ErrHair").MSG, 'Horn', Floor(MSG("ErrHair").Time * 1000 ))
     SendNUIMessage({ Action = 'Show', Gender = MyGender })
   end
 end

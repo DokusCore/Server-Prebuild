@@ -315,7 +315,6 @@ RegisterNUICallback('Nationality', function(Data) CharData.Nationality = tostrin
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('CloseCreator', function()
-  print("I guess my gender is", MyGender)
   local Sync = TCTCC('DokusCore:Sync:Get:UserData')
   if (CharData.Name == nil) then Error('Name') return end
   if (CharData.Age  == nil) then Error('Age') return end

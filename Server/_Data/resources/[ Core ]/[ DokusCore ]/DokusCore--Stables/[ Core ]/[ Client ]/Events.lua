@@ -11,9 +11,9 @@ RegisterNetEvent('DokusCore:Stables:SayHello', function(Data)
     SetHorseDecoys()
     for k,v in pairs(_Stables.Dialogs) do
       if (v.Welcome) then
-        local Txt = RandomDialog(PedID(), Dialog.EnterStore)
+        local Txt = RandomDialog(MSG("EnterStore"))
         local Random = Txt[math.random(#Txt)]
-        NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000))
+        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
       end
     end
   end
@@ -24,12 +24,15 @@ RegisterNetEvent('DokusCore:Stables:SayGoodbye', function(Meta)
   if (AtStable) then
     AtStable = false
     UseThisNPC = nil
+    StoreInUse = false
     DelHorseDecoys()
+    ResetPrompts()
+    ShowPrompts = false
     for k,v in pairs(_Stables.Dialogs) do
       if (v.Welcome) then
-        local Txt = RandomDialog(PedID(), Dialog.ExitStore)
+        local Txt = RandomDialog(MSG("ExitStore"))
         local Random = Txt[math.random(#Txt)]
-        NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000))
+        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
       end
     end
   end
@@ -75,9 +78,11 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Stables:BuyHorse', function(Data)
+  if (not (Data.Result)) then ErrorMsg("NoHorseName") return end
   local Model, Price = Data.Data.Model, Data.Data.Price
   local Name, Money = Data.Result, Data.Data.Money
-  NoteObjective("Success", "You've named your horse: "..Name, "Check", 5000)
+  if ((#Name == 0) or (Name == '')) then ErrorMsg("NoHorseName") return end
+  NoteObjective("Success", MSG("HorseNamed").MSG .. Name, "Check", Floor(MSG("HorseNamed").Time * 1000))
   ExitMenu()
   local Payment = TN( Money - Price )
   local Sync = TCTCC('DokusCore:Sync:Get:UserData')
@@ -90,7 +95,7 @@ RegisterNetEvent('DokusCore:Stables:BuyHorse', function(Data)
   }
 
   TriggerServerEvent('DokusCore:Core:DBIns:Stables', { 'Horse', Index })
-  NoteNPCTalk(Dialog.NPCName, "Your horse is now ready! It was a pleasure doing business with you.", true, 5000)
+  NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseBought").MSG, true, Floor(MSG("HorseBought").Time * 1000))
   StoreInUse = false
   ShowPrompts = true
   TriggerEvent('DokusCore:Stables:ShowPrompts')
@@ -109,7 +114,7 @@ RegisterNetEvent('DokusCore:Stables:StoreHorse', function()
 
   if (not (NPCTakesHorse)) then
     DeleteEntity(MyActiveHorse) MyActiveHorse = nil
-    NoteNPCTalk(Dialog.NPCName, "Your horse is stored, we will take great care of it!", true, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseStored").MSG, true, Floor(MSG("HorseStored").Time * 1000))
     ExitMenu() ShowPrompts = true
     TriggerEvent('DokusCore:Stables:ShowPrompts')
   else

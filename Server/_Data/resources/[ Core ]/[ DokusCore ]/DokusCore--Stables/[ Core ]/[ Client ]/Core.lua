@@ -5,7 +5,6 @@
 --------------------------------------------------------------------------------
 HorseDecoys = {}
 NPCs, Blips = {}, {}
-Dialog = _Dialogs.Stables
 StoreInUse, UseThisNPC = false, nil
 HorseLoaded, MyActiveHorse = nil, nil
 --------------------------------------------------------------------------------
@@ -20,10 +19,10 @@ pGroup_Stables = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Stables) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     for k,v in pairs(_Stables.NPCs) do
-      Tabi(Blips, SetBlip(v.Coords, 1938782895, 1.0, _Stables.BlipName))
+      Tabi(Blips, SetBlip(v.Coords, 1938782895, 1.0, MSG("Name").MSG))
     end
   end
 end)
@@ -33,8 +32,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Stables) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     for k,v in pairs(_Stables.NPCs) do
       Tabi(NPCs, { City = v.ID, NPC = SpawnNPC(v.Hash, v.Coords, v.Heading) })
     end

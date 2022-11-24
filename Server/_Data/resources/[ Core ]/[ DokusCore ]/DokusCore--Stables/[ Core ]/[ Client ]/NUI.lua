@@ -4,27 +4,32 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('ShowInStock', function()
-  NoteObjective('Stock', "The stock will be added in a later version!", 'Horn', 5000);
+  NoteObjective("System", MSG("InDevelopment").MSG, Floor(MSG("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('RentOutHorse', function(Data)
-  NoteObjective("System", "This function is in development!", 5000)
+  NoteObjective("System", MSG("InDevelopment").MSG, Floor(MSG("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('AskForBasicCare', function(Data)
-  NoteObjective("System", "This function is in development!", 'Horn', 5000)
+  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('DoBasicNeeds', function(Data)
-  NoteObjective("System", "This function is in development!", 'Horn', 5000)
+  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('TrainMyHorse', function(Data)
-  NoteObjective("System", "This function is in development!", 'Horn', 5000)
+  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('BreedMyHorse', function(Data)
+  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -91,13 +96,13 @@ RegisterNUICallback("BuyHorse", function(Data)
   local Money = User.Result[1].Money
 
   if (Price > Money) then
-    NoteNPCTalk(Dialog.NPCName, "You've not enough money to buy this horse I am afraid!", true, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("NoMoney").MSG, true, Floor(MSG("NoMoney").Time * 1000))
     -- TriggerEvent('DokusCore:Stables:ShowPrompts')
   else
     SetNuiFocus(false, false)
     SendNUIMessage({ Action = 'Hide' })
     local Index = { Model = Model, Price = Price, Money = Money }
-    TextEntry('Name your horse', 'Client', 'DokusCore:Stables:BuyHorse', Index)
+    TextEntry(MSG("NameHorse").MSG, 'Client', 'DokusCore:Stables:BuyHorse', Index)
   end
 end)
 --------------------------------------------------------------------------------
@@ -134,14 +139,14 @@ RegisterNUICallback('TakeOutHorse', function(Data)
   end
 
   if (not (NPCTakesHorse)) then
-    NoteNPCTalk(Dialog.NPCName, "You're horse is ready at his stable!", true, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseReady").MSG, true, Floor(MSG("HorseReady").Time * 1000))
     ExitMenu()
     ShowPrompts = true
     TriggerEvent('DokusCore:Stables:ShowPrompts')
   else
     -- Walk the NPC to the horse
     SetFreeze(UseThisNPC, false)
-    NoteNPCTalk(Dialog.NPCName, "Sure thing, one moment let me get your horse!", false, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("FetchHorse").MSG, false, Floor(MSG("FetchHorse").Time * 1000))
     TaskGoToCoordAnyMeans(UseThisNPC, Coords, 1.5, 0, 0, 786603, 0xbf800000)
 
     -- Wait for the NPC to reach the horse
@@ -159,7 +164,7 @@ RegisterNUICallback('TakeOutHorse', function(Data)
     TaskGoToEntity(UseThisNPC, PedID(), -1, 2.0, 1.5, 0, 0)
     WaitToReturnToPlayer(UseThisNPC) Wait(2000)
     Citizen.InvokeNative(0x5337B721C51883A9, UseThisNPC, 1, 1)
-    NoteNPCTalk(Dialog.NPCName, "Here you go sir, as healthy as it ever was!", false, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseFetched").MSG, false, Floor(MSG("HorseFetched").Time * 1000))
 
     -- Let the NPC walk back to its starting position
     for k,v in pairs(_Stables.NPCs) do

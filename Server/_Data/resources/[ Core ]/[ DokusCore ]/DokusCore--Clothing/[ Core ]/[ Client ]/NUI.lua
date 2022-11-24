@@ -11,9 +11,9 @@ RegisterNUICallback('updateClothes', function(Data)
     local Chance = math.floor(Round((Invert / 2), 0))
     local Random = math.random(0, Invert)
     if (Random == Chance) then
-      local Txt = RandomDialog(PedID(), Dialog.ClothingChoice)
+      local Txt = RandomDialog(MSG("Reactions"))
       local Random = Txt[math.random(#Txt)]
-      NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
+      NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000))
     end
   end
 

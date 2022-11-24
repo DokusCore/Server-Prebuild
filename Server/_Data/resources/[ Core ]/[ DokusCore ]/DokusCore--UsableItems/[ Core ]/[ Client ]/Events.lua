@@ -32,7 +32,7 @@ RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
       end
 
       if (Low(IsEvent) == 'true') then
-        if (Event == nil) then NoteObjective('Error', 'Item has no event in the database', 'Warning', 5000) return end
+        if (Event == nil) then NoteObjective(SYS("Error").MSG, 'Item has no event in the database', 'Warning', 5000) return end
         local Dec = Decoded(Event)
         local Delete = (Dec.Delete or 'false')
         if (Delete == 'true') then

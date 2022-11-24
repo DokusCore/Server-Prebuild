@@ -13,6 +13,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("UsableItems", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function DelInv(PedID, Amount, Data)
   local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', { Steam, CharID, Data.Item } }).Result[1]
   TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', { Steam, CharID, Data.Item, Amount, Inv.Amount } })

@@ -8,16 +8,16 @@ local ShowPrompt = true
 PromptBank, AliveNPCs, Blips = nil, {}, {}
 OpenBankGroup = GetRandomIntInRange(0, 0xffffff)
 local Low = string.lower
-Dialog = _Dialogs.Banking
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Set Users SteamID
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Banking) then
-    while not FrameReady() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     local Data = TCTCC('DokusCore:Sync:Get:UserData')
-    Steam = Data.SteamID
+    Steam, CharID = Data.SteamID, Data.CharID
   end
 end)
 --------------------------------------------------------------------------------
@@ -26,8 +26,9 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Banking) then
-    while not FrameReady() do Wait(1000) end
-    for k,v in pairs(_Banking.Zones) do Tabi(Blips, SetBlip(v.Coords, -2128054417, Radius, 'Bank')) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
+    for k,v in pairs(_Banking.Zones) do Tabi(Blips, SetBlip(v.Coords, -2128054417, 1.0, MSG("Name").MSG)) end
     for k,v in pairs(_Banking.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading))      end
   end
 end)
@@ -46,8 +47,8 @@ end)
 --------------------------------------------------------------------------------
 AddEventHandler('onResourceStart', function(resourceName)
   if (resourceName == 'DokusCore') then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     local Data = TCTCC('DokusCore:Sync:Get:UserData')
     Steam, CharID = Data.SteamID, Data.CharID
   end
@@ -59,7 +60,8 @@ end)
 CreateThread(function()
   -- First check if the core is ready to pass data
   if (_Modules.Banking) then
-    while not FrameReady() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(3000)
       for k,v in pairs(_Banking.Zones) do
         local Dist = GetDistance(v.Coords)
@@ -113,14 +115,13 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Banking:StartBank')
 AddEventHandler('DokusCore:Banking:StartBank', function()
-  local User = TCTCC('DokusCore:Sync:Get:UserData')
-  Steam, CharID = User.SteamID, User.CharID
-  local Data = TSC('DokusCore:Core:DBGet:Settings', { 'user', { Steam } })
+  -- local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
   local BankInUse = TSC('DokusCore:Banking:NPCStatus', { 'Get' })
-  OpenBank(Data.Result[1].Language)
+  -- OpenBank(Lang)
+  OpenBank()
   while InRange do Wait(0)
     while ShowPrompt do Wait(0)
-      local BankGroupName  = CreateVarString(10, 'LITERAL_STRING', Dialog.BankName)
+      local BankGroupName  = CreateVarString(10, 'LITERAL_STRING', MSG("Name").MSG)
       PromptSetActiveGroupThisFrame(OpenBankGroup, BankGroupName)
       local Prompt = PromptHasHoldModeCompleted(PromptBank)
 
@@ -128,7 +129,7 @@ AddEventHandler('DokusCore:Banking:StartBank', function()
         TriggerEvent('DokusCore:NPCInteract:OpenMenu', { Menu = 'BankMenu', MenuTitle = (Loc .. ' Bank'), Location = Loc })
         Wait(2000)
       elseif (Prompt) and (BankInUse) then
-        NoteNPCTalk(Dialog.NPCName, Dialog.NPCBusy, true, 5000)
+        NoteNPCTalk(MSG("NPCName").MSG, MSG("NPCBusy").MSG, true, 5000)
         Wait(2000)
       end
     end
@@ -151,8 +152,9 @@ end)
 RegisterNetEvent('DokusCore:Banking:OpenMenu')
 AddEventHandler('DokusCore:Banking:OpenMenu', function()
   BankInUse, ShowPrompt = true, false
-  local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'Single', 'Bank', { Steam, CharID, Loc } })
-  if not (Bank.Exist) then NoteNPCTalk(Dialog.NPCName, Dialog.NoAccount, false, 5000) BankInUse, ShowPrompt = false, true return end
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'Single', 'Bank', { Data.SteamID, Data.CharID, Loc } })
+  if not (Bank.Exist) then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoAccount").MSG, false, 5000) BankInUse, ShowPrompt = false, true return end
   local Data = Bank.Result[1]
   local Money, Gold = Data.Money, Data.Gold
   local array = { action = "showAccount", bank = string.upper(Loc), money = Money, gold = Gold }
@@ -160,30 +162,31 @@ AddEventHandler('DokusCore:Banking:OpenMenu', function()
   TSC('DokusCore:Banking:NPCStatus', { 'Set', 'Busy' })
   SetNuiFocus(true, true)
   SendNuiMessage(encoded)
-  local Random = Dialog.EnterBank[math.random(#Dialog.EnterBank)]
-  NoteNPCTalk(Dialog.NPCName, Random, false, 5000)
+  local Random = MSG('OnEnter')[math.random(#MSG('OnEnter'))].MSG
+  NoteNPCTalk(MSG("NPCName").MSG, Random, false, 5000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('NUIFocusOff', function()
   SetNuiFocus(false, false)
-  local Random = Dialog.ExitBank[math.random(#Dialog.ExitBank)]
-  NoteNPCTalk(Dialog.NPCName, Random, false, 5000)
+  local Random = MSG('OnExit')[math.random(#MSG('OnExit'))].MSG
+  NoteNPCTalk(MSG("NPCName").MSG, Random, false, 5000)
   ShowPrompt, BankInUse = true, false
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Banking:CreateBankAccount')
 AddEventHandler('DokusCore:Banking:CreateBankAccount', function()
-  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } })
-  if not (Char.Exist) then NoteObjective(_Dialogs.Error, _Dialogs.NoCharFound, 'Alert', 5000) return end
-  local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'Single', 'Bank', { Steam, CharID, Loc } })
-  if (Bank.Exist) then return NoteNPCTalk(Dialog.NPCName, Dialog.AlAccount, true, 5000) end
-  TriggerServerEvent('DokusCore:Banking:CreateBankAccount', Steam, CharID, Loc, Char.Result[1], Bank.Result[1] )
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Sync.SteamID, Sync.CharID } })
+  if not (Char.Exist) then NoteObjective(MSG("Error").MSG, MSG("NoCharFound").MSG, 'Alert', 5000) return end
+  local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'Single', 'Bank', { Sync.SteamID, Sync.CharID, Loc } })
+  if (Bank.Exist) then return NoteNPCTalk(MSG("NPCName").MSG, MSG("AlAccount").MSG, true, 5000) end
+  TriggerServerEvent('DokusCore:Banking:CreateBankAccount', Sync.SteamID, Sync.CharID, Loc, Char.Result[1], Bank.Result[1] )
   Wait(7000)
 
   -- Get Bank / Money to sync with DataSync
-  local Bank2 = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'All', 'Bank', { Steam, CharID } })
+  local Bank2 = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'All', 'Bank', { Sync.SteamID, Sync.CharID } })
   local BankMoney, BankGold = {}, {}
   for k,v in pairs(Bank2.Result) do table.insert(BankMoney, { Loc = v.Bank, Money = v.Money }) end
   for k,v in pairs(Bank2.Result) do table.insert(BankGold,  { Loc = v.Bank, Gold = v.Gold   }) end
@@ -197,14 +200,15 @@ RegisterNetEvent('DokusCore:Banking:PayForAccount')
 AddEventHandler('DokusCore:Banking:PayForAccount', function(Money)
   ShowPrompt = false
   local Sync = TableBanksForSyningNewAccount(Loc)
-  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Payment', { Steam, CharID, Money } })
-  NoteNPCTalk(Dialog.NPCName, Dialog.AcCreation, true, 5000) Wait(5500)
-  TriggerServerEvent('DokusCore:Core:DBIns:Banks', { 'User', { Steam, CharID, 'Bank', Loc, 0, 0, Sync } })
-  NoteNPCTalk(Dialog.NPCName, Dialog.AcCreated, true, 5000)
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Payment', { Data.SteamID, Data.CharID, Money } })
+  NoteNPCTalk(MSG("NPCName").MSG, MSG("AcCreation").MSG, true, 5000) Wait(5500)
+  TriggerServerEvent('DokusCore:Core:DBIns:Banks', { 'User', { Data.SteamID, Data.CharID, 'Bank', Loc, 0, 0, Sync } })
+  NoteNPCTalk(MSG("NPCName").MSG, MSG("AcCreated").MSG, true, 5000)
   Wait(1000) ShowPrompt = true
 end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------
 RegisterNUICallback('Deposit', function(Data)
   if not (TransIsMade) then
     TransIsMade = true
@@ -212,14 +216,14 @@ RegisterNUICallback('Deposit', function(Data)
     local IsMoney, IsGold = (DepMoney > 0), (DepGold > 0)
     local User = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Steam, CharID } })
     if (IsMoney) then
-      if (User.Result[1].Money < DepMoney) then NoteNPCTalk(Dialog.NPCName, Dialog.NoDepMoney, true, 5000) TransIsMade = false return end
-      if (DepMoney <= 0.01) then NoteNPCTalk(Dialog.NPCName, Dialog.DepMinMoney, true, 5000) end
+      if (User.Result[1].Money < DepMoney) then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoDepMoney").MSG, true, 5000) TransIsMade = false return end
+      if (DepMoney <= 0.01) then NoteNPCTalk(MSG("NPCName").MSG, MSG("DepMinMoney").MSG, true, 5000) end
       TriggerEvent('DokusCore:Core:Banking:Transaction', { 'Auto', false, 'Deposit', 'Money', { Steam, CharID, Loc, DepMoney } })
     end
 
     if (IsGold) then
-      if (User.Result[1].Gold < DepGold) then NoteNPCTalk(Dialog.NPCName, Dialog.NoDepGold, true, 5000) TransIsMade = false return end
-      if (DepGold <= 0.01) then NoteNPCTalk(Dialog.NPCName, Dialog.DepMinGold, true, 5000) end
+      if (User.Result[1].Gold < DepGold) then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoDepGold").MSG, true, 5000) TransIsMade = false return end
+      if (DepGold <= 0.01) then NoteNPCTalk(MSG("NPCName").MSG, MSG("DepMinGold").MSG, true, 5000) end
       TriggerEvent('DokusCore:Core:Banking:Transaction', { 'Auto', false, 'Deposit', 'Gold', { Steam, CharID, Loc, DepGold } })
     end
 
@@ -228,12 +232,12 @@ RegisterNUICallback('Deposit', function(Data)
     local Data = Bank.Result[1]
     local Arr = { action = "updateNumbers", bank = string.upper(Loc), money = Data.Money, gold = Data.Gold }
     SendNuiMessage(Encoded(Arr))
-    if (IsMoney) then NoteNPCTalk(Dialog.NPCName, Dialog.DepDoneMoney..DepMoney, true, 5000) end
-    if (IsGold) then NoteNPCTalk(Dialog.NPCName, Dialog.DepDoneGold..DepGold.." Gold.", true, 5000) end
+    if (IsMoney) then NoteNPCTalk(MSG("NPCName").MSG, MSG("DepDoneMoney").MSG..DepMoney, true, 5000) end
+    if (IsGold) then NoteNPCTalk(MSG("NPCName").MSG, MSG("DepDoneGold").MSG..DepGold.." Gold.", true, 5000) end
     TransIsMade = false
   else
     TransIsMade = true
-    NoteNPCTalk(Dialog.NPCName, Dialog.ToFast, true, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("ToFast").MSG, true, 5000)
     TransIsMade = false
   end
 end)
@@ -247,14 +251,14 @@ RegisterNUICallback('Withdraw', function(Data)
     local Bank = TSC('DokusCore:Core:DBGet:Banks', { 'User', 'Single', 'Bank', { Steam, CharID, Loc } })
 
     if (IsMoney) then
-      if (Bank.Result[1].Money < DepMoney) then NoteNPCTalk(Dialog.NPCName, Dialog.NoWitMoney, true, 5000) TransIsMade = false return end
-      if (DepMoney <= 0.01) then NoteNPCTalk(Dialog.NPCName, Dialog.WitMinMoney, true, 5000) return end
+      if (Bank.Result[1].Money < DepMoney) then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoWitMoney").MSG, true, 5000) TransIsMade = false return end
+      if (DepMoney <= 0.01) then NoteNPCTalk(MSG("NPCName").MSG, MSG("WitMinMoney").MSG, true, 5000) return end
       TriggerEvent('DokusCore:Core:Banking:Transaction', { 'Auto', false, 'Withdraw', 'Money', { Steam, CharID, Loc, DepMoney } })
     end
 
     if (IsGold) then
-      if (Bank.Result[1].Money < DepGold) then NoteNPCTalk(Dialog.NPCName, Dialog.NoWitGold, true, 5000) TransIsMade = false return end
-      if (DepGold <= 0.01) then NoteNPCTalk(Dialog.NPCName, Dialog.WitMinGold, true, 5000) return end
+      if (Bank.Result[1].Money < DepGold) then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoWitGold").MSG, true, 5000) TransIsMade = false return end
+      if (DepGold <= 0.01) then NoteNPCTalk(MSG("NPCName").MSG, MSG("WitMinGold").MSG, true, 5000) return end
       TriggerEvent('DokusCore:Core:Banking:Transaction', { 'Auto', false, 'Withdraw', 'Gold', { Steam, CharID, Loc, DepGold } })
     end
 
@@ -263,12 +267,12 @@ RegisterNUICallback('Withdraw', function(Data)
     local Data = Bank.Result[1]
     local Arr = { action = "updateNumbers", bank = string.upper(Loc), money = Data.Money, gold = Data.Gold }
     SendNuiMessage(Encoded(Arr))
-    if (IsMoney) then NoteNPCTalk(Dialog.NPCName, Dialog.WitDoneMoney..DepMoney, true, 5000) end
-    if (IsGold) then NoteNPCTalk(Dialog.NPCName, Dialog.WitDoneGold..DepGold.." Gold.", true, 5000) end
+    if (IsMoney) then NoteNPCTalk(MSG("NPCName").MSG, MSG("WitDoneMoney").MSG..DepMoney, true, 5000) end
+    if (IsGold) then NoteNPCTalk(MSG("NPCName").MSG, MSG("WitDoneGold").MSG..DepGold.." Gold.", true, 5000) end
     TransIsMade = false
   else
     TransIsMade = true
-    NoteNPCTalk(Dialog.NPCName, Dialog.ToFast, true, 5000)
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("ToFast").MSG, true, 5000)
     TransIsMade = false
   end
 end)

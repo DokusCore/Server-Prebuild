@@ -6,7 +6,6 @@
 -- Variables:
 AtStore = false
 NPCs, Blips, Props, Loc = {}, {}, {}, nil
-Dialog = _Dialogs.GunStore
 UseThisNPC = nil
 StoreInUse = false
 UserIsBuying = false
@@ -21,10 +20,10 @@ Group         = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.GunStore) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     for k,v in pairs(_GunStore.NPCs) do
-      Tabi(Blips, SetBlip(v.Coords, -145868367, 1.0, _GunStore.BlipName))
+      Tabi(Blips, SetBlip(v.Coords, -145868367, 1.0, MSG("BlipName").MSG))
     end
   end
 end)

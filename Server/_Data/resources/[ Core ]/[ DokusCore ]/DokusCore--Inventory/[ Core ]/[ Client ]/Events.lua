@@ -7,7 +7,6 @@ RegisterNetEvent('DokusCore:Inventory:OpenInventory', function()
   if (_Modules.Inventory) then
     if (not (IsInvOpen) and not (IsPickingUpItem)) then
       IsInvOpen = true
-      Notify("Change the amount using the numbers on your keyboard!", "TopCenter", 5000)
       TriggerEvent('DokusCore:Inventory:UpdateBankValues')
       local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
       if (Inv.Exist) then SendNUIMessage({ items = GetUsersItems(Inv) }) end
@@ -24,7 +23,7 @@ RegisterNetEvent('DokusCore:Inventory:UpdateBankValues', function()
   while IsInvOpen do Wait(0)
     SendNUIMessage({
       wallet = Char.Money, gold = Char.Gold,
-      bank = '???', label = 'In Progress',
+      bank = '0.00', label = SYS("InProgress").MSG
     }) Wait(1000)
   end
 end)

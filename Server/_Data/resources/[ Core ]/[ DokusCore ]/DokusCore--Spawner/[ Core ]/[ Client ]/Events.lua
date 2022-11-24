@@ -5,7 +5,7 @@
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Spawner:User:Login', function()
   local Sync   = TCTCC('DokusCore:Sync:Get:UserData')
-  local Char   = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, Sync.CharID } })
+  local Char   = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Sync.SteamID, Sync.CharID } })
   if (Sync.CharID == 0) then return RestartCharPicker() end
   local Dec    = Decoded(Char.Result[1].Coords)
   local Coords = vec3(Dec.x, Dec.y, Dec.z)
@@ -27,7 +27,7 @@ RegisterNetEvent('DokusCore:Spawner:User:Login', function()
 
   -- Continue
   TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
-  TriggerEvent('DokusCore:Clothing:User:Load:Clothing') print("Load Clothing")
+  TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
   DisplayHud(true) DisplayRadar(true)
   UIFadeIn(5000)
 
@@ -42,7 +42,7 @@ end)
 RegisterNetEvent('DokusCore:Spawner:User:Logout', function()
   local Sync   = TCTCC('DokusCore:Sync:Get:UserData')
   local Coords = Encoded(GetCoords(PedID()))
-  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { SteamID, Sync.CharID, Coords } })
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { Sync.SteamID, Sync.CharID, Coords } })
   SetVisible(PedID(), false)
   SetInvincible(PedID(), true)
   SetFreeze(PedID(), true)
@@ -98,13 +98,16 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   -- Spawn the player and start the cutscene
   local SP = SpawnPos.sCoords
   local Offset = vec3((SP[1] - 24.1), (SP[2] + 3.6), SP[3])
-  local rWelcome = Talk.Welcome[math.random(#Talk.Welcome)]
-  local rAdvice  = Talk.Advice[math.random(#Talk.Advice)]
-  local rTailor  = Talk.Tailor[math.random(#Talk.Tailor)]
-  local rGoodbye = Talk.Goodbye[math.random(#Talk.Goodbye)]
-  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, Sync.CharID } }).Result[1]
-  TriggerServerEvent('DokusCore:Core:DBIns:Metabolism', { 'User', 'All', { SteamID, Sync.CharID, 100.0, 100.0, 100.0 } })
-
+  local TxtWelcome = RandomDialog(MSG("Welcome"))
+  local TxtAdvice = RandomDialog(MSG("Advice"))
+  local TxtTailor = RandomDialog(MSG("Tailor"))
+  local TxtGoodbye = RandomDialog(MSG("Goodbye"))
+  local rWelcome = TxtWelcome[math.random(#TxtWelcome)]
+  local rAdvice  = TxtAdvice[math.random(#TxtAdvice)]
+  local rTailor  = TxtTailor[math.random(#TxtTailor)]
+  local rGoodbye = TxtGoodbye[math.random(#TxtGoodbye)]
+  local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { Sync.SteamID, Sync.CharID } }).Result[1]
+  TriggerServerEvent('DokusCore:Core:DBIns:Metabolism', { 'User', 'All', { Sync.SteamID, Sync.CharID, 100.0, 100.0, 100.0 } })
   NetworkGhosting(PedID(), true)
   SetVisible(PedID(), false)
   SetCoords(PedID(), Offset)
@@ -114,25 +117,26 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   RenderCam(false, false, 1, true, true) Wait(100)
   TriggerEvent('DokusCore:Skins:Load:User') Wait(3000)
   TriggerEvent('DokusCore:Clothing:User:Load:Clothing')
+  DisplayRadar(true) DisplayHud(true)
   TriggerEvent('DokuCore:Spawner:StopMusicPrompt')
-  if (Song.Enabled) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Song.Song, Song.Volume) end
+  local R = Song[ math.random(#Song) ]
+  if (_Spawner.PlaySong) then TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', R.Song, R.Volume) end
   VehicleID = SpawnVehicle('STAGECOACH001X', SP, SpawnPos.Heading)
   DriverID = CreateDriver(PedID(), 'CS_BivCoachDriver', SP)
   SetPedIntoVehicle(DriverID, VehicleID, -1) Wait(500)
   SetPedIntoVehicle(PedID(), VehicleID, 2) Wait(500)
-  DisplayRadar(true) DisplayHud(true)
   SetVisible(PedID(), true)
   local InVeh  = GetVehiclePedIsIn
   local GetMod = GetEntityModel(InVeh(PedID()))
   DriveToCoords(DriverID, InVeh(DriverID, false), SpawnPos.eCoords, 10.0, 1.0, GetMod, 67633207, 15.0, false)
   Citizen.InvokeNative(0x971D38760FBC02EF, DriverID, true) Wait(5000)
   UIFadeIn(25000) Cinema(true) Wait(5000)
-  NoteObjective('StageCoach Driver', rWelcome, 'NPC', 5000)
-  NoteObjective('StageCoach Driver', rAdvice, 'NPC', 7000)
+  NoteObjective(MSG("DriverName").MSG, rWelcome.MSG, 'NPC', Floor(rWelcome.Time * 1000))
+  NoteObjective(MSG("DriverName").MSG, rAdvice.MSG, 'NPC', Floor(rAdvice.Time * 1000))
   TriggerEvent('DokusCore:Spawner:Spawn:RandomChatter', true)
   DriveToDestination(SpawnPos.eCoords)
-  NoteObjective("StageCoach Driver", rTailor, 'NPC', 5000)
-  NoteObjective('StageCoach Driver', rGoodbye, 'NPC', 5000)
+  NoteObjective(MSG("DriverName").MSG, rTailor.MSG, 'NPC', Floor(rTailor.Time * 1000))
+  NoteObjective(MSG("DriverName").MSG, rGoodbye.MSG, 'NPC', Floor(rGoodbye.Time * 1000))
   Cinema(false) DisableControls = false
 
   -- Update DataSync
@@ -148,7 +152,7 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   if (_Spawner.GiveStartItems) then
     for k,v in pairs(_Spawner.StartItems) do
       local Item, Amount, Type = string.lower(v.Item), v.Amount, v.Type
-      TriggerServerEvent('DokusCore:Core:DBIns:Inventory', { 'User', 'InsertItem', { SteamID, Sync.CharID, Type, Item, Amount } })
+      TriggerServerEvent('DokusCore:Core:DBIns:Inventory', { 'User', 'InsertItem', { Sync.SteamID, Sync.CharID, Type, Item, Amount } })
     end
   end
 
@@ -169,26 +173,20 @@ RegisterNetEvent('DokusCore:Spawner:User:New', function()
   -- Continue
   Cinema(false) DisplayHud(true) DisplayRadar(true)
   NetworkGhosting(PedID(), false)
+
+  -- Fade the current playing music
+  TriggerEvent('DokusCore:Core:MP:Music:MusicFade')
 end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
--- RegisterNetEvent('DokusCore:Spawner:DisableAllControls', function(Bool)
---   DisableControls = Bool
---   while (DisableControls) do Wait(1)
---     -- DisableAllControlActions(1)
---     DisableControlAction(1, _Keys.E, true)
---   end
---   DisableAllControlActions(0)
--- end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Spawner:Spawn:RandomChatter', function(Bool)
   Wait(15000) Chatter = Bool
   while Chatter do Wait(1)
-    local R = Talk.DriverTalk[math.random(#Talk.DriverTalk)]
-    NoteObjective(Talk.DriverName, R, 'NPC', 10000)
+    local Talk = RandomDialog(MSG("DriverTalk"))
+    local R = Talk[math.random(#Talk)]
+    NoteObjective(MSG("DriverName").MSG, R.MSG, 'NPC', Floor(R.Time * 1000))
     local R = math.random(20, 60)
-    Wait(R * 1000)
+    Wait((R * 1000))
   end
 end)
 --------------------------------------------------------------------------------
@@ -225,7 +223,7 @@ RegisterNetEvent('DokuCore:Spawner:StopMusicPrompt', function()
   HidePrompt = false
   ActPrompts()
   while (ShowPrompt) do Wait(0)
-    local pName = CreateVarString(10, 'LITERAL_STRING', '')
+    local pName = CreateVarString(10, 'LITERAL_STRING', MSG("Cutscene").MSG)
     PromptSetActiveGroupThisFrame(Group, pName)
     local S = PromptHasHoldModeCompleted(Prompt_Stop)
     local C = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Cinema)
@@ -233,18 +231,23 @@ RegisterNetEvent('DokuCore:Spawner:StopMusicPrompt', function()
 
     if ((S) and (Playing)) then
       Playing = false
+      ShowPrompt = true
+      HidePrompt = false
       TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', 'None', 0)
-      Notify("You turned off the music", "TopCenter", 5000)
-      Wait(3000)
+      Notify(MSG("MusicOn").MSG, "TopCenter", Floor(MSG("MusicOn").Time * 1000))
+      Wait(1500)
     elseif ((S) and (not (Playing))) then
       Playing = true
-      TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', Song.Song, Song.Volume)
-      Notify("You turned the music on", "TopCenter", 5000)
-      Wait(3000)
+      ShowPrompt = true
+      HidePrompt = false
+      local R = Song[ math.random(#Song) ]
+      TriggerEvent('DokusCore:Core:MP:Music:PlayOnUser', R.Song, R.Volume)
+      Notify(MSG("MusicOff").MSG, "TopCenter", Floor(MSG("MusicOff").Time * 1000))
+      Wait(1500)
     end
 
     if (O) then
-      NoteNPCTalk("Driver", "You can't step out in the cut scene.", false, 5000)
+      NoteNPCTalk(MSG("DriverName").MSG, MSG("ErrStepOut").MSG, false, Floor(MSG("ErrStepOut").Time * 1000))
     end
 
     if (C) then

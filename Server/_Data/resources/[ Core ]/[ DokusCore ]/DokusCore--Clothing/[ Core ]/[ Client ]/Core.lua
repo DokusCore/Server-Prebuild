@@ -20,7 +20,6 @@ Group         = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 AlreadySaid = {}
-Dialog      = _Dialogs.Clothing
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 FemaleData = {}
@@ -53,9 +52,9 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Clothing) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
-    for k,v in pairs(_Clothing.NPCs) do Tabi(Blips, SetBlip(v.Coords, 1195729388, 1.0, Dialog.NPCName)) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
+    for k,v in pairs(_Clothing.NPCs) do Tabi(Blips, SetBlip(v.Coords, 1195729388, 1.0, MSG("NPCName").MSG)) end
     for k,v in pairs(_Clothing.NPCs) do Tabi(NPCs, { ID = v.ID, Hash = SpawnNPC(v.Hash, v.Coords, v.Heading) }) end
   end
 end)
@@ -63,8 +62,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Clothing) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(5000)
       for k,v in pairs(_Clothing.Zones) do
         local Dist = GetDistance(v.Coords)
@@ -83,7 +82,7 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Clothing) then
-    while not FrameReady() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
     FemaleData = TSC('DokusCore:Core:DBGet:Data:Clothing', { 'Female', 'All' }).Result
     MaleData = TSC('DokusCore:Core:DBGet:Data:Clothing', { 'Male', 'All' }).Result
     SetClothingData()
@@ -93,9 +92,11 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Clothing) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
-    local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, CharID } })
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
+    local Sync = TCTCC("DokusCore:Sync:Get:UserData")
+    local Index = { Sync.SteamID, Sync.CharID }
+    local Char = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', Index })
     local Dec = Decoded(Char.Result[1].Skin)
     local MySkin = Decoded(Dec.Skin)
     for k,v in pairs(MySkin) do Tabi(Skin, { Type = k, Hash = tonumber(v) }) end
@@ -132,7 +133,7 @@ end)
 RegisterNetEvent('DokusCore:Clothing:ShowPrompt', function()
   ActPrompts()
   while ((NearNPC) and not (StoreInUse) and (not (MenuInUse))) do Wait(1)
-    local pName = CreateVarString(10, 'LITERAL_STRING', 'Tailor')
+    local pName = CreateVarString(10, 'LITERAL_STRING', MSG("NPCName").MSG)
     PromptSetActiveGroupThisFrame(Group, pName)
     local ME = PromptHasHoldModeCompleted(Prompt_Menu)
     local MA = PromptHasHoldModeCompleted(Prompt_Outfits)

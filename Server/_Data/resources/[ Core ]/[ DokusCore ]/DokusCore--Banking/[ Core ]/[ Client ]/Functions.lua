@@ -13,9 +13,15 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function OpenBank(Lang)
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Banking", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function OpenBank()
   CreateThread(function()
-    local str = _('Banking_MenuText', Lang)
+    local str = MSG("UseBankKey").MSG
     PromptBank = PromptRegisterBegin()
     PromptSetControlAction(PromptBank, _ActionKey)
     str = CreateVarString(10, 'LITERAL_STRING', str)

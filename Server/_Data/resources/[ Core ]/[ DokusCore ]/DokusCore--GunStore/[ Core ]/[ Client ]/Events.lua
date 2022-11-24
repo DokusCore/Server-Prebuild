@@ -11,9 +11,9 @@ RegisterNetEvent('DokusCore:GunStore:EnterStore', function(Data)
     SpawnCatalog();
     for k,v in pairs(_GunStore.Dialogs) do
       if (v.Welcome) then
-        local Txt = RandomDialog(PedID(), Dialog.EnterStore)
+        local Txt = RandomDialog(MSG("EnterStore"))
         local Random = Txt[math.random(#Txt)]
-        NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
+        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000))
       end
     end
   end
@@ -29,9 +29,9 @@ RegisterNetEvent('DokusCore:Gunstore:ExitStore', function(Data)
         ShowPrompts   = false
         Prompt_Menu   = nil
         Group         = GetRandomIntInRange(0, 0xffffff)
-        local Txt = RandomDialog(PedID(), Dialog.ExitStore)
+        local Txt = RandomDialog(MSG("ExitStore"))
         local Random = Txt[math.random(#Txt)]
-        NoteNPCTalk(Dialog.NPCName, Random.Msg, false, (Random.Time * 1000))
+        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000))
       end
     end
   end
@@ -44,11 +44,10 @@ RegisterNetEvent('DokusCore:GunStore:NearCatalog', function(Data)
     Loc = Low(Data.City)
     SetNPCToUse()
     for k,v in pairs(_GunStore.Dialogs) do
-      local Txt = RandomDialog(PedID(), Dialog.NearNPC)
+      local Txt = RandomDialog(MSG("NearNPC"))
       local Random = Txt[math.random(#Txt)]
-      NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000))
+      NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
     end
-
     TriggerEvent('DokusCore:GunStore:Start')
   end
 end)

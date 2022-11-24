@@ -72,7 +72,7 @@ CreateThread(function() Wait(1000)
           local Close, Medium = (Dist <= 0.6), ((Dist > 0.6) and (Dist <= 2.0))
           local Key = _Inventory.Interaction.UseKey
           if (not (IsPickingUpItem)) then
-            if (Close) then DrawText3D(x,y,z, 300, 'Press ~color_green~E~q~ to open') end
+            if (Close) then DrawText3D(x,y,z, 300, MSG("OpenBox").MSG) end
             if (Medium) then DrawText3D(x,y,z, 200, '{ Expire: Work in Progress }') end
             if ((Medium) or (Far)) then IsBoxOpen = false end
             if (Close) then

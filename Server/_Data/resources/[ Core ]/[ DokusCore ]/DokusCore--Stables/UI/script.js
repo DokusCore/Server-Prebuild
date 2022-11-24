@@ -98,6 +98,7 @@ window.addEventListener('message', function(event) {
             <div class="col s6 panel-col item" onclick="DoBasicNeeds(${ID}, '${Name}')"><h6 class="grey-text title">Daily Care [ 1$ ]</h6></div>
             <div class="col s6 panel-col item" onclick="TrainMyHorse(${ID}, '${Name}')"><h6 class="grey-text title">Train My Horse</h6></div>
             <div class="col s6 panel-col item" onclick="SellHorse(${ID}, '${Name}')"><h6 class="grey-text title">Sell [ 50% ]</h6></div>
+            <div class="col s6 panel-col item" onclick="BreedMyHorse(${ID}, '${Name}')"><h6 class="grey-text title">Enable Breeding 10$</h6></div>
           </div>
         </li>
        `);

@@ -41,12 +41,12 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:ScratchCards:Get:Rewards', function()
   local Inv   = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', { SteamID, CharID, 'scratchprize' } })
-  if (not (Inv.Exist)) then NoteNPCTalk('Bank Worker', "You've no lottery tickets in your possession!", true, 5000) return end
+  if (not (Inv.Exist)) then NoteNPCTalk(MSG("NPCName").MSG, MSG("NoTickets").MSG, true, Floor(MSG("NoTickets").Time * 1000)) return end
   local Char  = TSC('DokusCore:Core:DBGet:Characters', { 'User', 'Single', { SteamID, CharID } }).Result[1]
   local Money = TN(Decoded(Inv.Result[1].Meta)[1].Reward)
   TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Payment', { SteamID, CharID, TN(Char.Money + Money) } })
   TriggerServerEvent('DokusCore:Core:DBDel:Inventory', { 'User', 'Item', { SteamID, CharID, 'scratchprize' } })
-  NoteNPCTalk('Bank Worker', "You've won a grand total of $"..TS(Money)..". Don't go to spend it all on booze now, haha", 5000)
+  NoteNPCTalk(MSG("NPCName").MSG, MSG("WonTotal").MSG .. TS(Money), Floor(MSG("WonTotal").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -9,19 +9,13 @@ RegisterNUICallback('NUIFocusOff', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback("NoItemSelected", function()
-  Notify('You have no item selected to drop on the ground! First select an item!')
-end)
+RegisterNUICallback("NoItemSelected", function() Notify(MSG("NoSelectDrop").MSG) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback("NotEnoughAmount", function(Data)
-  Notify('You do not have enough '..Data.item..' in your inventory! Unable to drop this item on the ground!')
-end)
+RegisterNUICallback("NotEnoughAmount", function(Data) Notify(MSG("NotEnough").MSG) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback("NoAmountSet", function(Data)
-  Notify('You have no amount set in the amount parameter. Unable to drop your item!')
-end)
+RegisterNUICallback("NoAmountSet", function(Data) Notify(Notify(MSG("NoAmount").MSG)) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback("drop", function(Data)
@@ -57,7 +51,7 @@ RegisterNUICallback("drop", function(Data)
         local Close, Medium, Far = (Dist <= 0.6), ((Dist > 0.6) and (Dist <= 10)), (Dist > 10)
         if ((Close) or (Far)) then Animation(PedID, "amb_work@world_human_box_pickup@1@male_a@stand_exit_withprop", 2200) end
         if ((Close) or (Far)) then PlaySound('CHECKPOINT_PERFECT', 'HUD_MINI_GAME_SOUNDSET') end
-        if (Medium) then Notify("You're to close to a different DropBox. Get closer or further away!", 'TopRight', 5000) end
+        if (Medium) then Notify(MSG("ToClose").MSG, 'TopRight', Floor(MSG("ToClose").Time * 1000)) end
         if (Close) then
           local Drop = TSC('DokusCore:Core:DBGet:Storages',    { 'DropBox', 'BoxID', { v.BoxID } })
           TriggerServerEvent('DokusCore:Core:DBSet:Storages',  { 'DropBox', 'InsertItem', { Steam, CharID, { v.BoxID, Drop.Result[1].Meta, Item, Amount }}})
@@ -75,18 +69,14 @@ RegisterNUICallback("UseItem", function(Data)
   local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { Steam, CharID } })
   for k,v in pairs(Inv.Result) do
     if (Item == v.Item) then
-      if (v.Amount < Amount) then Notify("You do not have enough of this item!") return end
-
-      -- remove items from the inventory
-      -- CODE
-
-      -- Trigger Animation
+      if (v.Amount < Amount) then Notify(MSG("NotEnough").MSG) return end
       TriggerEvent('DokusCore:UsableItems:UseItem', { Item = Item, Amount = Amount })
       CloseInv()
     end
   end
 end)
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

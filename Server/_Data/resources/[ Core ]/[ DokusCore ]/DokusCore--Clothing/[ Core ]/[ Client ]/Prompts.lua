@@ -5,8 +5,10 @@
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
+    while (not (FrameReady())) do Wait(1000) end
+    while (not (UserInGame())) do Wait(1000) end
     if (false) then
-      local str = 'Pay'
+      local str = MSG("Pay").MSG
       Prompt_Pay = PromptRegisterBegin()
       PromptSetControlAction(Prompt_Pay, _Keys['E'])
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -17,7 +19,7 @@ function ActPrompts()
       PromptSetGroup(Prompt_Pay, Group)
       PromptRegisterEnd(Prompt_Pay)
     else
-      local str = 'Open Menu'
+      local str = MSG("OpenMenu").MSG
       Prompt_Menu = PromptRegisterBegin()
       PromptSetControlAction(Prompt_Menu, _Keys['E'])
       str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -28,7 +30,7 @@ function ActPrompts()
       PromptSetGroup(Prompt_Menu, Group)
       PromptRegisterEnd(Prompt_Menu)
 
-      local str = 'Outfits'
+      local str = MSG("Outfits").MSG
       Prompt_Outfits = PromptRegisterBegin()
       PromptSetControlAction(Prompt_Outfits, _Keys['X'])
       str = CreateVarString(10, 'LITERAL_STRING', str)

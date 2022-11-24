@@ -15,7 +15,16 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function NREntryErr() NoteObjective("ERROR", "You've not inserted a number, but inserted text or nothing!!", 'Alert', 5000) end
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Stores", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Open(Type) TriggerEvent('DokusCore:Stores:OpenStore', Type) end
@@ -30,8 +39,9 @@ end
 function SetOutArea()
   ShowPrompt = false
   SetNuiFocus(false, false)
-  local Random = Dialog.ExitStore[math.random(#Dialog.ExitStore)]
-  NoteNPCTalk(Dialog.NPCName, Random, true, 1500) Wait(500)
+  local Txt = RandomDialog(MSG('ExitStore'))
+  local Random = Txt[math.random(#Txt)]
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
   ShowPrompt = true
   InArea, Loc = false, nil
 end
@@ -40,8 +50,9 @@ end
 function SetInStore()
   ShowPrompt = false
   SetNuiFocus(false, false)
-  local Random = Dialog.EnterStore[math.random(#Dialog.EnterStore)]
-  NoteNPCTalk(Dialog.NPCName, Random, true, 1500) Wait(500)
+  local Txt = RandomDialog(MSG('EnterStore'))
+  local Random = Txt[math.random(#Txt)]
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
   ShowPrompt = true
   InStore = true
   TriggerEvent('DokusCore:Stores:CheckDistNPC')
@@ -69,7 +80,7 @@ end
 --------------------------------------------------------------------------------
 function PromptKey(Lang)
   CreateThread(function()
-    local str = 'Buy'
+    local str = MSG("ButtonBuy").MSG
     Prompt_Buy = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Buy, _Keys['E'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -80,7 +91,7 @@ function PromptKey(Lang)
     PromptSetGroup(Prompt_Buy, PromptGroup)
     PromptRegisterEnd(Prompt_Buy)
 
-    local str = 'Sell'
+    local str = MSG("ButtonSell").MSG
     Prompt_Sell = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Sell, _Keys['F'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -91,7 +102,7 @@ function PromptKey(Lang)
     PromptSetGroup(Prompt_Sell, PromptGroup)
     PromptRegisterEnd(Prompt_Sell)
 
-    local str = 'Manage'
+    local str = MSG("ButtonMan").MSG
     Prompt_Manage = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Manage, _Keys['X'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -190,8 +201,9 @@ function OpenStore() IndexAllData() end
 --------------------------------------------------------------------------------
 function OpenStoreBuy()
   ShowPrompt = false
-  local Random = Dialog.MenuBuy[math.random(#Dialog.MenuBuy)]
-  NoteNPCTalk(Dialog.NPCName, Random, true, 1500) Wait(500)
+  local Txt = RandomDialog(MSG('MenuBuy'))
+  local Random = Txt[math.random(#Txt)]
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
   StoreInUse = true
   Array_Inv, Array_Store = {}, {}
   IndexAllData()
@@ -201,8 +213,9 @@ end
 --------------------------------------------------------------------------------
 function OpenStoreSell()
   ShowPrompt = false
-  local Random = Dialog.MenuSell[math.random(#Dialog.MenuSell)]
-  NoteNPCTalk(Dialog.NPCName, Random, true, 1500) Wait(500)
+  local Txt = RandomDialog(MSG('MenuSell'))
+  local Random = Txt[math.random(#Txt)]
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
   Array_Inv, Array_Store = {}, {}
   IndexAllData()
   StoreInUse = true
@@ -211,12 +224,11 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Message(Type, Item, Amount)
-  if (Type == 'NotEnough') then NoteObjective("ERROR", "You do not have this much in your inventory!", 'Alert', 5000) end
-  if (Type == 'InDev') then NoteObjective("ERROR", 'This Option is in developement!', '', 5000) Wait(5000) end
-  if (Type == 'NoMinNumber') then NoteObjective("ERROR", "You can not use negative numbers!", 'Alert', 5000) end
-  if (Type == 'Buy') then NoteObjective("Success", "You've bought "..Amount.." "..Item.."'s", 'Alert', 5000) end
-  if (Type == 'Sell') then NoteObjective("Success", "You've sold "..Amount.." "..Item.."'s", 'Alert', 5000) end
-  if (Type == 'NoBuyMoney') then NoteObjective("ERROR", "You've not enough money to buys this / these amount of items!", 'Alert', 5000) end
+  if (Type == 'NotEnough') then NoteObjective(SYS("Error").MSG, MSG("NotInInvent").MSG, 'Alert', Floor(MSG("NotInInvent").Time * 1000)) end
+  if (Type == 'InDev') then NoteObjective(SYS("Error").MSG, SYS("InDevelopment").MSG, 'Alert', Floor(MSG("InDevelopment").Time * 1000)) Wait(5000) end
+  if (Type == 'Buy') then NoteObjective(SYS("Success").MSG, MSG("Bought").MSG .. Amount .. " " .. Item .. "'s", 'Alert', Floor(MSG("Bought").Time * 1000)) end
+  if (Type == 'Sell') then NoteObjective(SYS("Success").MSG, MSG("Sold").MSG .. Amount .. " " .. Item .. "'s", 'Alert', Floor(MSG("Sold").Time * 1000)) end
+  if (Type == 'NoBuyMoney') then NoteObjective(SYS("Error").MSG, MSG("NoMoney").MSG, 'Alert', Floor(MSG("NoMoney").Time * 1000)) end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

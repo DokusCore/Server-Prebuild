@@ -10,7 +10,7 @@ Group = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 function SetDenisPrompts()
   CreateThread(function()
-    local str = _Dialogs.Guarma
+    local str = SYS("Guarma").MSG
     Prompt_Guarma = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Guarma, _Keys['G'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -21,7 +21,7 @@ function SetDenisPrompts()
     PromptSetGroup(Prompt_Guarma, Group)
     PromptRegisterEnd(Prompt_Guarma)
 
-    local str = _Dialogs.Jail
+    local str = SYS("Sisika").MSG
     Prompt_Jail = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Jail, _Keys['X'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -37,7 +37,7 @@ end
 --------------------------------------------------------------------------------
 function SetGuarmaPrompts()
   CreateThread(function()
-    local str = _Dialogs.SaintDenis
+    local str = SYS("SaintDenis").MSG
     Prompt_Guarma_sDenis = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Guarma_sDenis, _ActionKey)
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -53,7 +53,7 @@ end
 --------------------------------------------------------------------------------
 function SetJailPrompts()
   CreateThread(function()
-    local str = _Dialogs.SaintDenis
+    local str = SYS("SaintDenis").MSG
     Prompt_Jail_sDenis = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Jail_sDenis, _ActionKey)
     str = CreateVarString(10, 'LITERAL_STRING', str)

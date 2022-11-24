@@ -5,7 +5,7 @@
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
-    local str = 'Stop | Start Music'
+    local str = MSG("MusicToggle").MSG
     Prompt_Stop = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Stop, _Keys['SPACEBAR'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -16,7 +16,7 @@ function ActPrompts()
     PromptSetGroup(Prompt_Stop, Group)
     PromptRegisterEnd(Prompt_Stop)
 
-    local str = 'Step Out'
+    local str = MSG("StepOut").MSG
     Prompt_Out = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Out, _Keys['E'])
     str = CreateVarString(10, 'LITERAL_STRING', str)
@@ -27,7 +27,7 @@ function ActPrompts()
     PromptSetGroup(Prompt_Out, Group)
     PromptRegisterEnd(Prompt_Out)
 
-    local str = 'Cinema'
+    local str = MSG("Cinema").MSG
     Prompt_Cinema = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Cinema, _Keys.V)
     str = CreateVarString(10, 'LITERAL_STRING', str)

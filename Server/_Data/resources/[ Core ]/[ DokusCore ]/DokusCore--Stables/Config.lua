@@ -6,9 +6,6 @@
 --------------------------------------------------------------------------------
 _Stables = {
 
-  BlipName = 'Horse Stable',
-  AutoOpenMenu = false,
-
   Dialogs = {
     { ID = 'Valentine',   Welcome = true, Goodbye = true },
   },

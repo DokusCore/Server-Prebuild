@@ -29,14 +29,14 @@ Group            = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.CoreMenu) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     local Sync = TCTCC('DokusCore:Sync:Get:UserData')
     SteamID, CharID = Sync.SteamID, Sync.CharID
     local Data = TSC('DokusCore:Core:DBGet:Settings', { 'User', { SteamID } }).Result[1]
     SetVolume, Language, SetMusic = Data.Volume, Data.Language, Data.Music
-    NoteObjective("System", "Setting Menu Initialized!", "Horn", 5000)
-    NoteObjective("System", "You can now open the settings menu with the left alt key!", "Horn", 5000)
+    NoteObjective(SYS("System").MSG, MSG("Initialize").MSG, "Horn", Floor(MSG("Initialize").Time * 1000))
+    NoteObjective(SYS("System").MSG, MSG("Initialize2").MSG, "Horn", Floor(MSG("Initialize2").Time * 1000))
   end
 end)
 --------------------------------------------------------------------------------

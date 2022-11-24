@@ -16,8 +16,8 @@ PPBurpsFartsRumble = false
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Metabolism) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     local PedID  = PedID()
     local Data = TCTCC('DokusCore:Sync:Get:UserData')
     Steam, CharID = Data.SteamID, Data.CharID
@@ -32,8 +32,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function() Wait(5000)
   if (_Modules.Metabolism) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(500)
       while Online do Wait(500)
         local PedID  = PedID()
@@ -56,8 +56,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function() Wait(5000)
   if (_Modules.Metabolism) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(100)
       while Online do Wait(1)
         local PedID  = PedID()
@@ -75,8 +75,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function() Wait(5000)
   if (_Modules.Metabolism) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(1000)
       while Online do Wait(1000)
         if (Health <= 0) then
@@ -97,8 +97,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function() Wait(5000)
   if (_Modules.Metabolism) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(1000)
       while Online do Wait(1000)
         TriggerEvent('DokusCore:Metabolism:ActVitalFlash')
@@ -117,8 +117,8 @@ end)
 --------------------------------------------------------------------------------
 CreateThread(function()
   if (_Modules.Metabolism) then
-    while not FrameReady() do Wait(1000) end
-    while not UserInGame() do Wait(1000) end
+    while (not FrameReady()) do Wait(1000) end
+    while (not UserInGame()) do Wait(1000) end
     while true do Wait(1000)
       while Online do Wait(1000)
         if not (PPBurpsFartsRumble) then
@@ -136,8 +136,8 @@ end)
 CreateThread(function()
   if (_Modules.Metabolism) then
     if (Meta.Farting.Enabled) then
-      while not FrameReady() do Wait(1000) end
-      while not UserInGame() do Wait(1000) end
+      while (not FrameReady()) do Wait(1000) end
+      while (not UserInGame()) do Wait(1000) end
       while true do Wait(1000)
         while Online do Wait(Meta.Farting.Frequention * 1000)
           if not (PPBurpsFartsRumble) then
@@ -156,8 +156,8 @@ end)
 CreateThread(function()
   if (_Modules.Metabolism) then
     if (Meta.Burping.Enabled) then
-      while not FrameReady() do Wait(1000) end
-      while not UserInGame() do Wait(1000) end
+      while (not FrameReady()) do Wait(1000) end
+      while (not UserInGame()) do Wait(1000) end
       while true do Wait(1000)
         while Online do Wait(Meta.Burping.Frequention * 1000)
           if not (PPBurpsFartsRumble) then

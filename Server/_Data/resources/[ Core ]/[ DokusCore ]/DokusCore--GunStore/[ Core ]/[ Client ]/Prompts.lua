@@ -6,9 +6,9 @@
 RegisterNetEvent('DokusCore:GunStore:ShowPrompts', function()
   ActPrompts()
   while (not (StoreInUse) and (ShowPrompts)) do Wait(1)
-    local pName = CreateVarString(10, 'LITERAL_STRING', Dialog.NPCName)
+    local pName = CreateVarString(10, 'LITERAL_STRING', MSG("NPCName").MSG)
     PromptSetActiveGroupThisFrame(Group, pName)
-    local Catalog = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Menu)--  UiPromptHasStandardModeCompleted()
+    local Catalog = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Menu)
     if ((Catalog) and (not (StoreInUse))) then
       StoreInUse = true
       TriggerEvent('DokusCore:GunStore:OpenCatalog')
@@ -19,7 +19,7 @@ end)
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
-    local str = 'Open Menu'
+    local str = MSG("OpenMenu").MSG
     Prompt_Menu = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Menu, _Keys.E)
     str = CreateVarString(10, 'LITERAL_STRING', str)

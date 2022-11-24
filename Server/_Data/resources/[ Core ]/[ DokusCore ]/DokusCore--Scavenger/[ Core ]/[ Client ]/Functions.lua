@@ -15,6 +15,18 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Scavenger", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function ResetPrompts()
   Prompt_Bush = nil
   Group = GetRandomIntInRange(0, 0xffffff)
@@ -50,8 +62,8 @@ function GetReward()
 
   local Random = Rewards [ Random(#Rewards) ]
   if (Random.Amount > 0) then
-    local Description = Dialog.Rewards .. " " .. Random.Amount .. " " .. Random.Name
-    NoteObjective(Dialog.Name, Description, 'Check', 3000)
+    local Description = MSG("Rewards").MSG .. " " .. Random.Amount .. " " .. Random.Name
+    NoteObjective(MSG("Name").MSG, Description, "Check", Floor(MSG("Rewards").Time * 1000))
     local Sync = TCTCC('DokusCore:Sync:Get:UserData')
     local Index = { Sync.SteamID, Sync.CharID, Random.Item }
     local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', Index })
@@ -59,7 +71,7 @@ function GetReward()
       local Index = { Sync.SteamID, Sync.CharID, Random.Item, Random.Amount, Inv.Result[1].Amount }
       TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', Index })
     else
-      local Index = { Sync.Steam, Sync.CharID, Random.Type, Random.Item, Random.Amount }
+      local Index = { Sync.SteamID, Sync.CharID, Random.Type, Random.Item, Random.Amount }
       TriggerServerEvent('DokusCore:Core:DBIns:Inventory', { 'User', 'InsertItem', Index })
     end
   end

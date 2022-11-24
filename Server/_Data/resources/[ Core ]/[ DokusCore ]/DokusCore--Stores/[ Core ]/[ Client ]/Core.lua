@@ -9,7 +9,6 @@ InArea, InStore, NearNPC = false, false, false
 Loc, StoreInUse = nil, false
 Prompt_Buy, Prompt_Sell, Prompt_Manage = nil, nil, nil
 PromptGroup = GetRandomIntInRange(0, 0xffffff)
-Dialog = _Dialogs.Stores
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Set the players data
@@ -27,7 +26,7 @@ CreateThread(function()
   if (_Modules.Stores) then
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
-    for k,v in pairs(_Stores.Stores) do if (v.Enabled) then Tabi(Blips, SetBlip(v.Coords, 1475879922, Radius, 'General Store')) end end
+    for k,v in pairs(_Stores.Stores) do if (v.Enabled) then Tabi(Blips, SetBlip(v.Coords, 1475879922, 1.0, MSG("BlipName").MSG)) end end
     for k,v in pairs(_Stores.NPCs) do if (v.Enabled) then Tabi(NPCs, SpawnNPC(v.Hash, v.Coords, v.Heading)) end end
   end
 end)
@@ -108,7 +107,7 @@ end)
 RegisterNetEvent('DokusCore:Stores:ShowPrompt', function()
   PromptKey()
   while ((NearNPC) and not (StoreInUse)) do Wait(1)
-    local pName = CreateVarString(10, 'LITERAL_STRING', 'General Store')
+    local pName = CreateVarString(10, 'LITERAL_STRING', MSG("BlipName").MSG)
     PromptSetActiveGroupThisFrame(PromptGroup, pName)
     local P = PromptHasHoldModeCompleted(Prompt_Buy)
     local S = PromptHasHoldModeCompleted(Prompt_Sell)
@@ -130,7 +129,7 @@ RegisterNetEvent('DokusCore:Stores:OpenStore', function(Type)
       Type = Type,
       Display = true,
       StoreData = Array_Store,
-      ShopName = 'General Store (Buy)'
+      ShopName = MSG("MenuBuy").MSG
     })
   elseif (Low(Type) == 'sell') then
     Radar(false)
@@ -141,7 +140,7 @@ RegisterNetEvent('DokusCore:Stores:OpenStore', function(Type)
       Type = Type,
       Display = true,
       StoreData = Array_Inv,
-      ShopName = 'Inventory (Sell)'
+      ShopName = MSG("MenuSell").MSG
     })
   end
 end)

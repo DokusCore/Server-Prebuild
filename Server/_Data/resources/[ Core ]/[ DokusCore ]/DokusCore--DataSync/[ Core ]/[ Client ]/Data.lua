@@ -10,7 +10,6 @@ _Obj     = {}
 -- Store User Client Data
 --------------------------------------------------------------------------------
 _User.SteamID        = nil
-_User.sName          = nil
 _User.cName          = nil
 _User.Coords         = nil
 _User.CharID         = 0
@@ -21,6 +20,8 @@ _User.Alive          = false
 _User.UserInGame     = false
 _User.Gender         = nil
 _User.Skin           = nil
+_User.Language       = nil
+_User.MusicVolume    = nil
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Store Core Client Data
@@ -37,8 +38,6 @@ _Mod.UsableItems = {}
 -- _Obj.Interactable = {}
 -- --------------------------------------------------------------------------------
 -- --------------------------------------------------------------------------------
-
-
 
 
 

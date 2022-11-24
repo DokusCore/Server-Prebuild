@@ -18,7 +18,7 @@ CreateThread(function()
         local ID, Coords, Active = v.ID, v.Coords, v.Active
         local pCoords = GetCoords(PedID)
         local Dist = GetDistance(Coords)
-        if ((Active) and (Dist > 2.5) and (Dist <= 6)) then DrawText3D(Coords.x, Coords.y, (Coords.z + 0.5), 300, 'Interactable') end
+        if ((Active) and (Dist > 2.5) and (Dist <= 6)) then DrawText3D(Coords.x, Coords.y, (Coords.z + 0.5), 300, MSG("Interactable").MSG) end
         if ((Active) and (Dist < 2.5)) then DrawText3D(Coords.x, Coords.y, (Coords.z + 0.5), 300, 'UNDER CONSTRUCTION') end
       end
     end

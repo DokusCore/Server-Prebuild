@@ -15,9 +15,9 @@ RegisterNetEvent('DokusCore:Clothing:Start:ViaNPC', function()
 
   -- Set the NPC status busy server wide.
   local SetBusy = TSC('DokusCore:Tailor:NPCStatus', { 'Set', { Loc, true } })
-  local Txt = RandomDialog(PedID(), Dialog.EnterMenu)
+  local Txt = RandomDialog(MSG("EnterStore"))
   local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(Dialog.NPCName, Random.Msg, true, (Random.Time * 1000))
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
 
   -- Get NPC
   for k,v in pairs(NPCs) do
@@ -140,7 +140,7 @@ RegisterNetEvent('DokusCore:Clothing:DetectAFK', function()
     if (AFKCount >= Floor(_Clothing.AntiAFK)) then
       DetectAFK = false
       AFKCount = 0
-      NoteNPCTalk("Tailor", "I've more to do and more customers to attend to, let me know when you need some more help", false, 10000)
+      NoteNPCTalk(MSG("NPCName").MSG, MSG("NeedToGo").MSG, false, Floor(MSG("NeedToGo").Time * 1000))
       ResetData()
     end
   end

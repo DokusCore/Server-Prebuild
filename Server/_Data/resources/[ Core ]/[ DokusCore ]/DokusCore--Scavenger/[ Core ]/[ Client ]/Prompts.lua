@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
-    local str = 'Harvest'
+    local str = MSG("PromptHarv").MSG
     Prompt_Bush = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Bush, _Keys.F)
     str = CreateVarString(10, 'LITERAL_STRING', str)

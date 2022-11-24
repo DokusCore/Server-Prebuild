@@ -5,7 +5,7 @@ description 'DokusCore Metabolism -- Its vital to have some vitals'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.4'
+version '1.3.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -23,11 +23,23 @@ server_scripts {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  -- 'Config.lua', -- Development Only
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Configs ]/[ Modules ]/Metabolism.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/de.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/dk.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/en.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/es.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fr.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/gr.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/it.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/nl.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pl.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

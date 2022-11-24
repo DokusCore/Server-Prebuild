@@ -15,14 +15,25 @@ function UserInGame()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("ScratchCards", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function YouWon(Reward)
-  NoteObjective("Congratulations", "You've Won $"..Reward, 'Horn', 5000)
-
+  NoteObjective("Congratulations", MSG("WonCard").MSG .. Reward, 'Horn', Floor(MSG("WonCard").Time * 1000))
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function YouLost()
-  NoteObjective("Better luck next time", "Sadly you've not won anything this time", 'Horn', 5000)
+  NoteObjective(MSG("BetterLuck").MSG, MSG("NoWin").MSG, 'Horn', Floor(MSG("NoWin").Time * 1000))
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -7,14 +7,15 @@ RegisterNUICallback('CloseNUI', function()
   SetFreeze(PedID(), false)
   ShowPrompt = false
   SetNuiFocus(false, false)
-  local Random = Dialog.MenuExit[math.random(#Dialog.MenuExit)]
-  NoteNPCTalk(Dialog.NPCName, Random, true, 1500) Wait(500)
+  local Txt = RandomDialog(MSG('MenuExit'))
+  local Random = Txt[math.random(#Txt)]
+  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
   ShowPrompt = true
   ResetStore()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('NoSelectItemError', function() Notify("You've have not selected an item yet!") end)
+RegisterNUICallback('NoSelectItemError', function() Notify(MSG("NoItem").MSG) end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('BuyItem', function(Data) CloseStore()
