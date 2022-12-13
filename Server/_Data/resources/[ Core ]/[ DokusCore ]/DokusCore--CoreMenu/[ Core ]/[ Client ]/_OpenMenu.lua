@@ -44,6 +44,10 @@ RegisterNUICallback('OpenMenu', function(Data)
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
     SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.LangList2 })
     SendNUIMessage({ Action = 'OpenMenu' })
+  elseif (Data.Menu == 'LangList3') then
+    SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
+    SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.LangList3 })
+    SendNUIMessage({ Action = 'OpenMenu' })
   elseif (Data.Menu == 'MusicMenu') then
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
     SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.MusicMenu })
@@ -81,7 +85,7 @@ RegisterNUICallback('OpenMenu', function(Data)
   -- Music Lists
   if (Data.Menu == 'BobMarley') then
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
-    SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMusic.Music.Modern.BobMarley }) 
+    SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMusic.Music.Modern.BobMarley })
     SendNUIMessage({ Action = 'OpenMenu' })
   elseif (Data.Menu == 'TheScore') then
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })

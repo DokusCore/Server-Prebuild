@@ -9,17 +9,11 @@ window.addEventListener('message', function(event) {
         Gender = event.data.Gender;
 
         if (Gender == "MP_FEMALE") {
-          $("#Mustache").hide();
           $("#Beard").hide();
-          $("#Beardstache").hide();
         };
 
         if (Gender == 'MP_MALE') {
           document.getElementById("Beard").classList.remove("disabled");
-          // document.getElementById("Mustache").classList.remove("disabled");
-          // document.getElementById("Beardstache").classList.remove("disabled");
-          document.getElementById("Mustache").classList.add("disabled");
-          document.getElementById("Beardstache").classList.add("disabled");
         };
 
         // Set Gender for the NUI calls

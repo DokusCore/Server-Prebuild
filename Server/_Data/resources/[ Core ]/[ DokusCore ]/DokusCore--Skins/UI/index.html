@@ -31,37 +31,13 @@
                 <div id="head">
                     <div class="header-text">Appearance</div>
                 </div>
-								<!-- ========================================================= -->
-              <!--  <div id="camera_menu" class="row">
-                    <div class="menucam">
-                        <button class="tog_hat menu-button">
-                            <i class="fab fa-redhat"></i>
-                        </button>
-                        <button class="tog_glasses menu-button">
-                            <i class="fas fa-glasses"></i>
-                        </button>
-                        <button class="tog_tops menu-button">
-                            <i class="fas fa-tshirt"></i>
-                        </button>
-                        <button class="tog_head menu-button">
-                            <i class="fas fa-meh"></i>
-                        </button>
-                        <button class="tog_torso menu-button">
-                            <i class="fas fa-user-tie"></i>
-                        </button>
-                        <button class="tog_leg menu-button">
-                            <i class="fas fa-socks"></i>
-                        </button>
-                    </div>
-                </div> -->
-								<!-- ========================================================= -->
                 <div id="button_menu" class="row">
                     <button id="button-creator" data-target="char-info"
                         class="menu-selectb active">Information</button>
                     <button id="button-head" data-target="head-char"
-                        class="menu-selectb">Face</button>
-                    <button id="button-body" data-target="body-char"
                         class="menu-selectb">Body</button>
+                    <button id="button-body" data-target="body-char"
+                        class="menu-selectb">Build</button>
                     <button id="button-skill" data-target="skills"
                         class="menu-selectb disabled" disabled>Skills</button>
                 </div>
@@ -72,24 +48,6 @@
                         <form>
                             <div id="sex" class="col s12 panel">
                                 <div class="col s12 panel">
-																	<!-- ========================================================= -->
-                                    <!-- <div class="col s6 panel-col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" data-value="mp_male" value="option1" checked>
-                                            <label class="form-check-label" for="exampleRadios1">
-                                               <span class="namespan">Homem</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col s6 panel-col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" data-value="mp_female" id="exampleRadios2" value="option2">
-                                            <label class="form-check-label" for="exampleRadios2">
-                                                <span class="namespan">Mulher</span>
-                                            </label>
-                                        </div>
-                                    </div> -->
-																		<!-- ========================================================= -->
                                     <div class='spacing5'></div>
                                 </div>
                             </div>
@@ -103,14 +61,11 @@
                             <div id="info" class="col s12 panel">
                                 <div class="col s12 panel">
                                     <div class='spacing2'></div>
-																		<!-- ========================================================= -->
                                     <div class="col s6 panel-col">
                                         <div class="col">
-                                            <!-- <input type="text" class="input-text s6" placeholder="Nationality" value=""> -->
 																						<input id="Nationality" type="text" class="input-text s12" placeholder="Nationality" value="" onchange="changeoptions('Nationality')">
                                         </div>
                                     </div>
-																		<!-- ========================================================= -->
                                     <div class="col s6 panel-col">
                                         <div class="col">
                                             <input id="Idade" type="number" class="input-number s6" placeholder="18" onchange="changeoptions('Idade')">
@@ -127,11 +82,11 @@
                     <div class="scroll-container">
                         <div id="heads" class="col s12 panel ">
                             <div class="col s12 panel-title">
-                                <h6 class="grey-text">HEAD </h6>
+                                <h6 class="grey-text">BODY </h6>
                             </div>
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Face <span class="qtd"></span></h6>
+                                    <h6 class="grey-text title">* Face <span class="qtd"></span></h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -148,7 +103,7 @@
                         <div id="TomPele" class="col s12 panel">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Torso <span class="qtd"></span></h6>
+                                    <h6 class="grey-text title">* Torso <span class="qtd"></span></h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -165,7 +120,7 @@
 												<div id="Legs" class="col s12 panel">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Legs <span class="qtd"></span></h6>
+                                    <h6 class="grey-text title">* Legs <span class="qtd"></span></h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -179,7 +134,11 @@
                             </div>
                         </div>
 
-                        <div id="heads" class="col s12 panel ">
+
+
+
+												<div id="heads" class="col s12 panel ">
+													<div class="col s12 panel-title"><h6 class="grey-text">FACE</h6></div>
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
                                     <h6 class="grey-text title">Width <span class="qtd"></span></h6>
@@ -196,10 +155,10 @@
                             </div>
                         </div>
 
-                        <div id="eyes" class="col s12 panel">
+												<div id="eyes" class="col s12 panel">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Eyes <span class="qtd"></span></h6>
+                                    <h6 class="grey-text title">* Eyes <span class="qtd"></span></h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -214,10 +173,9 @@
                         </div>
 
                         <div id="hair" class="col s12 panel">
-													<div class="col s12 panel-title"><h6 class="grey-text">Head / Facial Hair</h6></div>
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Hair <span class="qtd"></span></h6>
+                                    <h6 class="grey-text title">* Hair <span class="qtd"></span></h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -248,16 +206,16 @@
                             </div>
                         </div>
 
-												<div id="Mustache" class="col s12 panel">
+												<div id="bcdentes" class="col s12 panel ">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Mustache <span class="qtd"></span></h6>
+                                    <h6 class="grey-text title">Teeth <span class="qtd"></span></h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
                                         <i class="fas fa-chevron-left"></i>
                                     </button>
-                                    <input id="Mustache" class="input-number col s4" type="number" value="0" min="0" max="408" disabled />
+                                    <input id="Dentes" class="input-number col s4" type="number" min="1" value="1"  max="6" disabled />
                                     <button class="button-right col s4 waves-effect waves-light btn">
                                         <i class="fas fa-chevron-right"></i>
                                     </button>
@@ -265,32 +223,6 @@
                             </div>
                         </div>
 
-												<div id="Beardstache" class="col s12 panel">
-                            <div class="col s12 panel item">
-                                <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Beardstache <span class="qtd"></span></h6>
-                                </div>
-                                <div class="col s6 panel-col">
-                                    <button class="button-left col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </button>
-                                    <input id="Beardstache" class="input-number col s4" type="number" value="0" min="0" max="408" disabled />
-                                    <button class="button-right col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-												<!-- ========================================================= -->
-<!--
-                        <div id="saltura" class="col s12 panel ">
-                            <a href="#">
-                                <div class="col s12 panel-title" style="background: url('img/inputgold.png');background-size: 100% 100%;">
-                                    <h6 class="grey-text"> DEFINIR Face ALEATORIAMENTE</h6>
-                                </div>
-                            </a>
-                        </div> -->
-												<!-- ========================================================= -->
                         <div id="saltura" class="col s12 panel ">
                             <div class="col s12 panel-title">
                                 <h6 class="grey-text"> EYEBROWS</h6>
@@ -794,22 +726,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="bcdentes" class="col s12 panel ">
-                            <div class="col s12 panel item">
-                                <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title">Teeth <span class="qtd"></span></h6>
-                                </div>
-                                <div class="col s6 panel-col">
-                                    <button class="button-left col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </button>
-                                    <input id="Dentes" class="input-number col s4" type="number" min="1" value="1"  max="6" disabled />
-                                    <button class="button-right col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+
                         <div id="bcprofundidade" class="col s12 panel ">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
@@ -829,7 +746,7 @@
                         <div id="bchorizontal" class="col s12 panel ">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title"> Horizontal Position</h6>
+                                    <h6 class="grey-text title"> Hori Position</h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -845,7 +762,7 @@
                         <div id="bcvertical" class="col s12 panel ">
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title"> Vertical Position</h6>
+                                    <h6 class="grey-text title"> Verti Position</h6>
                                 </div>
                                 <div class="col s6 panel-col">
                                     <button class="button-left col s4 waves-effect waves-light btn">
@@ -970,7 +887,7 @@
 
                         <div id="lialtura" class="col s12 panel ">
                             <div class="col s12 panel-title">
-                                <h6 class="grey-text"> Corpulence</h6>
+                                <h6 class="grey-text"> Body Build</h6>
                             </div>
                             <div class="col s12 panel item">
                                 <div class="col s6 panel-col" >
@@ -1031,69 +948,6 @@
                         <button id="confirm" class="confirm-button btn" onsubmit="required()" onclick="confirm()"><span>Confirm</span></button>
                     </div>
                 </div>
-
-								<!-- ========================================================= -->
-                <!-- <div id="skills" class="row" style="display:none">
-                    <div class="scroll-container">
-
-                        <div id="corBody" class="col s12 panel ">
-                            <div class="col s12 panel item">
-                                <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title"> Cor do Body</h6>
-                                </div>
-                                <div class="col s6 panel-col">
-                                    <button class="button-left col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </button>
-                                    <input id="HeadType" class="input-number col s4" type="number" value="0" min="0" max="29" />
-                                    <button class="button-right col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="corpernas" class="col s12 panel ">
-                            <div class="col s12 panel item">
-                                <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title"> Cor das Pernas</h6>
-                                </div>
-                                <div class="col s6 panel-col">
-                                    <button class="button-left col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </button>
-                                    <input id="HeadType" class="input-number col s4" type="number" value="0" min="0" max="29" />
-                                    <button class="button-right col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="lialtura" class="col s12 panel ">
-                            <div class="col s12 panel-title">
-                                <h6 class="grey-text"> Corpulence</h6>
-                            </div>
-                            <div class="col s12 panel item">
-                                <div class="col s6 panel-col item" >
-                                    <h6 class="grey-text title"> Altura</h6>
-                                </div>
-                                <div class="col s6 panel-col">
-                                    <button class="button-left col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </button>
-                                    <input class="input-number col s4" type="number" min="1.60" value="1.80" max="2.0" step=".0" disabled />
-                                    <button class="button-right col s4 waves-effect waves-light btn">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div> -->
-								<!-- ========================================================= -->
             </div>
         </div>
 

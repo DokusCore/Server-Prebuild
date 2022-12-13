@@ -22,6 +22,7 @@ MaleCam, FemaleCam = false, false
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 SkinDataSet = true
+MyPedSize = 0.0
 MaleData, FemaleData = nil, nil
 MaleTeeth, MaleHairs, MaleBeards = {}, {}, {}
 MaleHeads, MaleTorsos, MaleLegs, MaleEyes = {}, {}, {}, {}

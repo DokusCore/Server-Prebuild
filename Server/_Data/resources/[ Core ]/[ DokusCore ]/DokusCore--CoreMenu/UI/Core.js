@@ -56,6 +56,7 @@ $(document).on('click', ".btn-closeinterface", function() { CloseMenu() });
 // -------------------------------------------------------------------------- \\
 $(document).on('click', ".btn-nextinterface", function() {
   if (InMenu == 'LangList1')        { return OpenThisMenu('LangList2') };
+  if (InMenu == 'LangList2')        { return OpenThisMenu('LangList3') };
   if (InMenu == 'WesternRDR1')        { return OpenThisMenu('WesternRDR2') };
   if (InMenu == 'WesternRDR2')        { return OpenThisMenu('WesternRDR3') };
   ToggleOption('NoNextButton')
@@ -74,6 +75,7 @@ $(document).on('click', ".btn-backinterface", function() {
   if (InMenu == 'SettingsMenu')     { return OpenThisMenu('UserMenu')  };
   if (InMenu == 'LangList1')        { return OpenThisMenu('SettingsMenu') };
   if (InMenu == 'LangList2')        { return OpenThisMenu('LangList1') };
+  if (InMenu == 'LangList3')        { return OpenThisMenu('LangList2') };
   if (InMenu == 'MusicMenu')        { return OpenThisMenu('UserMenu')  };
   if (InMenu == 'Playlist')         { return OpenThisMenu('MusicMenu') };
   if (InMenu == 'ModernMusicMenu')  { return OpenThisMenu('Playlist')  };
@@ -159,6 +161,7 @@ const InitData = (nr) => {
   if ((InMenu == 'LangList2') && (nr == 3))        { ToggleOption('ChangeLanguage', 'nl');               };
   if ((InMenu == 'LangList2') && (nr == 4))        { ToggleOption('ChangeLanguage', 'pl');               };
   if ((InMenu == 'LangList2') && (nr == 5))        { ToggleOption('ChangeLanguage', 'pt');               };
+  if ((InMenu == 'LangList3') && (nr == 0))        { ToggleOption('ChangeLanguage', 'fi');               };
 
   if ((InMenu == 'MusicMenu') && (nr == 0))        { ToggleOption('StopMusic');                          };
   if ((InMenu == 'MusicMenu') && (nr == 1))        { OpenThisMenu('AutoPlay');                           };
@@ -232,6 +235,7 @@ const InitData = (nr) => {
 // -------------------------------------------------------------------------- \\
 const GoPageForward = () => {
   if (InMenu == 'LangList1')   { return OpenThisMenu('LangList2')   };
+  if (InMenu == 'LangList2')   { return OpenThisMenu('LangList3')   };
   if (InMenu == 'WesternRDR1') { return OpenThisMenu('WesternRDR2') };
   if (InMenu == 'WesternRDR2') { return OpenThisMenu('WesternRDR3') };
   if (InMenu == 'Volume')      { return OpenThisMenu('Volume2') };
@@ -253,6 +257,7 @@ const GoPageBack = () => {
   if (InMenu == 'SettingsMenu')     { return OpenThisMenu('UserMenu')  };
   if (InMenu == 'LangList1')        { return OpenThisMenu('SettingsMenu') };
   if (InMenu == 'LangList2')        { return OpenThisMenu('LangList1') };
+  if (InMenu == 'LangList3')        { return OpenThisMenu('LangList2') };
   if (InMenu == 'MusicMenu')        { return OpenThisMenu('UserMenu')  };
   if (InMenu == 'Playlist')         { return OpenThisMenu('MusicMenu') };
   if (InMenu == 'ModernMusicMenu')  { return OpenThisMenu('Playlist')  };

@@ -1,14 +1,15 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-Welcome to DokusCore! The core that takes quality above quantity!
+      Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-CURRENT DOKUSCORE VERSION  | v0.6.6
+CURRENT DOKUSCORE VERSION  | v0.6.6-1
 CURRENT ARTIFACT VERSION   | 5848
 CURRENT REDM GAME BUILD    | 1491
---------------------------------------------------------------------------------
+CURRENT PREBUILD VERSION   | 13122022
 DATABASE LAST UPDATED      | 24th November 2022
-DOKUSCORE LAST UPDATED:    | 24th November 2022
+DOKUSCORE LAST UPDATED:    | 13th December 2022
+PREBUILD LAST UPDATED:     | 13th December 2022
 --------------------------------------------------------------------------------
 ==========================
 IMPORTANT!!!

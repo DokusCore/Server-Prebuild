@@ -5,7 +5,7 @@ description 'DokusCore FastTravel -- Teleports you to off map locations!'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.0'
+version '1.2.1'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts {
@@ -42,6 +42,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pl.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fi.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -3,29 +3,6 @@
 --------------------------------------------------------------------------------
 -- https://github.com/DokusCore/DokusCore--Skins
 --------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-NOTE: This plugin needs extensive testing!
-------------------------------------------
-This plugin is quite extensive using the in game cameras to give you more of an
-immersive experience, this also brings a lot of complexity what can introduce
-bugs that I've not found. May you find anything that is not right, please report
-back to us in our Discord https://discord.io/dokuscore
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-NOTE: Currently we do not have a way for users to turn of the cutscene music,
-this can only be done by the server owner in the config file. A feature for the
-user to turn this off in the middle of the cutscene will be implemented in a later
-version. This bug does not have to be reported to us.
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-NOTE: The player needs to select at least something in the skin menu to adjust
-the skin. When the skin is left completely default with no menu inputs, the
-character will become invisible as there is no skin data applied to the character.
-We will add warning notifications and stop the player from creating a incomplete
-character in a later version. This is not a bug, and it also does not have to
-reported back to us.
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 BUG: Currently you can only create one character. If you want to create the 2nd
 character you have to relog into the server. The problem is most likely the
 camera that breaks the 2nd time around, also the prompts do not want to reset.

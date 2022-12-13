@@ -4,32 +4,32 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('ShowInStock', function()
-  NoteObjective("System", MSG("InDevelopment").MSG, Floor(MSG("InDevelopment").Time * 1000))
+  NoteObjective("System", SYS("InDevelopment").MSG, Floor(SYS("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('RentOutHorse', function(Data)
-  NoteObjective("System", MSG("InDevelopment").MSG, Floor(MSG("InDevelopment").Time * 1000))
+  NoteObjective("System", SYS("InDevelopment").MSG, Floor(SYS("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('AskForBasicCare', function(Data)
-  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
+  NoteObjective("System", SYS("InDevelopment").MSG, 'Horn', Floor(SYS("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('DoBasicNeeds', function(Data)
-  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
+  NoteObjective("System", SYS("InDevelopment").MSG, 'Horn', Floor(SYS("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('TrainMyHorse', function(Data)
-  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
+  NoteObjective("System", SYS("InDevelopment").MSG, 'Horn', Floor(SYS("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('BreedMyHorse', function(Data)
-  NoteObjective("System", MSG("InDevelopment").MSG, 'Horn', Floor(MSG("InDevelopment").Time * 1000))
+  NoteObjective("System", SYS("InDevelopment").MSG, 'Horn', Floor(SYS("InDevelopment").Time * 1000))
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

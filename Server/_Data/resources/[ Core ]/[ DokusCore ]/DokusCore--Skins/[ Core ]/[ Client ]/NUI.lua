@@ -13,6 +13,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('HeadType', function(Data)
+  --print("HeadType")
   if (CamPos ~= 'Face') then CustomCamera(CamInUse, 'Face', MyGender) end
   local ID = tonumber(Data.id)
   if (Up(MyGender) == 'MP_MALE') then
@@ -40,6 +41,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('TomPele', function(Data)
+  --print("TomPele")
   if (CamPos ~= 'Body') then CustomCamera(CamInUse, 'Body', MyGender) end
   local ID = tonumber(Data.id)
   if (Up(MyGender) == 'MP_MALE') then
@@ -67,6 +69,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Legs', function(Data)
+  --print("Legs")
   if (CamPos ~= 'Legs') then CustomCamera(CamInUse, 'Legs', MyGender) end
   local ID = tonumber(Data.id)
   if (Up(MyGender) == 'MP_MALE') then
@@ -94,6 +97,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Olhos', function(Data)
+  --print("Eyes")
   if (CamPos ~= 'Eyes') then CustomCamera(CamInUse, 'Eyes', MyGender) end
   local ID = tonumber(Data.id)
   if (Up(MyGender) == 'MP_MALE') then
@@ -121,6 +125,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Porte', function(Data)
+  --print("Porte")
   if (CamPos ~= 'Body') then CustomCamera(CamInUse, 'Body', MyGender) end
   local Offset = 0
   if ((CamPos == nil) or (CamPos ~= 'Body')) then SwitchCustomCam('Body') end
@@ -139,6 +144,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Gordura', function(Data)
+  --print("Waists")
   if (CamPos ~= 'Body') then CustomCamera(CamInUse, 'Body', MyGender) end
   local Gen = nil
   if (Up(MyGender) == 'MP_MALE') then Gen = 1 else Gen = 2 end
@@ -151,6 +157,7 @@ end)
 --------------------------------------------------------------------------------
 local Ani_Teeth = false
 RegisterNUICallback('Dentes', function(Data)
+  --print("Teeth")
   if (CamPos ~= 'Teeth') then CustomCamera(CamInUse, 'Teeth', MyGender) end
   local Gen = nil
   if (Up(MyGender) == 'MP_MALE') then Gen = 1 else Gen = 2 end
@@ -188,6 +195,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('Cabelos', function(Data)
+  --print("Hair")
   if (CamPos ~= 'Face') then CustomCamera(CamInUse, 'Face', MyGender) end
   local ID = tonumber(Data.id)
 
@@ -216,6 +224,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('FaceFeatured', function(Data)
+  --print("FaceFeatured")
   if (CamPos ~= 'Face') then CustomCamera(CamInUse, 'Face', MyGender) end
   local Gen = nil
   if (Up(MyGender) == 'MP_MALE') then Gen = 1 else Gen = 2 end
@@ -239,45 +248,8 @@ RegisterNUICallback('FaceFeatured', function(Data)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('Beardstache', function(Data)
-  if (CamPos ~= 'Face') then CustomCamera(CamInUse, 'Face', MyGender) end
-  -- local ID = tonumber(Data.id)
-  -- if (Up(MyGender) == 'MP_MALE') then
-  --   for k,v in pairs(MaleBeardStache) do
-  --     if (v.Type == 'Mustache') then
-  --       if (k == ID) then
-  --         print(v.Hash)
-  --         Citizen.InvokeNative(0xD3A7B003ED343FD9, NPCs[1], tonumber(v.Hash), true, true, true)
-  --       end
-  --     end
-  --   end
-  -- end
-  SendNUIMessage({ Action = 'HideUI' })
-  Notify('Beards and Mustaches are currently in 1 tab called beards. We will separate them in the future! For now you can use the beards tab only!', 'TopRight', 10000)
-  Wait(10000) SendNUIMessage({ Action = 'ShowUI' })
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-RegisterNUICallback('Mustache', function(Data)
-  if (CamPos ~= 'Face') then CustomCamera(CamInUse, 'Face', MyGender) end
-  local ID = tonumber(Data.id)
-  -- if (Up(MyGender) == 'MP_MALE') then
-  --   for k,v in pairs(MaleMustache) do
-  --     if (v.Type == 'Mustache') then
-  --       if (k == ID) then
-  --         print(v.Hash)
-  --         Citizen.InvokeNative(0xD3A7B003ED343FD9, NPCs[1], tonumber(v.Hash), true, true, true)
-  --       end
-  --     end
-  --   end
-  -- end
-  SendNUIMessage({ Action = 'HideUI' })
-  Notify('Beards and Mustaches are currently in 1 tab called beards. We will separate them in the future! For now you can use the beards tab only!', 'TopRight', 10000)
-  Wait(10000) SendNUIMessage({ Action = 'ShowUI' })
-end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 RegisterNUICallback('Beard', function(Data)
+  --print("Beard")
   if (CamPos ~= 'Face') then CustomCamera(CamInUse, 'Face', MyGender) end
   local ID = tonumber(Data.id)
   if (Up(MyGender) == 'MP_MALE') then
@@ -294,6 +266,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('PedSize', function(Data)
+  --print("PedSize")
   if (CamPos ~= 'Body') then CustomCamera(CamInUse, 'Body', MyGender) end
   local Gen = nil
   if (Up(MyGender) == 'MP_MALE') then Gen = 1 else Gen = 2 end
@@ -301,7 +274,8 @@ RegisterNUICallback('PedSize', function(Data)
   local isPositive = (ID > 185)
   local Var = (math.abs(185 - ID) * 0.005333)
   if (not (isPositive)) then Var = -(Var) end
-  SetPedScale(NPCs[Gen], 1.0 + Var)
+  MyPedSize = (1.0 + Var)
+  SetPedScale(NPCs[Gen], MyPedSize)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

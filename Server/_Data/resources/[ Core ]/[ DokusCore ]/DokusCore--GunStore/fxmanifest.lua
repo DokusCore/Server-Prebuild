@@ -38,6 +38,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pl.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fi.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -3,12 +3,13 @@ You dont want to spend hours on setting up your server? <br>
 Just use the prebuild and your on your way within 10 minutes!<br>
 
 ----
-CURRENT DOKUSCORE VERSION  | v0.6.6
+CURRENT DOKUSCORE VERSION  | v0.6.6-1
 CURRENT ARTIFACT VERSION   | 5848
 CURRENT REDM GAME BUILD    | 1491
+CURRENT PREBUILD VERSION   | 13122022
 DATABASE LAST UPDATED      | 24th November 2022
-DOKUSCORE LAST UPDATED:    | 24th November 2022
-
+DOKUSCORE LAST UPDATED:    | 13th December 2022
+PREBUILD LAST UPDATED:     | 13th December 2022
 ----
 # Important !
 Downloading the PreBuild from Github will break the CFX Server artifacts! <br>

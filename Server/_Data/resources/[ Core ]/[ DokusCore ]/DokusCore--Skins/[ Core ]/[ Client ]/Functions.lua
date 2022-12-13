@@ -45,25 +45,32 @@ function FixIssues(ID, Gender)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function SetPedSkin(ID, Gender, Skin)
+function SetPedSkin(ID, Gender, Skin, Face)
+
   Citizen.InvokeNative(0x77FF8D35EEC6BBC4, ID, 0, 0)
   while not Citizen.InvokeNative(0xA0BC8FAED8CFEB3C, ID) do Wait(0) end
   Citizen.InvokeNative(0x0BFA1BD465CDFEFD, ID) -- ResetPedComponents
 
   if (Up(Gender) == 'MP_MALE') then
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Torso), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Legs), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Head), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Beard), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Hair), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Eyes), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Torso), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Legs), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Head), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Beard), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Hair), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Eyes), false, true, true) -- ApplyShopItemToPed
   elseif (Up(Gender) == 'MP_FEMALE') then
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Torso), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Legs), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Head), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Hair), false, true, true) -- ApplyShopItemToPed
-    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, tonumber(Skin.Eyes), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Torso), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Legs), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Head), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Hair), false, true, true) -- ApplyShopItemToPed
+    Citizen.InvokeNative(0xD3A7B003ED343FD9, ID, TN(Skin.Eyes), false, true, true) -- ApplyShopItemToPed
   end
+
+  -- Set skin waist | size | face features and player height
+  if (Skin.Waists ~= nil) then Citizen.InvokeNative(0x1902C4CFCC5BE57C, ID, TN(Skin.Waists)) end
+  if (Skin.Size ~= nil) then Citizen.InvokeNative(0xA5BAE410B03E7371, ID, TN(Skin.Size), false, true) end
+  for k,v in pairs(Face) do Citizen.InvokeNative(0x5653AB26C82938CF, ID, TN(v.Hash), v.Value) end
+  SetPedScale(ID, MyPedSize)
 
   -- Execute on all
   Citizen.InvokeNative(0xD710A5007C2AC539, ID, 0x1D4C528A, 0) -- ApplyShopItemToPed
