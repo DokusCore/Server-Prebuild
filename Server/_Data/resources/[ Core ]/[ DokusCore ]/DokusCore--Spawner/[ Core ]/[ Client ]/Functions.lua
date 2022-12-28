@@ -27,7 +27,7 @@ end
 --------------------------------------------------------------------------------
 function CreateDriver(PedID, Model, Coords)
   LoadModel(Model)
-  local DriverID = CreatePed(Model, Coords, PedID, false, 0)
+  local DriverID = CreatePed(Model, Coords, PedID, true, 0)
   Citizen.InvokeNative(0x283978A15512B2FE, DriverID, true) -- SetRandomOutfitVariation
   Citizen.InvokeNative(0x58A850EAEE20FAA3, DriverID) -- PlaceObjectOnGroundProperly
   SetEntityNoCollisionEntity(PedID, DriverID, true)

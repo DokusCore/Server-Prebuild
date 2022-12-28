@@ -14,12 +14,17 @@ RegisterNetEvent('DokusCore:CoreMenu:ActPrompts', function()
     local AutoStart = PromptHasHoldModeCompleted(Prompt_AutoDriveStart)
     local AutoStop  = PromptHasHoldModeCompleted(Prompt_AutoDriveStop)
     local Unequipt  = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_UnEqWeapon)
+    local HorseCall    = PromptHasHoldModeCompleted(Prompt_HorseCall)
+    local HorseFollow  = PromptHasHoldModeCompleted(Prompt_HorseFollow)
     if ((Menu) and (not (IsUserMenuOpen))) then OpenUserMenu() end
     if ((Invent) and (not IsInventOpen)) then OpenInventory() end
     if ((Admin) and (not IsAdminMenuOpen)) then OpenAdminMenu() end
     if (AutoStart) then DoAutoMove()  return end
     if (AutoStop)  then EndAutoMove() return end
     if (Unequipt)  then TriggerEvent('DokusCore:GunStore:Weapon:Unequipt', false) return end
+
+    if (HorseCall) then TriggerEvent('DokusCore:Stables:Horse:Call') return end
+    if (HorseFollow) then TriggerEvent('DokusCore:Stables:Horse:Follow') return end
 
     if ((Zoning)) then
       IsMainMPShown = false
@@ -48,7 +53,8 @@ RegisterNetEvent('DokusCore:CoreMenu:OpenMenu', function(Menu)
   if (Menu[1] == 'MusicMenu')      then SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.MusicMenu })      end
   SendNUIMessage({ Action = 'OpenMenu' })
 end)
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

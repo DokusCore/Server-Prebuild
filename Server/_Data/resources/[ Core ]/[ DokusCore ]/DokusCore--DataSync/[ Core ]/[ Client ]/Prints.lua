@@ -26,6 +26,10 @@ function Call(v)
   if (Low(v) == 'setcharskin')    then print(System.."You're Character Skin Settings are stored succesfully!")    end
   if (Low(v) == 'setcharlang')    then print(System.."You're Language Settings are stored succesfully!")          end
   if (Low(v) == 'setmusicvolume') then print(System.."You're Music Volume Settings are stored succesfully!")      end
+  if (Low(v) == 'setuserarea')    then print(System.."You're area loction has been stored succesfully!")          end
+  if (Low(v) == 'sethorseid')     then print(System.."You're horse ID has been stored succesfully!")              end
+  if (Low(v) == 'sethorsename')   then print(System.."You're horse name has been stored succesfully!")            end
+  if (Low(v) == 'sethorseactive') then print(System.."You're horse active status has been stored succesfully!")   end
 end
 
 

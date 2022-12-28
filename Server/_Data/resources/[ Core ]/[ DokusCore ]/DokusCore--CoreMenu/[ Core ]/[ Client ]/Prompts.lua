@@ -83,6 +83,35 @@ function ActPrompts()
       PromptRegisterEnd(Prompt_AutoDriveStop)
     end
 
+    if (not (Mount) and (Sync.HorseID ~= nil)) then
+      local Dist = GetDistance(GetCoords(Sync.HorseID))
+      if (Dist <= _Stables.Horse.Call.Radius) then
+        local str = 'Horse Call'
+        Prompt_HorseCall = PromptRegisterBegin()
+        PromptSetControlAction(Prompt_HorseCall, _Keys.E)
+        str = CreateVarString(10, 'LITERAL_STRING', str)
+        PromptSetText(Prompt_HorseCall, str)
+        PromptSetEnabled(Prompt_HorseCall, true)
+        PromptSetVisible(Prompt_HorseCall, true)
+        PromptSetHoldMode(Prompt_HorseCall, true)
+        PromptSetGroup(Prompt_HorseCall, Group)
+        PromptRegisterEnd(Prompt_HorseCall)
+      end
+
+      if (Dist <= _Stables.Horse.Follow.Radius) then
+        local str = 'Horse Follow'
+        Prompt_HorseFollow = PromptRegisterBegin()
+        PromptSetControlAction(Prompt_HorseFollow, _Keys.F)
+        str = CreateVarString(10, 'LITERAL_STRING', str)
+        PromptSetText(Prompt_HorseFollow, str)
+        PromptSetEnabled(Prompt_HorseFollow, true)
+        PromptSetVisible(Prompt_HorseFollow, true)
+        PromptSetHoldMode(Prompt_HorseFollow, true)
+        PromptSetGroup(Prompt_HorseFollow, Group)
+        PromptRegisterEnd(Prompt_HorseFollow)
+      end
+    end
+
     -- Show prompt when weapon in hands
     local HasWeapon = Citizen.InvokeNative(0x3B390A939AF0B5FC, PedID())
     if (HasWeapon ~= false) then

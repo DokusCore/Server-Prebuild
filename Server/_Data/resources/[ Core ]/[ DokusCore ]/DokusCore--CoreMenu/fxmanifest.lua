@@ -5,7 +5,7 @@ description 'DokusCore Settings Menu'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.9.1'
+version '2.0.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts { '[ Core ]/[ Server ]/*.lua' }
@@ -26,6 +26,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
+  '@DokusCore/[ Configs ]/[ Modules ]/Stables.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/de.lua',

@@ -5,7 +5,7 @@ description 'DokusCore Stables'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.1'
+version '1.3.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -14,6 +14,8 @@ client_scripts {
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '[ Core ]/[ Client ]/*.*',
+  '[ Core ]/[ Client ]/[ Stables ]/*.*',
+  '[ Core ]/[ Client ]/[ Interact ]/*.*',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -21,9 +23,9 @@ server_scripts { '[ Core ]/[ Server ]/*.*' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  'Config.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
+  '@DokusCore/[ Configs ]/[ Modules ]/Stables.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',

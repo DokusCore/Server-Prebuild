@@ -33,7 +33,8 @@ Config.realTimeOffset = 0
 Config.timeIsFrozen = false
 
 -- Default weather when the resource starts
-Config.weather = Config.isRDR and "sunny" or "clear"
+-- Config.weather = Config.isRDR and "sunny" or "clear"
+Config.weather = Config.isRDR and "snow" or "showlight" or "blizzard" -- Winter is comming
 
 -- The interval (in-game time) between weather changes
 Config.weatherInterval = DHMSToTime(0, 1, 0, 0)
@@ -42,12 +43,12 @@ Config.weatherInterval = DHMSToTime(0, 1, 0, 0)
 Config.weatherIsFrozen = false
 
 -- Whether to permanently add snow on the ground, or only during snowy weather
-Config.permanentSnow = false
+Config.permanentSnow = true
 
 -- Whether to add snow on the ground when:
 -- 	a) in the snowy area of the map
 -- 	b) in the northern part of the map with snowy weather
-Config.dynamicSnow = false
+Config.dynamicSnow = true
 
 -- Number of weather intervals to queue up
 Config.maxForecast = 23

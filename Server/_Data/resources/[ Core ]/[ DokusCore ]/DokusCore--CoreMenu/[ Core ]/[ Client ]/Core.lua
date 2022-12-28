@@ -17,14 +17,16 @@ IsUserMenuOpen   = false
 IsAdminMenuOpen  = false
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-Prompt_Settings  = nil
-Prompt_Invent    = nil
-Prompt_AdminMenu = nil
-Prompt_Zoning    = nil
+Prompt_Settings       = nil
+Prompt_Invent         = nil
+Prompt_AdminMenu      = nil
+Prompt_Zoning         = nil
 Prompt_AutoDriveStart = nil
 Prompt_AutoDriveStop  = nil
 Prompt_UnEqWeapon     = nil
-Group            = GetRandomIntInRange(0, 0xffffff)
+Prompt_HorseCall      = nil
+Prompt_HorseFollow    = nil
+Group                 = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 CreateThread(function()

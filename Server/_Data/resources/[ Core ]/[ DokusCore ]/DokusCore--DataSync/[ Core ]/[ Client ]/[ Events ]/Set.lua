@@ -18,6 +18,10 @@ RegisterNetEvent('DokusCore:Sync:Set:UserData', function(a)
   if (Low(a[1]) == 'skin')         then SetCharSkin(a[2][1])    end
   if (Low(a[1]) == 'language')     then SetCharLang(a[2][1])    end
   if (Low(a[1]) == 'musicvolume')  then SetMusicVolume(a[2][1]) end
+  if (Low(a[1]) == 'area')         then SetUserArea(a[2][1])    end
+  if (Low(a[1]) == 'horseid')      then SetHorseID(a[2][1])     end
+  if (Low(a[1]) == 'horsename')    then SetHorseName(a[2][1])   end
+  if (Low(a[1]) == 'horseactive')  then SetHorseActive(a[2][1]) end
 
   -- NOTE: Need to be removed from all plugins.
   if (Low(a[1]) == 'setcharmoney') then SetCharMoney(a[2][1])   end

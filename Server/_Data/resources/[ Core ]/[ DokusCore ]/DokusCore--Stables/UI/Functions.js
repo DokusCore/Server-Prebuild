@@ -25,6 +25,10 @@ function SelectHorse(ID, Name) {
   $.post('http://DokusCore--Stables/SelectHorse', JSON.stringify({ ID: ID, Name: Name }))
 }
 
+function RescueMyHorse(ID, Name) {
+  $.post('http://DokusCore--Stables/RescueMyHorse', JSON.stringify({ ID: ID, Name: Name }))
+}
+
 function SellHorse(ID, Name) {
   $.post('http://DokusCore--Stables/SellHorse', JSON.stringify({ ID: ID, Name: Name }))
   // $('#button-customization').addClass("disabled");
@@ -43,10 +47,6 @@ function RentOutHorse(ID, Name) {
 
 function TakeOutHorse(ID, Name) {
   $.post('http://DokusCore--Stables/SelectHorse', JSON.stringify({ ID: ID, Name: Name }))
-  $('#button-customization').addClass("disabled");
-  $('#page_myhorses .scroll-container .collapsible').html('');
-  $('#page_shop .scroll-container .collapsible').html('');
-  $("#creatormenu").fadeOut(3000);
   setTimeout(function () {
     $.post('http://DokusCore--Stables/TakeOutHorse', JSON.stringify({ ID: ID, Name: Name }))
   }, 1000);

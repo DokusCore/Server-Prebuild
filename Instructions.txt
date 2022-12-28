@@ -3,18 +3,18 @@
 --------------------------------------------------------------------------------
       Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-CURRENT DOKUSCORE VERSION  | v0.6.6-1
+CURRENT DOKUSCORE VERSION  | v0.6.7
 CURRENT ARTIFACT VERSION   | 5848
-CURRENT REDM GAME BUILD    | 1491
-CURRENT PREBUILD VERSION   | 13122022
-DATABASE LAST UPDATED      | 24th November 2022
-DOKUSCORE LAST UPDATED:    | 13th December 2022
-PREBUILD LAST UPDATED:     | 13th December 2022
+CURRENT REDM GAME BUILD    | 1436
+CURRENT PREBUILD VERSION   | 28122022
+DATABASE LAST UPDATED      | 28th December 2022
+DOKUSCORE LAST UPDATED:    | 28th December 2022
+PREBUILD LAST UPDATED:     | 28th December 2022
 --------------------------------------------------------------------------------
 ==========================
 IMPORTANT!!!
 ==========================
-PreBuild v0.6.6 has a new Database structure, please replace your old
+PreBuild v0.6.7 has a new Database structure, please replace your old
 database with the new sql file! All tables that should never be emptied
 during a server wipe start now with a underscore ( _ ). All tables that
 do not start with the underscore can be emptied for cleaning up the database.
@@ -28,15 +28,20 @@ Installation Instructions:
    This is done so when you use TXAdmin, it makes the start bat file
    within the root folder you just have created.
 
-2: Go to the _Data folder and edit the .cfg files.
+2: Unpack the ARTIFACTS.rar in the same folder. After extraction you can
+   delete the rar archive file. If the prebuild is downloaded from Github,
+   you have to add the artifacts manually yourself. For the full package you
+   can download the prebuild from our Discord server.
+
+3: Go to the _Data folder and edit the .cfg files.
    The most important files are the Credentionals and the License files.
    The Admin.cfg is ONLY used to give admins the ability to start/stop or
    restart plugins within the F8 console. All other admin commands are done
    directly via DokusCore and you set this on the character in the database.
 
-3: Insert the database file into your database.
+4: Insert the database file into your database.
 
-4: Edit the DokusCore.bat file and set the path to your own file path.
+5: Edit the DokusCore.bat file and set the path to your own file path.
    If you do not want to start with out TXAdmin then simply start the serve
    via the FXServer.exe and follow it's instructions. After setup it creates
    the start.bat file in the root folder you created.
@@ -48,10 +53,6 @@ then as everything is pre-installed and up to date. Plug and play :D
 ==========================
 Extra Information:
 ==========================
-* DokusCore is now running over game build 1491! You must let your client
-  update to this version also to join the server. If you do not want to run
-  the latest game build you can always revert to build 1491
-
 * DokusCore is up to date with the latest FXServer (Artifacts) files that are
   required for TXAdmin. You do NOT need to update these files!
   If you update the artifacts, keep in mind plugins can break. Always test your
