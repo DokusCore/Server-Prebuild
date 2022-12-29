@@ -3,21 +3,20 @@
 --------------------------------------------------------------------------------
       Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-CURRENT DOKUSCORE VERSION  | v0.6.7
+CURRENT DOKUSCORE VERSION  | v0.6.71
 CURRENT ARTIFACT VERSION   | 5848
 CURRENT REDM GAME BUILD    | 1436
-CURRENT PREBUILD VERSION   | 28122022
-DATABASE LAST UPDATED      | 28th December 2022
-DOKUSCORE LAST UPDATED:    | 28th December 2022
-PREBUILD LAST UPDATED:     | 28th December 2022
+CURRENT PREBUILD VERSION   | 29122022
+DATABASE LAST UPDATED      | 29th December 2022
+DOKUSCORE LAST UPDATED:    | 29th December 2022
+PREBUILD LAST UPDATED:     | 29th December 2022
 --------------------------------------------------------------------------------
 ==========================
 IMPORTANT!!!
 ==========================
-PreBuild v0.6.7 has a new Database structure, please replace your old
-database with the new sql file! All tables that should never be emptied
-during a server wipe start now with a underscore ( _ ). All tables that
-do not start with the underscore can be emptied for cleaning up the database.
+PreBuild v0.6.71 has a new Database structure, please replace your old
+database with the new sql file! We have changed some row types for the
+_Items table.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

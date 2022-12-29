@@ -26,23 +26,23 @@ function triggerPointing()
       local camRot = GetPointRot()
       if camRot == 1 then
         if currAnim ~= "left_-45" then currAnim = "left_-45"
-          TaskPlayAnim(PlayerPedId(), dict, "left_-45", -1, -1, -1, 30, 0, false, false, false)
+          TaskPlayAnim(PlayerPedId(), dict, "left_-45", -1, -1, -1, 30, 0.9999, 2, false, false, false)
         end
       elseif camRot == 2 then
         if currAnim ~= "left_-135" then currAnim = "left_-135"
-          TaskPlayAnim(PlayerPedId(), dict, "left_-135", -1, -1, -1, 30, 0, false, false, false)
+          TaskPlayAnim(PlayerPedId(), dict, "left_-135", -1, -1, -1, 30, 0.9999, 2, false, false, false)
         end
       elseif camRot == 3 then
         if currAnim ~= "right_45" then currAnim = "right_45"
-          TaskPlayAnim(PlayerPedId(), dict, "right_45", -1, -1, -1, 30, 0, false, false, false)
+          TaskPlayAnim(PlayerPedId(), dict, "right_45", -1, -1, -1, 30, 0.9999, 2, false, false, false)
         end
       elseif camRot == 4 then
         if currAnim ~= "right_135" then currAnim = "right_135"
-          TaskPlayAnim(PlayerPedId(), dict, "right_135", -1, -1, -1, 30, 0, false, false, false)
+          TaskPlayAnim(PlayerPedId(), dict, "right_135", -1, -1, -1, 30, 0.9999, 2, false, false, false)
         end
       elseif camRot == 5 then
         if currAnim ~= "back_left_-225" then currAnim = "back_left_-225"
-          TaskPlayAnim(PlayerPedId(), dict, "back_left_-225", -1, -1, -1, 30, 0, false, false, false)
+          TaskPlayAnim(PlayerPedId(), dict, "back_left_-225", -1, -1, -1, 30, 0.9999, 2, false, false, false)
         end
       end
     end

@@ -134,6 +134,7 @@ const InitData = (nr) => {
   if ((InMenu == 'AdminMenu') && (nr == 0))        { OpenThisMenu('TeleportMenu');                       };
   if ((InMenu == 'AdminMenu') && (nr == 1))        { ToggleOption('WeatherSyncMenu'); CloseMenu();       };
   if ((InMenu == 'AdminMenu') && (nr == 2))        { OpenThisMenu('ModuleSyncMenu');                     };
+  if ((InMenu == 'AdminMenu') && (nr == 3))        { ToggleOption('GodMode'); CloseMenu();               };
   if ((InMenu == 'TeleportMenu') && (nr == 0))     { ToggleOption('Teleport', 'TPM'); CloseMenu();       };
   if ((InMenu == 'TeleportMenu') && (nr == 1))     { ToggleOption('Teleport', 'TTC'); CloseMenu();       };
   if ((InMenu == 'ModuleSyncMenu') && (nr == 0))   { ToggleOption('SyncUsableItems');                    };

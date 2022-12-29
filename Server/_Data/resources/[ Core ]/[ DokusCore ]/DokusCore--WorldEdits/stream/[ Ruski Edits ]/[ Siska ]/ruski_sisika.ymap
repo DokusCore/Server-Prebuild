@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<CMapData>
+	<flags value="2"/>
+	<contentFlags value="65"/>
+	<streamingExtentsMin x="2938.308350" y="-1106.486450" z="-359.287640"/>
+	<streamingExtentsMax x="3769.998047" y="-249.585266" z="445.394032"/>
+	<entitiesExtentsMin x="3338.308350" y="-706.486450" z="40.712360"/>
+	<entitiesExtentsMax x="3369.998047" y="-649.585266" z="45.394032"/>
+	<entities>
+		<Item type="CEntityDef">
+			<archetypeName>mp005_s_posse_foodpile04x</archetypeName>
+			<flags value="1572897"/>
+			<position x="3362.069336" y="-667.576782" z="45.287521"/>
+			<rotation w="0.792089" x="0.043353" y="0.058638" z="-0.606033"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_tree_orange_01</archetypeName>
+			<flags value="1572897"/>
+			<position x="3369.998047" y="-672.813232" z="45.272121"/>
+			<rotation w="0.184755" x="-0.000000" y="0.000000" z="0.982785"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_dis_prisonerescape01</archetypeName>
+			<flags value="1572897"/>
+			<position x="3342.568115" y="-706.486450" z="43.122490"/>
+			<rotation w="0.837555" x="0.110267" y="-0.069846" z="0.530532"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_tree_orange_01</archetypeName>
+			<flags value="1572897"/>
+			<position x="3359.028809" y="-673.527832" z="45.394032"/>
+			<rotation w="0.247527" x="-0.088017" y="0.067285" z="-0.962526"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_re_checkpoint02x_food</archetypeName>
+			<flags value="1572897"/>
+			<position x="3358.272705" y="-667.279968" z="44.511932"/>
+			<rotation w="0.991584" x="0.015574" y="0.030926" z="-0.124746"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_dis_prisonerescape02</archetypeName>
+			<flags value="1572897"/>
+			<position x="3342.363281" y="-705.516968" z="43.024403"/>
+			<rotation w="0.995183" x="0.002474" y="0.026060" z="0.094472"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_tree_orange_01</archetypeName>
+			<flags value="1572897"/>
+			<position x="3363.209229" y="-649.585266" z="45.329731"/>
+			<rotation w="0.990460" x="-0.000000" y="0.000000" z="0.137801"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_barrelpotatoes01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="3358.396240" y="-668.266968" z="44.673115"/>
+			<rotation w="0.998526" x="0.004281" y="0.050359" z="0.019783"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_hrt_wagon01</archetypeName>
+			<flags value="1572897"/>
+			<position x="3338.308350" y="-687.632202" z="44.038315"/>
+			<rotation w="0.500462" x="0.042123" y="0.014289" z="0.864615"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_cs_potatoslice01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="3359.452393" y="-668.103394" z="40.712360"/>
+			<rotation w="0.285833" x="0.283306" y="0.643874" z="-0.650740"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+	</entities>
+</CMapData>

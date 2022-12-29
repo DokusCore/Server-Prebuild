@@ -1,0 +1,716 @@
+<?xml version="1.0"?>
+<CMapData>
+	<flags value="2"/>
+	<contentFlags value="65"/>
+	<streamingExtentsMin x="2096.505859" y="-1721.252930" z="-362.619305"/>
+	<streamingExtentsMax x="2913.915283" y="-902.634399" z="445.742035"/>
+	<entitiesExtentsMin x="2496.505859" y="-1321.252930" z="37.380695"/>
+	<entitiesExtentsMax x="2513.915283" y="-1302.634399" z="45.742035"/>
+	<entities>
+		<Item type="CEntityDef">
+			<archetypeName>p_plank_caster01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.505859" y="-1316.840698" z="42.556343"/>
+			<rotation w="0.706716" x="-0.023620" y="-0.706709" z="0.023621"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2499.198730" y="-1320.103516" z="40.638123"/>
+			<rotation w="0.525150" x="0.499233" y="0.473936" z="-0.500369"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.495605" y="-1318.597778" z="41.290546"/>
+			<rotation w="-0.026143" x="-0.998345" y="0.051198" z="-0.001347"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2499.052002" y="-1315.299438" z="41.744804"/>
+			<rotation w="0.050513" x="-0.000000" y="-0.000000" z="-0.998723"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.424805" y="-1319.170288" z="40.868732"/>
+			<rotation w="0.736346" x="0.674668" y="-0.035672" z="0.036679"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.441895" y="-1319.124878" z="40.883976"/>
+			<rotation w="-0.026143" x="-0.998345" y="0.051198" z="-0.001347"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.754883" y="-1317.529663" z="39.363899"/>
+			<rotation w="0.007377" x="0.050958" y="0.998320" z="0.026588"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.804443" y="-1316.952881" z="38.889095"/>
+			<rotation w="0.007376" x="0.050958" y="0.998320" z="0.026588"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_plank_caster01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.514893" y="-1316.851685" z="43.158539"/>
+			<rotation w="0.706716" x="-0.023620" y="-0.706709" z="0.023621"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.716553" y="-1318.056885" z="39.797119"/>
+			<rotation w="-0.000441" x="0.051204" y="0.998650" z="0.008715"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.685059" y="-1319.626953" z="40.137829"/>
+			<rotation w="0.525170" x="0.516378" y="0.473955" z="-0.482615"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.763916" y="-1317.494141" z="39.374535"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.745361" y="-1317.764648" z="39.605129"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2498.958496" y="-1320.695679" z="40.642391"/>
+			<rotation w="0.676933" x="0.000000" y="0.000000" z="0.736045"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.928955" y="-1315.182495" z="41.748264"/>
+			<rotation w="0.050513" x="-0.000000" y="-0.000000" z="-0.998723"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.674561" y="-1318.554199" z="40.160057"/>
+			<rotation w="-0.000441" x="0.051204" y="0.998650" z="0.008715"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.738281" y="-1317.798584" z="39.606617"/>
+			<rotation w="-0.000441" x="0.051204" y="0.998650" z="0.008715"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.722168" y="-1318.021851" z="39.785637"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.783203" y="-1317.243164" z="39.118954"/>
+			<rotation w="0.007377" x="0.050958" y="0.998320" z="0.026588"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_wallnbd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2513.915283" y="-1302.634399" z="38.774399"/>
+			<rotation w="-0.700092" x="0.712406" y="-0.034568" z="-0.033971"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.809326" y="-1315.066772" z="41.741886"/>
+			<rotation w="0.050513" x="-0.000000" y="-0.000000" z="-0.998723"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2498.967285" y="-1320.070068" z="40.409031"/>
+			<rotation w="0.533472" x="0.490286" y="0.464832" z="-0.508879"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.700195" y="-1318.303589" z="39.982952"/>
+			<rotation w="-0.000441" x="0.051204" y="0.998650" z="0.008715"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.522705" y="-1318.348389" z="41.514988"/>
+			<rotation w="-0.026143" x="-0.998345" y="0.051198" z="-0.001347"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_plank_caster02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.875244" y="-1316.108887" z="43.946182"/>
+			<rotation w="0.510790" x="-0.431589" y="0.476402" z="0.570847"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.202637" y="-1318.555542" z="40.144058"/>
+			<rotation w="0.041805" x="-0.000000" y="-0.000000" z="-0.999126"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2501.294189" y="-1315.518066" z="41.742046"/>
+			<rotation w="0.050513" x="-0.000000" y="-0.000000" z="-0.998723"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.461426" y="-1318.874634" z="41.128029"/>
+			<rotation w="-0.026143" x="-0.998345" y="0.051198" z="-0.001347"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_plank_caster02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.832275" y="-1316.558594" z="43.954060"/>
+			<rotation w="0.510790" x="-0.431589" y="0.476402" z="0.570847"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.477539" y="-1318.633179" z="41.286255"/>
+			<rotation w="0.736346" x="0.674668" y="-0.035672" z="0.036679"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2498.729492" y="-1320.109741" z="40.420643"/>
+			<rotation w="-0.018036" x="-0.688937" y="0.724348" z="-0.018973"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.180908" y="-1315.412598" z="41.742046"/>
+			<rotation w="0.050513" x="-0.000000" y="-0.000000" z="-0.998723"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.811279" y="-1316.913330" z="38.880470"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.509277" y="-1318.375854" z="41.492859"/>
+			<rotation w="0.736346" x="0.674668" y="-0.035672" z="0.036679"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.695557" y="-1318.263428" z="39.983097"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.451172" y="-1318.903564" z="41.102688"/>
+			<rotation w="0.736346" x="0.674668" y="-0.035672" z="0.036679"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_wallnbd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2499.981689" y="-1321.252930" z="37.380695"/>
+			<rotation w="0.998825" x="-0.000002" y="0.000000" z="0.048466"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_door52x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.720215" y="-1316.828979" z="41.746414"/>
+			<rotation w="0.741715" x="-0.005853" y="0.006473" z="-0.670659"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.520020" y="-1318.116455" z="41.736404"/>
+			<rotation w="0.736346" x="0.674668" y="-0.035672" z="0.036679"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2498.939209" y="-1320.154907" z="40.637032"/>
+			<rotation w="-0.018036" x="-0.688937" y="0.724348" z="-0.018973"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_plank_caster01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.628662" y="-1315.753540" z="43.127045"/>
+			<rotation w="0.706716" x="-0.023620" y="-0.706709" z="0.023621"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.677246" y="-1318.513672" z="40.157078"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_plank_caster01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2496.629883" y="-1315.743652" z="42.588593"/>
+			<rotation w="0.706716" x="-0.023620" y="-0.706709" z="0.023621"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2498.283691" y="-1318.703491" z="40.141945"/>
+			<rotation w="0.033085" x="-0.000000" y="-0.000000" z="-0.999453"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2500.531738" y="-1318.087646" z="41.734295"/>
+			<rotation w="-0.026143" x="-0.998345" y="0.051198" z="-0.001347"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_woodplank02x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2497.784912" y="-1317.203857" z="39.117455"/>
+			<rotation w="0.036208" x="0.036208" y="0.706179" z="-0.706179"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>s_rc_woodboard01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="2499.069824" y="-1319.568481" z="40.642395"/>
+			<rotation w="0.676933" x="0.000000" y="0.000000" z="0.736045"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+	</entities>
+</CMapData>

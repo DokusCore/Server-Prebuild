@@ -2,10 +2,15 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-# Update v1.9.1
+# Update v2.1.0
 --------------------------------------------------------------------------------
-- Language Finnish added with thanks to [ @Prefo ] for creating this file!
-- Button for the Finnish language created in the language settings menu.
+- Added extra option for admins to enable god mode. While god mode is enabled
+  your health, stamina, hunger, and food are refilled to 100% every 1 second.
+  In addition to counter admin abuse, all admins within god mode have a text
+  tag showing over their body with the text `Gode Mode Enabled`. This text
+  is visible for everyone within 100 meters. In addition you also receive gold
+  status on your health, and stamina for visual reference that you enabled god
+  mode, this status is just for 3 seconds.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 # Update v2.0.0
@@ -20,5 +25,11 @@
     in a range of closer then 30 meters.
   - The 2 new prompts only show up when you have a active horse, and the
     horse is currently not being mounted by the owner of the horse.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+# Update v1.9.1
+--------------------------------------------------------------------------------
+- Language Finnish added with thanks to [ @Prefo ] for creating this file!
+- Button for the Finnish language created in the language settings menu.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

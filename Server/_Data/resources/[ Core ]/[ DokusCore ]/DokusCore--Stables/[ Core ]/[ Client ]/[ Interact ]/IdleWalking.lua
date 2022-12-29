@@ -11,7 +11,7 @@ IdleHorsePos, IdleHorseCount = nil, 0
 CreateThread(function()
   while (not (FrameReady())) do Wait(1000) end
   while true do Wait(1000)
-    while (UserInGame()) do Wait(2500)
+    while (UserInGame()) do Wait(5000)
       local Mount = IsPedOnMount(PedID())
       local Sync = TCTCC('DokusCore:Sync:Get:UserData')
       if ((Sync.HorseActive) and (not (Mount))) then

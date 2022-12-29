@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<CMapData>
+	<flags value="2"/>
+	<contentFlags value="65"/>
+	<streamingExtentsMin x="-400.000000" y="-1717.719971" z="-400.000000"/>
+	<streamingExtentsMax x="3182.709961" y="400.000000" z="452.130001"/>
+	<entitiesExtentsMin x="0.000000" y="-1317.719971" z="0.000000"/>
+	<entitiesExtentsMax x="2782.709961" y="0.000000" z="52.130001"/>
+	<entities>
+	<Item type="CEntityDef">
+            <archetypeName>p_new_cem_statue02x</archetypeName>
+            <flags value="1572897"/>
+            <position x="2736.179932" y="-1263.829956" z="50.373253"/>
+            <rotation w="0.461749" x="-0.000000" y="0.000000" z="0.887011"/>
+            <scaleXY value="1"/>
+            <scaleZ value="1"/>
+            <parentIndex value="-1"/>
+            <lodDist value="500"/>
+            <childLodDist value="500"/>
+            <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+            <numChildren value="0"/>
+            <ambientOcclusionMultiplier value="255"/>
+            <artificialAmbientOcclusion value="255"/>
+        	</Item>
+		<Item type="CEntityDef">
+            <archetypeName>p_new_cem_statue02x</archetypeName>
+            <flags value="1572897"/>
+            <position x="2739.219971" y="-1259.430054" z="50.373253"/>
+            <rotation w="0.461749" x="-0.000000" y="0.000000" z="0.887011"/>
+            <scaleXY value="1"/>
+            <scaleZ value="1"/>
+            <parentIndex value="-1"/>
+            <lodDist value="500"/>
+            <childLodDist value="500"/>
+            <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+            <numChildren value="0"/>
+            <ambientOcclusionMultiplier value="255"/>
+            <artificialAmbientOcclusion value="255"/>
+       	</Item>
+		<Item type="CEntityDef">
+            <archetypeName>p_new_cem_statue02x</archetypeName>
+            <flags value="1572897"/>
+            <position x="2725.699951" y="-1249.599976" z="52.130001"/>
+            <rotation w="0.700910" x="-0.000000" y="0.000000" z="0.713250"/>
+            <scaleXY value="1"/>
+            <scaleZ value="1"/>
+            <parentIndex value="-1"/>
+            <lodDist value="500"/>
+            <childLodDist value="500"/>
+            <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+            <numChildren value="0"/>
+            <ambientOcclusionMultiplier value="255"/>
+            <artificialAmbientOcclusion value="255"/>
+        	</Item>
+		<Item type="CEntityDef">
+            <archetypeName>p_new_cem_statue02x</archetypeName>
+            <flags value="1572897"/>
+            <position x="2721.260010" y="-1256.170044" z="52.130001"/>
+            <rotation w="0.224951" x="-0.000000" y="0.000000" z="0.974370"/>
+            <scaleXY value="1"/>
+            <scaleZ value="1"/>
+            <parentIndex value="-1"/>
+            <lodDist value="500"/>
+            <childLodDist value="500"/>
+            <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+            <numChildren value="0"/>
+            <ambientOcclusionMultiplier value="255"/>
+            <artificialAmbientOcclusion value="255"/>
+        </Item>
+	</entities>
+</CMapData>
