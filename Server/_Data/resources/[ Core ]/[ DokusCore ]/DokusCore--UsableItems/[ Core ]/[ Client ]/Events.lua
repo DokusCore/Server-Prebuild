@@ -9,17 +9,21 @@ RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
 
   for k, v in pairs(Items) do
     if (Low(Item) == Low(v.Item)) then
-      local IsMeta, Meta = v.Metabolism, {}
+      local IsAnim, Anim = v.UseAnim, v.Animation
+      local IsMeta, Meta, Delete = v.UseMeta, {}, v.Delete
       local Type, CanPlace = Low(v.Type), v.CanPlace
       local ConvA, InvLimit = v.CA, v.InvLimit
-      local Prop, PropPos, Ani, AniTime = v.Prop, v.PropPos, v.Animation, v.AniTime
       local Hunger, Thirst, Stamina, Health = v.Hunger, v.Thirst, v.Stamina, v.Health
       local GHI, GHO, GSI, GSO = v.GHI, v.GHO, v.GSI, v.GSO
       local IsEvent, Event = v.UseEvent, v.Event
-      if (IsMeta == 0)   then IsMeta = false end
+      if (IsMeta == 0)  then IsMeta  = false end
       if (IsMeta == 1)  then IsMeta  = true  end
       if (IsEvent == 0) then IsEvent = false end
       if (IsEvent == 1) then IsEvent = true  end
+      if (IsAnim == 0)  then IsAnim  = false end
+      if (IsAnim == 1)  then IsAnim  = true  end
+      if (Delete == 0)  then Delete  = false end
+      if (Delete == 1)  then Delete  = true  end
 
       if (IsMeta) then
         table.insert(Meta, {
@@ -39,37 +43,40 @@ RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
       -- Execute when item has an event
       if (IsEvent) then
         local Dec    = Decoded(Event)
-        local Delete = (Dec.Delete or true)
         if (Low(Dec.Type) == 'client') then TriggerEvent(Dec.Event, v, k) end
         if (Low(Dec.Type) == 'server') then TriggerServerEvent(Dec.Event, v, k) end
-        if (Delete) then DelInv(PedID, Amount, v) end
       end
 
       -- Execute animation is the item has one.
-      if ((Prop ~= nil) or (Ani ~= nil)) then
-        local Del = false
-        if (Type == 'deployable') then TaskPlaceWithProp(PedID, Prop, Ani, AniTime, IsMeta, Meta) Del = true end
-        if (Type == 'consumable') then TaskConsumeItem(PedID, Prop, PropPos, Ani, IsMeta, Meta) Del = true end
+      if (IsAnim) then
+        local Dec = Decoded(Anim)
+        local Ani, Time, Prop, Pos = Dec.Anim, Dec.Time, Dec.Prop, Dec.PropPos
 
-        if (Type == 'instrument') then
-          if (Item == 'trumpet') then TriggerEvent('DokuCore:ScriptBundle:Trumpet:Play', { Ani }) end
-        end
-
-        if (Del) then DelInv(PedID, Amount, v) end
+        if ((Ani) and (Prop == nil) and (Time == nil)) then AnimWithoutPropAndTime(PedID, Ani) end
+        if ((Ani) and (Prop ~= nil) and (Time == nil)) then AniWithPropAndNoTime(PedID, Ani, Prop, Pos) end
+        if ((Ani) and (Prop ~= nil) and (Time ~= nil)) then AniWithPropAndTime(PedID, Ani, Prop, Pos, Time) end
       end
+
+      -- Delete item if item is set to be deleted at use
+      if (Delete) then DelInv(PedID, Amount, v) end
     end
   end
-
-
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+RegisterNetEvent('DokusCore:UsableItems:Sync:Items', function()
+  local Items = TSC('DokusCore:Core:DBGet:Items', { 'All' })
+  TriggerEvent('DokusCore:Sync:Set:ModuleData', { 'UsableItems', { nil } })
+  TriggerEvent('DokusCore:Sync:Set:ModuleData', { 'UsableItems', { Items.Result } })
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+-- show when a used item has no use in the core yet
 --------------------------------------------------------------------------------
-
+RegisterNetEvent('DokusCore:UsableItems:ItemNoUse', function()
+  NoteObjective("System", "This item can not be used yet!", 'Horn', 5000)
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -38,6 +38,11 @@
 
 /* Minerals */
 #gold_nugget           { background: url('../img/items/gold_nugget.png') no-repeat; background-size: 100%; }
+#log                   { background: url('../img/items/log.png') no-repeat; background-size: 120%; }
+#lumber                { background: url('../img/items/lumber.png') no-repeat; background-size: 100%; }
+#bark                  { background: url('../img/items/bark.png') no-repeat; background-size: 100%; }
+#stick                 { background: url('../img/items/stick.png') no-repeat; background-size: 120%; }
+#treesap               { background: url('../img/items/treesap.png') no-repeat; background-size: 80%; }
 
 /* Instruments */
 #trumpet               { background: url('../img/items/trumpet.png') no-repeat; background-size: 85%; }

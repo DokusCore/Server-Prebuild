@@ -14,7 +14,7 @@ CreateThread(function()
     while (UserInGame()) do Wait(5000)
       local Mount = IsPedOnMount(PedID())
       local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-      if ((Sync.HorseActive) and (not (Mount))) then
+      if ((Sync.HorseActive) and (not (Mount)) and (not (IsFollowing))) then
         -- Set the horse coords is not yet set
         if (IdleHorsePos == nil) then IdleHorsePos = GetCoords(Sync.HorseID) break end
         -- Check if the coords have been changed

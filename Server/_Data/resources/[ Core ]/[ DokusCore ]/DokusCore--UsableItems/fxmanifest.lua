@@ -5,7 +5,7 @@ description 'DokusCore UsableItems -- Use items and take care of its animations'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.3.0'
+version '1.4.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }

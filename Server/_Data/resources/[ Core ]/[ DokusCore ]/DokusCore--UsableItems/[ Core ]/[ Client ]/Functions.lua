@@ -47,8 +47,6 @@ function ApplyMetabolism(Data)
   if (Stamina ~= nil) then MetaSet = true end
   if (Health ~= nil) then MetaSet = true end
 
-  print("{as}")
-
   if not (MetaSet) then Notify('Unable to set Metabolism as the values are missing!') return end
   if (Hunger ~= nil) then TriggerEvent('DokusCore:Metabolism:Edit:Hunger', { (Hunger * Amount) }) end
   if (Thirst ~= nil) then TriggerEvent('DokusCore:Metabolism:Edit:Thirst', { (Thirst * Amount) }) end
@@ -70,14 +68,13 @@ function DelInv(PedID, Amount, Data)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function TaskPlaceWithProp(PedID, Prop, Ani, AniTime, IsMeta, Meta)
-  if (Prop == nil) then ErrorMsg('ObjMissing') return end
+function AniWithPropAndTime(PedID, Ani, Prop, Pos, Time)
   if (Ani == nil) then Notify('AniMissing') return end
-  if ((TN(AniTime) == nil) or (TN(AniTime) <= 100)) then ErrorMsg('AniTime') return end
-  local Hash, Time = GetHashKey(Ani), TN(AniTime)
+  if (Prop == nil) then ErrorMsg('ObjMissing') return end
+  if ((TN(Time) == nil) or (TN(Time) <= 100)) then ErrorMsg('AniTime') return end
+  local Hash, Time = GetHashKey(Ani), TN(Time)
   TaskStartScenarioInPlace(PedID, Hash, Time, true, false, false, false)
   Wait(Time - 5000)
-
   local x,y,z = table.unpack(GetOffsetFromEntityInWorldCoords(PedID, 0.0, 2.0, -1.55))
   local P = CreateObject(GetHashKey(Prop), x, y, z, true, false, true)
   SetEntityHeading(P, GetEntityHeading(PedID))
@@ -87,22 +84,21 @@ function TaskPlaceWithProp(PedID, Prop, Ani, AniTime, IsMeta, Meta)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function TaskConsumeItem(PedID, Prop, Pos, Ani, IsMeta, Meta)
-  -- Do Single animations without prop
-  if ((Pos == nil) and (Prop == nil)) then
-    if (Ani ~= nil) then
-      TaskItemInteraction(PedID, nil, GetHashKey(Ani), true, 0, 0) Wait(1000)
-      return
-    end
-  end
-
-  -- Do animations with prop
-  if (Prop == nil) then ErrorMsg('ObjMissing') return end
+function AniWithPropAndNoTime(PedID, Ani, Prop, Pos)
   if (Ani == nil) then ErrorMsg('AniMissing') return end
+  if (Prop == nil) then ErrorMsg('ObjMissing') return end
   if (Pos == nil) then ErrorMsg('ObjPos') return end
   local Obj = CreateObject(GetHashKey(Prop), GetCoords(PedID), true, false, false, false, true)
   TaskItemInteraction_2(PedID, nil, Obj, GetHashKey(Pos), GetHashKey(Ani), 1, 0, -1082130432)
 end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function AnimWithoutPropAndTime(PedID, Ani)
+  TaskItemInteraction(PedID, nil, GetHashKey(Ani), true, 0, 0) Wait(1000)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

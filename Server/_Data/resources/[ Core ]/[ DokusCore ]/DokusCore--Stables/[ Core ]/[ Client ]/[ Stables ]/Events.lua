@@ -33,11 +33,11 @@ end)
 RegisterNetEvent('DokusCore:Stables:SayGoodbye', function(Meta)
   if (AtStable) then
     while (NPCFetchingHorse) do Wait(1000) end
-    
+
     for k,v in pairs(_Stables.Dialogs) do
       if (v.Welcome) then
         local Txt = RandomDialog(MSG("ExitStore"))
-        local Random =w Txt[math.random(#Txt)]
+        local Random = Txt[math.random(#Txt)]
         NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
       end
     end

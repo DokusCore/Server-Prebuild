@@ -6,8 +6,6 @@ local File = '@DokusCore/[ Core ]/[ Server ]/[ Events ]/[ Callbacks ]/[ Database
 --------------------------------------------------------------------------------
 RSC('DokusCore:Core:DBGet:Items', function(source, args)
   local Exist, Result = false, nil
-  -- if (args == nil) then return ErrorMsg('Err_WrongCallbackFormat') end
-  -- if (args[1] == nil) then return ErrorMsg('Err_NoCatType') end
 
   if (Low(args[1]) == 'all') then
     local X = DBGet(DB.Items.GetAll, {}, function() end)
