@@ -5,7 +5,7 @@ description 'DokusCore Settings Menu'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.1.0'
+version '2.2.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts { '[ Core ]/[ Server ]/*.lua' }

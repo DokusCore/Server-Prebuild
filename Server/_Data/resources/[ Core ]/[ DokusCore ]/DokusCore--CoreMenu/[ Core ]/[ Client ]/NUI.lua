@@ -33,7 +33,10 @@ RegisterNUICallback('SyncStoreItems', function(Data) TriggerEvent('DokusCore:Sto
 RegisterNUICallback('WeatherSyncMenu', function(Data) TriggerServerEvent('DokusCore:WeatherSync:OpenMenu') end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNUICallback('GodMode', function() print("GodMode") TriggerEvent('DokusCore:Core:Admin:Commands:GodMode') end)
+RegisterNUICallback('GodMode', function() TriggerEvent('DokusCore:Core:Admin:Commands:GodMode') end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('SpawnHorse', function() TriggerEvent('DokusCore:Stables:Admin:SpawnHorse') end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('ChangeLanguage', function(Data)

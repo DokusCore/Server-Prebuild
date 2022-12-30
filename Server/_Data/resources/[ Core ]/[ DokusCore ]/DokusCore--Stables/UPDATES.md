@@ -2,6 +2,17 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.4.0
+--------------------------------------------------------------------------------
+- Added: Ability for admins to spawn one of their horses directly next to them
+  for quick use. If a horse was already active and on the map, this horse will
+  be deleted and teleported to your location. Note that doing this action will
+  trigger a text bar on your character for everyone to see that you did this
+  action for a short period of time to prevent admin abuse. Also in the future
+  this action will generate a Discord log message, and a log entry into the
+  database.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.3.2
 --------------------------------------------------------------------------------
 - Fixed: Typo error making the stables crash has been fixed

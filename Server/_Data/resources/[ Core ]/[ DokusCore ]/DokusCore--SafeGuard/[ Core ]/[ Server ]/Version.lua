@@ -1,14 +1,15 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
-local File = '@DokusCore/[ Core ]/[ Server ]/[ Events ]/[ Normal ]/Core.lua'
+-- DO NOT: Remove the version updater below! This is what gives you feetback
+-- when there is a new update available. Removing will result in the system
+-- unable to check for updates, and will result in startup errors.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterServerEvent('DokusCore:Core:KickPlayer')
-AddEventHandler('DokusCore:Core:KickPlayer', function(args)
-  local ID = args[1]
-  if (args[1] == nil) then ID = source end
-  DropPlayer(ID, args[2])
+CreateThread(function()
+  local Name = GetCurrentResourceName()
+  local Version = GetResourceMetadata(Name, 'version')
+  TriggerEvent('DokusCore:Sync:Modules:Version', { Name, { Version } })
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

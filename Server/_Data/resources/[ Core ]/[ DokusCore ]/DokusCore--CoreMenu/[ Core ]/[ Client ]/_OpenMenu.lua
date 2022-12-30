@@ -16,6 +16,10 @@ RegisterNUICallback('OpenMenu', function(Data)
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
     SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.AdminMenu })
     SendNUIMessage({ Action = 'OpenMenu' })
+  elseif (Data.Menu == 'AdminOptMenu') then
+    SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
+    SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.AdminOptMenu })
+    SendNUIMessage({ Action = 'OpenMenu' })
   elseif (Data.Menu == 'TeleportMenu') then
     SendNUIMessage({ Action = 'SetMenu',   Menu = Data.Menu })
     SendNUIMessage({ Action = 'IndexKeys', Menu = _CoreMenu.TeleportMenu })
