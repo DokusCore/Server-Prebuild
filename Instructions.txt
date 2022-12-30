@@ -3,10 +3,10 @@
 --------------------------------------------------------------------------------
       Welcome to DokusCore! The core that takes quality above quantity!
 --------------------------------------------------------------------------------
-CURRENT DOKUSCORE VERSION  | v0.6.72
+CURRENT DOKUSCORE VERSION  | v0.6.8
 CURRENT ARTIFACT VERSION   | 6133
 CURRENT REDM GAME BUILD    | 1436
-CURRENT PREBUILD VERSION   | 30122022
+CURRENT PREBUILD VERSION   | 30122022-1
 DATABASE LAST UPDATED      | 30th December 2022
 DOKUSCORE LAST UPDATED:    | 30th December 2022
 PREBUILD LAST UPDATED:     | 30th December 2022
@@ -14,7 +14,7 @@ PREBUILD LAST UPDATED:     | 30th December 2022
 ==========================
 IMPORTANT!!!
 ==========================
-PreBuild v0.6.72 has a new Database structure, please replace your old
+PreBuild v0.6.8 has a new Database structure, please replace your old
 database with the new sql file! We have changed some row types for the
 _Items table.
 --------------------------------------------------------------------------------
