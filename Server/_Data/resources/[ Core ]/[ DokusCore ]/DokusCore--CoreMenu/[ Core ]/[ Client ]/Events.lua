@@ -16,6 +16,7 @@ RegisterNetEvent('DokusCore:CoreMenu:ActPrompts', function()
     local Unequipt  = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_UnEqWeapon)
     local HorseCall    = PromptHasHoldModeCompleted(Prompt_HorseCall)
     local HorseFollow  = PromptHasHoldModeCompleted(Prompt_HorseFollow)
+    local ObjMenu      = PromptHasHoldModeCompleted(Prompt_ObjMenu)
     if ((Menu) and (not (IsUserMenuOpen))) then OpenUserMenu() end
     if ((Invent) and (not IsInventOpen)) then OpenInventory() end
     if ((Admin) and (not IsAdminMenuOpen)) then OpenAdminMenu() end
@@ -25,6 +26,8 @@ RegisterNetEvent('DokusCore:CoreMenu:ActPrompts', function()
 
     if (HorseCall) then TriggerEvent('DokusCore:Stables:Horse:Call') return end
     if (HorseFollow) then TriggerEvent('DokusCore:Stables:Horse:Follow') return end
+
+    if (ObjMenu) then TriggerEvent('DokusCore:UsableItems:Object:OpenMenu') return end
 
     if ((Zoning)) then
       IsMainMPShown = false
@@ -56,7 +59,8 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

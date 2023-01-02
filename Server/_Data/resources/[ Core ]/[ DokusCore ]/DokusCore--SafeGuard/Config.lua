@@ -6,7 +6,7 @@
 _SafeGuard = {
 
   Anti = {
-    SpeedHack = { Enabled = true, Interval = 1, Threshold = 20, Log = true, Action = 'Ban' },
+    SpeedHack = { Enabled = true, Interval = 1, Threshold = 30, Log = true, Action = 'Ban' },
   },
 
   Admin = {

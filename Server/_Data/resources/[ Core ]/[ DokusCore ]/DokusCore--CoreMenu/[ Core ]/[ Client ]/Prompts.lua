@@ -5,6 +5,12 @@
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
+    local Obj = TCTCC('DokusCore:UsableItems:Get:CloseObjData')
+    local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+    local Status = Low(GetUserChar(SteamID, Sync.CharID).Group)
+    local Admin, Owner = Low(_Moderation.Admin), Low(_Moderation.SuperAdmin)
+    local Mount = IsPedOnMount(PedID())
+
     local str = MSG("OpenMenu").MSG
     Prompt_Settings = PromptRegisterBegin()
     PromptSetControlAction(Prompt_Settings, _Keys.SPACEBAR)
@@ -29,9 +35,7 @@ function ActPrompts()
     Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_Invent, true)
     PromptRegisterEnd(Prompt_Invent)
 
-    local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-    local Status = Low(GetUserChar(SteamID, Sync.CharID).Group)
-    local Admin, Owner = Low(_Moderation.Admin), Low(_Moderation.SuperAdmin)
+
     if ((Status == Admin) or (Status == Owner)) then
       local str = MSG("AdminMenu").MSG
       Prompt_AdminMenu = PromptRegisterBegin()
@@ -58,8 +62,7 @@ function ActPrompts()
     end
 
     -- Show prompt when mounted
-    local Mount = IsPedOnMount(PedID())
-    if ((Mount) and (not (AutoMoveOn))) then
+    if ((Mount) or (Mount == 1) and (not (AutoMoveOn))) then
       local str = MSG("StartMove").MSG
       Prompt_AutoDriveStart = PromptRegisterBegin()
       PromptSetControlAction(Prompt_AutoDriveStart, _Keys.SHIFT)
@@ -70,7 +73,7 @@ function ActPrompts()
       PromptSetHoldMode(Prompt_AutoDriveStart, true)
       PromptSetGroup(Prompt_AutoDriveStart, Group)
       PromptRegisterEnd(Prompt_AutoDriveStart)
-    elseif ((Mount) and (AutoMoveOn)) then
+    elseif ((Mount) or (Mount == 1) and (AutoMoveOn)) then
       local str = MSG("StopMove").MSG
       Prompt_AutoDriveStop = PromptRegisterBegin()
       PromptSetControlAction(Prompt_AutoDriveStop, _Keys.SHIFT)
@@ -83,32 +86,34 @@ function ActPrompts()
       PromptRegisterEnd(Prompt_AutoDriveStop)
     end
 
-    if (not (Mount) and (Sync.HorseID ~= nil)) then
-      local Dist = GetDistance(GetCoords(Sync.HorseID))
-      if (Dist <= _Stables.Horse.Call.Radius) then
-        local str = 'Horse Call'
-        Prompt_HorseCall = PromptRegisterBegin()
-        PromptSetControlAction(Prompt_HorseCall, _Keys.E)
-        str = CreateVarString(10, 'LITERAL_STRING', str)
-        PromptSetText(Prompt_HorseCall, str)
-        PromptSetEnabled(Prompt_HorseCall, true)
-        PromptSetVisible(Prompt_HorseCall, true)
-        PromptSetHoldMode(Prompt_HorseCall, true)
-        PromptSetGroup(Prompt_HorseCall, Group)
-        PromptRegisterEnd(Prompt_HorseCall)
-      end
+    if (Obj.Item == nil) then
+      if (not (Mount) and (Sync.HorseID ~= nil)) then
+        local Dist = GetDistance(GetCoords(Sync.HorseID))
+        if (Dist <= _Stables.Horse.Call.Radius) then
+          local str = 'Horse Call'
+          Prompt_HorseCall = PromptRegisterBegin()
+          PromptSetControlAction(Prompt_HorseCall, _Keys.E)
+          str = CreateVarString(10, 'LITERAL_STRING', str)
+          PromptSetText(Prompt_HorseCall, str)
+          PromptSetEnabled(Prompt_HorseCall, true)
+          PromptSetVisible(Prompt_HorseCall, true)
+          PromptSetHoldMode(Prompt_HorseCall, true)
+          PromptSetGroup(Prompt_HorseCall, Group)
+          PromptRegisterEnd(Prompt_HorseCall)
+        end
 
-      if (Dist <= _Stables.Horse.Follow.Radius) then
-        local str = 'Horse Follow'
-        Prompt_HorseFollow = PromptRegisterBegin()
-        PromptSetControlAction(Prompt_HorseFollow, _Keys.F)
-        str = CreateVarString(10, 'LITERAL_STRING', str)
-        PromptSetText(Prompt_HorseFollow, str)
-        PromptSetEnabled(Prompt_HorseFollow, true)
-        PromptSetVisible(Prompt_HorseFollow, true)
-        PromptSetHoldMode(Prompt_HorseFollow, true)
-        PromptSetGroup(Prompt_HorseFollow, Group)
-        PromptRegisterEnd(Prompt_HorseFollow)
+        if (Dist <= _Stables.Horse.Follow.Radius) then
+          local str = 'Horse Follow'
+          Prompt_HorseFollow = PromptRegisterBegin()
+          PromptSetControlAction(Prompt_HorseFollow, _Keys.F)
+          str = CreateVarString(10, 'LITERAL_STRING', str)
+          PromptSetText(Prompt_HorseFollow, str)
+          PromptSetEnabled(Prompt_HorseFollow, true)
+          PromptSetVisible(Prompt_HorseFollow, true)
+          PromptSetHoldMode(Prompt_HorseFollow, true)
+          PromptSetGroup(Prompt_HorseFollow, Group)
+          PromptRegisterEnd(Prompt_HorseFollow)
+        end
       end
     end
 
@@ -126,6 +131,20 @@ function ActPrompts()
       PromptSetGroup(Prompt_UnEqWeapon, Group)
       Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_UnEqWeapon, true)
       PromptRegisterEnd(Prompt_UnEqWeapon)
+    end
+
+    if (Obj.Item ~= nil) then
+      local str = 'Object Menu'
+      Prompt_ObjMenu = PromptRegisterBegin()
+      PromptSetControlAction(Prompt_ObjMenu, _Keys.E)
+      str = CreateVarString(10, 'LITERAL_STRING', str)
+      PromptSetText(Prompt_ObjMenu, str)
+      PromptSetEnabled(Prompt_ObjMenu,  true)
+      PromptSetVisible(Prompt_ObjMenu,  true)
+      PromptSetHoldMode(Prompt_ObjMenu, true)
+      PromptSetGroup(Prompt_ObjMenu, Group)
+      Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_ObjMenu, true)
+      PromptRegisterEnd(Prompt_ObjMenu)
     end
   end)
 end

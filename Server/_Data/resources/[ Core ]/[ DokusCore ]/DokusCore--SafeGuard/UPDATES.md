@@ -2,6 +2,15 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.1.0
+--------------------------------------------------------------------------------
+- Fixed: Speed hack was detected when user would logout to pick a different
+  character, this is now resolved.
+- Added: When a admin turns on god mode, a log will be generated into the
+  database. Also text will be displayed on the admin that stays as long the
+  admin is in god mode
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.0.0
 --------------------------------------------------------------------------------
 - Added: Function to show when a admin summons his horse. When done text will

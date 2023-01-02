@@ -19,7 +19,8 @@ RegisterNUICallback('EnterWorld', function(Data)
   RenderScriptCams(false, false, 1, true, true)
   NetworkGhosting(PedID(), false)
   TriggerEvent('DokusCore:Spawner:User:Login')
-
+  CreateLog('DokusCore', 'Join', 'User joined the server')
+  
   for k,v in pairs(NPCs) do DeleteEntity(v) end
   NPCs = {}
 

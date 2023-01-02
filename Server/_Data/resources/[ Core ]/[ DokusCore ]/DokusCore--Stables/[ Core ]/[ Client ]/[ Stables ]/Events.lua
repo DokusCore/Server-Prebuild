@@ -143,6 +143,8 @@ RegisterNetEvent('DokusCore:Stables:StoreHorse', function()
     TaskMountAnimal(UseThisNPC, MyActiveHorse, 20000, -1, 1.0, 1, 0, 0)
     while (not (IsPedOnMount(UseThisNPC))) do Wait(500) end
 
+    CreateLog('Stables', 'Store', 'User stabled his horse at one of the stables')
+
     for k,v in pairs(_Stables.HorseDrop) do
       if (Low(Area()) == (Low(v.ID))) then
         TaskGoStraightToCoord(UseThisNPC, v.Coords, 1.5, 10000, 1, 1, 1)

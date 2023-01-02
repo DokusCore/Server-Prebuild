@@ -11,19 +11,9 @@ Location = '^4[ DataSync ]^3[ Location ]: ^5'
 -- Set the interactable objects
 --------------------------------------------------------------------------------
 function SetIntObjects(v)
-  local ID, Coords, Active = v[1], v[2], v[3]
-  _Obj.Interactables = {}
-  table.insert(_Obj.Interactables, { ID = ID, Coords = Coords, Active = Active })
+  local ID, Item, Coords, Meta = v[1], v[2], v[3], v[4]
+  table.insert(_Obj.Interactables, { ID = ID, Item = Item, Coords = Coords, Meta = Meta })
   return Call('intobjectset')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
--- Add a interactable object to the existing array
---------------------------------------------------------------------------------
-function AddIntObjects(v)
-  local ID, Coords, Active = v[1], v[2], v[3]
-  table.insert(_Obj.Interactables, { ID = ID, Coords = Coords, Active = Active })
-  return Call('intobjectadded')
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

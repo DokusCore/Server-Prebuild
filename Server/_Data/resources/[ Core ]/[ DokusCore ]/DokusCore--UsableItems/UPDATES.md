@@ -2,6 +2,21 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.5.0
+--------------------------------------------------------------------------------
+- Reworked Logics: We've once again reworked the logics on how the framework is
+  handling items and objects when used from out of the inventory.
+- Added: Logics to place a campfire and interact with it.
+- Added: Multiple interactions for the campfire. You can add 3 types of fuel that
+  have their own burning time, items you can add to the fuel are
+  Logs, Lumber, and Bark.
+- Added: Logic for object expire time. The campfire comes with a default 5 minute
+  burn time, once the burn time is finished, the object will be deleted. You can
+  extend the burn time with adding more fuel.
+- Added: Placeable objects are persistent and stay on the map as long they did
+  not expire. If the server is restarted, the objects will respawn back on the map.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.4.0
 --------------------------------------------------------------------------------
 - Changed: Deleting the item is now also separate, you are now fully able to

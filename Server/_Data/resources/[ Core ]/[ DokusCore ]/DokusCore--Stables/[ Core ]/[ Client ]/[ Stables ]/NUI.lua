@@ -44,6 +44,7 @@ RegisterNUICallback('RescueMyHorse', function(Data)
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseID', { nil } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseName', { nil } })
   NoteNPCTalk(MSG("NPCName").MSG, "We're going to search for your horse, this could take some time", false, 7000)
+  CreateLog('Stables', 'Horse Rescue', 'User recoverd lost horse')
   Wait((1 * 60) * 1000)
   NoteObjective("System", 'Your horse is rescued and back at the stable', 'Horn', 10000)
   local Index = { Sync.SteamID, Sync.CharID, Sync.HorseName, false }
@@ -123,6 +124,7 @@ RegisterNUICallback("BuyHorse", function(Data)
     SendNUIMessage({ Action = 'Hide' })
     local Index = { Model = Model, Price = Price, Money = Money }
     TextEntry(MSG("NameHorse").MSG, 'Client', 'DokusCore:Stables:BuyHorse', Index)
+    CreateLog('Stables', 'Buy', 'User bought a horse')
   end
 end)
 --------------------------------------------------------------------------------
@@ -144,6 +146,7 @@ RegisterNUICallback('TakeOutHorse', function(Data)
   end
 
   ExitMenu()
+  CreateLog('Stables', 'Spawn', 'User picked up his horse from the stable')
 
 
   -- Check if the NPC will take the horse or not

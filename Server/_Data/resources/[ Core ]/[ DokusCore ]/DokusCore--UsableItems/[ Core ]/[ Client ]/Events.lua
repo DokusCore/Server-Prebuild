@@ -3,88 +3,55 @@
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:UsableItems:UseItem', function(Data)
-  local PedID, Item, Amount = PedID(), Data.Item, Data.Amount
-  local Items = TCTCC('DokuCore:Sync:Get:ModuleData').UsableItems
-
-  for k, v in pairs(Items) do
-    if (Low(Item) == Low(v.Item)) then
-      local IsAnim, Anim = v.UseAnim, v.Animation
-      local IsMeta, Meta, Delete = v.UseMeta, {}, v.Delete
-      local Type, CanPlace = Low(v.Type), v.CanPlace
-      local ConvA, InvLimit = v.CA, v.InvLimit
-      local Hunger, Thirst, Stamina, Health = v.Hunger, v.Thirst, v.Stamina, v.Health
-      local GHI, GHO, GSI, GSO = v.GHI, v.GHO, v.GSI, v.GSO
-      local IsEvent, Event = v.UseEvent, v.Event
-      if (IsMeta == 0)  then IsMeta  = false end
-      if (IsMeta == 1)  then IsMeta  = true  end
-      if (IsEvent == 0) then IsEvent = false end
-      if (IsEvent == 1) then IsEvent = true  end
-      if (IsAnim == 0)  then IsAnim  = false end
-      if (IsAnim == 1)  then IsAnim  = true  end
-      if (Delete == 0)  then Delete  = false end
-      if (Delete == 1)  then Delete  = true  end
-
-      if (IsMeta) then
-        table.insert(Meta, {
-          Hunger = Hunger, Thirst = Thirst,
-          Stamina = Stamina, Health = Health,
-          GHI = GHI, GHO = GHO, GSI = GSI, GSO = GSO,
-          Amount = Amount
-        })
-      end
-
-      -- Stop on errors
-      if ((IsEvent) and (Event == nil)) then ErrorMsg('NoEventInDB') end
-
-      -- Impact metabolism if the item is set to do so.
-      if (IsMeta) then ApplyMetabolism(Meta) end
-
-      -- Execute when item has an event
-      if (IsEvent) then
-        local Dec    = Decoded(Event)
-        if (Low(Dec.Type) == 'client') then TriggerEvent(Dec.Event, v, k) end
-        if (Low(Dec.Type) == 'server') then TriggerServerEvent(Dec.Event, v, k) end
-      end
-
-      -- Execute animation is the item has one.
-      if (IsAnim) then
-        local Dec = Decoded(Anim)
-        local Ani, Time, Prop, Pos = Dec.Anim, Dec.Time, Dec.Prop, Dec.PropPos
-
-        if ((Ani) and (Prop == nil) and (Time == nil)) then AnimWithoutPropAndTime(PedID, Ani) end
-        if ((Ani) and (Prop ~= nil) and (Time == nil)) then AniWithPropAndNoTime(PedID, Ani, Prop, Pos) end
-        if ((Ani) and (Prop ~= nil) and (Time ~= nil)) then AniWithPropAndTime(PedID, Ani, Prop, Pos, Time) end
-      end
-
-      -- Delete item if item is set to be deleted at use
-      if (Delete) then DelInv(PedID, Amount, v) end
-    end
+RegisterNetEvent('DokusCore:UsableItems:Sync:Items', function()
+  local Items = TSC('DokusCore:Core:DBGet:Items', { 'All' })
+  TriggerEvent('DokusCore:Sync:Set:ModuleData', { 'UsableItems', { Items.Result } })
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:UsableItems:Get:CloseObjData', function(cb) return cb(NearObjData) end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:UsableItems:Object:OpenMenu', function()
+  if (Low(NearObjData.Item) == 'campfire') then
+    TriggerEvent('DokusCore:UsableItems:Object:Interact:Campfire')
   end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:UsableItems:Sync:Items', function()
-  local Items = TSC('DokusCore:Core:DBGet:Items', { 'All' })
-  TriggerEvent('DokusCore:Sync:Set:ModuleData', { 'UsableItems', { nil } })
-  TriggerEvent('DokusCore:Sync:Set:ModuleData', { 'UsableItems', { Items.Result } })
+AddEventHandler('onResourceStop', function(Name)
+  if (GetCurrentResourceName() ~= Name) then return end
+  IntObjects = {}
+  NearObjData = {}
+  ObjInUse = false
+  IsPlacing = false
+  IsNearObject = false
+  ObjID, ObjPos = nil, nil
+  ShowObjPrompts       = false
+  Campfire_Destroy  = nil
+  Campfire_AddFuel  = nil
+  ObjPrompt_Exit    = nil
+  Group             = GetRandomIntInRange(0, 0xffffff)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- show when a used item has no use in the core yet
 --------------------------------------------------------------------------------
-RegisterNetEvent('DokusCore:UsableItems:ItemNoUse', function()
-  NoteObjective("System", "This item can not be used yet!", 'Horn', 5000)
+RegisterNetEvent('DokusCore:UsableItems:Object:Reset', function(ID)
+  for k,v in pairs(IntObjects) do
+    if (v.ID == ID) then
+      table.remove(IntObjects, k)
+      DeleteEntity(ID)
+      Seconds      = nil
+      IsNearObject = false
+      NearObjData  = {}
+      ShowObjPrompts  = false
+      ResetPrompts()
+    end
+  end
 end)
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

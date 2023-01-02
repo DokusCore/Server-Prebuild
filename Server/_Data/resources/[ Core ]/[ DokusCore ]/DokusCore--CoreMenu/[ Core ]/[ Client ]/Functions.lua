@@ -65,13 +65,17 @@ end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function ResetPrompts()
-  Prompt_Settings  = nil
-  Prompt_Invent    = nil
-  Prompt_AdminMenu = nil
-  Prompt_Zoning    = nil
+  Prompt_Settings       = nil
+  Prompt_Invent         = nil
+  Prompt_AdminMenu      = nil
+  Prompt_Zoning         = nil
   Prompt_AutoDriveStart = nil
   Prompt_AutoDriveStop  = nil
-  Group         = GetRandomIntInRange(0, 0xffffff)
+  Prompt_UnEqWeapon     = nil
+  Prompt_HorseCall      = nil
+  Prompt_HorseFollow    = nil
+  Prompt_ObjMenu        = nil
+  Group                 = GetRandomIntInRange(0, 0xffffff)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

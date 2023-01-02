@@ -5,18 +5,23 @@ description 'DokusCore UsableItems -- Use items and take care of its animations'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.4.0'
+version '1.5.0'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
+server_scripts {
+  '@oxmysql/lib/MySQL.lua',
+  '@DokusCore/[ Core ]/[ Server ]/[ Utilities ]/Functions.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/DBTables.lua',
+  '[ Core ]/[ Server ]/*.lua',
+}
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
-  'Config.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
-  '[ Core ]/[ Client ]/*.lua'
+  '[ Core ]/[ Client ]/*.lua',
+  '[ Core ]/[ Client ]/[ Objects ]/*.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -24,6 +29,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
+  '@DokusCore/[ Configs ]/[ Modules ]/UsableItems.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/de.lua',

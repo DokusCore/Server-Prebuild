@@ -31,6 +31,9 @@ RegisterNetEvent('DokusCore:Spawner:User:Login', function()
   DisplayHud(true) DisplayRadar(true)
   UIFadeIn(5000)
 
+  -- Log
+  CreateLog('Spawner', 'Login', 'User logged in to the map')
+
   -- Update all depending plugins
   TriggerEvent('DokusCore:Metabolism:ShowHud', true)
   -- TriggerEvent('DokusCore:CoreMenu:SetData',  { 'Login' })
@@ -59,6 +62,9 @@ RegisterNetEvent('DokusCore:Spawner:User:Logout', function()
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharMoney',  { 0     } })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharGold',   { 0     } })
   -- TriggerEvent('DokusCore:Sync:Set:UserData', { 'Alive', { false } })
+
+  -- Log
+  CreateLog('Spawner', 'Logout', 'User logged out from the map')
 
   -- Update Depening Plugins
   TriggerEvent('DokusCore:Metabolism:ShowHud', false)
