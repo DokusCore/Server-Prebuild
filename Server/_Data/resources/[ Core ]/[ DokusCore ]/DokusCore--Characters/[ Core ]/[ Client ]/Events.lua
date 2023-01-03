@@ -26,6 +26,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Characters:BackToCamp', function()
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'UserInGame', { false } })
   ActivateCampCam() ResetTheCampForNewChar()
 end)
 --------------------------------------------------------------------------------

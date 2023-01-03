@@ -187,6 +187,9 @@ AddEventHandler('onResourceStop', function(Name)
   if (IsFollowing) then ClearPedTasksImmediately(MyActiveHorse) end
   if (PlayerCam ~= nil) then SetCamActive(PlayerCam, false) DestroyCam(PlayerCam) end
   if (StableCam ~= nil) then SetCamActive(StableCam, false) DestroyCam(StableCam) end
+  if ((IsDefAdminHorse) and (MyActiveHorse ~= nil)) then
+    DeleteEntity(MyActiveHorse) MyActiveHorse, IsDefAdminHorse = nil, false
+  end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

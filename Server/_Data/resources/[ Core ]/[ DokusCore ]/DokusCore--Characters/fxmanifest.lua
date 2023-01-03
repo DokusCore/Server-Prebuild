@@ -5,7 +5,8 @@ description 'DokusCore Characters v2'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.2.4'
+version '2.2.5'
+-- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {

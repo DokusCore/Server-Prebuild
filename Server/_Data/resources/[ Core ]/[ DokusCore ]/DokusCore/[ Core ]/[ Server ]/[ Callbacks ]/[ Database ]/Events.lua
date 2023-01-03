@@ -1,28 +1,20 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
------------------------ I feel a disturbance in the force ----------------------
+local File = '@DokusCore/[ Core ]/[ Server ]/[ Events ]/[ Callbacks ]/[ Database ]/Events.lua'
 --------------------------------------------------------------------------------
-_SafeGuard = {
-
-  Anti = {
-    SpeedHack = { Enabled = true, Interval = 1, Threshold = 30, Log = true, Action = 'Ban' },
-  },
-
-  Admin = {
-    GodMode    = { Enabled = true, Time = { Seconds = 60 }, OffsetZ = 0.0 },
-    SpawnHorse = { Enabled = true, Time = { Seconds = 60 }, OffsetZ = 0.1 },
-    Teleport   = { Enabled = true, Time = { Seconds = 60 }, OffsetZ = 0.2 },
-  }
-
-}
+RSC('DokusCore:Core:DBGet:Events', function(source, args)
+  local Exist, Result = false, {}
+  if (Low(args[1]) == 'user') then
+    if (Low(args[2]) == 'all') then
+      local X = DBGet(DB.Events.GetAllUS, { SteamID = args[3][1], CharID = args[3][2] })
+      if (X[1] ~= nil) then Exist = true Result = X end
+      return { Exist = Exist, Result = Result }
+    end
+  end
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
-
-
 
 
 

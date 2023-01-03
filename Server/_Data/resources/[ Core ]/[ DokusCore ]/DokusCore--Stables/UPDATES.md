@@ -2,6 +2,14 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.5.0
+--------------------------------------------------------------------------------
+- Added: When a admin spawns a horse but does not own one, a default horse will
+  be spawned in. The admin will automatically jump on the horse, when the admin
+  steps off the horse will automatically be deleted. When a admin does own its
+  own horse, the auto mount and delete will not happen.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.4.1
 --------------------------------------------------------------------------------
 - Added: Database logs for when users recover their horse at the stables.

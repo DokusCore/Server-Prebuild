@@ -8,6 +8,7 @@ NPCs, Blips = {}, {}
 StoreInUse, UseThisNPC = false, nil
 HorseLoaded, MyActiveHorse = nil, nil
 NPCFetchingHorse = false
+IsDefAdminHorse = false
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 ShowPrompts    = false

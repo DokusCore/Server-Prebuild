@@ -47,29 +47,95 @@ RegisterNetEvent('DokusCore:LumberJack:ChopTree', function(PedID, Data)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function ChopChop(PedID, Data)
-  local MaxChop, Count = Random(1, 5), 0
-  local C = GetCoords(PedID)
-  local pname = 'p_axe02x'
-  local Prop = nil
-  local boneIndex = GetEntityBoneIndexByName(PedID, "SKEL_R_Finger12")
-  SetFreeze(PedID, true) Wait(2000)
-  RequestAnimDict("amb_work@world_human_tree_chop@male_a@idle_b")
-  while not HasAnimDictLoaded("amb_work@world_human_tree_chop@male_a@idle_b") do Wait(100) end
-  Prop = CreateObject(GetHashKey(pname), C.x, C.y, C.z + 0.2, true, true, true)
-  AttachEntityToEntity(Prop, PedID, boneIndex, 0.200, -0.0, 0.5010, 1.024, -160.0, -70.0, true, true, false, true, 1, true)
-  TaskPlayAnim(PedID, "amb_work@world_human_tree_chop@male_a@idle_b", "idle_f", 8.0, -8.0, -1, 1, 0, true, 0, false, 0, false)
-  while (Count ~= MaxChop) do Wait(10000) Count = (Count + 1) GetReward() Wait(3000) end
-  DeleteObject(Prop)
-  ClearPedTasks(PedID)
-  ResetPrompts()
-  SetFreeze(PedID, false)
-  UserIsChopping = false
-end
+RegisterNetEvent('DokusCore:LumberJack:Zone:Enter', function()
+  local N = _LumberJack.NPC
+  NPC = SpawnNPC(N.Hash, N.Coords, N.Heading)
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:LumberJack:Zone:Exit', function() DeleteEntity(NPC) end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:LumberJack:Zone:NPC:Enter', function()
+  if (_LumberJack.Dialogs.Welcome) then
+    NoteNPCTalk('LumberJack', "Welcome, how are you doing today?", true, 3000)
+    TriggerEvent('DokusCore:LumberJack:CloseToNPC')
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:LumberJack:Zone:NPC:Exit', function()
+  if (_LumberJack.Dialogs.Goodbye) then
+    ResetPrompts()
+    NoteNPCTalk('LumberJack', "Have yourself a wonderful day!", true, 3000)
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:LumberJack:CloseToNPC', function()
+  NearNPC, ShowPrompts = true, true ActPrompts()
+  while ((NearNPC) and (ShowPrompts)) do Wait(1)
+    local pName = CreateVarString(10, 'LITERAL_STRING', _LumberJack.NPC.ID)
+    PromptSetActiveGroupThisFrame(pGroup, pName)
+    local OM = PromptHasHoldModeCompleted(NPC_OpenMenu)
+    local GQ = PromptHasHoldModeCompleted(NPC_GetQuest)
+    local EQ = PromptHasHoldModeCompleted(NPC_EndQuest)
 
+    if (OM) then NoteObjective('System', 'Currently in development', 'Horn', 5000) end
+    if (GQ) then
+      local Quest = HasPlayerQuest()
+      if (Quest.Active) then Talk('QuestActive') end
+      if (not (Quest.Active)) then
+        local Quest = GetPlayerQuest()
+        local Random = QuestDialogs[ math.random(#QuestDialogs) ]
+        NoteNPCTalk('LumberJack', (Random[1] .. Quest[2] .." " .. Quest[1] .. Random[2]), true, 5000)
+        NoteObjective('Quest Recieved:', ('Gather ' .. Quest[2] .. ' ' .. Quest[1]), 'Check', 3000)
+        QuestActive = true
+        ResetPrompts()
+        TriggerEvent('DokusCore:LumberJack:CloseToNPC')
+      end
+    end
 
+    if ((QuestActive) and (EQ)) then
+      local Quest = HasPlayerQuest()
+      local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+      local Dec  = Decoded(Quest.Data.Meta)
+      local Item, Amount = Dec.Item, Dec.Amount
+      local Index = { Sync.SteamID, Sync.CharID, Item }
+      local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', Index })
+      if (not (Inv.Exist)) then Talk('QuestNoReqItems') end
+      if (Inv.Exist) then
+        if (Inv.Result[1].Amount > Amount) then
+          local Index = { Sync.SteamID, Sync.CharID, Item, Amount, Inv.Result[1].Amount }
+          TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', Index })
+          local Index = { 'Quest', 'LumberJack', 'Employer', { Sync.SteamID, Sync.CharID }}
+          TriggerServerEvent('DokusCore:Core:DBDel:Events', Index)
+          PayPlayer(Sync.SteamID, Sync.CharID, Item, Amount)
+          QuestActive = false ResetPrompts() Wait(2000)
+          TriggerEvent('DokusCore:LumberJack:CloseToNPC')
+        elseif (Inv.Result[1].Amount == Amount) then
+          local Index = { Sync.SteamID, Sync.CharID, Item, Amount, Inv.Result[1].Amount }
+          TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', Index })
+          local Index = { 'Quest', 'LumberJack', 'Employer', { Sync.SteamID, Sync.CharID }}
+          TriggerServerEvent('DokusCore:Core:DBDel:Events', Index)
+          PayPlayer(Sync.SteamID, Sync.CharID, Item, Amount)
+          QuestActive = false ResetPrompts() Wait(2000)
+          TriggerEvent('DokusCore:LumberJack:CloseToNPC')
+        elseif (Inv.Result[1].Amount < Amount) then
+          Talk('QuestNoReqItems')
+        end
+      end
+    end
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+AddEventHandler('onResourceStop', function(Name)
+  if (GetCurrentResourceName() ~= Name) then return end
+  DeleteEntity(NPC) RemoveBlip(Blip)
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

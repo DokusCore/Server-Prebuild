@@ -17,7 +17,7 @@ CreateThread(function()
     if (_SafeGuard.Anti.SpeedHack.Enabled) then
       while true do Wait(1)
         while (not (UserInGame())) do Wait(1000) end
-        while true do Wait(Interval * 1000)
+        while (InGame) do Wait(Interval * 1000)
           local Coords = GetCoords(PedID())
           if (LastPos == nil) then LastPos = Coords break end
           if (LastPos ~= nil) then

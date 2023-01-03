@@ -5,7 +5,8 @@ description 'DokusCore LumberJack'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.0.1'
+version '1.1.0'
+-- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -20,10 +21,9 @@ server_scripts { '[ Core ]/[ Server ]/*.lua' }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  'Config.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
-  -- '@DokusCore/[ Configs ]/[ Modules ]/LumberJack.lua',
+  '@DokusCore/[ Configs ]/[ Modules ]/LumberJack.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',

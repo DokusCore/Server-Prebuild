@@ -5,7 +5,8 @@ description 'DokusCore SafeGuard AntiCheat'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.0'
+version '1.2.0'
+-- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
