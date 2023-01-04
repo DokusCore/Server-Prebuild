@@ -2,6 +2,14 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.1.1
+--------------------------------------------------------------------------------
+- Fixed: Prompts getting stuck when entering and exiting the NPC area to quickly.
+  Prompts are now immediately shown and removed upon entering and exiting.
+- Fixed: When the NPC Prompts had been active, these would also be shown at the
+  trees obscuring the chop prompt. This has now been fixed.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.1.0
 --------------------------------------------------------------------------------
 - Added: NPC at the `Appleseed Timber Co` location.

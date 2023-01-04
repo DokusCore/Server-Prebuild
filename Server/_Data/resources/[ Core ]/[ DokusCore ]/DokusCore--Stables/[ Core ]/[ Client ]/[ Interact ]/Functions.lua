@@ -6,7 +6,8 @@
 function CheckControls()
   local Mouse = IsControlPressed(1, 0xF84FA74F)
   local Flee  = IsControlJustPressed(1, 0x4216AF06)
-  return { Mouse, Flee }
+  local Calm  = IsControlJustPressed(1, 0x5415BE48)
+  return { Mouse, Flee, Calm }
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

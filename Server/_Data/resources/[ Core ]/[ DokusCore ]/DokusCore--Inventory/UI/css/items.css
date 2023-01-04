@@ -26,11 +26,13 @@
 #wintergreen_berry     { background: url('../img/items/wintergreen_berry.png') no-repeat; background-size: 150%; }
 #vanilla_flower        { background: url('../img/items/vanilla_flower.png') no-repeat; background-size: 225%; }
 #evergreen_huckleberry { background: url('../img/items/evergreen_huckleberry.png') no-repeat; background-size: 225%; }
+
 /* Tools */
 #campfire              { background: url('../img/items/campfire.png') no-repeat; background-size: 100%; }
 #gold_pan              { background: url('../img/items/gold_pan.png') no-repeat; background-size: 100%; }
 #horsebrush            { background: url('../img/items/horsebrush.png') no-repeat; background-size: 100%; }
 #lockpick              { background: url('../img/items/lockpick.png') no-repeat; background-size: 100%; }
+#axe                   { background: url('../img/items/axe.png') no-repeat; background-size: 90%; }
 
 /* Valutas */
 #gold_bar              { background: url('../img/items/gold_bar.png') no-repeat; background-size: 100%; }

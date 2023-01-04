@@ -18,7 +18,7 @@ CreateThread(function()
       for k,v in pairs(Data) do
         local Time = (v.Unix - Unix)
         if (Time <= 0) then
-          DBDel(DB.Objects.DelViaID, { ItemID = v.ItemID }, function() end)
+          DBDel(DB.Objects.DelViaItemID, { ItemID = v.ItemID }, function() end)
         end
       end
     end

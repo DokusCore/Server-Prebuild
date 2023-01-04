@@ -2,6 +2,13 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v2.1.3
+--------------------------------------------------------------------------------
+- Added: Item Axe that will specifically work for the lumberjack plugin. This
+  way we do not need to use the weapon hatchet as this will get equipped to your
+  weapon wheel what renders the item useless for the job.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v2.1.2
 --------------------------------------------------------------------------------
 - Added: Items for the LumberJack plugin. Items added are Log, Lumber, Treesap,

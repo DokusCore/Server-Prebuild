@@ -4,7 +4,7 @@
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:LumberJack:CloseToTree', function(PedID, Data)
-  ActPrompts()
+  ResetPrompts() ActPrompts() ShowPrompts, NearNPC = true, false
   while (ShowPrompts) do Wait(1)
     local Coords = GetCoords(PedID)
     local Hash = GetHashKey(Data)
@@ -39,7 +39,7 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:LumberJack:ChopTree', function(PedID, Data)
   local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-  local Index = { Sync.SteamID, Sync.CharID, 'weapon_melee_hatchet' }
+  local Index = { Sync.SteamID, Sync.CharID, 'axe' }
   local Inv  = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', Index })
   if (not (Inv.Exist)) then ErrorMsg('NoHatchet') ResetPrompts() return end
   SetCurrentPedWeapon(PedID, GetHashKey("WEAPON_UNARMED"), true, 0, false, false)
@@ -58,7 +58,7 @@ RegisterNetEvent('DokusCore:LumberJack:Zone:Exit', function() DeleteEntity(NPC) 
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:LumberJack:Zone:NPC:Enter', function()
   if (_LumberJack.Dialogs.Welcome) then
-    NoteNPCTalk('LumberJack', "Welcome, how are you doing today?", true, 3000)
+    NoteNPCTalk('LumberJack', "Welcome, how are you doing today?", false, 3000)
     TriggerEvent('DokusCore:LumberJack:CloseToNPC')
   end
 end)
@@ -66,8 +66,8 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:LumberJack:Zone:NPC:Exit', function()
   if (_LumberJack.Dialogs.Goodbye) then
-    ResetPrompts()
-    NoteNPCTalk('LumberJack', "Have yourself a wonderful day!", true, 3000)
+    ResetPrompts() NearNPC = false
+    NoteNPCTalk('LumberJack', "Have yourself a wonderful day!", false, 3000)
   end
 end)
 --------------------------------------------------------------------------------
