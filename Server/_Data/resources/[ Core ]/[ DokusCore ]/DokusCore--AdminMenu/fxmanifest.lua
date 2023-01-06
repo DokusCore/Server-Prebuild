@@ -1,33 +1,36 @@
 --------------------------------------------------------------------------------
 ----------------------------------- DevDokus -----------------------------------
 --------------------------------------------------------------------------------
-description 'DokusCore Inventory'
+description 'DokusCore Admin Menu -- Powered By NeonOdyssey'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.1.4'
+version '1.0.0'
 -- version '-----'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+server_scripts {
+  '@oxmysql/lib/MySQL.lua',
+  '@DokusCore/[ Core ]/[ Server ]/[ Utilities ]/Functions.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/DBTables.lua',
+  '[ Core ]/[ Server ]/*.lua'
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 client_scripts {
-  '@DokusCore/[ Core ]/[ System ]/[ Client ]/DokusMenu.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '[ Core ]/[ Client ]/*.lua',
+  '[ Core ]/[ Client ]/[ Events ]/*.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-server_scripts { '@oxmysql/lib/MySQL.lua', '[ Core ]/[ Server ]/*.lua' }
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 shared_script {
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
-  '@DokusCore/[ Configs ]/[ Modules ]/Inventory.lua',
-  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
-  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
-  '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
+  '@DokusCore/[ Configs ]/[ Modules ]/AdminMenu.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/Languinator.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/bg.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/de.lua',
@@ -46,15 +49,13 @@ shared_script {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 ui_page 'UI/index.html'
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 files {
-  'UI/index.html',
-  'UI/css/main.css',
-  'UI/css/items.css',
-  'UI/js/main.js',
-  'UI/js/alert.js',
-  'UI/img/arrow.svg',
-  'UI/img/inventorySVG.svg',
-  'UI/img/items/*.png'
+    'UI/index.html',
+    'UI/assets/js/*.*',
+    'UI/assets/css/*.*',
+    'UI/assets/img/*.png'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

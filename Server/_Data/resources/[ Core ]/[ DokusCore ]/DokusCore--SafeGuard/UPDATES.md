@@ -2,6 +2,16 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.3.0
+--------------------------------------------------------------------------------
+- Added: Anti Admin Abuse for when admins are in noclip. When in noclip text
+  will appear on the admins character for others to see.
+- Added: Anti Admin Abuse for when admins delete Vehicles and horses, text
+  will appear on the admins character when this options is used.
+- Changed: Speekhack check has been disabled as this is giving us false
+  positives at the moment, once it is more optimized we will re-enable it.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.2.0
 --------------------------------------------------------------------------------
 - Changed: TriggerEvent that the anti admin abuse notes displays.

@@ -1,0 +1,298 @@
+<html>
+<head>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 overflow-hidden">
+        <div id="bg" class="absolute inset-0 bg-black bg-opacity-80 transition-opacity" aria-hidden="true" onclick="_close()"></div>
+        <div class="min-h-screen pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+            <div id="panel" class="pointer-events-auto w-screen max-w-4xl">
+            <div class="flex h-full flex-col py-6 shadow-xl bg-gradient-to-br from-neutral-900 to-slate-900">
+                <div class="px-4 sm:px-6">
+                <div class="flex items-start justify-between items-center justify-center">
+                    <lottie-player class="mb-2" src="https://assets8.lottiefiles.com/packages/lf20_sfhiqvwy.json" background="transparent" speed="1" style="width: 150px; height: 50px;" loop autoplay></lottie-player>
+                    <h2 class="text-3xl font-bold text-purple-500" id="slide-over-title">THE HAND OF GOD</h2>
+                    <div class="ml-3 flex h-7 items-center">
+                    <button type="button" class="rounded-md text-gray-400 hover:text-red-500 focus:outline-none" onclick="_close()">
+                        <span class="sr-only">Close panel</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    </div>
+                </div>
+                </div>
+                <div class="relative mt-6 flex-1 px-4 sm:px-6">
+                <!-- Replace with your content -->
+                <div class="absolute inset-0 px-6 mb-8">
+                    <div class="h-full grid grid-cols-5 gap-10">
+                        <!-- Player listings -->
+                        <div class="overflow-y-scroll col-span-2 pr-4" aria-hidden="true">
+                            <div class="pb-2 border-b border-gray-200">
+                                <h3 class="text-lg leading-6 font-medium text-gray-200">Online Players</h3>
+                            </div>
+                            <div class="flow-root mt-6">
+                                <ul id="player-list" role="list" class="-my-5 divide-y divide-gray-700">
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Admin functions -->
+                        <div class="h-full col-span-3 flex overflow-hidden" aria-hidden="true">
+                            <div class="w-full grid grid-rows-4 grid-flow-col gap-20 overflow-hidden">
+
+                                <!-- Top Admin Buttons -->
+                                <div class="h-full grid grid-cols-3 gap-4 text-white text-bold align" x-data="{ isNoclip: false, isGhost: false}">
+
+                                    <!-- Delete Vehicle -->
+                                    <button id="dv" data-tooltip-target="tooltip-dv" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="dv()" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-dv" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible " data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Delete Vehicle
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+                                    <!-- Delete Vehicle -->
+
+
+                                    <!-- NoCLip -->
+                                    <button id="noclip" data-tooltip-target="tooltip-noclip" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" :class="[isNoclip ? 'bg-green-800 hover:bg-green-700' : 'bg-blue-800 hover:bg-blue-700']" @click="isNoclip = !isNoclip" onclick="toggleNoclip()" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path x-show="!isNoclip" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                            <path x-show="isNoclip" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-noclip" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        <span x-show="!isNoclip">Noclip On</span>
+                                        <span x-show="isNoclip">Noclip Off</span>
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+                                    <!-- NoCLip -->
+
+                                    <button id="ghost" data-tooltip-target="tooltip-ghost" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" :class="[isGhost ? 'bg-green-800 hover:bg-green-700' : 'bg-blue-800 hover:bg-blue-700']" @click="isGhost = !isGhost" onclick="toggleGhost()" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path x-show="!isGhost" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            <path x-show="isGhost" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path x-show="isGhost" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                          </svg>
+                                    </button>
+
+                                    <div id="tooltip-ghost" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        <span x-show="!isGhost">Invisiblity On</span>
+                                        <span x-show="isGhost">Invisiblity Off</span>
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+
+                                    <button id="coords" data-tooltip-target="tooltip-coords" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="coords()" disabled>
+                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;" strokeWidth={2}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-coords" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Copy Coordinates
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+
+                                    <!-- Global Announcement -->
+                                    <!-- <button id="announce" data-tooltip-target="tooltip-announce" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="announce()" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-announce" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Global Announce
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div> -->
+
+                                    <!-- Clear Area -->
+                                    <!-- <button id="clear-area" data-tooltip-target="tooltip-clear-area" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="clearArea()" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-clear-area" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Clear Area
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div> -->
+
+                                    <!-- Teleport To Marker -->
+                                    <button id="tpm" data-tooltip-target="tooltip-tpm" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="tpm()" disabled>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style="width: 30px; height: 30px;">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                          </svg>
+                                    </button>
+                                    <div id="tooltip-tpm" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Teleport To Marker
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+                                    <!-- Teleport To Marker -->
+
+                                </div>
+
+                                <!-- Player Infomation -->
+                                <div id="player-selected" class="h-full row-span-3 overflow-auto sm:rounded-lg hide">
+                                    <!-- This example requires Tailwind CSS v2.0+ -->
+                                    <div class="shadow sm:rounded-lg">
+                                        <!-- Profile Infomation -->
+                                        <div class="px-4 py-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-200">Profile Infomation</h3>
+                                        <!-- <p class="mt-1 max-w-2xl text-sm text-gray-400">I have no idea what to put here</p> -->
+                                        </div>
+                                        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                                        <dl class="sm:divide-y sm:divide-gray-700">
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Server ID</dt>
+                                            <dd id="info-id" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">9</dd>
+                                            </div>
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Display Name</dt>
+                                            <dd id="info-name" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">NEO</dd>
+                                            </div>
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">SteamId (Hex)</dt>
+                                            <dd id="info-steam" class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2"></dd>
+                                            </div>
+                                        </dl>
+                                        </div>
+                                        <!-- Profile Infomation End -->
+
+                                        <!-- Commands -->
+                                        <div class="px-4 py-5">
+                                            <h3 class="text-lg leading-6 font-medium text-gray-200">Commands</h3>
+                                        </div>
+                                        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                                        <dl class="sm:divide-y sm:divide-gray-700">
+
+                                            <!-- Chat Buttons -->
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Chat</dt>
+                                            <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
+                                                <button id="dm" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="directMessage()">DM Player</button>
+                                            </dd>
+                                            </div>
+
+                                            <!-- Teleport Buttons -->
+                                            <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Teleport</dt>
+                                            <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
+                                                <button id="goto" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="tp()">Goto Player</button>
+                                                <button id="bring" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="bring()">Bring Player</button>
+                                            </dd>
+                                            </div> -->
+
+                                            <!-- Punishment Buttons -->
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Punishments</dt>
+                                            <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
+                                                <button id="warn" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="warn()">Warn</button>
+                                                <!-- <button id="chain" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="chain()">Chain</button> -->
+
+                                                <!-- <button id="slap" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="slap()">Slap</button> -->
+                                                <!-- <button id="slay" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="slay()">Slay</button> -->
+
+                                                <!-- <button id="kick" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-red-800 border-red-800 border-2 border-transparent hover:border-red-500 hover:bg-red-500 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="kick()">Kick</button> -->
+                                                <!-- <button id="ban" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-red-800 border-red-800 border-2 border-transparent hover:border-red-500 hover:bg-red-500 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="ban()">Ban</button> -->
+                                            </dd>
+                                            </div>
+
+                                            <!-- Inventory -->
+                                            <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Inventory</dt>
+                                            <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
+                                                <button id="job" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="setJob()">Set Job</button>
+                                                <button id="money" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="editMoney()">Edit Money</button>
+
+                                                <button id="gold" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="editGold()">Edit Gold</button>
+                                                <button id="perms" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="staffPerms()">Staff Perms</button>
+                                            </dd>
+                                            </div> -->
+
+                                            <!-- Misc Buttons -->
+                                            <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-400">Misc</dt>
+                                            <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
+                                                <button id="heal" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="heal()">Heal Player</button>
+                                                <button id="spectate" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="spectate()">Spectate</button>
+                                            </dd>
+                                            </div> -->
+                                        </dl>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="no-player-selected" class="h-full row-start-3 -mt-20">
+                                    <div class="text-center">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48" aria-hidden="true">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 40h10v-4a6 6 0 00-10.712-3.714M34 40H14m20 0v-4a9.971 9.971 0 00-.712-3.714M14 40H4v-4a6 6 0 0110.713-3.714M14 40v-4c0-1.313.253-2.566.713-3.714m0 0A10.003 10.003 0 0124 26c4.21 0 7.813 2.602 9.288 6.286M30 14a6 6 0 11-12 0 6 6 0 0112 0zm12 6a4 4 0 11-8 0 4 4 0 018 0zm-28 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                        <h2 class="mt-2 text-lg font-medium text-gray-200">No Player Selected</h2>
+                                        <p class="mt-1 text-sm text-gray-400">You haven’t selected any players yet.</p>
+                                      </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" id="a16b3863105">
+                    </div>
+                </div>
+                <!-- /End replace -->
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="modal-div" class="fixed z-10 inset-0 overflow-y-auto hide" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+        <div id="modal-bg" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity hide" aria-hidden="true"></div>
+
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+        <div id="modal" class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full hide">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start">
+                <div id="modal-icon-info" class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10 hide"><svg class="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                <div id="modal-icon-warning" class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-orange-100 sm:mx-0 sm:h-10 sm:w-10 hide"><svg class="h-6 w-6 text-orange-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg></div>
+                <div id="modal-icon-danger" class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10 hide"><svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg></div>
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title"></h3>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500" id="modal-body"></p>
+                    <div id="modal-input">
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <button id="modal-confirm" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="modalHide(modalAction, modalArgs)"></button>
+            <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="modalHide()">Cancel</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.bundle.js"></script>
+
+</body>
+</html>

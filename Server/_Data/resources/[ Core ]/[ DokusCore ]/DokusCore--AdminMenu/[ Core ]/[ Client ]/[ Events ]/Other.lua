@@ -1,172 +1,96 @@
 --------------------------------------------------------------------------------
------------------------------------ DevDokus -----------------------------------
+---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
-function FrameReady()
-  local Data = TCTCC('DokuCore:Sync:Get:CoreData')
-  return Data.FrameReady
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function UserInGame()
-  local Data = TCTCC('DokusCore:Sync:Get:UserData')
-  return Data.UserInGame
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function MSG(Obj)
-  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
-  return _("CoreMenu", Obj, Lang)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SYS(Obj)
-  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
-  return _("System", Obj, Lang)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenMenu()
-  IsMainMPShown = true
-  ActPrompts()
-  NoteNPCTalk('AdminMenu v2', "You can open the new admin menu by tapping SHIFT while the core menu is open!", false, 5000)
-  TriggerEvent('DokusCore:CoreMenu:ActPrompts')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenDCAdmin()
-  TriggerEvent('DokusCore:Admin:OpenMenu')
-  IsMainMPShown = false
-  IsAnyMenuOpen = false
-  ResetPrompts()
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function CloseMenu()
-  SetNuiFocus(false, false)
-  IsMainMPShown = false
-  IsAnyMenuOpen = false
-  ResetPrompts()
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenUserMenu()
-  IsMainMPShown = false
-  IsUserMenuOpen = true
-  TriggerEvent('DokusCore:CoreMenu:OpenMenu', { 'UserMenu' })
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenAdminMenu()
-  IsMainMPShown = false
-  IsAdminMenuOpen = true
-  TriggerEvent('DokusCore:CoreMenu:OpenMenu', { 'AdminMenu' })
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function ResetAllMenus()
-  IsMainMPShown    = false
-  IsInventOpen     = false
-  IsUserMenuOpen   = false
-  IsAdminMenuOpen  = false
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function ResetPrompts()
-  Prompt_Settings       = nil
-  Prompt_Invent         = nil
-  Prompt_AdminMenu      = nil
-  Prompt_Zoning         = nil
-  Prompt_AutoDriveStart = nil
-  Prompt_AutoDriveStop  = nil
-  Prompt_UnEqWeapon     = nil
-  Prompt_HorseCall      = nil
-  Prompt_HorseFollow    = nil
-  Prompt_ObjMenu        = nil
-  Group                 = GetRandomIntInRange(0, 0xffffff)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenInventory()
-  IsInventOpen = true
-  CloseMenu()
-  TriggerEvent('DokusCore:Inventory:OpenInventory')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function DoAutoMove()
-  AutoMoveOn = true
-  Cinema(true)
-  TaskGoToCoordAnyMeans(PedID(), GetWaypointCoords(), 20.0, 0, 0, 786603, 0xbf800000)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function EndAutoMove()
-  AutoMoveOn = false
-  Cinema(false)
-  ClearPedTasks(PedID())
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('TPM', function()
+  SendNUIMessage({type = "close"})
+  TriggerEvent('DokusCore:Core:Admin:Commands:TPM')
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('directMessage', function(Data)
+    Data.staff = GetPlayerName(PlayerId())
+    if (Data.player == GetPlayerServerId(PlayerId())) then
+      NoteObjective(("DM from " .. Data.staff), Data.data, 'Horn', 15000)
+    end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('coords', function(data, cb)
+  local PedID = PedID()
+  local Veh = GetVehiclePedIsIn(PedID, false)
+  local Mount = GetMount(PedID)
+  local User = (Veh == 0 and (Mount == 0 and PedID or Mount) or Veh)
+  local Coords = GetCoords(User)
+  local Head = GetEntityHeading(User)
+  print('Coords = ' .. Coords, 'Heading = ' .. Head)
+  NoteObjective('System', 'Coords are posted in your client console!', 'Horn', 10000)
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNUICallback('dv', function(data, cb)
+  local Deleted  = false
+  local Horse    = GetMount(_id)
+  local Coach    = GetVehiclePedIsIn(_id)
 
+  if type(Horse) == "number" and Horse ~= 0 then
+    Deleted = true
+    DeletePed(Horse)
+  end
 
+  if type(Coach) == "number" and Coach ~= 0 then
+    Deleted = true
+    SetEntityAsMissionEntity(Coach, true, true)
+    DeleteVehicle(Coach)
+  end
 
+  if (not (Deleted)) then
+    NoteObjective('System', "You're not sitting on a horse or a stagecoach, unable to delete", 'Horn', 5000)
+  else
+    TriggerEvent('DokusCore:SafeGuard:Anti:AdminAbuse', 'DeleteVehicle')
+  end
 
-
-
-
-
-
-
-
-
-
-
-
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+local IsGhosting = false
+RegisterNUICallback('ghost', function(data, cb)
+  IsGhosting = not IsGhosting
+    SetEntityVisible(PedID(), not IsGhosting, false)
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -50,13 +50,15 @@ CreateThread(function()
     while (not (UserInGame())) do Wait(1000) end
     while true do Wait(1)
       while (not (IsMainMPShown) and (not (IsAnyMenuOpen))) do Wait(1)
-        local Control = IsControlJustPressed(0, _Keys.LALT)
-        if ((Control and (not (IsMainMPShown)))) then OpenMenu() end
+        local Alt = IsControlJustPressed(0, _Keys.LALT)
+        if ((Alt and (not (IsMainMPShown)))) then OpenMenu() end
       end
 
       while (IsMainMPShown) do Wait(1)
-        local Control = IsControlJustPressed(0, _Keys.LALT)
-        if ((Control) and (IsMainMPShown)) then CloseMenu() end
+        local Shift = IsControlJustPressed(0, _Keys.SHIFT)
+        local Alt = IsControlJustPressed(0, _Keys.LALT)
+        if ((Alt) and (IsMainMPShown)) then CloseMenu() end
+        if ((Shift) and (IsMainMPShown)) then OpenDCAdmin() end
       end
     end
   end

@@ -1,30 +1,41 @@
 --------------------------------------------------------------------------------
-############################ [ DokusCore Updates ] #############################
+---------------------------------- DokusCore -----------------------------------
+--------------------------------------------------------------------------------
+----------------------- I feel a disturbance in the force ----------------------
+--------------------------------------------------------------------------------
+function FrameReady()
+  local Data = TCTCC('DokuCore:Sync:Get:CoreData')
+  return Data.FrameReady
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-# Update v2.1.4
---------------------------------------------------------------------------------
-- Fixed: Renamed the `Items` folder to `items` as this was preventing the
-  item inventory pictures to load.
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-# Update v2.1.3
---------------------------------------------------------------------------------
-- Added: Item Axe that will specifically work for the lumberjack plugin. This
-  way we do not need to use the weapon hatchet as this will get equipped to your
-  weapon wheel what renders the item useless for the job.
+function UserInGame()
+  local Data = TCTCC('DokusCore:Sync:Get:UserData')
+  return Data.UserInGame
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-# Update v2.1.2
+function MSG(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("Inventory", Obj, Lang)
+end
 --------------------------------------------------------------------------------
-- Added: Items for the LumberJack plugin. Items added are Log, Lumber, Treesap,
-  Tree bark, and sticks.
+--------------------------------------------------------------------------------
+function SYS(Obj)
+  local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  return _("System", Obj, Lang)
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-# Update v2.1.1
---------------------------------------------------------------------------------
-- Changed: The UI `Items` folder is now renamed to `items`. The capital letter
-  of the folder was preventing the images to be loaded in the inventory and
-  those plugins that use the same images like the stores.
+function GetAllUsers()
+    local players = {}
+    for i = 0, 2000 do
+        if NetworkIsPlayerActive(i) then
+          local IDs = TSC('DokusCore:Core:GetUserIDs', { 'source', { GetPlayerServerId(i) } })
+          table.insert(players, {id = GetPlayerServerId(i), name = GetPlayerName(i), steam = IDs[1]})
+        end
+    end
+    return players
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
