@@ -53,6 +53,7 @@ _Modules          = {
   Prospecting     = false,   -- Working on ( Leave off to prevent issues )
   LumberJack      = true,
   SafeGuard       = true,
+  Quests          = true,
  }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
