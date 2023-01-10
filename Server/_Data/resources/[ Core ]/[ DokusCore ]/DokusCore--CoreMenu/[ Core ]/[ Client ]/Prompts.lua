@@ -49,6 +49,18 @@ function ActPrompts()
       Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_AdminMenu, true)
       PromptRegisterEnd(Prompt_AdminMenu)
 
+      local str = 'Admin Menu v2'
+      Prompt_AdminMenuV2 = PromptRegisterBegin()
+      PromptSetControlAction(Prompt_AdminMenuV2, _Keys.TAB)
+      str = CreateVarString(10, 'LITERAL_STRING', str)
+      PromptSetText(Prompt_AdminMenuV2, str)
+      PromptSetEnabled(Prompt_AdminMenuV2,  true)
+      PromptSetVisible(Prompt_AdminMenuV2,  true)
+      PromptSetStandardMode(Prompt_AdminMenuV2, true)
+      PromptSetGroup(Prompt_AdminMenuV2, Group)
+      Citizen.InvokeNative(0xC5F428EE08FA7F2C, Prompt_AdminMenuV2, true)
+      PromptRegisterEnd(Prompt_AdminMenuV2)
+
       local str = MSG("Zoning").MSG
       Prompt_Zoning = PromptRegisterBegin()
       PromptSetControlAction(Prompt_Zoning, _Keys.Z)

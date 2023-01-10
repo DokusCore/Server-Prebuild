@@ -17,3 +17,17 @@
 #modal-bg.hide{opacity: 0; display: none;}
 #modal.hide {transform: translateY(4%); opacity: 1; display: none;}
 #modal-icon-info.hide, #modal-icon-warning.hide, #modal-danger-info.hide { display: none; }
+
+#gif-slap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15%;
+}
+
+#gif-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}

@@ -20,6 +20,7 @@ IsAdminMenuOpen  = false
 Prompt_Settings       = nil
 Prompt_Invent         = nil
 Prompt_AdminMenu      = nil
+Prompt_AdminMenuV2    = nil
 Prompt_Zoning         = nil
 Prompt_AutoDriveStart = nil
 Prompt_AutoDriveStop  = nil
@@ -55,10 +56,8 @@ CreateThread(function()
       end
 
       while (IsMainMPShown) do Wait(1)
-        local Shift = IsControlJustPressed(0, _Keys.SHIFT)
         local Alt = IsControlJustPressed(0, _Keys.LALT)
         if ((Alt) and (IsMainMPShown)) then CloseMenu() end
-        if ((Shift) and (IsMainMPShown)) then OpenDCAdmin() end
       end
     end
   end

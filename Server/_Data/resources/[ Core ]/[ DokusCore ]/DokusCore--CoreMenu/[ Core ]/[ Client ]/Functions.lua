@@ -30,16 +30,21 @@ end
 function OpenMenu()
   IsMainMPShown = true
   ActPrompts()
-  NoteNPCTalk('AdminMenu v2', "You can open the new admin menu by tapping SHIFT while the core menu is open!", false, 5000)
   TriggerEvent('DokusCore:CoreMenu:ActPrompts')
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function OpenDCAdmin()
-  TriggerEvent('DokusCore:Admin:OpenMenu')
-  IsMainMPShown = false
-  IsAnyMenuOpen = false
-  ResetPrompts()
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  local Status = Low(GetUserChar(Sync.SteamID, Sync.CharID).Group)
+  local Admin, Owner = Low(_Moderation.Admin), Low(_Moderation.SuperAdmin)
+  if ((Status == Admin) or (Status == Owner)) then
+    IsMainMPShown = false
+    IsAnyMenuOpen = false
+    IsAdminMenuOpen = false
+    TriggerEvent('DokusCore:Admin:OpenMenu')
+    ResetPrompts()
+  end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -65,6 +70,13 @@ function OpenAdminMenu()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function OpenAdminMenuV2()
+  IsMainMPShown = false
+  IsAdminMenuOpen = true
+  TriggerEvent('DokusCore:CoreMenu:OpenMenu', { 'AdminMenuV2' })
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function ResetAllMenus()
   IsMainMPShown    = false
   IsInventOpen     = false
@@ -77,6 +89,7 @@ function ResetPrompts()
   Prompt_Settings       = nil
   Prompt_Invent         = nil
   Prompt_AdminMenu      = nil
+  Prompt_AdminMenuV2    = nil
   Prompt_Zoning         = nil
   Prompt_AutoDriveStart = nil
   Prompt_AutoDriveStop  = nil

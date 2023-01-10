@@ -83,15 +83,17 @@ RegisterNetEvent('DokusCore:LumberJack:CloseToNPC', function()
 
     if (OM) then NoteObjective('System', 'Currently in development', 'Horn', 5000) end
     if (GQ) then
-      local Quest = HasPlayerQuest()
-      if (Quest.Active) then Talk('QuestActive') end
-      if (not (Quest.Active)) then
-        local Quest = GetPlayerQuest()
-        local Random = QuestDialogs[ math.random(#QuestDialogs) ]
-        NoteNPCTalk('LumberJack', (Random[1] .. Quest[2] .." " .. Quest[1] .. Random[2]), true, 5000)
-        NoteObjective('Quest Recieved:', ('Gather ' .. Quest[2] .. ' ' .. Quest[1]), 'Check', 3000)
+      if (QuestActive) then Talk('QuestActive') end
+      if (not (QuestActive)) then
+        TriggerEvent('DokusCore:Quests:Start', {
+          Plugin    = 'LumberJack',
+          Type      = 'Gather',
+          Objective = 'Resources',
+        })
+
         QuestActive = true
-        ResetPrompts()
+        NearNPC, ShowPrompts = false, false
+        ResetPrompts() Wait(2000)
         TriggerEvent('DokusCore:LumberJack:CloseToNPC')
       end
     end
@@ -127,6 +129,14 @@ RegisterNetEvent('DokusCore:LumberJack:CloseToNPC', function()
       end
     end
   end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+RegisterNetEvent('DokusCore:LumberJack:Quest:Gather:Resources:Started', function(Data, Encode)
+  local Dec = Decoded(Encode)
+  local Random = QuestDialogs[ math.random(#QuestDialogs) ]
+  NoteNPCTalk('Jack, Timber Co.', "We're low on "..TS(Data.Item).."'s, it would help us if you could gather some of them?", true, 5000)
+  NoteObjective('Quest Recieved:', ('Gather ' .. TS(Dec.Amount) .. ' ' .. TS(Data.Item)), 'Check', 3000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

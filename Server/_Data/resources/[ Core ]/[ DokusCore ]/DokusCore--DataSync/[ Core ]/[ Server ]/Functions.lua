@@ -29,14 +29,38 @@ function DelIntObjects(ID)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function InsertOnline(Data)
+  local DoesExist, Pos = false, nil
+  if (#_User.Online > 0) then
+    for k,v in pairs(_User.Online) do
+      if (v.SteamID == Data.SteamID) then
+        DoesExist, Pos = true, k
+      end
+    end
+  end
 
+  if (not (DoesExist)) then
+    table.insert(_User.Online, Data)
+  end
 
-
-
-
-
-
-
+  if (DoesExist) then
+    table.remove(_User.Online, Pos)
+    table.insert(_User.Online, Data)
+  end
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function DelOnlineViaSource(Source)
+  if (#_User.Online ~= 0) then
+    for k,v in pairs(_User.Online) do
+      if (Source == v.Source) then
+        table.remove(_User.Online, k)
+      end
+    end
+  end
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

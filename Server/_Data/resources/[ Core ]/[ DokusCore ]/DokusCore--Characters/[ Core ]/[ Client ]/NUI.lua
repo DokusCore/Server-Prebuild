@@ -20,7 +20,12 @@ RegisterNUICallback('EnterWorld', function(Data)
   NetworkGhosting(PedID(), false)
   TriggerEvent('DokusCore:Spawner:User:Login')
   CreateLog('DokusCore', 'Join', 'User joined the server')
-  
+
+  -- Update DataSync
+  local Name = GetPlayerName(PlayerId())
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  TriggerServerEvent('DokusCore:Characters:SetSource', Sync.SteamID, Name)
+
   for k,v in pairs(NPCs) do DeleteEntity(v) end
   NPCs = {}
 
@@ -41,10 +46,12 @@ RegisterNUICallback('CreateCharacter', function(Data)
   RenderScriptCams(false, false, 1, true, true)
   TriggerEvent('DokusCore:Skins:User:New', (#NPCs + 1))
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { (#NPCs + 1) } })
+  local Name = GetPlayerName(PlayerId())
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  TriggerServerEvent('DokusCore:Characters:SetSource', Sync.SteamID, Name)
   for k,v in pairs(NPCs) do DeleteEntity(v) end
   NPCs = {}
 end)
-
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

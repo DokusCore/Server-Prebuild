@@ -106,16 +106,7 @@ function HasPlayerQuest()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function GetPlayerQuest()
-  local Q = _LumberJack.Quests.Gather.Resources
-  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-  local rQuest  = Q[ math.random(#Q) ]
-  local rAmount = math.random(rQuest.Amount.Min, rQuest.Amount.Max)
-  local Encode = Encoded({ Item = rQuest.Item, Amount = rAmount })
-  local Index = { Sync.SteamID, Sync.CharID, 5000, Encode }
-  TriggerServerEvent('DokusCore:Core:DBIns:Events', { 'Quest', 'LumberJack', Index })
-  return { rQuest.Item, rAmount }
-end
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function PayPlayer(SteamID, CharID, Item, Amount)

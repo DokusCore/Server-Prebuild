@@ -2,12 +2,13 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-# Update
+# Update v2.2.6
 --------------------------------------------------------------------------------
-- Added: When the user logs out, the UserInGame variable is now updated in DataSync.
+- Added: Update DataSync online players when user enters the world, this sets
+  the source to be used in the admin menu.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-# Update v2.2.4
+# Update v2.2.5
 --------------------------------------------------------------------------------
 - Added: The create log event that will add a log of the users action into the
   Database, when the user joins the server.

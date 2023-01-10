@@ -27,15 +27,16 @@ function SYS(Obj)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function Cooldown() NoteObjective("System", "Command currently in cooldown!", 'Horn', 5000) end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function GetAllUsers()
-    local players = {}
-    for i = 0, 2000 do
-        if NetworkIsPlayerActive(i) then
-          local IDs = TSC('DokusCore:Core:GetUserIDs', { 'source', { GetPlayerServerId(i) } })
-          table.insert(players, {id = GetPlayerServerId(i), name = GetPlayerName(i), steam = IDs[1]})
-        end
-    end
-    return players
+  local players = {}
+  local Sync = TSC('DokusCore:Sync:Get:UserData')
+  for k,v in pairs(Sync.Online) do
+    table.insert(players, { id = v.Source, name = v.Name, steam = v.SteamID })
+  end
+  return players
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

@@ -2,6 +2,13 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.5.1
+--------------------------------------------------------------------------------
+- Added: Horse relations between players, now you can ride the horse with one
+  on the back. The horse will also not go in panic mode or become aggressive
+  when a accidental friendly punch or kick is done.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.5.0
 --------------------------------------------------------------------------------
 - Added: When a admin spawns a horse but does not own one, a default horse will

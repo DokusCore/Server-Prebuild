@@ -5,7 +5,7 @@ description 'DokusCore LumberJack'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.1'
+version '1.2.0'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

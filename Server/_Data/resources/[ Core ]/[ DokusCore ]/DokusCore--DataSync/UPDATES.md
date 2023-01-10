@@ -2,6 +2,19 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.8.0
+--------------------------------------------------------------------------------
+- Added: DataSync is now storing user data server side for OneSync syncing.
+  Currently it stores the users SteamID, SourceID and the Steam name, these
+  are the values loaded into the admin menu to show all players in the list.
+  You will be able to see and interact with everyone on the server, no matter
+  your own location.
+- Added: Logics for adding user to the online user data table.
+- Added: Event that triggers when the user leaves the server, this will delete
+  the users online server data from the online list.
+- Added: The logics for getting the user online list data (TSC Callback)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.7.0
 --------------------------------------------------------------------------------
 - Removed: Some deprecated data entries from the client that are moved to the

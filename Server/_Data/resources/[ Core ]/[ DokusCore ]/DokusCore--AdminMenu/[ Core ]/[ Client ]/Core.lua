@@ -3,14 +3,32 @@
 --------------------------------------------------------------------------------
 ----------------------- I feel a disturbance in the force ----------------------
 --------------------------------------------------------------------------------
+SpecCoords          = nil
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Admin:OpenMenu', function()
   local playerList = GetAllUsers()
+  local AdminSource = GetPlayerServerId(PlayerId())
   SetNuiFocus(true, true)
-  SendNUIMessage({type = "open", players = playerList})
+  SendNUIMessage({ type = 'source', action = TN(AdminSource) }) Wait(10)
+  SendNUIMessage({ type = "open", players = playerList })
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+CreateThread(function()
+  while (not (FrameReady())) do Wait(1000) end
+  while (not (UserInGame())) do Wait(1000) end
+  local PedID = PedID()
+  SetVisible(PedID, true)
+  SetInvincible(PedID, false)
+  SetFreeze(PedID, false)
+  SpecCoords          = nil
+  ShowPrompts         = false
+  Prompt_SpecResetPos = nil
+  Prompt_SpecExit     = nil
+  Group               = GetRandomIntInRange(0, 0xffffff)
+  IsSpectating        = false
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

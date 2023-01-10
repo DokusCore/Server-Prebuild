@@ -1,6 +1,12 @@
 --------------------------------------------------------------------------------
 ---------------------------------- DokusCore -----------------------------------
 --------------------------------------------------------------------------------
+RegisterServerEvent('DokusCore:Sync:Set:UserData')
+AddEventHandler('DokusCore:Sync:Set:UserData', function(a)
+  if (Low(a[1]) == 'insertonline') then InsertOnline(a[2]) end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 RegisterServerEvent('DokusCore:Sync:Set:ObjectData')
 AddEventHandler('DokusCore:Sync:Set:ObjectData', function(a)
   if (Low(a[1]) == 'interactable') then SetIntObjects(a[2]) end
@@ -10,6 +16,7 @@ end)
 RegisterServerEvent('DokusCore:Sync:Del:ObjectData')
 AddEventHandler('DokusCore:Sync:Del:ObjectData', function(a)
   if (Low(a[1]) == 'interactable') then DelIntObjects(a[2][1]) end
+  if (Low(a[1]) == 'delonlinesource') then DelOnlineViaSource(a[2][1]) end
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

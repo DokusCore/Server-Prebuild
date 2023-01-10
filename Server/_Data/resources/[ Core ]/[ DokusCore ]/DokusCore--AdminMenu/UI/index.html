@@ -115,7 +115,7 @@
                                     </div> -->
 
                                     <!-- Clear Area -->
-                                    <!-- <button id="clear-area" data-tooltip-target="tooltip-clear-area" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="clearArea()" disabled>
+                                    <button id="clear-area" data-tooltip-target="tooltip-clear-area" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="clearArea()" disabled>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 30px; height: 30px;">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
@@ -124,7 +124,7 @@
                                     <div id="tooltip-clear-area" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
                                         Clear Area
                                         <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
-                                    </div> -->
+                                    </div>
 
                                     <!-- Teleport To Marker -->
                                     <button id="tpm" data-tooltip-target="tooltip-tpm" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="tpm()" disabled>
@@ -138,6 +138,18 @@
                                         <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
                                     </div>
                                     <!-- Teleport To Marker -->
+
+                                    <!-- GodMode -->
+                                    <button id="GodMode" data-tooltip-target="tooltip-GodMode" data-tooltip-placement="bottom" type="button" class="p-4 rounded-md shadow-lg bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-700 text-White grid place-items-center disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400" onclick="GodMode()" disabled>
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                      </svg>
+                                    </button>
+                                    <div id="tooltip-GodMode" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-800 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 invisible" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1156px, 449px, 0px);">
+                                        Toggle GodMode
+                                        <div class="tooltip-arrow" data-popper-arrow="" style="position: absolute; left: 0px; transform: translate3d(67px, 0px, 0px);"></div>
+                                    </div>
+                                    <!-- GodMode -->
 
                                 </div>
 
@@ -176,21 +188,21 @@
                                         <dl class="sm:divide-y sm:divide-gray-700">
 
                                             <!-- Chat Buttons -->
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">Chat</dt>
                                             <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
                                                 <button id="dm" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="directMessage()">DM Player</button>
                                             </dd>
-                                            </div>
+                                            </div> -->
 
                                             <!-- Teleport Buttons -->
-                                            <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">Teleport</dt>
                                             <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
-                                                <button id="goto" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="tp()">Goto Player</button>
+                                                <button id="goto" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="goto()">Goto Player</button>
                                                 <button id="bring" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="bring()">Bring Player</button>
                                             </dd>
-                                            </div> -->
+                                            </div>
 
                                             <!-- Punishment Buttons -->
                                             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -199,10 +211,10 @@
                                                 <button id="warn" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="warn()">Warn</button>
                                                 <!-- <button id="chain" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="chain()">Chain</button> -->
 
-                                                <!-- <button id="slap" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="slap()">Slap</button> -->
+                                                <button id="slap" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="slap()">Slap</button>
                                                 <!-- <button id="slay" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-orange-600 border-orange-600 border-2 border-transparent hover:bg-amber-500 hover:border-orange-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="slay()">Slay</button> -->
 
-                                                <!-- <button id="kick" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-red-800 border-red-800 border-2 border-transparent hover:border-red-500 hover:bg-red-500 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="kick()">Kick</button> -->
+                                                <button id="kick" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-red-800 border-red-800 border-2 border-transparent hover:border-red-500 hover:bg-red-500 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="kick()">Kick</button>
                                                 <!-- <button id="ban" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-red-800 border-red-800 border-2 border-transparent hover:border-red-500 hover:bg-red-500 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="ban()">Ban</button> -->
                                             </dd>
                                             </div>
@@ -220,13 +232,13 @@
                                             </div> -->
 
                                             <!-- Misc Buttons -->
-                                            <!-- <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-400">Misc</dt>
                                             <dd class="mt-1 sm:mt-0 sm:col-span-2 grid grid-cols-2 gap-3">
-                                                <button id="heal" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="heal()">Heal Player</button>
+                                                <!-- <button id="heal" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="heal()">Heal Player</button> -->
                                                 <button id="spectate" type="button" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white text-center bg-blue-800 border-blue-800 border-2 border-transparent hover:border-blue-400 hover:bg-blue-600 disabled:bg-slate-700 disabled:border-slate-700 disabled:text-gray-400 " disabled onclick="spectate()">Spectate</button>
                                             </dd>
-                                            </div> -->
+                                            </div>
                                         </dl>
                                         </div>
                                     </div>
@@ -291,6 +303,11 @@
         </div>
     </div>
 
+    <!-- Slapping User -->
+    <div id="gif-slap" style="display: none;"><img src="assets/img/slap.gif" alt="slap"></div>
+
+    <!-- Warn Player -->
+    <div id="gif-warning" style="display: none;"><img src="assets/img/warning.gif" alt="warning"></div>
 
     <script src="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.bundle.js"></script>
 

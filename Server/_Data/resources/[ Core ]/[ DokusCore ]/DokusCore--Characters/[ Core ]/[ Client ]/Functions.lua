@@ -37,6 +37,9 @@ end
 --------------------------------------------------------------------------------
 function SkipCamp(CharData)
   if (CharData[1] == nil) then
+    local Name = GetPlayerName(PlayerId())
+    local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+    TriggerServerEvent('DokusCore:Characters:SetSource', Sync.SteamID, Name)
     TriggerEvent('DokusCore:Skins:User:New', 1)
     TriggerEvent('DokusCore:Sync:Set:UserData', { 'CharID', { 1 } })
     return true

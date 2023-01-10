@@ -110,6 +110,8 @@ function SpawnHorse(Model, Coords, Heading)
   Citizen.InvokeNative(0xB8B6430EAD2D2437, HorseLoaded, GetHashKey("PLAYER_HORSE"))
   Citizen.InvokeNative(0x4DB9D03AC4E1FA84, HorseLoaded, -1, -1, 0)
   SetVehicleHasBeenOwnedByPlayer(HorseLoaded, true)
+  Citizen.InvokeNative(0xC80A74AC829DDD92, HorseLoaded, GetPedRelationshipGroupHash(HorseLoaded)) -- SetPedRelationshipGroupHash
+  Citizen.InvokeNative(0xBF25EB89375A37AD, 1, GetPedRelationshipGroupHash(HorseLoaded), `PLAYER`) -- SetRelationshipBetweenGroups
   return HorseLoaded
 end
 --------------------------------------------------------------------------------
