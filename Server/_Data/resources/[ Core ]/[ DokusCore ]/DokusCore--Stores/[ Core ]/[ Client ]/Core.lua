@@ -27,7 +27,7 @@ CreateThread(function()
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     for k,v in pairs(_Stores.Stores) do if (v.Enabled) then Tabi(Blips, SetBlip(v.Coords, 1475879922, 1.0, MSG("BlipName").MSG)) end end
-    for k,v in pairs(_Stores.NPCs) do if (v.Enabled) then Tabi(NPCs, SpawnNPC(v.Hash, v.Coords, v.Heading)) end end
+    for k,v in pairs(_Stores.NPCs) do if (v.Enabled) then Tabi(NPCs, SpawnNPC(v.Hash, v.Coords, v.Heading, true)) end end
   end
 end)
 --------------------------------------------------------------------------------

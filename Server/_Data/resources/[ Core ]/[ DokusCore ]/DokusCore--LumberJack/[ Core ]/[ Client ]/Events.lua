@@ -49,7 +49,7 @@ end)
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:LumberJack:Zone:Enter', function()
   local N = _LumberJack.NPC
-  NPC = SpawnNPC(N.Hash, N.Coords, N.Heading)
+  NPC = SpawnNPC(N.Hash, N.Coords, N.Heading, false)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

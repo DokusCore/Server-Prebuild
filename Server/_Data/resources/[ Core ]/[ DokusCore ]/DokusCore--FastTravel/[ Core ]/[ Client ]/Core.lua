@@ -26,7 +26,7 @@ CreateThread(function()
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     for k,v in pairs(_FastTravel.Zones) do Tabi(Blips, SetBlip(v.Coords, -1505442625, 1.0, MSG("FastTravel").MSG)) end
-    for k,v in pairs(_FastTravel.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading)) end
+    for k,v in pairs(_FastTravel.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading, true)) end
   end
 end)
 --------------------------------------------------------------------------------

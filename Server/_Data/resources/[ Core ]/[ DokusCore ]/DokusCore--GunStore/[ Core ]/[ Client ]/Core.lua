@@ -36,7 +36,7 @@ CreateThread(function()
     while not FrameReady() do Wait(1000) end
     while not UserInGame() do Wait(1000) end
     for k,v in pairs(_GunStore.NPCs) do
-      Tabi(NPCs, { City = v.ID, NPC = SpawnNPC(v.Hash, v.Coords, v.Heading) })
+      Tabi(NPCs, { City = v.ID, NPC = SpawnNPC(v.Hash, v.Coords, v.Heading, true) })
     end
   end
 end)

@@ -33,7 +33,7 @@
 #horsebrush            { background: url('../img/items/horsebrush.png') no-repeat; background-size: 100%; }
 #lockpick              { background: url('../img/items/lockpick.png') no-repeat; background-size: 100%; }
 #axe                   { background: url('../img/items/axe.png') no-repeat; background-size: 90%; }
-
+#key                   { background: url('../img/items/key.png') no-repeat; background-size: 100%; }
 /* Valutas */
 #gold_bar              { background: url('../img/items/gold_bar.png') no-repeat; background-size: 100%; }
 /* #money         { background: url('../img/items/money.png') no-repeat; background-size: 100%; } *//* Do not enable money yet */

@@ -61,7 +61,7 @@ end
 function SpawnPlayerPeds(CharData)
   for k,v in pairs(CharData) do
     LoadModel(v.Gender)
-    local PED = SpawnNPC(v.Gender, Spawns[k].Start, 0.0)
+    local PED = SpawnNPC(v.Gender, Spawns[k].Start, 0.0, false)
     NetworkGhosting(PED, true)
     Tabi(NPCs, PED) Wait(300)
     UnloadModel(v.Gender)

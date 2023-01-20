@@ -7,12 +7,10 @@
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 _Inventory = {
-  -- Activation keys for the inventory and the drop box
-  ActKey = { OpenInv = _Keys['TAB'], OpenBox = _Keys['E'] },
 
-  -- This will enable the prompt menu or the normal text contols.
-  Interaction = { NoKeyNeed = false, UseKey = true, UsePrompt = false },
-
+  OpenKey     = { Enabled = true, Key = _Keys.I },
+  OpenCommand = { Enabled = true, CMD = 'inventory' },
+  OpenBoxKey  = _Keys.E 
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

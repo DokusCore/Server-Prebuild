@@ -5,7 +5,8 @@ description 'DokusCore | Manazing your own custom zones'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.0.1'
+version '1.1.0'
+-- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {

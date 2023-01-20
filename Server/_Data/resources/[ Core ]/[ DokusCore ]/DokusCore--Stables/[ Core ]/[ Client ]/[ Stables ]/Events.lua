@@ -11,7 +11,7 @@ RegisterNetEvent('DokusCore:Stables:SayHello', function(Data)
     -- Spawn the NPC
     for k,v in pairs(_Stables.NPCs) do
       if (Low(Area()) == Low(v.ID)) then
-        Tabi(NPCs, { City = v.ID, NPC = SpawnNPC(v.Hash, v.Coords, v.Heading) })
+        Tabi(NPCs, { City = v.ID, NPC = SpawnNPC(v.Hash, v.Coords, v.Heading, false) })
       end
     end
 

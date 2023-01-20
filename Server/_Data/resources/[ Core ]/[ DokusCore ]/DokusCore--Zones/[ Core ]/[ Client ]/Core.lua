@@ -48,24 +48,17 @@ RegisterNetEvent('DokusCore:Zones:StoreZones', function()
       local EnType, EnEvent  = Low(v.OnEnter.Event[1]), v.OnEnter.Event[2]
       local ExType, ExEvent  = Low(v.OnExit.Event[1]),  v.OnExit.Event[2]
 
+      -- On Enter
       if ((EnType == 'client') or (EnType == 'server')) then
         local EventData = {}
-        local MetaData  = {}
-        for k,v in pairs(v.OnEnter.Meta) do Tabi(MetaData, v) end
-        Tabi(EventData, { Type = EnType, Event = EnEvent, Meta = MetaData })
+        Tabi(EventData, { Type = EnType, Event = EnEvent, Meta = v.OnEnter.Meta })
         OnEnter = Encoded(EventData)
       end
 
+      -- On Exit
       if ((ExType == 'client') or (ExType == 'server')) then
         local EventData = {}
-        local MetaData  = {}
-        for k,v in pairs(v.OnExit.Meta) do Tabi(MetaData, v) end
-        if (#v.OnEnter.Meta == 0) then
-          Tabi(EventData, { Type = ExType, Event = ExEvent, Meta = {} })
-        else
-          Tabi(EventData, { Type = ExType, Event = ExEvent, Meta = MetaData })
-        end
-
+        Tabi(EventData, { Type = ExType, Event = ExEvent, Meta = v.OnExit.Meta })
         OnExit = Encoded(EventData)
       end
 

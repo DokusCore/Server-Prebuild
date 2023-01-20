@@ -100,7 +100,7 @@ RegisterNUICallback("SelectHorse", function(Data)
   for k,v in pairs(_Stables.HorsePos) do
     if (Low(Area()) == (Low(v.ID))) then
       if (IsHorseLoaded()) then DeleteEntity(HorseLoaded) end
-      local NewHorse = SpawnHorse(Model, v.Coords, v.Heading)
+      local NewHorse = SpawnHorse(Model, v.Coords, v.Heading, false)
       HorseLoaded = NewHorse
       -- SendNUIMessage({ Customize = true })
       break

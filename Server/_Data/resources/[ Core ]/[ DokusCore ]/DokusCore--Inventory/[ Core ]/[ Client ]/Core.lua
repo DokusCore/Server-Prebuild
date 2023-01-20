@@ -4,8 +4,7 @@
 BoxArray, BoxTXTs = {}, {}
 Steam, CharID = nil, nil
 IsInvOpen, IsPickingUpItem, IsBoxOpen = false, false, false
-ActKeyInv = _Inventory.ActKey.OpenInv
-ActKeyBox = _Inventory.ActKey.OpenBox
+ActKeyBox = _Inventory.OpenBoxKey
 Ani = "amb_work@world_human_box_pickup@1@male_a@stand_exit_withprop"
 local Low = string.lower
 --------------------------------------------------------------------------------
@@ -90,10 +89,38 @@ CreateThread(function() Wait(1000)
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
-
-
-
+CreateThread(function()
+  if (_Modules.Inventory) then
+    if (_Inventory.OpenKey.Enabled) then
+      while (not (FrameReady())) do Wait(1000) end
+      while (not (UserInGame())) do Wait(1000) end
+      while (true) do Wait(1000)
+        while (not (IsInvOpen)) do Wait(1)
+          local Control = IsControlPressed(0, _Inventory.OpenKey.Key)
+          if (Control) then
+            TriggerEvent('DokusCore:Inventory:OpenInventory')
+            Wait(2000)
+          end
+        end
+      end
+    end
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CreateThread(function()
+  if (_Modules.Inventory) then
+    if (_Inventory.OpenCommand.Enabled) then
+      while (not (FrameReady())) do Wait(1000) end
+      while (not (UserInGame())) do Wait(1000) end
+      RegisterCommand(_Inventory.OpenCommand.CMD, function()
+        TriggerEvent('DokusCore:Inventory:OpenInventory')
+      end)
+    end
+  end
+end)
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 

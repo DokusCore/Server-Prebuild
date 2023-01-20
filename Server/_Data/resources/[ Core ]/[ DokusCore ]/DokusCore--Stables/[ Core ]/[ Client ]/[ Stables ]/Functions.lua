@@ -89,7 +89,7 @@ function SetHorseDecoys()
       local Dec = _Stables.RandomDecoys
       local Random = Dec[ math.random(#Dec) ]
       WaitLoadModel(Random.Model)
-      local Decoy = SpawnHorse(Random.Model, v.Coords, v.Heading)
+      local Decoy = SpawnHorse(Random.Model, v.Coords, v.Heading, false)
       Tabi(HorseDecoys, Decoy)
       if (v.Main) then HorseLoaded = Decoy end
     end
@@ -103,8 +103,8 @@ function DelHorseDecoys()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function SpawnHorse(Model, Coords, Heading)
-  HorseLoaded = CreatePed(Model, Coords[1], Coords[2], (Coords[3] - 0.98), Heading, true, 0)
+function SpawnHorse(Model, Coords, Heading, Network)
+  HorseLoaded = CreatePed(Model, Coords[1], Coords[2], (Coords[3] - 0.98), Heading, Network, 0)
   Citizen.InvokeNative(0x283978A15512B2FE, HorseLoaded, true)
   Citizen.InvokeNative(0x58A850EAEE20FAA3, HorseLoaded)
   Citizen.InvokeNative(0xB8B6430EAD2D2437, HorseLoaded, GetHashKey("PLAYER_HORSE"))
