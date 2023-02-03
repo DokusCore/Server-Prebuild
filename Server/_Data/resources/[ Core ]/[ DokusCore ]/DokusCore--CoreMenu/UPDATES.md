@@ -2,6 +2,14 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v2.4.0
+--------------------------------------------------------------------------------
+- Added: Romanian language made by @RABBIT in discord!
+- Disabled: Auto move with horse, as this was still working without the prompt.
+- Added: Function to order your horse to stay, this will disable wandering and
+  prevents from your horse walking away when hitched.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v2.3.2
 --------------------------------------------------------------------------------
 - Changed: The Admin menu v2 is now opened via the TAB key in the core menu.

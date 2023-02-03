@@ -5,7 +5,8 @@ description 'DokusCore Metabolism -- Its vital to have some vitals'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.3.1'
+version '1.3.2'
+-- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
@@ -41,6 +42,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fi.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ro.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

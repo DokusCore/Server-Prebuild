@@ -29,6 +29,7 @@ end
 --------------------------------------------------------------------------------
 function SYS(Obj)
   local Lang = TCTCC('DokusCore:Sync:Get:UserData').Language
+  print("Lang", Lang, _("System", Obj, Lang))
   return _("System", Obj, Lang)
 end
 --------------------------------------------------------------------------------

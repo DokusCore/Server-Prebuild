@@ -69,7 +69,7 @@ CreateThread(function() Wait(1000)
           local x,y,z = Coords.x, Coords.y, (Coords.z - 0.65)
           local Dist = Vdist(Coords, PlayerCoords)
           local Close, Medium = (Dist <= 0.6), ((Dist > 0.6) and (Dist <= 2.0))
-          local Key = _Inventory.Interaction.UseKey
+          local Key = _Inventory.OpenBoxKey 
           if (not (IsPickingUpItem)) then
             if (Close) then DrawText3D(x,y,z, 300, MSG("OpenBox").MSG) end
             if (Medium) then DrawText3D(x,y,z, 200, '{ Expire: Work in Progress }') end

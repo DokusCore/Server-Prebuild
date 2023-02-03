@@ -5,7 +5,7 @@ description 'DokusSync -- General Stores'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.3.1'
+version '2.3.2'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -39,6 +39,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fi.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ro.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

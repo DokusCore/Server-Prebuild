@@ -5,7 +5,7 @@ description 'DokusCore Inventory'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.1.4'
+version '2.2.2'
 -- version '-----'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -42,6 +42,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fi.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ro.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

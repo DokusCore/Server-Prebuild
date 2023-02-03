@@ -5,7 +5,7 @@ description 'DokusCore Banking System - http://DokusCore.com'
 author 'DevDokus'
 fx_version "adamant"
 games {"rdr3"}
-version '2.7.1'
+version '2.7.2'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -43,6 +43,7 @@ shared_script {
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/pt.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ru.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/fi.lua',
+  '@DokusCore/[ Core ]/[ System ]/[ Shared ]/[ Language ]/ro.lua',
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

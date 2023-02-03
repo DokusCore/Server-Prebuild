@@ -30,6 +30,14 @@ RegisterNUICallback("drop", function(Data)
   local UserItems = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', { Steam, CharID, Item } })
   local ItemAmount = UserItems.Result[1].Amount
 
+  -- Prevent keys from bring dropped as long as the API does not
+  -- take over the meta data of the key.
+  if (Low(Item) == 'key') then
+    IsPickingUpItem = false
+    NoteObjective('System', "Keys can not be dropped at current times!", 'Horn', 5000)
+    return
+  end
+
   -- Making a new box when no box is in range
   if ((CBox.Closest == nil) or (CBox.Closest > 10)) then
     if (ItemAmount >= Amount) then
@@ -39,6 +47,9 @@ RegisterNUICallback("drop", function(Data)
       TriggerServerEvent('DokusCore:Core:DBIns:Storages',  { 'DropBox', { Steam, CharID, CreateNewBox(Coords), Item, Amount, Coords } })
       TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', { Steam, CharID, Item, Amount, ItemAmount } })
       IsPickingUpItem = false
+    else
+      IsPickingUpItem = false
+      NoteObjective("System", "Duplication glitch detected, inventory is restored!", 'Horn', 10000)
     end
   else
     CloseInv()

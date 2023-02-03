@@ -41,16 +41,16 @@ RegisterNUICallback('RescueMyHorse', function(Data)
   TriggerServerEvent('DokusCore:Core:DBSet:Stables', { 'User', 'Single', 'InUse', Index })
   TriggerServerEvent('DokusCore:Core:DBSet:Stables', { 'User', 'Single', 'IsStored', Index })
   TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseActive', { false } })
-  TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseID', { nil } })
-  TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseName', { nil } })
   NoteNPCTalk(MSG("NPCName").MSG, "We're going to search for your horse, this could take some time", false, 7000)
   CreateLog('Stables', 'Horse Rescue', 'User recoverd lost horse')
   Wait((1 * 60) * 1000)
   NoteObjective("System", 'Your horse is rescued and back at the stable', 'Horn', 10000)
-  local Index = { Sync.SteamID, Sync.CharID, Sync.HorseName, false }
+  local Index = { Sync.SteamID, Sync.CharID, Data.Name, false }
   TriggerServerEvent('DokusCore:Core:DBSet:Stables', { 'User', 'Single', 'InUse', Index })
-  local Index = { Sync.SteamID, Sync.CharID, Sync.HorseName, true }
+  local Index = { Sync.SteamID, Sync.CharID, Data.Name, true }
   TriggerServerEvent('DokusCore:Core:DBSet:Stables', { 'User', 'Single', 'IsStored', Index })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseID', { nil } })
+  TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseName', { nil } })
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -137,10 +137,15 @@ RegisterNUICallback('TakeOutHorse', function(Data)
   local Horse = TSC('DokusCore:Core:DBGet:Stables', Index).Result[1]
   local xName, xModel = Horse.Name, Horse.Model
 
+  if (Sync.HorseName ~= nill) then
+    NoteNPCTalk(MSG('NPCName').MSG, "You already has an horse in use!", false, 5000)
+    return
+  end
+
   -- Cancel if horse is already in use.
   if (not (Horse.IsStored) or (Horse.IsStored == 0)) then
     if ((Horse.InUse) or (Horse.InUse == 1)) then
-      NoteNPCTalk(MSG('NPCName').MSG, 'Your horse is already in use!', false, 5000)
+      NoteNPCTalk(MSG('NPCName').MSG, 'This horse is not stabled at this stable!', false, 5000)
       return
     end
   end

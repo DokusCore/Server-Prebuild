@@ -175,6 +175,7 @@ const InitData = (nr) => {
   if ((InMenu == 'LangList2') && (nr == 4))        { ToggleOption('ChangeLanguage', 'pl');               };
   if ((InMenu == 'LangList2') && (nr == 5))        { ToggleOption('ChangeLanguage', 'pt');               };
   if ((InMenu == 'LangList3') && (nr == 0))        { ToggleOption('ChangeLanguage', 'fi');               };
+  if ((InMenu == 'LangList3') && (nr == 1))        { ToggleOption('ChangeLanguage', 'ro');               };
 
   if ((InMenu == 'MusicMenu') && (nr == 0))        { ToggleOption('StopMusic');                          };
   if ((InMenu == 'MusicMenu') && (nr == 1))        { OpenThisMenu('AutoPlay');                           };

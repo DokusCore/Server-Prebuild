@@ -2,6 +2,23 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v2.2.2
+--------------------------------------------------------------------------------
+- Added: Romanian language added and made by @RABBIT in discord!
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+# Update v2.2.1
+--------------------------------------------------------------------------------
+- Fixed: Last update we changed the box key object name, but we did not update
+  the code within the inventory prompting an error on opening drop boxes. We've
+  fixed the code and you can open the boxes again.
+- Added: Preventing property keys from being dropped on the ground, this we have
+  to do for now as it is not transporting the keys meta data over to the drop box.
+- Added: Message that will display when user tries to duplicate items using the
+  DevTools. If an item is increased by manipulating the UI, when the user wants
+  to drop the item, the inventory sends a warning and restores to original.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v2.2.0
 --------------------------------------------------------------------------------
 - Added: Option to open the inventory via key bind. ( Config )

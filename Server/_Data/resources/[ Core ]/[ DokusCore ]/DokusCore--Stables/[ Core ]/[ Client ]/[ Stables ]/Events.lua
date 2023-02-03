@@ -174,6 +174,9 @@ RegisterNetEvent('DokusCore:Stables:StoreHorse', function()
         NPCFetchingHorse = false
       end
     end
+
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseID', { nil } })
+    TriggerEvent('DokusCore:Sync:Set:UserData', { 'HorseName', { nil } })
   end
 end)
 --------------------------------------------------------------------------------

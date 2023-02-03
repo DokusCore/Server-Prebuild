@@ -27,6 +27,7 @@ Prompt_AutoDriveStop  = nil
 Prompt_UnEqWeapon     = nil
 Prompt_HorseCall      = nil
 Prompt_HorseFollow    = nil
+Prompt_HorseStay      = nil
 Prompt_ObjMenu        = nil
 Group                 = GetRandomIntInRange(0, 0xffffff)
 --------------------------------------------------------------------------------

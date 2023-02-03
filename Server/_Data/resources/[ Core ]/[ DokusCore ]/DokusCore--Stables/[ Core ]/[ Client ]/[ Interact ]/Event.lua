@@ -36,7 +36,23 @@ RegisterNetEvent('DokusCore:Stables:Horse:Flee', function()
 end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+RegisterNetEvent('DokusCore:Stables:Horse:Stay', function()
+  local Stay = _Stables.Horse.Stay
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  if (Sync.HorseID == nil) then NoteObjective('System', 'You have no active horse at the moment!', 'Alert', 5000) return end
+  local Dist = GetDistance(GetCoords(Sync.HorseID))
+  if (Dist <= Stay.Radius) then
+    if (not (IsHorseStaying)) then
+      IsHorseStaying = true
+      NoteObjective('Horse Interaction', "You've ordered your horse to stay at his position!", 'Horse', 5000)
+      while (IsHorseStaying) do Wait(1000) if (IsPedOnMount(PedID())) then IsHorseStaying = false end end
+    elseif (IsHorseStaying) then
+      IsHorseStaying = false
+      NoteObjective('Horse Interaction', "You've ordered your horse to be free!", 'Horse', 5000)
+      ClearPedTasks(Sync.HorseID)
+    end
+  end
+end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

@@ -2,6 +2,18 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.6.0
+--------------------------------------------------------------------------------
+- Added: Romanian language made by RABBIT in discord!
+- Fixed: The horse status was not reset in the database on horse rescue, now
+  this is fixed and your horse will be back at the stable. With special thanks
+  to @DeadShot on Discord, for applying this fix.
+- Added: Option to order your horse to stay at his position, this will prevent
+  the horse walking away when hitched. This will only halt the idle walking loop!
+  The horse can still be moved and is not frozen in place, once the player steps
+  on his/her horse, the stay status is automatically removed.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.5.2
 --------------------------------------------------------------------------------
 - Fixed: Small fix was needed for an update to the SpawnNPC API function

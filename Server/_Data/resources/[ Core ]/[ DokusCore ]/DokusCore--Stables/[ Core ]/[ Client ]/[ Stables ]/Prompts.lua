@@ -29,7 +29,7 @@ end)
 --------------------------------------------------------------------------------
 function ActPrompts()
   CreateThread(function()
-    local str = MSG("OpenMenu").MSG
+    local str = SYS("OpenMenu").MSG
     Stables_Menu = PromptRegisterBegin()
     PromptSetControlAction(Stables_Menu, _Keys.E)
     str = CreateVarString(10, 'LITERAL_STRING', str)

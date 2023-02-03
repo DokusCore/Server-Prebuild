@@ -73,30 +73,30 @@ function ActPrompts()
       PromptRegisterEnd(Prompt_Zoning)
     end
 
-    -- Show prompt when mounted
-    if ((Mount) or (Mount == 1) and (not (AutoMoveOn))) then
-      local str = MSG("StartMove").MSG
-      Prompt_AutoDriveStart = PromptRegisterBegin()
-      PromptSetControlAction(Prompt_AutoDriveStart, _Keys.SHIFT)
-      str = CreateVarString(10, 'LITERAL_STRING', str)
-      PromptSetText(Prompt_AutoDriveStart, str)
-      PromptSetEnabled(Prompt_AutoDriveStart, true)
-      PromptSetVisible(Prompt_AutoDriveStart, true)
-      PromptSetHoldMode(Prompt_AutoDriveStart, true)
-      PromptSetGroup(Prompt_AutoDriveStart, Group)
-      PromptRegisterEnd(Prompt_AutoDriveStart)
-    elseif ((Mount) or (Mount == 1) and (AutoMoveOn)) then
-      local str = MSG("StopMove").MSG
-      Prompt_AutoDriveStop = PromptRegisterBegin()
-      PromptSetControlAction(Prompt_AutoDriveStop, _Keys.SHIFT)
-      str = CreateVarString(10, 'LITERAL_STRING', str)
-      PromptSetText(Prompt_AutoDriveStop, str)
-      PromptSetEnabled(Prompt_AutoDriveStop, true)
-      PromptSetVisible(Prompt_AutoDriveStop, true)
-      PromptSetHoldMode(Prompt_AutoDriveStop, true)
-      PromptSetGroup(Prompt_AutoDriveStop, Group)
-      PromptRegisterEnd(Prompt_AutoDriveStop)
-    end
+    -- -- Show prompt when mounted
+    -- if ((Mount) or (Mount == 1) and (not (AutoMoveOn))) then
+    --   local str = MSG("StartMove").MSG
+    --   Prompt_AutoDriveStart = PromptRegisterBegin()
+    --   PromptSetControlAction(Prompt_AutoDriveStart, _Keys.SHIFT)
+    --   str = CreateVarString(10, 'LITERAL_STRING', str)
+    --   PromptSetText(Prompt_AutoDriveStart, str)
+    --   PromptSetEnabled(Prompt_AutoDriveStart, true)
+    --   PromptSetVisible(Prompt_AutoDriveStart, true)
+    --   PromptSetHoldMode(Prompt_AutoDriveStart, true)
+    --   PromptSetGroup(Prompt_AutoDriveStart, Group)
+    --   PromptRegisterEnd(Prompt_AutoDriveStart)
+    -- elseif ((Mount) or (Mount == 1) and (AutoMoveOn)) then
+    --   local str = MSG("StopMove").MSG
+    --   Prompt_AutoDriveStop = PromptRegisterBegin()
+    --   PromptSetControlAction(Prompt_AutoDriveStop, _Keys.SHIFT)
+    --   str = CreateVarString(10, 'LITERAL_STRING', str)
+    --   PromptSetText(Prompt_AutoDriveStop, str)
+    --   PromptSetEnabled(Prompt_AutoDriveStop, true)
+    --   PromptSetVisible(Prompt_AutoDriveStop, true)
+    --   PromptSetHoldMode(Prompt_AutoDriveStop, true)
+    --   PromptSetGroup(Prompt_AutoDriveStop, Group)
+    --   PromptRegisterEnd(Prompt_AutoDriveStop)
+    -- end
 
     if (Obj.Item == nil) then
       if (not (Mount) and (Sync.HorseID ~= nil)) then
@@ -125,6 +125,19 @@ function ActPrompts()
           PromptSetHoldMode(Prompt_HorseFollow, true)
           PromptSetGroup(Prompt_HorseFollow, Group)
           PromptRegisterEnd(Prompt_HorseFollow)
+        end
+
+        if (Dist <= _Stables.Horse.Stay.Radius) then
+          local str = 'Horse Stay'
+          Prompt_HorseStay = PromptRegisterBegin()
+          PromptSetControlAction(Prompt_HorseStay, _Keys.L)
+          str = CreateVarString(10, 'LITERAL_STRING', str)
+          PromptSetText(Prompt_HorseStay, str)
+          PromptSetEnabled(Prompt_HorseStay, true)
+          PromptSetVisible(Prompt_HorseStay, true)
+          PromptSetHoldMode(Prompt_HorseStay, true)
+          PromptSetGroup(Prompt_HorseStay, Group)
+          PromptRegisterEnd(Prompt_HorseStay)
         end
       end
     end
