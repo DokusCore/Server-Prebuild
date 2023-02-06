@@ -83,3 +83,12 @@
 #weapon_melee_lantern { background: url('../img/items/weapon_melee_lantern.png') no-repeat; background-size: 125%; }
 #weapon_melee_broken_sword { background: url('../img/items/weapon_melee_broken_sword.png') no-repeat; background-size: 100%; }
 /*  */
+
+
+
+/* ONLY FOR CONVERSIONS! THIS WILL BE REMADE IN THE FUTURE! */
+#weapon_fishingrod { background: url('../img/items/weapon_fishingrod.png') no-repeat; background-size: 100%; }
+#fishingbait { background: url('../img/items/fishingbait.png') no-repeat; background-size: 100%; }
+#fishsmall_uncooked { background: url('../img/items/fishsmall_uncooked.png') no-repeat; background-size: 100%; }
+#fishmedium_uncooked { background: url('../img/items/fishmedium_uncooked.png') no-repeat; background-size: 100%; }
+#fishlarge_uncooked { background: url('../img/items/fishlarge_uncooked.png') no-repeat; background-size: 100%; }

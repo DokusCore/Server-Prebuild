@@ -29,7 +29,7 @@ CreateThread(function()
     while (not FrameReady()) do Wait(1000) end
     while (not UserInGame()) do Wait(1000) end
     for k,v in pairs(_Banking.Zones) do Tabi(Blips, SetBlip(v.Coords, -2128054417, 1.0, MSG("Name").MSG)) end
-    for k,v in pairs(_Banking.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading, true))      end
+    for k,v in pairs(_Banking.NPCs)  do Tabi(AliveNPCs, SpawnNPC(v.Hash, v.Coords, v.Heading, false))      end
   end
 end)
 --------------------------------------------------------------------------------

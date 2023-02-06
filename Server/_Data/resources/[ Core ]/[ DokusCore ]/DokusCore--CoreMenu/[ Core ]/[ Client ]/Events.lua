@@ -5,7 +5,7 @@
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:CoreMenu:ActPrompts', function()
   while IsMainMPShown do Wait(1)
-    local pName = CreateVarString(10, 'LITERAL_STRING', 'DokuCore')
+    local pName = CreateVarString(10, 'LITERAL_STRING', 'DokusCore')
     PromptSetActiveGroupThisFrame(Group, pName)
     local Menu    = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Settings)
     local Invent  = Citizen.InvokeNative(0xC92AC953F0A982AE, Prompt_Invent)
