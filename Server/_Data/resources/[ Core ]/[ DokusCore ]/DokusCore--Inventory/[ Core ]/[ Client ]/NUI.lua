@@ -49,6 +49,8 @@ RegisterNUICallback("drop", function(Data)
       IsPickingUpItem = false
     else
       IsPickingUpItem = false
+      CloseInv()
+      CreateLog("Inventory", "Duplication", "User tried to drop a dublicated item!")
       NoteObjective("System", "Duplication glitch detected, inventory is restored!", 'Horn', 10000)
     end
   else

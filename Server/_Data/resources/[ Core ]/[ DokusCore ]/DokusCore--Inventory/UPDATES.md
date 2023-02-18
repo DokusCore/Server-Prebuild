@@ -2,6 +2,15 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v2.3.0
+--------------------------------------------------------------------------------
+- Fixed: Inventory closes automatically when a duplicate glitch is found. Now
+  also a log is created into the database alerting the admins of the users action.
+- Added: A couple more items to the inventory to support the new plugins and
+  converted plugins in DokusCore.
+- Changed: Increased the gold nuggets item size in the inventory
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v2.2.3
 --------------------------------------------------------------------------------
 - Added: Added items for the converted fishing plugin

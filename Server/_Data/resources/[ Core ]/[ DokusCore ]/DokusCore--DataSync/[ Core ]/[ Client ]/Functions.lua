@@ -28,6 +28,7 @@ function SetHorseID(v)     _User.HorseID      = v Call('SetHorseID')     end
 function SetHorseName(v)   _User.HorseName    = v Call('SetHorseName')   end
 function SetHorseActive(v) _User.HorseActive  = v Call('SetHorseActive') end
 
+
 -- NOTE: DEPRECATED--  Need to be removed from all plugins
 function SetBankMoney(v)  _User.BankMoney   = v Call('SetBankMoney')   end
 function SetBankGold(v)   _User.BankGold    = v Call('SetBankGold')    end
@@ -51,7 +52,8 @@ function UserInGame() return _User.UserInGame end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
-
+function SetInArea(Data) TriggerEvent('DokusCore:Sync:Set:In:Zone', Data) end
+function SetOutArea() TriggerEvent('DokusCore:Sync:Set:Out:Zone') end
 
 
 

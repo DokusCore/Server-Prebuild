@@ -105,7 +105,7 @@ body {
 
 .container .shop .inner-container .slot-container {
     margin: -10px auto -10px auto;
-    padding: 5px 0 0 0;
+    padding: 15px 0 0 0;
     height: 286px;
     width: 286px;
     display: flex;
@@ -281,7 +281,7 @@ body {
 .quantity:hover {
     transform: scale(1.05);
   }
-  
+
 .quantity .number {
     -webkit-appearance: none;
     border: none;
@@ -291,7 +291,7 @@ body {
     font-size: 0.85vw;
     color: rgba(255, 255, 255, 0.8);
 }
-   
+
 .btnquantity {
 	text-align: center;
   width: 30px;
@@ -311,7 +311,7 @@ body {
 
 .plus-btn img{
   width: 80%;
-	 
+
 }
 
 @keyframes pulse1 {

@@ -9,6 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.addEventListener("message", function(event) {
   var Data = event.data
+  var Custom = event.data.IsCustom
+
+  if (Custom) {
+    $(".Switch1").hide();
+    $(".Switch2").hide();
+  };
+
   if (Data.Display == true) {
     if (Data.Type == 'Buy') {
       aType = false

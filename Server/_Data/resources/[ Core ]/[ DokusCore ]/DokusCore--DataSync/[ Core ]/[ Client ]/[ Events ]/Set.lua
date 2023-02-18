@@ -22,6 +22,8 @@ RegisterNetEvent('DokusCore:Sync:Set:UserData', function(a)
   if (Low(a[1]) == 'horseid')      then SetHorseID(a[2][1])     end
   if (Low(a[1]) == 'horsename')    then SetHorseName(a[2][1])   end
   if (Low(a[1]) == 'horseactive')  then SetHorseActive(a[2][1]) end
+  if (Low(a[1]) == 'InArea')       then SetInArea(a[2][1])      end
+  if (Low(a[1]) == 'OutArea')      then SetOutArea(a[2][1])     end
 
   -- NOTE: Need to be removed from all plugins.
   if (Low(a[1]) == 'setcharmoney') then SetCharMoney(a[2][1])   end

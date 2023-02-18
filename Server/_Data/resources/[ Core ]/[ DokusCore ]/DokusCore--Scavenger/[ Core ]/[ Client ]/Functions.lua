@@ -79,13 +79,52 @@ function GetReward()
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+function RockCoords(PedID)
+    while (InRangeMining) do Wait(1)
+        local X, Y
+        math.randomseed(GetGameTimer())
+        local modX = math.random(-12, 12)
+        math.randomseed(GetGameTimer())
+        local modY = math.random(-12, 12)
+        for k, v in pairs(_Scavenger.Mining.Locations) do
+          if (GetDistance(v.Coords) <= v.Range) then
+            X = v.Coords.x + modX
+            Y = v.Coords.y + modY
+          end
+        end
 
+        local Z      = GetCoordZ(X, Y)
+        local Coords = vector3(X, Y, Z)
+        return Coords
+    end
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+function GetCoordZ(x, y)
+  for height = 1, 1000 do
+		local foundGround, groundZ = GetGroundZAndNormalFor_3dCoord(x, y, (height - 50) + 0.0)
+		if foundGround then return groundZ end
+	end
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-
+function SpawnRocks(PedID)
+  for k,v in pairs(_Scavenger.Mining.Locations) do
+    local Dist = GetDistance(GetCoords(PedID))
+    if (Dist <= v.Range) then
+      while (InRangeMining) do Wait(100)
+        if (SpawnedRocks < v.MaxRocks) then
+          local Coords = RockCoords(PedID)
+          local Rock = CreateObject(GetHashKey('roa_rock_scree_sim_02'), Coords, false, false, false)
+          PlaceObjectOnGroundProperly(Rock)
+          FreezeEntityPosition(Rock, true)
+          Tabi(Rocks, Rock)
+          SpawnedRocks = (SpawnedRocks + 1)
+        end
+    	end
+    end
+  end
+end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

@@ -27,211 +27,276 @@ function SYS(Obj)
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function Open(Type) TriggerEvent('DokusCore:Stores:OpenStore', Type) end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetInArea()
-  InArea = true
-  TriggerEvent('DokusCore:Stores:CheckDistStore')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetOutArea()
-  ShowPrompt = false
-  SetNuiFocus(false, false)
-  local Txt = RandomDialog(MSG('ExitStore'))
-  local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
-  ShowPrompt = true
-  InArea, Loc = false, nil
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetInStore()
-  ShowPrompt = false
-  SetNuiFocus(false, false)
-  local Txt = RandomDialog(MSG('EnterStore'))
-  local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
-  ShowPrompt = true
-  InStore = true
-  TriggerEvent('DokusCore:Stores:CheckDistNPC')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetOutStore()
-  InStore = false
-  Array = {}
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetNearNPC()
-  NearNPC = true
-  TriggerEvent('DokusCore:Stores:ShowPrompt')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetFarNPC()
-  NearNPC = false
-  StoreInUse = false
-  Prompt, PromptGroup = nil, GetRandomIntInRange(0, 0xffffff)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function PromptKey(Lang)
-  CreateThread(function()
-    local str = MSG("ButtonBuy").MSG
-    Prompt_Buy = PromptRegisterBegin()
-    PromptSetControlAction(Prompt_Buy, _Keys['E'])
-    str = CreateVarString(10, 'LITERAL_STRING', str)
-    PromptSetText(Prompt_Buy, str)
-    PromptSetEnabled(Prompt_BuyPrompt_Buy, true)
-    PromptSetVisible(Prompt_Buy, true)
-    PromptSetHoldMode(Prompt_Buy, true)
-    PromptSetGroup(Prompt_Buy, PromptGroup)
-    PromptRegisterEnd(Prompt_Buy)
-
-    local str = MSG("ButtonSell").MSG
-    Prompt_Sell = PromptRegisterBegin()
-    PromptSetControlAction(Prompt_Sell, _Keys['F'])
-    str = CreateVarString(10, 'LITERAL_STRING', str)
-    PromptSetText(Prompt_Sell, str)
-    PromptSetEnabled(Prompt_Sell, true)
-    PromptSetVisible(Prompt_Sell, true)
-    PromptSetHoldMode(Prompt_Sell, true)
-    PromptSetGroup(Prompt_Sell, PromptGroup)
-    PromptRegisterEnd(Prompt_Sell)
-
-    local str = MSG("ButtonMan").MSG
-    Prompt_Manage = PromptRegisterBegin()
-    PromptSetControlAction(Prompt_Manage, _Keys['X'])
-    str = CreateVarString(10, 'LITERAL_STRING', str)
-    PromptSetText(Prompt_Manage, str)
-    PromptSetEnabled(Prompt_Manage, true)
-    PromptSetVisible(Prompt_Manage, true)
-    PromptSetHoldMode(Prompt_Manage, true)
-    PromptSetGroup(Prompt_Manage, PromptGroup)
-    PromptRegisterEnd(Prompt_Manage)
-  end)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function ResetStore()
-  Radar(true)
-  ShowCores(true)
-  SetNuiFocus(false, false)
-  NearNPC = false
-  StoreInUse = false
-  Prompt = nil
-  PromptGroup = GetRandomIntInRange(0, 0xffffff)
-  Array_Inv, Array_Store = {}, {}
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 function CloseStore() SetNuiFocus(false, false) end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function IndexItemDataStore()
-  local Data = TSC('DokusCore:Core:DBGet:Stores', { 'All' })
-  if (Data.Result == nil) then return end
-  for k,v in pairs(Data.Result) do
-    table.insert(Array_Store, {
-      Item = v.Item,
-      Name = v.Name,
-      Type = v.Type,
-      Desc = v.Description,
-      Buy  = v.Buy
-    })
+function SetBlips()
+  for k,v in pairs(_Stores.General) do
+    if (v.Enabled) then
+      Tabi(Blips, SetBlip(v.Coords, v.BlipHash, 1.0, v.NPCName))
+    end
+  end
+
+  for k,v in pairs(_Stores.Custom) do
+    if (v.Enabled) then
+      Tabi(Blips, SetBlip(v.Coords, v.BlipHash, 1.0, v.NPCName))
+    end
   end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function IndexItemDataInv()
-  local Data  = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'All', { SteamID, CharID } })
-  local Items = TSC('DokusCore:Core:DBGet:Stores', { 'All' }).Result
-  if (Data.Result == nil) then return end
-  for k,i in pairs(Data.Result) do
-    for o,s in pairs(Items) do
-      if (Low(i.Item) == Low(s.Item)) then
-        table.insert(Array_Inv, {
-          Item = i.Item,
-          Name = s.Name,
-          Type = s.Type,
-          Desc = s.Description,
-          Sell = s.Sell
-        })
+function OpenGeneralBuyStore()
+  Radar(false)
+  StoreInUse, PausePrompts = true, true
+  Array_Store, Array_Inv = {}, {}
+  IndexItemDataGeneralStore()
+  IndexItemDataGeneralInv()
+  SetNuiFocus(true, true)
+  SendNUIMessage({
+    Type = 'Buy',
+    Display = true,
+    IsCustom = false,
+    StoreData = Array_Store,
+    ShopName = MSG("MenuBuy").MSG
+  })
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function OpenGeneralSellStore()
+  Radar(false)
+  StoreInUse, PausePrompts = true, true
+  Array_Store, Array_Inv = {}, {}
+  IndexItemDataGeneralStore()
+  IndexItemDataGeneralInv()
+  SetNuiFocus(true, true)
+  SendNUIMessage({
+    Type = 'Sell',
+    Display = true,
+    IsCustom = false,
+    StoreData = Array_Inv,
+    ShopName = MSG("MenuSell").MSG
+  })
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function OpenCustomBuyStore()
+  Radar(false)
+  StoreInUse, PausePrompts = true, true
+  Array_Store, Array_Inv = {}, {}
+  IndexItemDataCustomStore()
+  IndexItemDataCustomInv()
+  SetNuiFocus(true, true)
+  SendNUIMessage({
+    Type = 'Buy',
+    Display = true,
+    IsCustom = false,
+    StoreData = Array_Store,
+    ShopName = CustomNPCData.NPCName
+  })
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function OpenCustomSellStore()
+  Radar(false)
+  StoreInUse, PausePrompts = true, true
+  Array_Store, Array_Inv = {}, {}
+  IndexItemDataCustomStore()
+  IndexItemDataCustomInv()
+  SetNuiFocus(true, true)
+  SendNUIMessage({
+    Type = 'Sell',
+    Display = true,
+    IsCustom = false,
+    StoreData = Array_Inv,
+    ShopName = CustomNPCData.NPCName
+  })
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function ResetPrompts()
+  Prompt_Buy  = nil
+  Prompt_Sell = nil
+  Group       = GetRandomIntInRange(0, 0xffffff)
+end
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function IndexItemDataGeneralInv()
+  for k,v in pairs(_Stores.General) do
+    if (City == Low(v.City)) then
+      for k,v in pairs(v.Items) do
+        if (v.Price.Sell[1]) then
+          local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+          local Index = { 'User', 'Item', { Sync.SteamID, Sync.CharID, v.Item } }
+          local Items = TSC('DokusCore:Core:DBGet:Inventory', Index)
+          if (Items.Exist) then
+            if (Low(Items.Result[1].Item) == Low(v.Item)) then
+              table.insert(Array_Inv, {
+                Item = v.Item,
+                Name = Items.Result[1].Name,
+                Type = Items.Result[1].Type,
+                Desc = Items.Result[1].Description,
+                Sell  = v.Price.Sell[2]
+              })
+            end
+          end
+        end
       end
     end
   end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function InsertInvItem(Item, Amount)
-  TriggerServerEvent('DokusCore:Core:DBIns:Inventory', { 'User', 'InsertItem', { SteamID, CharID, 'Consumable', Item, Amount } })
-  Message('Buy', Item, Amount)
+function IndexItemDataGeneralStore()
+  for k,v in pairs(_Stores.General) do
+    if (City == Low(v.City)) then
+      -- If Items are Sync take the sync table instead.
+      if (v.Type ~= nil) then
+        for o,p in pairs(_Stores.ItemSync) do
+          if (Low(p.Type) == Low(v.Type)) then
+            for o,p in pairs(p.Items) do
+              if (p.Price.Buy[1]) then
+                local Items = TSC('DokusCore:Core:DBGet:Items', { 'Single', { p.Item } })
+                table.insert(Array_Store, {
+                  Item = p.Item,
+                  Name = Items.Result[1].Name,
+                  Type = Items.Result[1].Type,
+                  Desc = Items.Result[1].Description,
+                  Buy  = p.Price.Buy[2]
+                })
+              end
+            end
+          end
+        end
+      elseif (v.Type == nil) then
+        for k,v in pairs(v.Items) do
+          if (v.Price.Buy[1]) then
+            local Items = TSC('DokusCore:Core:DBGet:Items', { 'Single', { v.Item } })
+            table.insert(Array_Store, {
+              Item = v.Item,
+              Name = Items.Result[1].Name,
+              Type = Items.Result[1].Type,
+              Desc = Items.Result[1].Description,
+              Buy  = v.Price.Buy[2]
+            })
+          end
+        end
+      end
+    end
+  end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function AddInvItem(Item, Amount, Data)
-  TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'AddItem', { SteamID, CharID, Item, Amount, Data[1].Amount } })
-  Message('Buy', Item, Amount)
+function IndexItemDataCustomInv()
+  for k,v in pairs(CustomNPCData.Items) do
+    if (v.Price.Sell[1]) then
+      local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+      local Index = { 'User', 'Item', { Sync.SteamID, Sync.CharID, v.Item } }
+      local Items = TSC('DokusCore:Core:DBGet:Inventory', Index)
+      if (Items.Exist) then
+        if (Low(Items.Result[1].Item) == Low(v.Item)) then
+          table.insert(Array_Inv, {
+            Item = v.Item,
+            Name = Items.Result[1].Name,
+            Type = Items.Result[1].Type,
+            Desc = Items.Result[1].Description,
+            Sell  = v.Price.Sell[2]
+          })
+        end
+      end
+    end
+  end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-function DelInvItem(Item, Amount, Data)
-  TriggerServerEvent('DokusCore:Core:DBDel:Inventory', { 'User', 'Item', { SteamID, CharID, Item } })
-  Message('Sell', Item, Amount)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function SetInvItem(Item, Amount, Data)
-  TriggerServerEvent('DokusCore:Core:DBSet:Inventory', { 'User', 'RemoveItem', { SteamID, CharID, Item, Amount, Data } })
-  Message('Sell', Item, Amount)
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function IndexAllData()
-  Array_Inv, Array_Store = {}, {}
-  IndexItemDataStore()
-  IndexItemDataInv()
-end
-
-function OpenStore() IndexAllData() end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenStoreBuy()
-  ShowPrompt = false
-  local Txt = RandomDialog(MSG('MenuBuy'))
-  local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
-  StoreInUse = true
-  Array_Inv, Array_Store = {}, {}
-  IndexAllData()
-  TriggerEvent('DokusCore:Stores:OpenStore', 'Buy')
-end
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-function OpenStoreSell()
-  ShowPrompt = false
-  local Txt = RandomDialog(MSG('MenuSell'))
-  local Random = Txt[math.random(#Txt)]
-  NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000)) Wait(500)
-  Array_Inv, Array_Store = {}, {}
-  IndexAllData()
-  StoreInUse = true
-  TriggerEvent('DokusCore:Stores:OpenStore', 'Sell')
+function IndexItemDataCustomStore()
+  for k,v in pairs(CustomNPCData.Items) do
+    if (v.Price.Buy[1]) then
+      local Items = TSC('DokusCore:Core:DBGet:Items', { 'Single', { v.Item } })
+      table.insert(Array_Store, {
+        Item = v.Item,
+        Name = Items.Result[1].Name,
+        Type = Items.Result[1].Type,
+        Desc = Items.Result[1].Description,
+        Buy  = v.Price.Buy[2]
+      })
+    end
+  end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 function Message(Type, Item, Amount)
-  if (Type == 'NotEnough') then NoteObjective(SYS("Error").MSG, MSG("NotInInvent").MSG, 'Alert', Floor(MSG("NotInInvent").Time * 1000)) end
-  if (Type == 'InDev') then NoteObjective(SYS("Error").MSG, SYS("InDevelopment").MSG, 'Alert', Floor(MSG("InDevelopment").Time * 1000)) Wait(5000) end
-  if (Type == 'Buy') then NoteObjective(SYS("Success").MSG, MSG("Bought").MSG .. Amount .. " " .. Item .. "'s", 'Alert', Floor(MSG("Bought").Time * 1000)) end
-  if (Type == 'Sell') then NoteObjective(SYS("Success").MSG, MSG("Sold").MSG .. Amount .. " " .. Item .. "'s", 'Alert', Floor(MSG("Sold").Time * 1000)) end
-  if (Type == 'NoBuyMoney') then NoteObjective(SYS("Error").MSG, MSG("NoMoney").MSG, 'Alert', Floor(MSG("NoMoney").Time * 1000)) end
+  if (Type == 'NotEnough') then NoteNPCTalk(SYS("Error").MSG, MSG("NotInInvent").MSG, true, Floor(MSG("NotInInvent").Time * 1000)) end
+  if (Type == 'InDev') then NoteNPCTalk(SYS("Error").MSG, SYS("InDevelopment").MSG, true, Floor(MSG("InDevelopment").Time * 1000)) Wait(5000) end
+  if (Type == 'Buy') then NoteNPCTalk(SYS("Success").MSG, MSG("Bought").MSG .. Amount .. " " .. Item .. "'s", true, Floor(MSG("Bought").Time * 1000)) end
+  if (Type == 'Sell') then NoteNPCTalk(SYS("Success").MSG, MSG("Sold").MSG .. Amount .. " " .. Item .. "'s", true, Floor(MSG("Sold").Time * 1000)) end
+  if (Type == 'NoBuyMoney') then NoteNPCTalk(SYS("Error").MSG, MSG("NoMoney").MSG, true, Floor(MSG("NoMoney").Time * 1000)) end
 end
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
