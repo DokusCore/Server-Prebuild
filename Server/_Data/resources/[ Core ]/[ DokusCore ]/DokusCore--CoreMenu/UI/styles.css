@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+*,*:focus,*:hover{
+	outline:none;
+}
+
+body {
+	font-family: 'Tajawal', sans-serif;
+	user-select: none;
+	background: transparent;
+	display: none;
+}
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: radial-gradient(transparent, rgba(0, 0, 0, 0.85));
+}
+
+/* START BUBBLE CSS */
+
+.card {
+	border-radius: 10px;
+	background-color: transparent;
+	height: 95px;
+	width: 320px;
+	border: none;
+}
+
+.card-body {
+	background-color: rgba(27, 93, 243, 1);
+	color: #fff;
+	font-size: 15px;
+	font-weight: 500;
+	border-radius: 50px;
+	vertical-align: middle;
+	font-weight: 600;
+	border: 5px solid rgba(212, 66, 61, 0.8);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+	font-size: 20px;
+}
+
+/* END BUBBLE CSS */
+
+/* START OPTIONS MENU */
+
+.options {
+	/*display: none;*/
+	position: absolute;
+	left: 50%;
+	top: 70%;
+	transform: translate(-50%, -50%);
+}
+
+.btn-nextinterface {
+	position: absolute;
+	left: 70%;
+	top: 92%;
+	transform: translate(-50%, -50%);
+	border: 5px solid rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.btn-nextinterface:hover {
+	/* background: rgba(175, 175, 175, 1); */
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(175, 175, 175, 1);
+	background: rgba(235, 183, 52, 0.3);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+.btn-closeinterface {
+	position: absolute;
+	left: 50%;
+	top: 92%;
+	transform: translate(-50%, -50%);
+	border: 5px solid rgba(175, 175, 175, 1);
+	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
+	background-color: rgba(50, 50, 50, 0.4);
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.btn-closeinterface:hover {
+	background: rgba(175, 175, 175, 1);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(175, 175, 175, 1);
+}
+
+.btn-backinterface {
+	position: absolute;
+	left: 30%;
+	top: 92%;
+	transform: translate(-50%, -50%);
+	border: 5px solid rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 5px 0px rgba(175, 175, 175, 1);
+	background-color: rgba(255, 204, 153, 0.4);
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.btn-backinterface:hover {
+	background: rgba(235, 183, 52, 0.3);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(175, 175, 175, 1);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+/* END OPTIONS MENU */
+
+/* START NPC NAME MENU */
+
+.npc-name {
+	/*display: none;*/
+	position: absolute;
+	left: 50%;
+	top: 15%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 55px;
+	font-weight: 700;
+}
+
+/* END NPC NAME MENU */
+
+/* START DIALOG BOX */
+
+.dialogbox {
+	position: absolute;
+	right: 18%;
+	top: 33.5%;
+	transform: translate(-50%, 50%);
+}
+
+.card.arrow-left:after {
+	content: "";
+	position: absolute;
+	left: -7px;
+	top: 27.2px;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+	width: 40px;
+	height: 40px;
+	background: rgba(0, 0, 0, 0.5);
+	transform: rotate(45deg);
+}
+
+/* END DIALOG BOX */
+
+.btn {
+	font-weight: 600;
+}
+
+.btn:hover {
+	color: #fff;
+}
+
+.btn:focus {
+	box-shadow: none;
+}
+
+/* START BUTTON 1 */
+
+.btn-diagonal1::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: skew(-18deg);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 0.8);
+	z-index: -1;
+	transition: 0.25s;
+	border-radius: .25rem;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
+.btn-diagonal1 {
+	position: relative;
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	margin-left: 14px;
+}
+
+.btn-diagonal1:hover::before {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+/* END BUTTON 1 */
+
+/* START BUTTON 2 */
+
+.btn-diagonal2::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: skew(18deg);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 0.8);
+	z-index: -1;
+	transition: 0.25s;
+	border-radius: .25rem;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
+.btn-diagonal2 {
+	position: relative;
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	margin-right: 14px;
+}
+
+.btn-diagonal2:hover::before {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+/* END BUTTON 2 */
+
+/* START NORMAL BUTTON */
+
+.btn-diagonalnormal {
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 0.8);
+	color: #fff;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
+.btn-diagonalnormal:hover {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+/* END NORMAL BUTTON */
+
+/* START BUTTON 5 */
+
+.btn-diagonal5::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: skew(18deg);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 0.8);
+	z-index: -1;
+	transition: 0.25s;
+	border-radius: .25rem;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
+.btn-diagonal5 {
+	position: relative;
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	margin-left: 14px;
+}
+
+.btn-diagonal5:hover::before {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+/* END BUTTON 5 */
+
+/* START BUTTON 6 */
+
+.btn-diagonal6::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: skew(-18deg);
+	background-color: rgba(255, 204, 153, 0.4);
+	border: 5px solid rgba(212, 66, 61, 0.8);
+	z-index: -1;
+	transition: 0.25s;
+	border-radius: .25rem;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+}
+
+.btn-diagonal6 {
+	position: relative;
+	padding: 10px 35px;
+	height: 80px;
+	width: 275px;
+	color: #fff;
+	margin-right: 14px;
+}
+
+.btn-diagonal6:hover::before {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+	border: 5px solid rgba(164, 245, 66, 0.8);
+}
+
+/* END BUTTON 6 */

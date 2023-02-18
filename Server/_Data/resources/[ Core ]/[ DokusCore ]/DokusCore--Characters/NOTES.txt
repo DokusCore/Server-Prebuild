@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+---------------------------------- DokusCore -----------------------------------
+--------------------------------------------------------------------------------
+-- https://github.com/DokusCore/DokusCore--Skins
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+NOTE: This plugin needs extensive testing!
+------------------------------------------
+This plugin is quite extensive using the in game cameras to give you more of an
+immersive experience, this also brings a lot of complexity what can introduce
+bugs that I've not found. May you find anything that is not right, please report
+back to us in our Discord https://discord.io/dokuscore
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+NOTE: You can logout and switch to a character you already have made, currently
+you're unable logout to create a new character. This has to do with an issue
+with the skins plugin, more information in the NOTES file of the skin creator.
+We are investigating the issue and release a patch in a later version.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+BUG: When logging out back to the campsite, sometimes the menu will not show
+all 3 character slots ( this only happens when they are empty ). You will see
+all your made characters, but not always al empty slots. We are investigating
+the issue and release a patch soon.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

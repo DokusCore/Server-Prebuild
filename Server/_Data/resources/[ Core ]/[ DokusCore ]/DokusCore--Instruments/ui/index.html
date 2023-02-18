@@ -1,0 +1,251 @@
+<html>
+	<head>
+		<title>Piano</title>
+		<script src="MIDI.js/inc/shim/Base64.js"></script>
+		<script src="MIDI.js/inc/shim/Base64binary.js"></script>
+		<script src="MIDI.js/inc/shim/WebAudioAPI.js"></script>
+		<script src="MIDI.js/inc/shim/WebMIDIAPI.js"></script>
+		<script src="MIDI.js/inc/jasmid/stream.js"></script>
+		<script src="MIDI.js/inc/jasmid/midifile.js"></script>
+		<script src="MIDI.js/inc/jasmid/replayer.js"></script>
+		<script src="MIDI.js/js/midi/audioDetect.js"></script>
+		<script src="MIDI.js/js/midi/gm.js"></script>
+		<script src="MIDI.js/js/midi/loader.js"></script>
+		<script src="MIDI.js/js/midi/loader.js"></script>
+		<script src="MIDI.js/js/midi/plugin.audiotag.js"></script>
+		<script src="MIDI.js/js/midi/plugin.webaudio.js"></script>
+		<script src="MIDI.js/js/midi/plugin.webmidi.js"></script>
+		<script src="MIDI.js/js/midi/player.js"></script>
+		<script src="MIDI.js/js/util/dom_request_xhr.js"></script>
+		<script src="MIDI.js/js/util/dom_request_script.js"></script>
+		<script src="metronome.js"></script>
+		<script src="https://kit.fontawesome.com/5537a772c3.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<div id="ui">
+			<div id="interactions">
+				<button id="help-button">
+					<i class="fas fa-question"></i>
+				</button>
+				<span>Interaction:</span>
+				<select id="interaction"></select>
+				<button id="start-interaction">Start</button>
+				<button id="stop-interaction">Stop</button>
+			</div>
+			<div id="midi-player">
+				<input id="url" type="text" placeholder="Enter MIDI URL...">
+				<div id="time">00:00:00/00:00:00</div>
+				<button id="play">
+					<i class="fas fa-play"></i>
+				</button>
+				<button id="stop">
+					<i class="fas fa-stop"></i>
+				</button>
+				<button id="record">
+					<i class="fas fa-circle"></i>
+				</button>
+				<button id="erase">
+					<i class="fas fa-eraser"></i>
+				</button>
+			</div>
+			<div id="settings">
+				<span>CH:</span>
+				<input id="channel" type="number" min="0" max="15" step="1">
+				<select id="instrument"></select>
+				<span>Octave:</span>
+				<input id="octave" type="number" min="1" max="6" step="1">
+				<span>Transpose:</span>
+				<input id="transpose" type="number" min="-127" max="127" step="1">
+				<span>Chords:</span>
+				<select id="chords">
+					<option value="off">Off</option>
+					<option value="partial">Partial</option>
+					<option value="full">Full</option>
+				</select>
+				<button id="metronome">
+					<i class="fas fa-clock"></i>
+				</button>
+				<span>BPM:</span>
+				<input id="tempo" type="number" min="30" max="400" step="10">
+			</div>
+			<div id="keyboard" tabindex="0">
+				<svg viewBox="0 0 1680 400">
+					<g>
+						<g>
+							<rect id="key-C1" class="piano-key white-key" data-note="C" data-octave="0" x="0" y="0" width="80" height="400"/>
+							<rect id="key-D1" class="piano-key white-key" data-note="D" data-octave="0" x="80" y="0" width="80" height="400"/>
+							<rect id="key-E1" class="piano-key white-key" data-note="E" data-octave="0" x="160" y="0" width="80" height="400"/>
+							<rect id="key-F1" class="piano-key white-key" data-note="F" data-octave="0" x="240" y="0" width="80" height="400"/>
+							<rect id="key-G1" class="piano-key white-key" data-note="G" data-octave="0" x="320" y="0" width="80" height="400"/>
+							<rect id="key-A1" class="piano-key white-key" data-note="A" data-octave="0" x="400" y="0" width="80" height="400"/>
+							<rect id="key-B1" class="piano-key white-key" data-note="B" data-octave="0" x="480" y="0" width="80" height="400"/>
+							<rect id="key-Db1" class="piano-key black-key" data-note="Db" data-octave="0" x="60" y="0" width="40" height="280"/>
+							<rect id="key-Eb1" class="piano-key black-key" data-note="Eb" data-octave="0" x="140" y="0" width="40" height="280"/>
+							<rect id="key-Gb1" class="piano-key black-key" data-note="Gb" data-octave="0" x="300" y="0" width="40" height="280"/>
+							<rect id="key-Ab1" class="piano-key black-key" data-note="Ab" data-octave="0" x="380" y="0" width="40" height="280"/>
+							<rect id="key-Bb1" class="piano-key black-key" data-note="Bb" data-octave="0" x="460" y="0" width="40" height="280"/>
+						</g>
+						<g transform="translate(560.000000, 0.000000)">
+							<rect id="key-C2" class="piano-key white-key" data-note="C" data-octave="1" x="0" y="0" width="80" height="400"/>
+							<rect id="key-D2" class="piano-key white-key" data-note="D" data-octave="1" x="80" y="0" width="80" height="400"/>
+							<rect id="key-E2" class="piano-key white-key" data-note="E" data-octave="1" x="160" y="0" width="80" height="400"/>
+							<rect id="key-F2" class="piano-key white-key" data-note="F" data-octave="1" x="240" y="0" width="80" height="400"/>
+							<rect id="key-G2" class="piano-key white-key" data-note="G" data-octave="1" x="320" y="0" width="80" height="400"/>
+							<rect id="key-A2" class="piano-key white-key" data-note="A" data-octave="1" x="400" y="0" width="80" height="400"/>
+							<rect id="key-B2" class="piano-key white-key" data-note="B" data-octave="1" x="480" y="0" width="80" height="400"/>
+							<rect id="key-Db2" class="piano-key black-key" data-note="Db" data-octave="1" x="60" y="0" width="40" height="280"/>
+							<rect id="key-Eb2" class="piano-key black-key" data-note="Eb" data-octave="1" x="140" y="0" width="40" height="280"/>
+							<rect id="key-Gb2" class="piano-key black-key" data-note="Gb" data-octave="1" x="300" y="0" width="40" height="280"/>
+							<rect id="key-Ab2" class="piano-key black-key" data-note="Ab" data-octave="1" x="380" y="0" width="40" height="280"/>
+							<rect id="key-Bb2" class="piano-key black-key" data-note="Bb" data-octave="1" x="460" y="0" width="40" height="280"/>
+						</g>
+						<g transform="translate(1120.000000, 0.000000)">
+							<rect id="key-C3" class="piano-key white-key" data-note="C" data-octave="2" x="0" y="0" width="80" height="400"/>
+							<rect id="key-D3" class="piano-key white-key" data-note="D" data-octave="2" x="80" y="0" width="80" height="400"/>
+							<rect id="key-E3" class="piano-key white-key" data-note="E" data-octave="2" x="160" y="0" width="80" height="400"/>
+							<rect id="key-F3" class="piano-key white-key" data-note="F" data-octave="2" x="240" y="0" width="80" height="400"/>
+							<rect id="key-G3" class="piano-key white-key" data-note="G" data-octave="2" x="320" y="0" width="80" height="400"/>
+							<rect id="key-A3" class="piano-key white-key" data-note="A" data-octave="2" x="400" y="0" width="80" height="400"/>
+							<rect id="key-B3" class="piano-key white-key" data-note="B" data-octave="2" x="480" y="0" width="80" height="400"/>
+							<rect id="key-Db3" class="piano-key black-key" data-note="Db" data-octave="2" x="60" y="0" width="40" height="280"/>
+							<rect id="key-Eb3" class="piano-key black-key" data-note="Eb" data-octave="2" x="140" y="0" width="40" height="280"/>
+							<rect id="key-Gb3" class="piano-key black-key" data-note="Gb" data-octave="2" x="300" y="0" width="40" height="280"/>
+							<rect id="key-Ab3" class="piano-key black-key" data-note="Ab" data-octave="2" x="380" y="0" width="40" height="280"/>
+							<rect id="key-Bb3" class="piano-key black-key" data-note="Bb" data-octave="2" x="460" y="0" width="40" height="280"/>
+						</g>
+						<g>
+							<text class="piano-key-label white-key" x="40" y="350" width="80" height"100">Z</text>
+							<text class="piano-key-label white-key" x="120" y="350" width="80" height"100">X</text>
+							<text class="piano-key-label white-key" x="200" y="350" width="80" height"100">C</text>
+							<text class="piano-key-label white-key" x="280" y="350" width="80" height"100">V</text>
+							<text class="piano-key-label white-key" x="360" y="350" width="80" height"100">B</text>
+							<text class="piano-key-label white-key" x="440" y="350" width="80" height"100">N</text>
+							<text class="piano-key-label white-key" x="520" y="350" width="80" height"100">M</text>
+							<text class="piano-key-label black-key" x="80" y="200" width="80" height"100">S</text>
+							<text class="piano-key-label black-key" x="160" y="200" width="80" height"100">D</text>
+							<text class="piano-key-label black-key" x="320" y="200" width="80" height"100">G</text>
+							<text class="piano-key-label black-key" x="400" y="200" width="80" height"100">H</text>
+							<text class="piano-key-label black-key" x="480" y="200" width="80" height"100">J</text>
+						</g>
+						<g transform="translate(560.000000, 0.000000)">
+							<text class="piano-key-label white-key" x="40" y="350" width="80" height"100">,</text>
+							<text class="piano-key-label white-key" x="120" y="350" width="80" height"100">.</text>
+							<text class="piano-key-label white-key" x="200" y="350" width="80" height"100">/</text>
+							<text class="piano-key-label white-key" x="280" y="350" width="80" height"100">Q</text>
+							<text class="piano-key-label white-key" x="360" y="350" width="80" height"100">W</text>
+							<text class="piano-key-label white-key" x="440" y="350" width="80" height"100">E</text>
+							<text class="piano-key-label white-key" x="520" y="350" width="80" height"100">R</text>
+							<text class="piano-key-label black-key" x="80" y="200" width="80" height"100">L</text>
+							<text class="piano-key-label black-key" x="160" y="200" width="80" height"100">;</text>
+							<text class="piano-key-label black-key" x="320" y="200" width="80" height"100">2</text>
+							<text class="piano-key-label black-key" x="400" y="200" width="80" height"100">3</text>
+							<text class="piano-key-label black-key" x="480" y="200" width="80" height"100">4</text>
+						</g>
+						<g transform="translate(1120.000000, 0.000000)">
+							<text class="piano-key-label white-key" x="40" y="350" width="80" height"100">T</text>
+							<text class="piano-key-label white-key" x="120" y="350" width="80" height"100">Y</text>
+							<text class="piano-key-label white-key" x="200" y="350" width="80" height"100">U</text>
+							<text class="piano-key-label white-key" x="280" y="350" width="80" height"100">I</text>
+							<text class="piano-key-label white-key" x="360" y="350" width="80" height"100">O</text>
+							<text class="piano-key-label white-key" x="440" y="350" width="80" height"100">P</text>
+							<text class="piano-key-label white-key" x="520" y="350" width="80" height"100">[</text>
+							<text class="piano-key-label black-key" x="80" y="200" width="80" height"100">6</text>
+							<text class="piano-key-label black-key" x="160" y="200" width="80" height"100">7</text>
+							<text class="piano-key-label black-key" x="320" y="200" width="80" height"100">9</text>
+							<text class="piano-key-label black-key" x="400" y="200" width="80" height"100">0</text>
+							<text class="piano-key-label black-key" x="480" y="200" width="80" height"100">-</text>
+						</g>
+					</g>
+				</svg>
+			</div>
+			<button id="close">Close</button>
+		</div>
+		<div id="help">
+			<h1>Instruments Help</h1>
+			<div id="help-content">
+				<h2>Controls</h2>
+				<table>
+					<tr>
+						<td class="control">~</td>
+						<td>Cycle chord mode</td>
+					</tr>
+					<tr>
+						<td class="control">g</td>
+						<td>Minor chord</td>
+					</tr>
+					<tr>
+						<td class="control">c</td>
+						<td>Diminished chord</td>
+					</tr>
+					<tr>
+						<td class="control">\</td>
+						<td>Record</td>
+					</tr>
+					<tr>
+						<td class="control">vu</td>
+						<td>+/- Octave</td>
+					</tr>
+					<tr>
+						<td class="control">jl</td>
+						<td>+/- Semitone</td>
+					</tr>
+					<tr>
+						<td class="control">ik</td>
+						<td>+/- Channel</td>
+					</tr>
+					<tr>
+						<td class="control">w</td>
+						<td>Play MIDI/recording</td>
+					</tr>
+					<tr>
+						<td class="control">h</td>
+						<td>Metronome</td>
+					</tr>
+				</table>
+				<h2>Interaction options</h2>
+				<p>To interact with an instrument object, select the instrument you want from the <strong>Interaction:</strong> drop-down list, and then click <strong>Start</strong>.</p>
+				<p>To stop interacting with the current instrument, click <strong>Stop</strong>.</p>
+				<h2>MIDI playback and recording options</h2>
+				<p>You can use a MIDI file as input by entering a URL to a MIDI file in the <strong>Enter MIDI URL...</strong> field and clicking the play <i class="fas fa-play"></i> button. To stop MIDI playback, click the stop <i class="fas fa-stop"></i> button.</p>
+				<p>You can also record your inputs and then play them back. To start recording, press the record <i class="fas fa-circle"></i> button. The button turns red when recording is in progress. To stop recording, press the record button again or the stop button.</p>
+				<p>If you hit record again after recording something, the first recording will be played back when a key is pressed, or when the play button is pressed. The second recording will combine the first recording and any new inputs.</p>
+				<p>To erase your recording and start fresh, click the erase <i class="fas fa-eraser"></i> button.</p>
+				<h2>General settings</h2>
+				<h3>Channel</h3>
+				<p>There are 16 channels players can use, corresponding to the 16 MIDI channels. Each channel can only be assigned one instrument at a time, so multiple in the same area players with different instruments should each choose a different channel to play on. To change the current channel, use the <strong>CH:</strong> field, or press <span class="control">i</span> and <span class="control">k</span>.</p>
+				<h3>Instrument</h3>
+				<p>The instrument drop-down list lets you choose which MIDI instrument to use when playing notes. Interactions with instrument objects will set this to a default instrument (for example, <strong>guitar</strong> will set <strong>acoustic_guitar_nylon</strong>), but you are free to choose any of the available instruments.</p>
+				<h3>Octave</h3>
+				<p>The <strong>Octave:</strong> field sets the base octave of the keyboard. For example, if this is set to <strong>3</strong>, then the first key on the keyboard will be C3.</p>
+				<p>You can also change octaves using <span class="control">v</span> and <span class="control">u</span>.</p>
+				<h3>Transpose</h3>
+				<p>The <strong>Transpose:</strong> field sets the number of semitones to transpose notes by.</p>
+				<p>You can also change the transposition using <span class="control">j</span> and <span class="control">l</span>.</p>
+				<h3>Chords</h3>
+				<p>The chord modes allow you to play a chord with a single key. For example, pressing <span class="control">Z</span>, which corresponds to C, will produce a C major chord.</p>
+				<p>The <strong>Chords:</strong> drop-down list selects between different chord modes:
+					<ul>
+						<li><strong>Off</strong>: Each key acts normally, producing a single note.</li>
+						<li><strong>Partial</strong>: The keys on the first octave of the keyboard act as chords.</li>
+						<li><strong>Full</strong>: All keys on the keyboard act as chords, with different octaves producing different variations.</li>
+					</ul>
+				</p>
+				<p>The <span class="control">g</span> and <span class="control">c</span> keys allow playing minor and diminished versions of chords respectively. For example:
+					<ul>
+						<li><span class="control">Z</span>: C major</li>
+						<li><span class="control">gZ</span>: C minor</li>
+						<li><span class="control">cZ</span>: C diminished</li>
+					</ul>
+				</p>
+				<h3>Metronome</h3>
+				<p>To turn the metronome on/off, click the metronome <i class="fas fa-clock"></i> button, or press <span class="control">h</span>.</p>
+				<p>To set the tempo of the metronome, adjust the <strong>BPM:</strong> field.</p>
+			</div>
+			<div id="help-menu-controls">
+				<button id="close-help">Close</button>
+			</div>
+		</div>
+	</body>
+</html>

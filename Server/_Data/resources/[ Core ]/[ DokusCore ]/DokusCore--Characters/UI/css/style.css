@@ -1,0 +1,186 @@
+
+@font-face
+{
+    font-family: 'crock';
+    font-style: normal;
+    src: url('../font/crock.ttf') format('truetype');
+}
+
+@font-face
+{
+    font-family: 'robotoslab';
+    font-style: normal;
+    src: url('../font/robotoslab.ttf') format('truetype');
+}
+
+
+* {
+    font-family: 'crock';
+    user-select: none;
+    overflow: none;
+	text-overflow: ellipsis;
+}
+
+body{
+	overflow: hidden;
+  display: none;
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+#logo {
+	z-index:1;
+}
+
+.container{
+	position:absolute;
+	width: 35vh;
+	min-height: 40vh;
+	left: 3%;
+	top: 25%;
+	background: url('../img/bg.png');
+	background-size: 100% 100%;
+
+	color:white;
+}
+
+.header-text{
+	width: 88%;
+	height: 7vh;
+	font-size:1.5em;
+	display: flex;
+	background: url(../img/menu_header_1a.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	margin: 2.5vh 2vh 1vh 2vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.description-text{
+    font-family: 'robotoslab';
+	font-size: 0.8em;
+	width: 100%;
+	text-align: center;
+}
+
+.main{
+	width:85%;
+	height: 40%;
+	margin: 1vh 2.5vh;
+	margin-top: 20px;
+
+}
+
+.bottom-line {
+	width: 100%;
+	height: 3px;
+	background: url(../img/line-bottom.png);
+	background-size: 85%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.empty{
+	width: 100%;
+	height: 5vh;
+	background: url(../img/bg_input.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	border-radius: 5px;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.4;
+}
+
+.char{
+	width: 100%;
+	height: 5vh;
+	background: url(../img/bg_input.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	border-radius: 5px;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.char:hover, .empty:hover{
+	background-image: url(../img/border_input.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity: 1;
+}
+
+.selected {
+	background-image: url(../img/border_input.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.enter-world{
+	margin:2.5vh 0;
+
+	width: 100%;
+	height: 6vh;
+
+	background: url(../img/blackButton.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 90% 100%;
+
+	display:flex;
+	justify-content: center;
+	align-items: center;
+
+	opacity: 0.4;
+}
+
+.enter-world:hover{
+	background: url(../img/redButton.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 90% 100%;
+	opacity: 1;
+}
+
+#loading{
+	margin-top:40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.svelte-2gtczp{
+	width:100%;
+	height:100%;
+}
+
+div.svelte-2gtczp{
+	background-color:rgba(0, 0, 0, 0);
+	width:100%;
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.spinner.svelte-2gtczp{
+	width:10vh;
+	height:10vh;
+
+	background:url('../img/spinner.png') no-repeat center;
+	animation:svelte-2gtczp-spin 1s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+	background-size: 100%;
+}
+@keyframes svelte-2gtczp-spin{
+	from{transform:rotate(0deg)}
+	to{transform:rotate(-180deg)}}

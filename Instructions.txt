@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------
+---------------------------------- DokusCore -----------------------------------
+--------------------------------------------------------------------------------
+      Welcome to DokusCore! The core that takes quality above quantity!
+--------------------------------------------------------------------------------
+CURRENT DOKUSCORE VERSION  | v0.7.2
+CURRENT ARTIFACT VERSION   | 6282
+CURRENT REDM GAME BUILD    | 1436
+CURRENT PREBUILD VERSION   | 18022023
+DATABASE LAST UPDATED      | 18th February 2023
+DOKUSCORE LAST UPDATED:    | 18th February 2023
+PREBUILD LAST UPDATED:     | 18th February 2023
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+==========================
+Installation Instructions:
+==========================
+1: Create a folder and place the "server" folder in it.
+   This is done so when you use TXAdmin, it makes the start bat file
+   within the root folder you just have created.
+
+2: Unpack the ARTIFACTS.rar in the same folder. After extraction you can
+   delete the rar archive file. If the prebuild is downloaded from Github,
+   you have to add the artifacts manually yourself. For the full package you
+   can download the prebuild from our Discord server.
+
+3: Go to the _Data folder and edit the .cfg files.
+   The most important files are the Credentionals and the License files.
+   The Admin.cfg is ONLY used to give admins the ability to start/stop or
+   restart plugins within the F8 console. All other admin commands are done
+   directly via DokusCore and you set this on the character in the database.
+
+4: Insert the database file into your database.
+
+5: Edit the DokusCore.bat file and set the path to your own file path.
+   If you do not want to start with out TXAdmin then simply start the serve
+   via the FXServer.exe and follow it's instructions. After setup it creates
+   the start.bat file in the root folder you created.
+--------------------------------------------------------------------------------
+And that is it!! No need to spend hours upon hours installing plugins and fixing
+then as everything is pre-installed and up to date. Plug and play :D
+--------------------------------------------------------------------------------
+
+==========================
+Extra Information:
+==========================
+* DokusCore is up to date with the latest FXServer (Artifacts) files that are
+  required for TXAdmin. You do NOT need to update these files!
+  If you update the artifacts, keep in mind plugins can break. Always test your
+  server locally before pushing the new artifact version to your live server.
+  All testing is already done for the prebuild so you do not need to.
+
+* All plugin config files are located in the core itself, these you can find
+  in the [ Configs ]/[ Modules ] folder. All options that are build strait into
+  DokusCore itself you can find in [ Configs ]/[ Core ] folder.
+
+* Make sure that DokusCore is stopped and restarted in the resources file
+  after all DokusCore plugins have been loaded. This ensures that you do not
+  fall into the errors of failing to load dependencies files when people are
+  loading into yoru server. If the core is not restarted at the end, plugins
+  that depend on the core may break.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+I hope you enjoy your gameplay, and thanks for choosing DokusCore :D
+--------------------------------------------------------------------------------

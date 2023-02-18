@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+---------------------------------- DokusCore -----------------------------------
+--------------------------------------------------------------------------------
+-- https://github.com/DokusCore/DokusCore--Spawner
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+NOTE: This plugin needs extensive testing!
+------------------------------------------
+This plugin is quite extensive using the in game cameras to give you more of an
+immersive experience, this also brings a lot of complexity what can introduce
+bugs that I've not found. May you find anything that is not right, please report
+back to us in our Discord https://discord.io/dokuscore
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+#bg {transition: all 0.5s ease-in-out; opacity: 0;}
+#panel {transition: all 0.5s ease-in-out; transform: translateX(100%);}
+#bg.show { opacity: 0.5; }
+#panel.show { transform: translateX(0) }
+
+#player-selected, #no-player-selected { transform: all 0.1s ease-in-out; margin-top: 10px;}
+.hide { opacity: 0; display: none; }
+
+::-webkit-scrollbar { width: 8px;}
+::-webkit-scrollbar-track { background: #00000000; }
+::-webkit-scrollbar-thumb { background: #5360d142; }
+::-webkit-scrollbar-thumb:hover { background: #5360d15e; }
+
+#modal-bg, #modal {transition: all 0.3s ease-in-out; opacity: 1;}
+#modal {transform: translateY(0%);}
+#modal-div.hide {display: none;}
+#modal-bg.hide{opacity: 0; display: none;}
+#modal.hide {transform: translateY(4%); opacity: 1; display: none;}
+#modal-icon-info.hide, #modal-icon-warning.hide, #modal-danger-info.hide { display: none; }
+
+#gif-slap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15%;
+}
+
+#gif-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}

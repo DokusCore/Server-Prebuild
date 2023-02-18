@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+---------------------------------- DokusCore -----------------------------------
+--------------------------------------------------------------------------------
+-- https://github.com/DokusCore/DokusCore--Skins
+--------------------------------------------------------------------------------
+BUG: Currently you can only create one character. If you want to create the 2nd
+character you have to relog into the server. The problem is most likely the
+camera that breaks the 2nd time around, also the prompts do not want to reset.
+We're investigating this issue and it will be fixed in a later version.
+This bug does not have to be reported to us.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------

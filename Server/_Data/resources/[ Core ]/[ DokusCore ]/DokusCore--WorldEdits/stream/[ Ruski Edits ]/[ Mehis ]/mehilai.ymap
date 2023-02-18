@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<CMapData>
+    <flags value="2"/>
+    <contentFlags value="65"/>
+    <streamingExtentsMin x="-2090.760254" y="-2592.935547" z="-350.875965"/>
+    <streamingExtentsMax x="-1290.760254" y="-1792.935547" z="449.124035"/>
+    <entitiesExtentsMin x="-1690.760254" y="-2192.935547" z="49.124035"/>
+    <entitiesExtentsMax x="-1690.760254" y="-2192.935547" z="49.124035"/>
+    <entities>
+        <Item type="CEntityDef">
+            <archetypeName>s_hornetnest_01x</archetypeName>
+            <flags value="1572897"/>
+            <position x="-1690.760254" y="-2192.935547" z="49.124035"/>
+            <rotation w="0.876957" x="-0.009792" y="0.013735" z="0.480273"/>
+            <scaleXY value="1"/>
+            <scaleZ value="1"/>
+            <parentIndex value="-1"/>
+            <lodDist value="500"/>
+            <childLodDist value="500"/>
+            <lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+            <numChildren value="0"/>
+            <ambientOcclusionMultiplier value="255"/>
+            <artificialAmbientOcclusion value="255"/>
+        </Item>
+    </entities>
+</CMapData>

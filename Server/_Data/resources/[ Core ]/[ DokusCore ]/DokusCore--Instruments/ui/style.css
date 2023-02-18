@@ -1,0 +1,258 @@
+@font-face {
+	font-family: "Chinese Rocks";
+	src: url("chineserocks.ttf");
+}
+
+@font-face {
+	font-family: "212 Keyboard";
+	src: url("keyboard.ttf");
+}
+
+* {
+	font-family: inherit;
+	font-size: inherit;
+	user-select: none;
+}
+
+*:focus {
+	outline: none;
+}
+
+::selection {
+	background-color: #d00;
+}
+
+html, body {
+	background: none;
+	padding: 0;
+	margin: 0;
+	overflow: none;
+	font-family: "Chinese Rocks";
+	font-size: 2vh;
+	color: white;
+}
+
+button {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: solid 1px white;
+	font-family: "Chinese Rocks";
+}
+
+button:hover:enabled, button:focus:enabled {
+	background-color: rgba(255, 0, 0, 0.5);
+}
+
+button:active:enabled {
+	background-color: white;
+	color: black;
+}
+
+button:disabled {
+	color: #444;
+	border: solid 1px #444;
+}
+
+select {
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: solid 1px white;
+}
+
+option {
+	background-color: #000;
+}
+
+input {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: solid 1px white;
+	box-sizing: content-box;
+}
+
+input:disabled {
+	color: #444;
+	border: solid 1px #444;
+}
+
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	background: rgba(0, 0, 0, 0.5);
+	height: 1vw;
+	width: 1vw;
+	border: 1px solid white;
+	vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+	background: rgba(255, 0, 0, 0.75);
+}
+
+input[type="checkbox"]:disabled {
+	border: 1px solid #444;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	background: #000;
+	height: 0.25vh;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background: #f00;
+	width: 1vw;
+	height: 1vh;
+	transform: translate(0, -0.375vh);
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+::-webkit-scrollbar {
+	background: black;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: white;
+}
+
+#ui {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.5);
+	flex-flow: column;
+	position: absolute;
+	bottom: 1%;
+	right: 1%;
+	width: 40%;
+}
+
+.piano-key.white-key {
+	stroke: #555555;
+	fill: #FFFFF7;
+}
+
+.piano-key.black-key {
+	stroke: #979797;
+	fill: #4B4B4B;
+}
+
+.piano-key-label {
+	text-anchor: middle;
+	pointer-events: none;
+}
+
+.piano-key-label.white-key {
+	fill: black;
+}
+
+.piano-key-label.black-key {
+	fill: white;
+}
+
+#settings {
+	display: flex;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-size: 1.8vh;
+}
+
+#interactions span, #settings span {
+	border: 1px solid white;
+	padding: 0.1vh 0.1vw;
+	font-size: 1.8vh;
+}
+
+#instrument {
+	flex-grow: 1;
+}
+
+#midi-player {
+	display: flex;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-size: 1.8vh;
+}
+
+#url {
+	flex-grow: 1;
+}
+
+#time {
+	border: solid 1px white;
+	padding: 0 0.1vw;
+}
+
+#interactions {
+	display: flex;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#interaction {
+	flex-grow: 1;
+}
+
+#help {
+	display: none;
+	flex-flow: column;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	height: 60%;
+	width: 50%;
+	transform: translate(-50%, 0);
+	background-color: rgba(0, 0, 0, 0.75);
+	padding: 1vh 1vw;
+}
+
+#help-content {
+	overflow-y: auto;
+	flex-grow: 1;
+	font-family: Helvetica;
+	font-size: 1.5vh;
+}
+
+td {
+	text-align: left;
+	vertical-align: middle;
+	padding: 0.5vh 0.5vw;
+}
+
+#help-menu-controls {
+	display: flex;
+	padding: 0.5vh 0;
+}
+
+#close-help {
+	flex-grow: 1;
+}
+
+h1 {
+	color: #b00;
+	font-size: 2.5vh;
+	font-weight: normal;
+	font-family: "Chinese Rocks";
+}
+
+h2 {
+	font-size: 2vh;
+	font-weight: normal;
+	font-family: "Chinese Rocks";
+}
+
+h3 {
+	font-size: 1.7vh;
+	font-weight: normal;
+	font-family: "Chinese Rocks";
+}
+
+strong {
+	color: #b00;
+}
+
+.control {
+	font-family: "212 Keyboard";
+	font-size: 4vh;
+}

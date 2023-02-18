@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<CMapData>
+	<flags value="2"/>
+	<contentFlags value="65"/>
+	<streamingExtentsMin x="-680.326599" y="402.121765" z="-281.276512"/>
+	<streamingExtentsMax x="126.041901" y="1211.329102" z="521.081238"/>
+	<entitiesExtentsMin x="-280.326599" y="802.121765" z="118.723488"/>
+	<entitiesExtentsMax x="-273.958099" y="811.329102" z="121.081238"/>
+	<entities>
+		<Item type="CEntityDef">
+			<archetypeName>p_metalgatestd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="-273.958099" y="803.233154" z="118.822884"/>
+			<rotation w="0.643588" x="0.000000" y="-0.000000" z="-0.765372"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_metalgatestd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="-279.931335" y="811.329102" z="121.081238"/>
+			<rotation w="0.000000" x="-0.996190" y="-0.087213" z="0.000007"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_metalgatestd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="-279.848358" y="807.293274" z="118.723488"/>
+			<rotation w="0.768963" x="-0.000000" y="0.000000" z="0.639293"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_metalgatestd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="-278.618927" y="802.121765" z="118.744087"/>
+			<rotation w="0.996550" x="0.000000" y="-0.000000" z="-0.082994"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_metalgatestd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="-280.326599" y="809.964417" z="118.748756"/>
+			<rotation w="0.764815" x="-0.000000" y="0.000000" z="0.644250"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+		<Item type="CEntityDef">
+			<archetypeName>p_metalgatestd01x</archetypeName>
+			<flags value="1572897"/>
+			<position x="-279.931335" y="811.329102" z="120.740021"/>
+			<rotation w="0.000000" x="-0.996190" y="-0.087213" z="0.000007"/>
+			<scaleXY value="1"/>
+			<scaleZ value="1"/>
+			<parentIndex value="-1"/>
+			<lodDist value="500"/>
+			<childLodDist value="500"/>
+			<lodLevel>LODTYPES_DEPTH_HD</lodLevel>
+			<numChildren value="0"/>
+			<ambientOcclusionMultiplier value="255"/>
+			<artificialAmbientOcclusion value="255"/>
+		</Item>
+	</entities>
+</CMapData>
