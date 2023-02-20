@@ -74,6 +74,8 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Zones:StartZones', function()
+  while (not (FrameReady())) do Wait(1000) end
+  while (not (UserInGame())) do Wait(1000) end
   local Data = TSC('DokusCore:Core:DBGet:Zones', { 'All', 'All' })
   if (Data.Exist) then
     for k,v in pairs(Data.Result) do
@@ -92,6 +94,8 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent("DokusCore:Zones:CheckInZone", function()
+  while (not (FrameReady())) do Wait(1000) end
+  while (not (UserInGame())) do Wait(1000) end
   while true do Wait(500)
     local Coords = GetCoords(PedID())
     for k,v in pairs(Zones) do
@@ -113,6 +117,8 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent("DokusCore:Zones:CheckOutZone", function()
+  while (not (FrameReady())) do Wait(1000) end
+  while (not (UserInGame())) do Wait(1000) end
   while true do Wait(500)
     local Coords = GetCoords(PedID())
     for k,v in pairs(Zones) do

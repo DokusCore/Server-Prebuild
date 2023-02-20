@@ -56,7 +56,8 @@ end
 function ExitMenu()
   StoreInUse = false
   SendNUIMessage({ Action = "CloseMenu" })
-  Wait(3000) SetNuiFocus(false, false)
+  SetNuiFocus(false, false)
+  Wait(3000)
   SendNUIMessage({ Action = "Hide" })
   CreateExitCam()
   ResetPrompts()

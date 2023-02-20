@@ -55,7 +55,7 @@ CreateThread(function()
     while (not FrameReady()) do Wait(1000) end
     while (not UserInGame()) do Wait(1000) end
     for k,v in pairs(_Clothing.NPCs) do Tabi(Blips, SetBlip(v.Coords, 1195729388, 1.0, MSG("NPCName").MSG)) end
-    for k,v in pairs(_Clothing.NPCs) do Tabi(NPCs, { ID = v.ID, Hash = SpawnNPC(v.Hash, v.Coords, v.Heading, true) }) end
+    for k,v in pairs(_Clothing.NPCs) do Tabi(NPCs, { ID = v.ID, Hash = SpawnNPC(v.Hash, v.Coords, v.Heading, false) }) end
   end
 end)
 --------------------------------------------------------------------------------

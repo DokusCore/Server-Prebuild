@@ -49,7 +49,8 @@ RegisterNUICallback('SaveCoords', function()
   local Pos = GetCoords(PedID())
   local Coords = Encoded(Pos)
   if (CharID == 0) then return RestartError() end
-  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { SteamID, CharID, Coords } })
+  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  TriggerServerEvent('DokusCore:Core:DBSet:Characters', { 'Coords', { Sync.SteamID, Sync.CharID, Coords } })
   NoteObjective(SYS("System").MSG, MSG("CoordsSave").MSG, 'Check', Floor(MSG("CoordsSave").Time * 1000))
 end)
 --------------------------------------------------------------------------------

@@ -5,7 +5,7 @@ description 'DokusSync -- General Stores'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '3.0.0'
+version '3.0.1'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

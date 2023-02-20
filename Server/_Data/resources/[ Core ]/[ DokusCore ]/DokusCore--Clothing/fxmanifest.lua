@@ -5,7 +5,7 @@ description 'DokusCore Clothing'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.2'
+version '1.2.3'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

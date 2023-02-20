@@ -2,6 +2,17 @@
 ############################ [ DokusCore Updates ] #############################
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+# Update v1.6.1
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+- Fixed: When a message was displayed it halted the code below the message, thus
+  not recognizing that you left the zone. This would induce glitches where the
+  NPC would not spawn, or menu's that do not work. The critical messages are not
+  halting the code now anymore, fixing this issue.
+- Fixed: When taking a horse, the mouse is disabled immediately to prevent extra
+  clicks on the exit button, preventing a couple of menu bugs from happening.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 # Update v1.6.0
 --------------------------------------------------------------------------------
 - Added: Romanian language made by RABBIT in discord!

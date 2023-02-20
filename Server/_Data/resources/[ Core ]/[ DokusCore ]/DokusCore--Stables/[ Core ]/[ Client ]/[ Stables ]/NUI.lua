@@ -34,7 +34,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNUICallback('RescueMyHorse', function(Data)
-  NoteObjective("System", 'Your horse is now set inactive', 'Horn', 5000)
+  NoteNPCTalk("System", 'Your horse is now set inactive', false, 5000)
   local Sync = TCTCC('DokusCore:Sync:Get:UserData')
   DeleteEntity(Sync.HorseID) MyActiveHorse = nil
   local Index = { Sync.SteamID, Sync.CharID, Sync.HorseName, false }
@@ -44,7 +44,7 @@ RegisterNUICallback('RescueMyHorse', function(Data)
   NoteNPCTalk(MSG("NPCName").MSG, "We're going to search for your horse, this could take some time", false, 7000)
   CreateLog('Stables', 'Horse Rescue', 'User recoverd lost horse')
   Wait((1 * 60) * 1000)
-  NoteObjective("System", 'Your horse is rescued and back at the stable', 'Horn', 10000)
+  NoteNPCTalk("System", 'Your horse is rescued and back at the stable', false, 10000)
   local Index = { Sync.SteamID, Sync.CharID, Data.Name, false }
   TriggerServerEvent('DokusCore:Core:DBSet:Stables', { 'User', 'Single', 'InUse', Index })
   local Index = { Sync.SteamID, Sync.CharID, Data.Name, true }

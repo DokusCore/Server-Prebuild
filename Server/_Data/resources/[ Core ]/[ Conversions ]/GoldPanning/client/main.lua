@@ -1,10 +1,5 @@
 local entity
 local Panning = false
-local ShowPrompts = false
-local PausePrompts = false
-local Prompt_Panning = nil
-Group = GetRandomIntInRange(0, 0xffffff)
-
 local LuckyNumber = 10 -- When this number hits the player recieves a reward.
 local rChance = { Min = 0, Max = 20 } -- Default 1 / 20 change to get a reward
 local rReward = { Min = 1, Max = 3  } -- Default reward between 1 and 3 gold nuggets
@@ -39,96 +34,81 @@ local WaterTypes = {
   [27] = {["name"] = "Random5", ["waterhash"] = -196675805, ["watertype"] = "river"},
 }
 
-CreateThread(function()
-  while true do Wait(1000)
-    if not Panning then
-      Panning = true
-      local PedID = PedID()
-      local coords = GetCoords(PedID)
-      local InWater = IsEntityInWater(PedID)
-      local Water = Citizen.InvokeNative(0x5BA7A68A346A5A91, coords.x, coords.y, coords.z)
-      local OnMount, InVeh = IsPedOnMount(PedID), IsPedInAnyVehicle(PedID, true)
+RegisterCommand('pan', function()
+  if not Panning then
+    Panning = true
+    local PedID = PedID()
+    local coords = GetCoords(PedID)
+    local InWater = IsEntityInWater(PedID)
+    local Water = Citizen.InvokeNative(0x5BA7A68A346A5A91, coords.x, coords.y, coords.z)
+    local OnMount, InVeh = IsPedOnMount(PedID), IsPedInAnyVehicle(PedID, true)
 
-      for k, v in pairs(WaterTypes) do
-        if ((Water == WaterTypes[k]["waterhash"]) and (InWater)) then
-          ShowPrompts = true
-          ActPrompts()
-          while (ShowPrompts) do Wait(1)
-            if (not (PausePrompts)) then
-              local pName = CreateVarString(10, 'LITERAL_STRING', 'Scavenging')
-              PromptSetActiveGroupThisFrame(Group, pName)
-              local Control = PromptHasHoldModeCompleted(Prompt_Panning)
-              local InWater = IsEntityInWater(PedID)
+    for k, v in pairs(WaterTypes) do
+      if ((Water == WaterTypes[k]["waterhash"]) and (InWater)) then
+        local InWater = IsEntityInWater(PedID)
 
-              -- Reset when not in water
-              if ((not (InWater)) or (InWater == 0)) then
-                ResetPrompts()
+        if ((not OnMount) and (not (InVeh))) then
+          local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+          local Index = { 'User', 'Item', { Sync.SteamID, Sync.CharID, 'gold_pan' } }
+          local Inv  = TSC('DokusCore:Core:DBGet:Inventory', Index)
+
+          if (not (Inv.Exist)) then
+            NoteObjective('System', "You've no gold pan in your inventory!", 'Horn', 5000)
+            return
+          end
+
+          if (Inv.Exist) then
+            CrouchAnimAndAttach()
+            Wait(4000)
+            Cinema(1)
+            GoldShake()
+            Time = math.random(15, 30)
+            NoteObjective('Gold Panning', 'Searching for Gold...', 'Gold', ((Time * 1000) - 500))
+            ClearPedTasks(PedID) Wait(1000)
+            DeleteObject(entity)
+            DeleteEntity(entity)
+
+            local Chance = Random(rChance.Min, rChance.Max)
+            local Reward = Random(rReward.Min, rReward.Max)
+            if (Chance == LuckyNumber) then
+              local Index = { 'User', 'Item', { Sync.SteamID, Sync.CharID, 'gold_nugget' } }
+              local Inv  = TSC('DokusCore:Core:DBGet:Inventory', Index)
+              if (Inv.Exist) then
+                local Index = { 'User', 'AddItem', { Sync.SteamID, Sync.CharID, 'gold_nugget', Reward, Inv.Result[1].Amount } }
+                TriggerServerEvent('DokusCore:Core:DBSet:Inventory', Index)
+                NoteObjective('Gold Panning', "You've found "..TS(Reward).." gold nuggets!", 'check', 3000)
                 Panning = false
-                ShowPrompts = false
-                PausePrompts = false
-              end
-
-              if ((Control) and (not OnMount) and (not (InVeh))) then
-                PausePrompts = true
-                local Sync = TCTCC('DokusCore:Sync:Get:UserData')
-                local Index = { 'User', 'Item', { Sync.SteamID, Sync.CharID, 'gold_pan' } }
-                local Inv  = TSC('DokusCore:Core:DBGet:Inventory', Index)
-
-                if (not (Inv.Exist)) then
-                  NoteObjective('System', "You've no gold pan in your inventory!", 'Horn', 5000)
-                end
-
-                if (Inv.Exist) then
-                  CrouchAnimAndAttach()
-                  Wait(4000)
-                  Cinema(1)
-                  GoldShake()
-                  Time = math.random(15, 30)
-                  NoteObjective('Gold Panning', 'Searching for Gold...', 'Gold', ((Time * 1000) - 500))
-                  ClearPedTasks(PedID) Wait(1000)
-                  DeleteObject(entity)
-                  DeleteEntity(entity)
-
-                  local Chance = Random(rChance.Min, rChance.Max)
-                  local Reward = Random(rReward.Min, rReward.Max)
-                  if (Chance == LuckyNumber) then
-                    local Index = { 'User', 'Item', { Sync.SteamID, Sync.CharID, 'gold_nugget' } }
-                    local Inv  = TSC('DokusCore:Core:DBGet:Inventory', Index)
-                    if (Inv.Exist) then
-                      local Index = { 'User', 'AddItem', { Sync.SteamID, Sync.CharID, 'gold_nugget', Reward, Inv.Result[1].Amount } }
-                      TriggerServerEvent('DokusCore:Core:DBSet:Inventory', Index)
-                      NoteObjective('Gold Panning', "You've found "..TS(Reward).." gold nuggets!", 'check', 3000)
-                      Panning = false
-                      ShowPrompts = false
-                      PausePrompts = false
-                    else
-                      local Index = { 'User', 'InsItem', { Sync.SteamID, Sync.CharID, 'Mineral', 'gold_nugget', Reward } }
-                      TriggerServerEvent('DokusCore:Core:DBIns:Inventory', Index)
-                      NoteObjective('Gold Panning', "You've found "..TS(Reward).." gold nuggets!", 'check', 3000)
-                      Panning = false
-                      ShowPrompts = false
-                      PausePrompts = false
-                    end
-                  else
-                    NoteObjective('Gold Panning', "You've found nothing", 'Horn', 2500)
-                    Panning = false
-                    ShowPrompts = false
-                    PausePrompts = false
-                  end
-                end
-
                 Cinema(0)
-                PausePrompts = false
+                return
+              else
+                local Index = { 'User', 'InsItem', { Sync.SteamID, Sync.CharID, 'Mineral', 'gold_nugget', Reward } }
+                TriggerServerEvent('DokusCore:Core:DBIns:Inventory', Index)
+                NoteObjective('Gold Panning', "You've found "..TS(Reward).." gold nuggets!", 'check', 3000)
+                Panning = false
+                Cinema(0)
+                return
               end
+            else
+              NoteObjective('Gold Panning', "You've found nothing", 'Horn', 2500)
+              Panning = false
+              Cinema(0)
+              return
             end
           end
+
+          Panning = false
+          Cinema(0)
         end
       end
-
-      Panning = false
     end
   end
 end)
+
+-- CreateThread(function()
+--   while true do Wait(1000)
+--
+--   end
+-- end)
 
 function CrouchAnimAndAttach()
   local dict = "script_rc@cldn@ig@rsc2_ig1_questionshopkeeper"

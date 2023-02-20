@@ -23,7 +23,7 @@ RegisterNetEvent('DokusCore:Stables:SayHello', function(Data)
       if (v.Welcome) then
         local Txt = RandomDialog(MSG("EnterStore"))
         local Random = Txt[math.random(#Txt)]
-        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
+        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000))
       end
     end
   end
@@ -38,7 +38,7 @@ RegisterNetEvent('DokusCore:Stables:SayGoodbye', function(Meta)
       if (v.Welcome) then
         local Txt = RandomDialog(MSG("ExitStore"))
         local Random = Txt[math.random(#Txt)]
-        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, true, Floor(Random.Time * 1000))
+        NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000))
       end
     end
 
@@ -47,7 +47,7 @@ RegisterNetEvent('DokusCore:Stables:SayGoodbye', function(Meta)
       if (Low(Area()) == Low(v.ID)) then
         DelHorseDecoys()
         ResetPrompts()
-        DeleteEntity(NPCs[k].NPC)
+        if (NPCs[k].NPC ~= nil) then DeleteEntity(NPCs[k].NPC) end
         table.remove(NPCs, k)
         UseThisNPC = nil
         AtStable = false
@@ -115,7 +115,7 @@ RegisterNetEvent('DokusCore:Stables:BuyHorse', function(Data)
   }
 
   TriggerServerEvent('DokusCore:Core:DBIns:Stables', { 'Horse', Index })
-  NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseBought").MSG, true, Floor(MSG("HorseBought").Time * 1000))
+  NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseBought").MSG, false, Floor(MSG("HorseBought").Time * 1000))
   StoreInUse = false
   ShowPrompts = true
   TriggerEvent('DokusCore:Stables:ShowPrompts')
@@ -134,7 +134,7 @@ RegisterNetEvent('DokusCore:Stables:StoreHorse', function()
 
   if (not (NPCTakesHorse)) then
     DeleteEntity(MyActiveHorse) MyActiveHorse = nil
-    NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseStored").MSG, true, Floor(MSG("HorseStored").Time * 1000))
+    NoteNPCTalk(MSG("NPCName").MSG, MSG("HorseStored").MSG, false, Floor(MSG("HorseStored").Time * 1000))
     ExitMenu() ShowPrompts = true
     TriggerEvent('DokusCore:Stables:ShowPrompts')
   else

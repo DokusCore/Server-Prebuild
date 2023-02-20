@@ -148,6 +148,8 @@ CreateThread(function()
                   ResetPrompts()
                   ShowPrompts  = false
                   PausePrompts = false
+                  Radar(true)
+                  DisplayHud(true)
                 end
               end
             end
