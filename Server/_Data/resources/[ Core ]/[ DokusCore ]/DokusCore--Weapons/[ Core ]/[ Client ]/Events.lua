@@ -78,7 +78,7 @@ RegisterNetEvent('DokusCore:GunStore:Weapon:Unequipt', function(Weapon)
       local Inv = TSC('DokusCore:Core:DBGet:Inventory', { 'User', 'Item', Index })
       local Ammo = GetAmmoInPedWeapon(PedID, GetHash(Name))
       local Index = { Sync.SteamID, Sync.CharID, Low(Weap.Result[1].Hash), TN(Ammo) }
-      TriggerServerEvent('DokusCore:Core:DBSet:Weapons', { 'User', 'Single', 'Ammo', Index })
+      TriggerServerEvent('DokusCore:Core:DBSet:Weapons', { 'User', 'Single', 'Ammo', 'Regular', Index })
       RemoveWeaponFromPed(PedID, GetHashKey(Weap.Result[1].Hash), true, -142743235)
       Citizen.InvokeNative(0x1B83C0DEEBCBB214, PedID)
 
@@ -102,7 +102,7 @@ RegisterNetEvent('DokusCore:GunStore:Weapon:Unequipt', function(Weapon)
           if (Low(v.Type) == (Low(Type))) then
             SetPedAmmo(PedID, GetHash(Up(v.Hash)), TN(Ammo))
             local Index = { Sync.SteamID, Sync.CharID, Low(v.Type), TN(Ammo) }
-            TriggerServerEvent('DokusCore:Core:DBSet:Weapons', { 'User', 'All', 'Ammo', Index })
+            TriggerServerEvent('DokusCore:Core:DBSet:Weapons', { 'User', 'Single', 'Ammo', 'Regular', Index })
           else
             SetPedAmmo(PedID, GetHash(Up(v.Hash)), TN(v.Ammo_Regular))
           end

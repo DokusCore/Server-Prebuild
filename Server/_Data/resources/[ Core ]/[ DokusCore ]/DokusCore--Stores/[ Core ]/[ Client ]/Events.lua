@@ -13,6 +13,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Stores:Enter', function()
+  print("enter store zone")
   local Txt = RandomDialog(MSG('EnterStore'))
   local Random = Txt[math.random(#Txt)]
   NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000)) Wait(500)
@@ -20,6 +21,7 @@ end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Stores:Exit', function()
+  print("exit store zone")
   local Txt = RandomDialog(MSG('ExitStore'))
   local Random = Txt[math.random(#Txt)]
   NoteNPCTalk(MSG("NPCName").MSG, Random.MSG, false, Floor(Random.Time * 1000)) Wait(500)

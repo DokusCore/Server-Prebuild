@@ -137,7 +137,7 @@ RegisterNUICallback('BuyAmmo', function(Weapon)
       for k,v in pairs(Weap.Result) do
         if (Low(Type) == Low(v.Type)) then
           local Index = { Sync.SteamID, Sync.CharID, Low(v.Hash), TN(NewAmmo) }
-          TriggerServerEvent('DokusCore:Core:DBSet:Weapons', { 'User', 'Single', 'Ammo', Index })
+          TriggerServerEvent('DokusCore:Core:DBSet:Weapons', { 'User', 'Single', 'Ammo', 'Regular', Index })
           SetPedAmmo(PedID, Hash, NewAmmo)
         end
       end

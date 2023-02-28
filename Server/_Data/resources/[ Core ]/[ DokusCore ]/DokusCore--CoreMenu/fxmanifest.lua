@@ -5,7 +5,7 @@ description 'DokusCore Settings Menu'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '2.4.1'
+version '2.4.2'
 -- version '-----'
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
