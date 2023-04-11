@@ -53,7 +53,7 @@ function file.remove(path) os.remove(path) end
 --------------------------------------------------------------------------------
 RegisterServerEvent('DokusCore:Zones:SaveZones')
 AddEventHandler('DokusCore:Zones:SaveZones', function()
-  local Exist = file.exists('resources/[ Core ]/[ DokusCore ]/DokusCore--Zones/Zoning.lua')
+  local Exist = file.exists('resources/[ Core ]/[ DokusCore ]/DokusCore--Zones/[ Zone ]/Zoning.lua')
   if (Exist) then TriggerClientEvent('DokusCore:Zones:StoreZones', source) end
   if (not (Exist)) then TriggerClientEvent('DokusCore:Zones:StartZones', source) end
 end)
@@ -63,7 +63,7 @@ end)
 RegisterServerEvent('DokusCore:Zones:DeleteConfig')
 AddEventHandler('DokusCore:Zones:DeleteConfig', function()
   if (not (ConfigHasError)) then
-    file.remove('resources/[ Core ]/[ DokusCore ]/DokusCore--Zones/Zoning.lua')
+    file.remove('resources/[ Core ]/[ DokusCore ]/DokusCore--Zones/[ Zone ]/Zoning.lua')
     Wait(500) TriggerClientEvent('DokusCore:Zones:StartZones', -1)
   end
 end)

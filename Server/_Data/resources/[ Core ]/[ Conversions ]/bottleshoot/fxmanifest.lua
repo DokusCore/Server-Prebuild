@@ -13,9 +13,9 @@ client_scripts {
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
 }
 
-server_scripts {
-	'server/*.lua'
-}
+-- server_scripts {
+-- 	'server/*.lua'
+-- }
 
 shared_scripts {
 	'@DokusCore/[ Configs ]/[ Core ]/Core.lua',

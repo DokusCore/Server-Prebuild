@@ -10,10 +10,10 @@ You can fine tune your zone until to your likings.
 When done:
 
 8: Go to Config.lua and set Debug to false.
-9: Restart the plugin. 
+9: Restart the plugin.
 
 The Zoning.lua will now be deleted and the data will be pushed
-to the database. After that the plugin will run automatically 
+to the database. After that the plugin will run automatically
 with the newly added zone.
 
 You can still edit your zone when it is in the database!

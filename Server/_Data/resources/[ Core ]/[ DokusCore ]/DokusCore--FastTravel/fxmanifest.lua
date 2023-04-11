@@ -5,14 +5,13 @@ description 'DokusCore FastTravel -- Teleports you to off map locations!'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.2.3'
+version '1.2.4'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 server_scripts {
   '@oxmysql/lib/MySQL.lua',
   '[ Core ]/[ Server ]/*.lua',
-  '[ Core ]/[ Server ]/[ Scripts ]/*.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -21,7 +20,6 @@ client_scripts {
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
   '[ Core ]/[ Client ]/*.lua',
-  '[ Core ]/[ Client ]/[ Scripts ]/*.lua'
 }
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------

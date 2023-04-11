@@ -5,7 +5,7 @@ description 'DokusCore Spawn / Respawn module'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games { "rdr3" }
-version '1.2.3'
+version '1.2.4'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -50,9 +50,8 @@ files {
   'UI/index.html',
   'UI/*.js',
   'UI/*.css',
-  'UI/assets',
   'UI/assets/fonts/*.*',
-  'UI/assets/images/overlays/*.*',
+  'UI/assets/images/overlay/*.*',
   'UI/assets/images/spawns/*.*',
 }
 --------------------------------------------------------------------------------

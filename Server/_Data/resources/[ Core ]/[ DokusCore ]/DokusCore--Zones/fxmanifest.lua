@@ -5,7 +5,7 @@ description 'DokusCore | Manazing your own custom zones'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.1.2'
+version '1.1.3'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ server_scripts {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  'Config.lua', 'Zoning.lua',
+  'Config.lua', '[ Zone ]/*.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',

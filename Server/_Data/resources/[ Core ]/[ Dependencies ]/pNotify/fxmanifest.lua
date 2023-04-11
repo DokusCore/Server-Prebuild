@@ -14,12 +14,11 @@ export "SetQueueMax"
 export "SendNotification"
 
 files {
-    "html/index.html",
-    "html/pNotify.js",
-    "html/noty.js",
-    "html/noty.css",
-    "html/themes.css",
+  "html/index.html",
+  "html/pNotify.js",
+  "html/noty.js",
+  "html/noty.css",
+  "html/themes.css",
 	"html/crock.ttf",
-    "html/sound-example.wav",
 	"html/*.png"
 }

@@ -5,7 +5,7 @@ description 'DokusCore ScriptBundle -- A bundle of small scripts'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.5.3'
+version '1.5.4'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -17,7 +17,6 @@ server_scripts {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 client_scripts {
-  'Config.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Client ]/CBSystem.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Natives.lua',
   '@DokusCore/[ Core ]/[ Client ]/[ Utilities ]/Functions.lua',
@@ -27,6 +26,7 @@ client_scripts {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
+  -- 'Config.lua', -- For Development only | leave off.
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',

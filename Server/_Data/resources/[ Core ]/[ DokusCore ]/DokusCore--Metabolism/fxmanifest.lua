@@ -5,7 +5,7 @@ description 'DokusCore Metabolism -- Its vital to have some vitals'
 author 'http://DokusCore.com'
 fx_version "adamant"
 games {"rdr3"}
-version '1.3.2'
+version '1.3.3'
 -- version '-----' -- For Development
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -49,8 +49,6 @@ shared_script {
 ui_page('UI/index.html')
 files {
   "UI/script.js",
-	"UI/jquery.min.js",
-	"UI/jquery-ui.min.js",
 	"UI/styles.css",
 	"UI/img/*.svg",
 	"UI/img/*.png",
