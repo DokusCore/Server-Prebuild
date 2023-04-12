@@ -26,7 +26,7 @@ server_scripts {
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 shared_script {
-  'Config.lua', '[ Zone ]/*.lua',
+  'Config.lua', '[ Zone ]/*.*',
   '@DokusCore/[ Configs ]/[ Core ]/Core.lua',
   '@DokusCore/[ Configs ]/[ Core ]/Modules.lua',
   '@DokusCore/[ Core ]/[ System ]/[ Shared ]/CBSystem.lua',
