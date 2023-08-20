@@ -5,7 +5,7 @@
 --------------------------------------------------------------------------------
 RegisterNetEvent('DokusCore:Skins:Load:User', function()
   local Core   = GetAttributeCoreValue(PedID(), 0)
-  local Sync = TCTCC('DokusCore:Sync:Get:UserData')
+  local Sync   = TCTCC('DokusCore:Sync:Get:UserData')
   local CharID, Dec, Gender = Sync.CharID, Decoded(Sync.Skin), Sync.Gender
   local Skin, Face = Decoded(Dec.Skin), Decoded(Dec.Face)
   local Hash = GetHashKey(Up(Gender))

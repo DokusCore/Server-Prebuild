@@ -73,24 +73,24 @@ end)
 --------------------------------------------------------------------------------
 -- Look for when the player dies
 --------------------------------------------------------------------------------
-CreateThread(function() Wait(5000)
-  if (_Modules.Metabolism) then
-    while (not FrameReady()) do Wait(1000) end
-    while (not UserInGame()) do Wait(1000) end
-    while true do Wait(1000)
-      while Online do Wait(1000)
-        if (Health <= 0) then
-          local ID = PedID()
-          UIFadeOut(1500)
-          TriggerEvent('DokusCore:Metabolism:Edit:Hunger', { 15 })
-          TriggerEvent('DokusCore:Metabolism:Edit:Thirst', { 15 })
-          TriggerEvent('DokusCore:Spawner:DeathRespawn', ID)
-          Wait(5000)
-        end
-      end
-    end
-  end
-end)
+-- CreateThread(function() Wait(5000)
+--   if (_Modules.Metabolism) then
+--     while (not FrameReady()) do Wait(1000) end
+--     while (not UserInGame()) do Wait(1000) end
+--     while true do Wait(1000)
+--       while Online do Wait(1000)
+--         if (Health <= 0) then
+--           local ID = PedID()
+--           UIFadeOut(1500)
+--           TriggerEvent('DokusCore:Metabolism:Edit:Hunger', { 15 })
+--           TriggerEvent('DokusCore:Metabolism:Edit:Thirst', { 15 })
+--           TriggerEvent('DokusCore:Spawner:DeathRespawn', ID)
+--           Wait(5000)
+--         end
+--       end
+--     end
+--   end
+-- end)
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Activate the right events on player movement
