@@ -14,6 +14,6 @@ PREBUILD LAST UPDATED:     | 20th August 2023
 ----
 # Important !
 Need help or just want to join our community?
-Visit our Discord link here: [Discord](https://discord.io/DokusCore)
+Visit our Discord link here: [Discord](https://discord.com/invite/ksQRq25Hcz)
 
 ----
